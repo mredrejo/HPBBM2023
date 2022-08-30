@@ -1,0 +1,95 @@
+---
+title: 'Lesson 9: Read and write files in R'
+author: "Modesto"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    toc_depth: '2'
+    df_print: paged
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r wrap-hook, echo=FALSE}
+library(knitr)
+library(formatR)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+#in RMD files, the default wd for R code chunks is the directory that contains the Rmd document. 
+#We change it here to share the working directory with all the Rmd files of the course
+knitr::opts_knit$set(root.dir = "/Users/modesto/data/HPBBM2022")
+```
+
+# Working directory
+
+The working directory (wd) is the default location where R will look for files you want to load and where it will put any files you save.
+
+![](images/paste-911888EF.png)
+
+Note that the abbreviation '\~' stands for your home directory (for me `/Users/modesto` or `/home/modesto` on MacOS or Linux, respectively).
+
+The functions getwd() and setwd() allow you to check and change the wd. Remember that you can write `?getwd()` or `?setwd()` for help.
+
+```{r, error=TRUE}
+getwd()
+#input of setwd() is a string -> requires quotes
+setwd("/Users/modesto")
+getwd()
+#you must write an existing path
+setwd("/Users/mredrejo/data/HPBBM2022") 
+setwd("/Users/modesto/data/HPBBM2022")
+getwd()
+```
+
+In RStudio, the *default working directory* can be set from the "tools" and
+"global options" menu. Also, you can change the wd for your session in the menu Session>Set Working Directory and change it to that of source file (for instant your R script), the project or the selected directory in the files panel.
+
+Additionally, RStudio encourages the use of Projects (see link below in [References]). RStudio Projects make it straightforward to divide your work into multiple contexts, each with their own working directory, workspace, history, and source documents. When you open a Project in RStudio, the current working directory is set to the project directory.
+
+# Reading data
+
+## Importing tables
+
+The most common way to read your data in R is importing it as a table.
+
+# References
+
+-   *An introduction to R*, <https://intro2r.com/work-d.html>
+
+-   *R programming for data science,* <https://bookdown.org/rdpeng/rprogdatascience/>
+
+-   Using RStudio projects, <https://support.rstudio.com/hc/en-us/articles/200526207>
+
+-   Importar y exportar datos en R, <https://rsanchezs.gitbooks.io/rprogramming/content/chapter3/index.html>
+
+# Short exercises
+
+#### 1. Install the package `readxl` and read the file *coli_genomes.xls* in the *data* folder.
+
+#### 2. Export the dataframe from exercise 1 as a *csv* file. Read it as a new dataframe object. Is there any difference between the two dataframes?
+
+#### 3. Write a function called micro() that transforms concentrations units: molar (M) into micromolar (µM)
+
+#### 4. Write a function that transform mass into concentration (in µM and with four decimal digits). For simplicity, we can consider that the units of mass, molecular weight and volume are µg, kg/mol and µL, respectively.
+
+#### **5. Write a function that calculate your approximate age in months.**
+
+Check the functions `date()`, `Sys.Date()`, `as.Date()`, and `difftime()`. See some examples [here](https://bookdown.org/rdpeng/rprogdatascience/dates-and-times.html) or [here](https://www.geeksforgeeks.org/calculate-time-difference-between-dates-in-r-programming-difftime-function/#:~:text=Calculate%20Time%20Difference%20between%20Dates%20in%20R%20Programming%20%E2%80%93%20difftime()%20Function,-View%20Discussion&text=difftime()%20function%20in%20R,%2C%20months%2C%20years%2C%20etc.&text=units%3A%20Days%2C%20weeks%2C%20months%2C%20etc.).\
+
+# Script-ing
+
+#### Write a function that translate any nucleotide sequence into a protein sequence.
+
+Hints:
+
+1.  You may need to check for the number of nucleotides (i) and the number of codons (j=i/3) in the sequence.
+
+2.  You may use the function `substr()` to divide the sequence into codons. To do so, you may use a loop that split the nucleotides in groups of three (For instance, being the last nucleotide *j x 3* and the first *(j x 3) -2)*.
+
+3.  You would add a `warning()` call when 1-2 nucleotides at the end of the sequence are not used.
+
+4.  Finally, use the package ***seqinr*** to read the fasta file *lacZ.fa.* Note that sequence objects are nested lists, thus, you'll need to extract the sequence as a plain text.

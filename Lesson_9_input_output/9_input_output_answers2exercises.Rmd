@@ -1,0 +1,122 @@
+---
+title: "Lesson 10: Functions in R. Answer to exercises."
+author: "Modesto Redrejo Rodríguez"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+# Short exercises
+
+```{r, setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "/Users/modesto/data/HPBBM2022")
+
+```
+
+#### 1. Install the package `readxl` and read the file *coli_genomes.xls* in the *data* folder. 
+
+#### 2. Export the dataframe from exercise 1 as a *csv* file. Read it as a new dataframe object. Is there any difference between the two dataframes?  
+
+```{r}
+# install.packages("xlsx")
+# I omit the re-installation 
+library(xlsx)
+coli <- read.xlsx("data/coli_genomes.xlsx", 1) #datasheet must be indicated
+coli
+write.csv(coli,"data/coli_genomes_exported.csv", row.names=FALSE )
+coli_exported <- read.csv("data/coli_genomes_exported.csv", na.strings = "")
+setdiff(coli,coli_exported)
+```
+
+There is a difference in the column *Year* because the text "NA" in the files is writen as "NA" text in the table by the read.xlsx(), but the read.csv() is actually identifying it as *NAs*. We can bypass this difference indicating a different NA string in the read.csv() function:
+
+```{r}
+coli_exported2 <- read.csv("data/coli_genomes_exported.csv", na.strings = "")
+setdiff(coli,coli_exported2)
+```
+
+#### 3. Write a function called micro() that transforms concentrations units: molar (M) into micromolar (µM).
+
+```{r}
+# I choose inline function format
+f <-  function(x) x * 1000000
+f(1) # 1 Mol = 1000000 µM
+f(0.001) # 0.001 Mol = 1000 µM
+```
+
+#### 4. Write a function that transform mass into concentration (in µM and with four decimal digits). For simplicity, we can consider that the units of mass, molecular weight and volume are µg, kg/mol and µL, respectively.
+
+```{r}
+concentration  <-  function(mass=1, mw=66000, vol=20){
+  #I include default data for 1 µg of BSA protein in 20 µL
+  microM = (mass / mw) * 1000 /vol
+  #round to 4 decimal digits
+  print(paste("The final concentration is", round(microM,4), "µM"))
+}
+
+concentration(mass=4,mw=34,vol=200)  #example
+concentration(100) #concentration for 100 µg of BSA
+concentration(100, vol=100) #concentration for 100 µg of BSA in 100 µL
+```
+
+#### **5. Write a function that calculate your approximate age in months.**
+
+```{r}
+#quickest way I found
+age <-  function(x){
+  age <- as.numeric(Sys.Date()-as.Date(x))
+  print(paste("You are about", round(age/30,1), "months old"))
+} 
+
+#alternative using difftime()
+df <-  function(x){
+  df <- as.numeric(difftime(as.POSIXlt(Sys.Date()),as.POSIXlt(x)))
+  print(paste("You are about", round(df/30,1), "months old"))
+} 
+```
+
+# Script-ing
+
+#### Write a function that translate any nucleotide sequence into a protein sequence.
+
+Hints:
+
+1.  You may check for the number of nucleotides (i) and the number of codons (j=i/3) in the sequence.
+
+2.  You may use the function `substr()` to divide the sequence into codons. To do so, you may use a loop that split the nucleotides in groups of three, for instance, being the last nucleotide *j x 3* and the first *(j x 3) -2*.
+
+3.  You may add a `warning()` call when 1-2 nucleotides at the end of the sequence are not used.
+
+4.  Finally, use the package *seqinr* to read the fasta file *lacZ.fa.* Note that sequence objects are nested lists, thus, you'll need to handle the sequence as a plain text.
+
+```{r}
+orf2aa <- function(orf) {
+  if (nchar(orf) %% 3 != 0) {
+    warning("La secuencia no es múltiplo de 3. Los últimos 1-2 nt no serán usados.")
+  }
+  orf <- toupper(orf) #make sure that the sequence is uppercase like the code
+  codon <- c()
+  for (i in 1:round(nchar(orf)/3)){
+    codon[i]<-substr(orf,(i*3)-2,i*3)
+    i=i+3
+  }
+  aa<-c()
+  code<-read.csv2("data/genetic_code.csv")
+  for (k in 1:length(codon)){
+    if(codon[k] %in% code$Codon){
+      aa[k] <- code$AA[code$Codon==codon[k]] 
+    } else {
+      stop("Uno o más de los codones no es correcto. No se ha podido traducir.")
+    }
+  }
+  paste(aa, collapse='')
+}
+
+#now we apply the function to the lacz.fa file
+library("seqinr")
+lacz <- read.fasta("data/lacz.fa", as.string = TRUE)
+orf2aa(lacz)
+
+```
