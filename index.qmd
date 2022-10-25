@@ -12,7 +12,7 @@ editor: visual
 
 ## [Wellcome & Disclaimer]{style="color:cornflowerblue"}
 
-This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@UAM. This materials are the basis for GitHub-pages-based website that can be accessed [here](https://mredrejo.github.io/HPBBM2022/). Detailed academic information about the course contents, dates and assessment only can be found at the UAM Moodle site.
+This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@UAM. These materials are available on a [GitHub repo](https://github.com/mredrejo/HPBBM2022). Detailed academic information about the course contents, dates and assessment only can be found at the UAM Moodle site.
 
 This site contains *R Markdown Notebooks*. When you "knit" the report, R Studio will execute the code within each chunk in the notebook and the results appear beneath the code in the output file (usually HTML or PDF). Check also <https://bookdown.org/yihui/rmarkdown-cookbook/spin.html> for more info about how to use Notebooks and Markdown. Markdown recently evolved to **Quarto**, which has increased capabilities. To learn more about Quarto see <https://quarto.org>. We will discuss about the use of R Projects, R Markdown and Quarto at the end of this course.
 
