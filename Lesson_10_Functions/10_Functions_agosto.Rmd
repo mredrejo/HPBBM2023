@@ -19,14 +19,8 @@ editor_options:
 library(knitr)
 library(formatR)
 opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
-knitr::opts_knit$set(root.dir = "/Users/modesto/data/HPBBM2022")
+
 ```
-
-# [Wellcome & Disclaimer]{style="color:cornflowerblue"}
-
-This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@UAM. This materials are the basis for GitHub-pages-based website that can be accessed [here](https://mredrejo.github.io/HPBBM2022/). Detailed academic information about the course contents, dates and assessment only can be found at the UAM Moodle site.
-
-All this material is open access and it is shared under [CC BY-NC](https://creativecommons.org/licenses/by-nc/2.0/) license.
 
 # R packages
 
@@ -38,33 +32,23 @@ A full list of CRAN packages can be found [here](https://cran.r-project.org/web/
 
 ## Installing and use R packages
 
-As an example, we are going to install and use `xlsx`, a handy package to import/export tables in MS Excel format. You may also check related packages, such as `readxl` or `pzfx`.
+As an example, we are going to install and use `SeqinR`, a handy package to work with biological sequences.
 
 ```{r, error=TRUE}
-#install the package
-#you may require other packages,add dependencies=TRUE if this example doesn't work
-install.packages("xlsx")
+#install
+install.packages("seqinr")
 
 #load
-library(xlsx) 
+library(seqinr) 
 
 #trick to install package only if not installed 
-if(!require(xlsx)){
-    install.packages("xlsx")
-    library(xlsx)
+if(!require(seqinr)){
+    install.packages("seqinr")
+    library(seqinr)
 }
 ```
 
-Try to read again the file coli_genomes_renamed.csv that we saved in the previous lesson and save it ready for MS Excel.
-
-```{r}
-#open it again
-coli_genomes <- read.csv2(file = 'data/coli_genomes_renamed.csv')
-#save
-write.xlsx(coli_genomes,"data/coli_genomes.xlsx")
-```
-
-In the above code we have used `require()` and `library()` functions to call for package loading. Those are very similar functions, often interchangeable. The main difference is that if you use `require()`*,* you will get a warning (see below for *warning* use), but not an error. Thus, your code will continue to run if possible.
+Notice that in the above code we have used `require()` and `library()` functions to call for package loading. Those are very similar functions, often interchangeable. The main difference is that if you use `require()`*,* you will get a warning (see below for *warning* use), but not an error. Thus, your code will continue to run if possible.
 
 ```{r, error=TRUE}
 library(uam)
@@ -82,11 +66,11 @@ browseVignettes("ggplot2")
 
 ## Why? How?
 
-We have discussed throughout the last lectures how R can help you if you to save time when you need to analyze and plot the data from your experiment. However, many times, particularly in Bioinformatics, you won't have the data from one single experiment but from many of them.
+We have discussed thoroughout the last weeks how R can help you if you to save time when you need to analyze and plot the data from your experiment. However, many times, particularly in Bioinformatics, you won't have the data from one single experiment but from many of them.
 
 Creating you own function will be very useful for automation of repetitive analyses or to encapsulate a sequence of expressions that need to be executed numerous times, perhaps under slightly different conditions. Functions are also often written when code must be shared with others or the public.
 
-In R, functions are also considered as objects. That means that (1) they can be nested, so you can define a function inside another function and (2) you can use functions as arguments to other functions. We will see very useful examples of this latter feature in Lesson 12, using custom functions as arguments for `lapply()` or `sapply()`.
+In R, functions are also considered as objects. That means that (1) they can be nested, so you can define a function inside another function and (2) you can use funcions as arguments to other functions. We will see very useful examples of this latter feature in Lesson 12, using custom functions as arguments for `lapply()` or `sapply()`.
 
 The overall scheme of an R function is the following:
 
@@ -346,9 +330,9 @@ codon2aa_2(c("ATG","CAT", "CAT","AAA","TAA"))
 
 # Short exercises
 
-#### 1. Install the package `report` and check its *vignette* and the info at the package site: <https://easystats.github.io/report/>  
+#### 1. Install the package `readxl` and read the file *coli_genomes.xls* in the *data* folder.
 
-#### 2. R has some built-in datasets that can be used as example. You can check them using the function `data()`.  Use the function `report()` with some of the R built-in datasets, like *DNase.* Explore the dataset and try to use the report to answer some question, like normal distribution or correlation between two variables.
+#### 2. Export the dataframe from exercise 1 as a *csv* file. Read it as a new dataframe object. Is there any difference between the two dataframes?
 
 #### 3. Write a function called micro() that transforms concentrations units: molar (M) into micromolar (µM)
 
@@ -370,8 +354,10 @@ Check the functions `date()`, `Sys.Date()`, `as.Date()`, and `difftime()`. See s
 
 Hints:
 
-1.  You may need to check for the number of nucleotides (*i*) and the number of codons (*j*=*i*/3) in the sequence.
+1.  You may need to check for the number of nucleotides (i) and the number of codons (j=i/3) in the sequence.
 
-2.  You may use the function `substr()` (check the help) to divide the sequence into codons. To do so, you may use a loop that split the nucleotides in groups of three.
+2.  You may use the function `substr()` to divide the sequence into codons. To do so, you may use a loop that split the nucleotides in groups of three (For instance, being the last nucleotide *j x 3* and the first *(j x 3) -2)*.
 
 3.  You would add a `warning()` call when 1-2 nucleotides at the end of the sequence are not used.
+
+4.  Finally, use the package ***seqinr*** to read the fasta file *lacZ.fa.* Note that sequence objects are nested lists, thus, you'll need to extract the sequence as a plain text.
