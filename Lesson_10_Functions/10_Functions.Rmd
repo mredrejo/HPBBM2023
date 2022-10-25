@@ -375,3 +375,5 @@ Hints:
 2.  You may use the function `substr()` (check the help) to divide the sequence into codons. To do so, you may use a loop that split the nucleotides in groups of three.
 
 3.  You would add a `warning()` call when 1-2 nucleotides at the end of the sequence are not used.
+
+# [Course home](https://mredrejo.github.io/HPBBM2022/)

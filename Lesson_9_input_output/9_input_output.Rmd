@@ -240,3 +240,5 @@ write.csv2(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
 4.  Save the tables *coli_genomes_renamed* and *colis* in a *Rdata* file.
 
 5.  Add the values of the exercise 3 as a last row in the table. Note. For the *seqs* variable you will need to use the function `format()`.
+
+# [Course home](https://mredrejo.github.io/HPBBM2022/)
