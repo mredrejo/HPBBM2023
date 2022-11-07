@@ -346,9 +346,9 @@ codon2aa_2(c("ATG","CAT", "CAT","AAA","TAA"))
 
 # Short exercises
 
-#### 1. Install the package `report` and check its *vignette* and the info at the package site: <https://easystats.github.io/report/>  
+#### 1. Install the package `report` and check its *vignette* and the info at the package site: <https://easystats.github.io/report/>
 
-#### 2. R has some built-in datasets that can be used as example. You can check them using the function `data()`.  Use the function `report()` with some of the R built-in datasets, like *DNase.* Explore the dataset and try to use the report to answer some question, like normal distribution or correlation between two variables.
+#### 2. R has some built-in datasets that can be used as example. You can check them using the function `data()`. Use the function `report()` with some of the R built-in datasets, like *DNase.* Explore the dataset and try to use the report to answer some question, like normal distribution or correlation between two variables.
 
 #### 3. Write a function called micro() that transforms concentrations units: molar (M) into micromolar (µM)
 
@@ -376,4 +376,10 @@ Hints:
 
 3.  You would add a `warning()` call when 1-2 nucleotides at the end of the sequence are not used.
 
+4.  Use the function `readLines()` to read the file *lacz.fa,* which contains the nucleotide sequence of *E. coli* lacZ gene in [fasta](https://es.wikipedia.org/wiki/Formato_FASTA) format, and obtain the translated sequence.
+
 # [Course home](https://mredrejo.github.io/HPBBM2022/)
+
+```{r}
+sessionInfo()
+```

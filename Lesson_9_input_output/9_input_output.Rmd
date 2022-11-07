@@ -32,7 +32,7 @@ All this material is open access and it is shared under [CC BY-NC](https://creat
 
 # Data input & output in R
 
-As you already know, launching R starts an interactive session with input from the keyboard and output to the screen. If you are using small datasets, you can directly define and introduce your data in the Console, as you did in the examples before. Additionally, you can define your objects and introduce your data interactively with the functions `scan()`and `readline()` as in the following examples. Regarding the output, you can just call the object by its name or use the function `print()`, which displays on the screen the contents of its argument object. Although, seldom used, you can also edit the contents of your objects using the function `edit()`.
+As you already know, launching R starts an interactive session with input from the keyboard and output to the screen. If you are using small datasets, you can directly define and introduce your data in the Console, as you did in the examples before. Additionally, you can define your objects and introduce your data interactively with the functions `scan()`and `readline()` as in the following examples. Regarding the output, you can just call the object by its name or use the function `print()`, which displays on the screen the contents of its argument object.
 
 ```{r}
 vector <- scan(n=4)
@@ -43,6 +43,8 @@ print(vector2)
 print(str)
 edit(str)
 ```
+
+Although, seldom used, you can also edit the contents of your objects using the function `edit()`. This function can be used to edit different objects, including vectors, strings, matrices or dataframes. MacOS users need to install XQuartz X11 tool.
 
 # Working directory
 
@@ -56,11 +58,9 @@ The functions `getwd()` and `setwd()` allow you to check and change the *wd*. As
 
 ```{r, error=TRUE}
 getwd()
-#input of setwd() is a string -> requires quotes
 setwd("/Users/modesto")
 getwd()
-#you must write an existing path
-setwd("/Users/mredrejo/data/HPBBM2022") 
+setwd("/Users/modsto/data/HPBBM2022") 
 setwd("/Users/modesto/data/HPBBM2022")
 getwd()
 ```
@@ -71,20 +71,30 @@ In RStudio, the *default working directory* can be set from the "tools" and "glo
 
 The most common way to read your data in R is importing it as a table, using the function `read.table()`. Note that the resultant object will become a *Dataframe*, even when all the entries got to be numeric. A followup call towards `as.matrix()` will turn it into in a matrix.
 
-In the following example we read a file called small_matrix.csv, located in the folder data.
+In the following example we read a file called *small_matrix.csv*, located in the folder data. If we attempt to make some matrix calculations, R will force the dataframe to a matrix when possible, but it will return an Error for many matrix-specific operations or functions unless, we transform the dataframe into a matrix.
 
-```{r}
+```{r error=TRUE}
 sm <- read.table("data/small_matrix.csv", sep=",")
 sm
-as.matrix(sm)
+is.matrix(sm)
+t(sm)
+sm * 3
+diag(sm)
+diag(as.matrix(sm))
+heatmap(sm)
+heatmap(as.matrix(sm))
 ```
 
 You can write any data object(s) as binary data file or as text files.
 
 ```{r}
-save(vector, vector2,file="data/vector2.Rdata")
+
 write(vector2,file="data/vector2.txt")
 write.table(sm,"data/sm.csv")
+write.table(sm,"data/sm2.csv", row.names = FALSE, col.names = FALSE, sep=";")
+
+save(vector, vector2,file="data/vector2.Rdata")
+save.image(file='data/myEnvironment.RData')
 ```
 
 Data files in RData format can be open from the *Environment* tab or with the `load()` function
@@ -104,16 +114,23 @@ As you can see in the R help, the function `read.table()` has several default op
 
 ```{r error=TRUE}
 #Note differences between read.table(), read.csv() and read.csv2()
-coli_genomes <- read.table(file = 'data/coli_genomes.csv')
+coli_genomes <- read.table(file = "data/coli_genomes.csv")
 head(coli_genomes)
-coli_genomes <- read.table(file = 'data/coli_genomes.csv', sep=";", dec=".", header=TRUE)
+coli_genomes <- read.table(file = "data/coli_genomes.csv", sep=";", dec=".", header=TRUE)
 head(coli_genomes) 
-coli_genomes <- read.csv(file = 'data/coli_genomes.csv')
+coli_genomes <- read.csv(file = "data/coli_genomes.csv")
 head(coli_genomes)
-coli_genomes <- read.csv(file = 'data/coli_genomes.csv', sep=";")
+coli_genomes <- read.csv(file = "data/coli_genomes.csv", sep=";")
 head(coli_genomes)  
-coli_genomes <- read.csv2(file = 'data/coli_genomes.csv')
+coli_genomes <- read.csv2(file = "data/coli_genomes.csv")
 head(coli_genomes)
+
+#read some data
+head(coli_genomes)
+tail(coli_genomes, n=2)
+coli_genomes[1,]
+coli_genomes[,1]
+coli_genomes[1:6,2:4]
 
 #explore the dataframe structure
 dim(coli_genomes)
@@ -127,12 +144,14 @@ typeof(coli_genomes$Strain)
 typeof(coli_genomes[,2])
 typeof(coli_genomes[,9])
 
-#read some data
-head(coli_genomes)
-tail(coli_genomes, n=2)
-coli_genomes[1,]
-coli_genomes[,1]
-coli_genomes[1:6,2:4]
+#col and row names
+names(coli_genomes)
+colnames(coli_genomes)
+rownames(coli_genomes)
+names(coli_genomes[3])<-'Year'
+names(coli_genomes)[3]<-'Year'
+colnames(coli_genomes[3])<-'Year'
+
 ```
 
 Some of the columns include 'chr' data that may be actually a categorical variable, so we can code them as **factor**. Using the expression *as.factor()* you can check whether the data would correspond to a text or a categorical variable.
@@ -149,7 +168,7 @@ How many levels are there in *Source*?? It is not uncommon to see some mistake i
 ```{r}
 unique(coli_genomes$Source)
 table(coli_genomes$Source)
-coli_genomes <- read.csv2(file = 'data/coli_genomes.csv',  strip.white = TRUE)
+coli_genomes <- read.csv2(file = "data/coli_genomes.csv",  strip.white = TRUE)
 coli_genomes$Source<-as.factor(coli_genomes$Source)
 coli_genomes$Phylogroup<-as.factor(coli_genomes$Phylogroup)
 
@@ -176,8 +195,8 @@ We are going to simplify our dataframe by dropping variables:
 
 ```{r}
 coli_genomes<-coli_genomes[-c(9:11),]
-#Note that this might be also used to remove rows
-
+# this can be also used to remove rows
+coli_genomes[,-1]
 ```
 
 We know the 'Assembly length' and the number of 'Contigs', but we would like to represent the average contig length.
@@ -229,7 +248,7 @@ write.csv2(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
 
 -   R para análisis científicos reproducibles. Sofware Carpentry Foundation. <https://swcarpentry.github.io/r-novice-gapminder-es/>
 
-# Short exercises
+# [Short exercises]{style="color:green"}
 
 1.  Try the input/output examples from *Techvidvan* website <https://techvidvan.com/tutorials/r-input-and-output-functions/>
 
@@ -237,8 +256,14 @@ write.csv2(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
 
 3.  Calculate the mean of numerical variables: isolation date (*Year*), antimicrobial resistance genes (*AMR*), virulence factors (*VF*),integron cassettes (*Integron*) and sequencing date (*seqs*) in those strains? Note. For the *seqs* variable you will need to use the function `as.Date()`.
 
-4.  Save the tables *coli_genomes_renamed* and *colis* in a *Rdata* file.
+4.  Save the tables *coli_genomes_renamed* and *colis* in a single *Rdata* file.
 
 5.  Add the values of the exercise 3 as a last row in the table. Note. For the *seqs* variable you will need to use the function `format()`.
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
 
 # [Course home](https://mredrejo.github.io/HPBBM2022/)
