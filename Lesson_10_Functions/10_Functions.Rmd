@@ -3,14 +3,14 @@ title: 'Lesson 10: Functions in R'
 author: "Modesto"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    toc: yes
-    toc_depth: '2'
   html_document:
     toc: yes
     toc_float: yes
     toc_depth: '2'
     df_print: paged
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
 editor_options:
   chunk_output_type: inline
 ---
@@ -30,7 +30,7 @@ All this material is open access and it is shared under [CC BY-NC](https://creat
 
 # R packages
 
-R is a '[GNU Software](https://en.wikipedia.org/wiki/GNU)' with a [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) license. As a a freely available language it has a great community of users from diverse background and interests. This community have developed a myriad of applications for R, called ***R Packages***. Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data. The idea behind R packages is that the chances are that someone has already solved a problem that you're working on, and you can benefit from their work by downloading their package.
+As you already know, R is a '[GNU Software](https://en.wikipedia.org/wiki/GNU)' with a [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) license. As a a freely available language it has a great community of users from diverse background and interests. This community have developed a myriad of applications for R, called ***R Packages***. Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data. The idea behind R packages is that the chances are that someone has already solved a problem that you're working on, and you can benefit from their work by downloading their package.
 
 Packages can be installed from one of the public R repositories. In this course we will use two R repos, [**CRAN**](https://cran.r-project.org/) and [**Bioconductor**](https://www.bioconductor.org/). The name CRAN stands for "The Comprehensive R Archive Network", and it contains a huge variety of packages free to use. On the other hand, as we will see later on, Bioconductor is a repository of software devoted to bioinformatics or computational biology applications. As for August 2022, the CRAN package repository features 18,558 available packages whereas Bioconductor release 3.15 contains 2,140 packages.
 
@@ -47,6 +47,7 @@ install.packages("xlsx")
 
 #load
 library(xlsx) 
+require(xlsx)
 
 #trick to install package only if not installed 
 if(!require(xlsx)){
@@ -74,7 +75,8 @@ require(uam)
 Many packages in CRAN also contain a reference manual and some of them also a *vignette*. A vignette is practical guide to each package. You can see all the installed vignettes with [`browseVignettes()`](https://rdrr.io/r/utils/browseVignettes.html). You can find a bunch of tutorials and tricks about how to use popular packages, but the *vignette* is an official and complete reference that is always helpful.
 
 ```{r, error=TRUE}
-browseVignettes("seqinr") 
+browseVignettes("xlsx") 
+browseVignettes("seqinr")
 browseVignettes("ggplot2")
 ```
 
@@ -179,7 +181,7 @@ Rectangle <-  function(length, width){
 Rectangle(2, 3)
 ```
 
-If you may want to have more flexibility to parse date, you can the names of the variables when calling the function. Also, you can add some default values.
+Like in any R function, you can call the arguments by position or by name. Thus, if add the names of the variables when calling the function you can switch the order of the arguments. Also, you can add some default values when you define the function.
 
 ```{r}
 # A simple R program to demonstrate
@@ -283,7 +285,7 @@ When creating functions, you can include any R functionality, including reading 
 
 codon2aa <- function(inputCodon) {
   aa<-c()
-  code<-read.csv2("../data/genetic_code.csv", stringsAsFactors = FALSE)
+  code<-read.csv2("data/genetic_code.csv", stringsAsFactors = FALSE)
   aa <- code$AA[code$Codon==inputCodon]
   return(aa)
 }
@@ -334,6 +336,38 @@ codon2aa_2(c("ATG","CAT", "CAT","AAA","TAA"))
 
 ```
 
+How can we do it with any DNA sequence?
+
+```{r}
+#version 3
+
+orf2aa <- function(orf) {
+  orf <- toupper(orf) #just in case
+  if (nchar(orf) %% 3 != 0) {
+    warning("La secuencia no es múltiplo de 3. Los últimos 1-2 nt no serán usados.")
+  }
+  codon <- c()
+  for (i in 1:round(nchar(orf)/3)){
+    codon[i]<-substr(orf,(i*3)-2,i*3)
+    i=i+3
+  }
+  aa<-c()
+  code<-read.csv2("data/genetic_code.csv")
+  for (k in 1:length(codon)){
+    if(codon[k] %in% code$Codon){
+      aa[k] <- code$AA[code$Codon==codon[k]]
+    } else {
+      stop("Uno o más de los codones no es correcto. No se ha podido traducir.")
+    }
+  }
+  paste(aa, collapse='')
+}
+
+lacz <- readLines("data/lacz.fa")
+str(lacz)  #readLines command will create a vector of two elements
+orf2aa(lacz[2])
+```
+
 # References
 
 -   *R packages*, <https://r-pkgs.org/index.html>
@@ -344,7 +378,7 @@ codon2aa_2(c("ATG","CAT", "CAT","AAA","TAA"))
 
 -   Functions in R programming in *GeeksforGeeks*: <https://www.geeksforgeeks.org/functions-in-r-programming/>
 
-# Short exercises
+# [Short exercises]{style="color:green"}
 
 #### 1. Install the package `report` and check its *vignette* and the info at the package site: <https://easystats.github.io/report/>
 
@@ -378,8 +412,10 @@ Hints:
 
 4.  Use the function `readLines()` to read the file *lacz.fa,* which contains the nucleotide sequence of *E. coli* lacZ gene in [fasta](https://es.wikipedia.org/wiki/Formato_FASTA) format, and obtain the translated sequence.
 
-# [Course home](https://mredrejo.github.io/HPBBM2022/)
+# Session Info
 
 ```{r}
 sessionInfo()
 ```
+
+# [Course home](https://mredrejo.github.io/HPBBM2022/)

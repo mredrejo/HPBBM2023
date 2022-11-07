@@ -11,7 +11,7 @@
 
 <meta name="author" content="Modesto" />
 
-<meta name="date" content="2022-10-25" />
+<meta name="date" content="2022-11-07" />
 
 <title>Lesson 10: Functions in R</title>
 
@@ -2644,23 +2644,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -2764,7 +2758,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Lesson 10: Functions in R</h1>
 <h4 class="author">Modesto</h4>
-<h4 class="date">2022-10-25</h4>
+<h4 class="date">2022-11-07</h4>
 
 </div>
 
@@ -2784,8 +2778,7 @@ license.</p>
 </div>
 <div id="r-packages" class="section level1">
 <h1>R packages</h1>
-<p>R is a ‘<a href="https://en.wikipedia.org/wiki/GNU">GNU Software</a>’
-with a <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License">GPL</a>
+<p>As you already know, R is a ‘<a href="https://en.wikipedia.org/wiki/GNU">GNU Software</a>’ with a <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License">GPL</a>
 license. As a a freely available language it has a great community of
 users from diverse background and interests. This community have
 developed a myriad of applications for R, called <strong><em>R
@@ -2817,6 +2810,7 @@ install.packages(&quot;xlsx&quot;)</code></pre>
 <pre><code>## Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
 <pre class="r"><code># load
 library(xlsx)
+require(xlsx)
 
 # trick to install package only if not installed
 if (!require(xlsx)) {
@@ -2847,11 +2841,11 @@ package. You can see all the installed vignettes with <a href="https://rdrr.io/r
 You can find a bunch of tutorials and tricks about how to use popular
 packages, but the <em>vignette</em> is an official and complete
 reference that is always helpful.</p>
+<pre class="r"><code>browseVignettes(&quot;xlsx&quot;)</code></pre>
+<pre><code>## starting httpd help server ... done</code></pre>
 <pre class="r"><code>browseVignettes(&quot;seqinr&quot;)</code></pre>
 <pre><code>## No vignettes found by browseVignettes(&quot;seqinr&quot;)</code></pre>
 <pre class="r"><code>browseVignettes(&quot;ggplot2&quot;)</code></pre>
-<pre><code>## starting httpd help server ...</code></pre>
-<pre><code>##  done</code></pre>
 </div>
 </div>
 <div id="create-user-written-functions" class="section level1">
@@ -2962,9 +2956,10 @@ Rectangle(2, 3)</code></pre>
 ## 
 ## $Perimeter
 ## [1] 10</code></pre>
-<p>If you may want to have more flexibility to parse date, you can the
-names of the variables when calling the function. Also, you can add some
-default values.</p>
+<p>Like in any R function, you can call the arguments by position or by
+name. Thus, if add the names of the variables when calling the function
+you can switch the order of the arguments. Also, you can add some
+default values when you define the function.</p>
 <pre class="r"><code># A simple R program to demonstrate passing arguments to a
 # function
 
@@ -3065,28 +3060,20 @@ IUPAC one letter code.</p>
 
 codon2aa &lt;- function(inputCodon) {
     aa &lt;- c()
-    code &lt;- read.csv2(&quot;../data/genetic_code.csv&quot;, stringsAsFactors = FALSE)
+    code &lt;- read.csv2(&quot;data/genetic_code.csv&quot;, stringsAsFactors = FALSE)
     aa &lt;- code$AA[code$Codon == inputCodon]
     return(aa)
 }
 
 # now let&#39;s try it
 codon2aa(&quot;ATG&quot;)</code></pre>
-<pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
-## genetic_code.csv&#39;: No such file or directory</code></pre>
-<pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
+<pre><code>## [1] &quot;M&quot;</code></pre>
 <pre class="r"><code>codon2aa(&quot;TAA&quot;)</code></pre>
-<pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
-## genetic_code.csv&#39;: No such file or directory</code></pre>
-<pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
+<pre><code>## [1] &quot;*&quot;</code></pre>
 <pre class="r"><code>codon2aa(&quot;CAT&quot;)</code></pre>
-<pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
-## genetic_code.csv&#39;: No such file or directory</code></pre>
-<pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
+<pre><code>## [1] &quot;H&quot;</code></pre>
 <pre class="r"><code>codon2aa(&quot;AXG&quot;)</code></pre>
-<pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
-## genetic_code.csv&#39;: No such file or directory</code></pre>
-<pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
+<pre><code>## character(0)</code></pre>
 <pre class="r"><code># Can you check the value of the variable &#39;aa&#39;
 aa</code></pre>
 <pre><code>## Error in eval(expr, envir, enclos): objeto &#39;aa&#39; no encontrado</code></pre>
@@ -3136,6 +3123,36 @@ codon2aa_2(c(&quot;ATG&quot;, &quot;TGA&quot;))</code></pre>
 <pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
 ## genetic_code.csv&#39;: No such file or directory</code></pre>
 <pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
+<p>How can we do it with any DNA sequence?</p>
+<pre class="r"><code># version 3
+
+orf2aa &lt;- function(orf) {
+    orf &lt;- toupper(orf)  #just in case
+    if (nchar(orf)%%3 != 0) {
+        warning(&quot;La secuencia no es múltiplo de 3. Los últimos 1-2 nt no serán usados.&quot;)
+    }
+    codon &lt;- c()
+    for (i in 1:round(nchar(orf)/3)) {
+        codon[i] &lt;- substr(orf, (i * 3) - 2, i * 3)
+        i = i + 3
+    }
+    aa &lt;- c()
+    code &lt;- read.csv2(&quot;data/genetic_code.csv&quot;)
+    for (k in 1:length(codon)) {
+        if (codon[k] %in% code$Codon) {
+            aa[k] &lt;- code$AA[code$Codon == codon[k]]
+        } else {
+            stop(&quot;Uno o más de los codones no es correcto. No se ha podido traducir.&quot;)
+        }
+    }
+    paste(aa, collapse = &quot;&quot;)
+}
+
+lacz &lt;- readLines(&quot;data/lacz.fa&quot;)
+str(lacz)  #readLines command will create a vector of two elements</code></pre>
+<pre><code>##  chr [1:2] &quot;&gt;lacZ&quot; ...</code></pre>
+<pre class="r"><code>orf2aa(lacz[2])</code></pre>
+<pre><code>## [1] &quot;MTMITDSLAVVLQRRDWENPGVTQLNRLAAHPPFASWRNSEEARTDRPSQQLRSLNGEWRFAWFPAPEAVPESWLECDLPEADTVVVPSNWQMHGYDAPIYTNVTYPITVNPPFVPTENPTGCYSLTFNVDESWLQEGQTRIIFDGVNSAFHLWCNGRWVGYGQDSRLPSEFDLSAFLRAGENRLAVMVLRWSDGSYLEDQDMWRMSGIFRDVSLLHKPTTQISDFHVATRFNDDFSRAVLEAEVQMCGELRDYLRVTVSLWQGETQVASGTAPFGGEIIDERGGYADRVTLRLNVENPKLWSAEIPNLYRAVVELHTADGTLIEAEACDVGFREVRIENGLLLLNGKPLLIRGVNRHEHHPLHGQVMDEQTMVQDILLMKQNNFNAVRCSHYPNHPLWYTLCDRYGLYVVDEANIETHGMVPMNRLTDDPRWLPAMSERVTRMVQRDRNHPSVIIWSLGNESGHGANHDALYRWIKSVDPSRPVQYEGGGADTTATDIICPMYARVDEDQPFPAVPKWSIKKWLSLPGETRPLILCEYAHAMGNSLGGFAKYWQAFRQYPRLQGGFVWDWVDQSLIKYDENGNPWSAYGGDFGDTPNDRQFCMNGLVFADRTPHPALTEAKHQQQFFQFRLSGQTIEVTSEYLFRHSDNELLHWMVALDGKPLASGEVPLDVAPQGKQLIELPELPQPESAGQLWLTVRVVQPNATAWSEAGHISAWQQWRLAENLSVTLPAASHAIPHLTTSEMDFCIELGNKRWQFNRQSGFLSQMWIGDKKQLLTPLRDQFTRAPLDNDIGVSEATRIDPNAWVERWKAAGHYQAEAALLQCTADTLADAVLITTAHAWQHQGKTLFISRKTYRIDGSGQMAITVDVEVASDTPHPARIGLNCQLAQVAERVNWLGLGPQENYPDRLTAACFDRWDLPLSDMYTPYVFPSENGLRCGTRELNYGPHQWRGDFQFNISRYSQQQLMETSHRHLLHAEEGTWLNIDGFHMGIGGDDSWSPSVSAEFQLSAGRYHYQLVWCQK*&quot;</code></pre>
 </div>
 </div>
 <div id="references" class="section level1">
@@ -3148,7 +3165,7 @@ codon2aa_2(c(&quot;ATG&quot;, &quot;TGA&quot;))</code></pre>
 </ul>
 </div>
 <div id="short-exercises" class="section level1">
-<h1>Short exercises</h1>
+<h1><span style="color:green">Short exercises</span></h1>
 <div id="install-the-package-report-and-check-its-vignette-and-the-info-at-the-package-site-httpseasystats.github.ioreport" class="section level4">
 <h4>1. Install the package <code>report</code> and check its
 <em>vignette</em> and the info at the package site: <a href="https://easystats.github.io/report/" class="uri">https://easystats.github.io/report/</a></h4>
@@ -3207,6 +3224,34 @@ coli</em> lacZ gene in <a href="https://es.wikipedia.org/wiki/Formato_FASTA">fas
 obtain the translated sequence.</p></li>
 </ol>
 </div>
+</div>
+<div id="session-info" class="section level1">
+<h1>Session Info</h1>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 4.2.1 (2022-06-23)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Big Sur ... 10.16
+## 
+## Matrix products: default
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] es_ES.UTF-8/es_ES.UTF-8/es_ES.UTF-8/C/es_ES.UTF-8/es_ES.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] xlsx_0.6.5   formatR_1.12 knitr_1.40  
+## 
+## loaded via a namespace (and not attached):
+##  [1] xlsxjars_0.6.1  digest_0.6.30   R6_2.5.1        jsonlite_1.8.3 
+##  [5] magrittr_2.0.3  evaluate_0.17   stringi_1.7.8   cachem_1.0.6   
+##  [9] rlang_1.0.6     cli_3.4.1       rstudioapi_0.14 jquerylib_0.1.4
+## [13] bslib_0.4.0     rmarkdown_2.17  tools_4.2.1     stringr_1.4.1  
+## [17] xfun_0.34       yaml_2.3.6      fastmap_1.1.0   compiler_4.2.1 
+## [21] rJava_1.0-6     htmltools_0.5.3 sass_0.4.2</code></pre>
 </div>
 <div id="course-home" class="section level1">
 <h1><a href="https://mredrejo.github.io/HPBBM2022/">Course home</a></h1>
