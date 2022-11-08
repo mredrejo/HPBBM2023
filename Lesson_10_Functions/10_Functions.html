@@ -3096,7 +3096,7 @@ allow us helping the user to use our code and preventing errors.</p>
 
 codon2aa_2 &lt;- function(codons) {
     aa &lt;- c()
-    code &lt;- read.csv2(&quot;../data/genetic_code.csv&quot;, stringsAsFactors = FALSE)
+    code &lt;- read.csv2(&quot;data/genetic_code.csv&quot;, stringsAsFactors = FALSE)
     for (i in 1:length(codons)) {
         # loop over all the elements of the vector &#39;codons&#39;
         # check for correct values
@@ -3112,17 +3112,11 @@ codon2aa_2 &lt;- function(codons) {
 
 # let&#39;s try it
 codon2aa_2(c(&quot;ATG&quot;, &quot;TGA&quot;))</code></pre>
-<pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
-## genetic_code.csv&#39;: No such file or directory</code></pre>
-<pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
+<pre><code>## [1] &quot;M&quot; &quot;*&quot;</code></pre>
 <pre class="r"><code>codon2aa_2(c(&quot;ARG&quot;, &quot;TGA&quot;))</code></pre>
-<pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
-## genetic_code.csv&#39;: No such file or directory</code></pre>
-<pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
+<pre><code>## Error in codon2aa_2(c(&quot;ARG&quot;, &quot;TGA&quot;)): Uno o más de los codones no es correcto. No se ha podido traducir.</code></pre>
 <pre class="r"><code>codon2aa_2(c(&quot;ATG&quot;, &quot;CAT&quot;, &quot;CAT&quot;, &quot;AAA&quot;, &quot;TAA&quot;))</code></pre>
-<pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
-## genetic_code.csv&#39;: No such file or directory</code></pre>
-<pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
+<pre><code>## [1] &quot;M&quot; &quot;H&quot; &quot;H&quot; &quot;K&quot; &quot;*&quot;</code></pre>
 </div>
 </div>
 <div id="references" class="section level1">

@@ -317,7 +317,7 @@ Additionally, we can customize how R handles the empty returns. This allow us he
 
 codon2aa_2 <- function(codons) {
   aa<-c()
-  code<-read.csv2("../data/genetic_code.csv", stringsAsFactors = FALSE)
+  code<-read.csv2("data/genetic_code.csv", stringsAsFactors = FALSE)
   for (i in 1:length(codons)){ #loop over all the elements of the vector 'codons'
     if(codons[i] %in% code$Codon){ #check for correct values
       aa[i] <- code$AA[code$Codon==codons[i]]
