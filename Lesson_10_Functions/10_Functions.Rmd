@@ -336,38 +336,6 @@ codon2aa_2(c("ATG","CAT", "CAT","AAA","TAA"))
 
 ```
 
-How can we do it with any DNA sequence?
-
-```{r}
-#version 3
-
-orf2aa <- function(orf) {
-  orf <- toupper(orf) #just in case
-  if (nchar(orf) %% 3 != 0) {
-    warning("La secuencia no es múltiplo de 3. Los últimos 1-2 nt no serán usados.")
-  }
-  codon <- c()
-  for (i in 1:round(nchar(orf)/3)){
-    codon[i]<-substr(orf,(i*3)-2,i*3)
-    i=i+3
-  }
-  aa<-c()
-  code<-read.csv2("data/genetic_code.csv")
-  for (k in 1:length(codon)){
-    if(codon[k] %in% code$Codon){
-      aa[k] <- code$AA[code$Codon==codon[k]]
-    } else {
-      stop("Uno o más de los codones no es correcto. No se ha podido traducir.")
-    }
-  }
-  paste(aa, collapse='')
-}
-
-lacz <- readLines("data/lacz.fa")
-str(lacz)  #readLines command will create a vector of two elements
-orf2aa(lacz[2])
-```
-
 # References
 
 -   *R packages*, <https://r-pkgs.org/index.html>
@@ -398,7 +366,7 @@ Check the functions `date()`, `Sys.Date()`, `as.Date()`, and `difftime()`. See s
 
 <http://mathcenter.oxford.emory.edu/site/math117/probSetRFunctions/>
 
-# Script-ing
+# [Challenge]{style="color:green"}
 
 #### Write a function that translate any nucleotide sequence into a protein sequence.
 

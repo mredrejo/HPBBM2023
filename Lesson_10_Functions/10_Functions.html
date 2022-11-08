@@ -11,7 +11,7 @@
 
 <meta name="author" content="Modesto" />
 
-<meta name="date" content="2022-11-07" />
+<meta name="date" content="2022-11-08" />
 
 <title>Lesson 10: Functions in R</title>
 
@@ -2758,7 +2758,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Lesson 10: Functions in R</h1>
 <h4 class="author">Modesto</h4>
-<h4 class="date">2022-11-07</h4>
+<h4 class="date">2022-11-08</h4>
 
 </div>
 
@@ -3123,36 +3123,6 @@ codon2aa_2(c(&quot;ATG&quot;, &quot;TGA&quot;))</code></pre>
 <pre><code>## Warning in file(file, &quot;rt&quot;): no fue posible abrir el archivo &#39;../data/
 ## genetic_code.csv&#39;: No such file or directory</code></pre>
 <pre><code>## Error in file(file, &quot;rt&quot;): no se puede abrir la conexión</code></pre>
-<p>How can we do it with any DNA sequence?</p>
-<pre class="r"><code># version 3
-
-orf2aa &lt;- function(orf) {
-    orf &lt;- toupper(orf)  #just in case
-    if (nchar(orf)%%3 != 0) {
-        warning(&quot;La secuencia no es múltiplo de 3. Los últimos 1-2 nt no serán usados.&quot;)
-    }
-    codon &lt;- c()
-    for (i in 1:round(nchar(orf)/3)) {
-        codon[i] &lt;- substr(orf, (i * 3) - 2, i * 3)
-        i = i + 3
-    }
-    aa &lt;- c()
-    code &lt;- read.csv2(&quot;data/genetic_code.csv&quot;)
-    for (k in 1:length(codon)) {
-        if (codon[k] %in% code$Codon) {
-            aa[k] &lt;- code$AA[code$Codon == codon[k]]
-        } else {
-            stop(&quot;Uno o más de los codones no es correcto. No se ha podido traducir.&quot;)
-        }
-    }
-    paste(aa, collapse = &quot;&quot;)
-}
-
-lacz &lt;- readLines(&quot;data/lacz.fa&quot;)
-str(lacz)  #readLines command will create a vector of two elements</code></pre>
-<pre><code>##  chr [1:2] &quot;&gt;lacZ&quot; ...</code></pre>
-<pre class="r"><code>orf2aa(lacz[2])</code></pre>
-<pre><code>## [1] &quot;MTMITDSLAVVLQRRDWENPGVTQLNRLAAHPPFASWRNSEEARTDRPSQQLRSLNGEWRFAWFPAPEAVPESWLECDLPEADTVVVPSNWQMHGYDAPIYTNVTYPITVNPPFVPTENPTGCYSLTFNVDESWLQEGQTRIIFDGVNSAFHLWCNGRWVGYGQDSRLPSEFDLSAFLRAGENRLAVMVLRWSDGSYLEDQDMWRMSGIFRDVSLLHKPTTQISDFHVATRFNDDFSRAVLEAEVQMCGELRDYLRVTVSLWQGETQVASGTAPFGGEIIDERGGYADRVTLRLNVENPKLWSAEIPNLYRAVVELHTADGTLIEAEACDVGFREVRIENGLLLLNGKPLLIRGVNRHEHHPLHGQVMDEQTMVQDILLMKQNNFNAVRCSHYPNHPLWYTLCDRYGLYVVDEANIETHGMVPMNRLTDDPRWLPAMSERVTRMVQRDRNHPSVIIWSLGNESGHGANHDALYRWIKSVDPSRPVQYEGGGADTTATDIICPMYARVDEDQPFPAVPKWSIKKWLSLPGETRPLILCEYAHAMGNSLGGFAKYWQAFRQYPRLQGGFVWDWVDQSLIKYDENGNPWSAYGGDFGDTPNDRQFCMNGLVFADRTPHPALTEAKHQQQFFQFRLSGQTIEVTSEYLFRHSDNELLHWMVALDGKPLASGEVPLDVAPQGKQLIELPELPQPESAGQLWLTVRVVQPNATAWSEAGHISAWQQWRLAENLSVTLPAASHAIPHLTTSEMDFCIELGNKRWQFNRQSGFLSQMWIGDKKQLLTPLRDQFTRAPLDNDIGVSEATRIDPNAWVERWKAAGHYQAEAALLQCTADTLADAVLITTAHAWQHQGKTLFISRKTYRIDGSGQMAITVDVEVASDTPHPARIGLNCQLAQVAERVNWLGLGPQENYPDRLTAACFDRWDLPLSDMYTPYVFPSENGLRCGTRELNYGPHQWRGDFQFNISRYSQQQLMETSHRHLLHAEEGTWLNIDGFHMGIGGDDSWSPSVSAEFQLSAGRYHYQLVWCQK*&quot;</code></pre>
 </div>
 </div>
 <div id="references" class="section level1">
@@ -3203,8 +3173,8 @@ or <a href="https://www.geeksforgeeks.org/calculate-time-difference-between-date
 <p><a href="http://mathcenter.oxford.emory.edu/site/math117/probSetRFunctions/" class="uri">http://mathcenter.oxford.emory.edu/site/math117/probSetRFunctions/</a></p>
 </div>
 </div>
-<div id="script-ing" class="section level1">
-<h1>Script-ing</h1>
+<div id="challenge" class="section level1">
+<h1><span style="color:green">Challenge</span></h1>
 <div id="write-a-function-that-translate-any-nucleotide-sequence-into-a-protein-sequence." class="section level4">
 <h4>Write a function that translate any nucleotide sequence into a
 protein sequence.</h4>
