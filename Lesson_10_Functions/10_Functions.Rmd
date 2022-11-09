@@ -79,6 +79,17 @@ browseVignettes("xlsx")
 browseVignettes("seqinr")
 browseVignettes("ggplot2")
 ```
+Sometimes, you can come into two different namesake functions from independent packages. Also, to reduce the memory load you may want to use a function without loading the package. In those cases, there is a trick to call a specific function. In the example below, you will see that `ggplot()` function can be used if you specify the package with the prefix `ggplot::` or load the package in advance.
+```{r error=TRUE}
+ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
+    geom_point()
+ggplot2::ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
+    geom_point()
+library(ggplot2)
+ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
+    geom_point()
+```
+R has some built-in datasets that can be used as examples. You can check them using the function `data()`. Note that in the example we have plotted some data from the dataset named iris. 
 
 # Create user-written functions
 
@@ -247,7 +258,7 @@ price_calculator(5.3,"normal")
 #WTF?
 ```
 
-Can we check for the format of the input?
+We just noticed that the function calculated the price for 5.3 samples, which is  nonsense. We should then introduce a checkpoint for the format of the introduced value for the variable samples.
 
 ```{r, error=TRUE}
 #alternative with checkpoint for number of samples

@@ -254,11 +254,11 @@ write.csv2(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
 
 2.  Load the file *colis3.csv* as *colis* and explore the dataset structure.
 
-3.  Calculate the mean of numerical variables: isolation date (*Year*), antimicrobial resistance genes (*AMR*), virulence factors (*VF*),integron cassettes (*Integron*) and sequencing date (*seqs*) in those strains? Note. For the *seqs* variable you will need to use the function `as.Date()`.
+3.  Calculate the mean of numerical variables: isolation date (*Year*), antimicrobial resistance genes (*AMR*), virulence factors (*VF*), CRISPR cassesttes (*CRISPR*), integron cassettes (*Integron*) and sequencing date (*seqs*) in those strains? Note. For the *seqs* variable you will need to use the function `as.Date()`.
 
 4.  Save the tables *coli_genomes_renamed* and *colis* in a single *Rdata* file.
 
-5.  Add the values of the exercise 3 as a last row in the table. Note. For the *seqs* variable you will need to use the function `format()`.
+5.  Add the values of the exercise 3 as a last row in the table. Note. For the *seqs* variable you will need to use the function `format.Date()` (or just `format()`)
 
 # Session Info
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Modesto" />
 
-<meta name="date" content="2022-11-07" />
+<meta name="date" content="2022-11-09" />
 
 <title>Lesson 9: Read and write files in R</title>
 
@@ -2758,7 +2758,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Lesson 9: Read and write files in R</h1>
 <h4 class="author">Modesto</h4>
-<h4 class="date">2022-11-07</h4>
+<h4 class="date">2022-11-09</h4>
 
 </div>
 
@@ -2791,13 +2791,13 @@ the contents of its argument object.</p>
 vector2 &lt;- scan()
 str &lt;- readline()
 vector</code></pre>
-<pre><code>## [1]   3   4 796  44</code></pre>
+<pre><code>## [1] 3 4 5 6</code></pre>
 <pre class="r"><code>print(vector2)</code></pre>
-<pre><code>## [1] 4 5</code></pre>
+<pre><code>## [1]   4   5  77 555</code></pre>
 <pre class="r"><code>print(str)</code></pre>
 <pre><code>## [1] &quot;hola clase&quot;</code></pre>
 <pre class="r"><code>edit(str)</code></pre>
-<pre><code>## [1] &quot;Hola Clase&quot;</code></pre>
+<pre><code>## [1] &quot;Hola clase&quot;</code></pre>
 <p>Although, seldom used, you can also edit the contents of your objects
 using the function <code>edit()</code>. This function can be used to
 edit different objects, including vectors, strings, matrices or
@@ -2919,7 +2919,7 @@ coli_genomes &lt;- read.table(file = &quot;data/coli_genomes.csv&quot;)</code></
 <pre class="r"><code>head(coli_genomes)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Strain"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Biosample"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Year"],"name":[3],"type":["int"],"align":["right"]},{"label":["Source"],"name":[4],"type":["fct"],"align":["left"]},{"label":["Phylogroup"],"name":[5],"type":["fct"],"align":["left"]},{"label":["Serotype"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Clonotype"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Sequence.Type"],"name":[8],"type":["chr"],"align":["left"]},{"label":["VF"],"name":[9],"type":["int"],"align":["right"]},{"label":["Plasmids"],"name":[10],"type":["int"],"align":["right"]},{"label":["kmer"],"name":[11],"type":["int"],"align":["right"]},{"label":["Contigs"],"name":[12],"type":["int"],"align":["right"]},{"label":["N50"],"name":[13],"type":["int"],"align":["right"]},{"label":["longest.contig..bp."],"name":[14],"type":["int"],"align":["right"]},{"label":["Assembly_length"],"name":[15],"type":["int"],"align":["right"]},{"label":["contigs1kb"],"name":[16],"type":["int"],"align":["right"]},{"label":["average_contig"],"name":[17],"type":["dbl"],"align":["right"]}],"data":[{"1":"LREC237","2":"SAMN14278613","3":"NA","4":"Human","5":"D","6":"ONT:H28","7":"CH23-331","8":"ST524","9":"18","10":"3","11":"117","12":"223","13":"272287","14":"662555","15":"5341632","16":"74","17":"23953.51","_rn_":"1"},{"1":"LREC239","2":"SAMN14278614","3":"2010","4":"Human","5":"C","6":"O153:H19","7":"CH4-25","8":"ST88","9":"14","10":"3","11":"117","12":"159","13":"323172","14":"760527","15":"5415613","16":"57","17":"34060.46","_rn_":"2"},{"1":"LREC240","2":"SAMN14278615","3":"2008","4":"Human","5":"B1","6":"O76:H30","7":"CH29-38","8":"ST156","9":"10","10":"2","11":"89","12":"114","13":"270767","14":"738861","15":"4875343","16":"47","17":"42766.17","_rn_":"3"},{"1":"LREC241","2":"SAMN14278616","3":"NA","4":"Human","5":"A","6":"O78:H11","7":"CH11-41","8":"ST48","9":"5","10":"3","11":"117","12":"212","13":"112160","14":"285056","15":"5167401","16":"101","17":"24374.53","_rn_":"4"},{"1":"LREC242","2":"SAMN14278617","3":"2011","4":"Porcine","5":"A","6":"ONT:HNM","7":"CH7-54","8":"ST746","9":"5","10":"9","11":"89","12":"320","13":"45936","14":"128053","15":"4858138","16":"212","17":"15181.68","_rn_":"5"},{"1":"LREC243","2":"SAMN14278618","3":"2007","4":"Porcine","5":"A","6":"O9:H37","7":"CH7-31","8":"ST3011","9":"7","10":"3","11":"93","12":"158","13":"106897","14":"369508","15":"4638334","16":"93","17":"29356.54","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Strain"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Biosample"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Year.of.isolation"],"name":[3],"type":["int"],"align":["right"]},{"label":["Source"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Phylogroup"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Serotype"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Clonotype"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Sequence.Type"],"name":[8],"type":["chr"],"align":["left"]},{"label":["VF"],"name":[9],"type":["int"],"align":["right"]},{"label":["No..Plasmids"],"name":[10],"type":["int"],"align":["right"]},{"label":["kmer"],"name":[11],"type":["int"],"align":["right"]},{"label":["Contigs"],"name":[12],"type":["int"],"align":["right"]},{"label":["N50"],"name":[13],"type":["int"],"align":["right"]},{"label":["longest.contig..bp."],"name":[14],"type":["int"],"align":["right"]},{"label":["total.assembled.bp"],"name":[15],"type":["int"],"align":["right"]},{"label":["contigs...1kb"],"name":[16],"type":["int"],"align":["right"]}],"data":[{"1":"LREC237","2":"SAMN14278613","3":"NA","4":"Human","5":"D","6":"ONT:H28","7":"CH23-331","8":"ST524","9":"18","10":"3","11":"117","12":"223","13":"272287","14":"662555","15":"5341632","16":"74","_rn_":"1"},{"1":"LREC239","2":"SAMN14278614","3":"2010","4":"Human","5":"C","6":"O153:H19","7":"CH4-25","8":"ST88","9":"14","10":"3","11":"117","12":"159","13":"323172","14":"760527","15":"5415613","16":"57","_rn_":"2"},{"1":"LREC240","2":"SAMN14278615","3":"2008","4":"Human","5":"B1","6":"O76:H30","7":"CH29-38","8":"ST156","9":"10","10":"2","11":"89","12":"114","13":"270767","14":"738861","15":"4875343","16":"47","_rn_":"3"},{"1":"LREC241","2":"SAMN14278616","3":"NA","4":"Human","5":"A","6":"O78:H11","7":"CH11-41","8":"ST48","9":"5","10":"3","11":"117","12":"212","13":"112160","14":"285056","15":"5167401","16":"101","_rn_":"4"},{"1":"LREC242","2":"SAMN14278617","3":"2011","4":"Porcine","5":"A","6":"ONT:HNM","7":"CH7-54","8":"ST746","9":"5","10":"9","11":"89","12":"320","13":"45936","14":"128053","15":"4858138","16":"212","_rn_":"5"},{"1":"LREC243","2":"SAMN14278618","3":"2007","4":"Porcine","5":"A","6":"O9:H37","7":"CH7-31","8":"ST3011","9":"7","10":"3","11":"93","12":"158","13":"106897","14":"369508","15":"4638334","16":"93","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>coli_genomes &lt;- read.table(file = &quot;data/coli_genomes.csv&quot;, sep = &quot;;&quot;,
@@ -2971,9 +2971,9 @@ head(coli_genomes)</code></pre>
   </script>
 </div>
 <pre class="r"><code>coli_genomes[, 1]</code></pre>
-<pre><code>##  [1] &quot;LREC237&quot; &quot;LREC239&quot; &quot;LREC240&quot; &quot;LREC241&quot; &quot;LREC242&quot; &quot;LREC243&quot; &quot;LREC244&quot; &quot;LREC245&quot; &quot;LREC246&quot; &quot;LREC247&quot; &quot;LREC248&quot;
-## [12] &quot;LREC249&quot; &quot;LREC250&quot; &quot;LREC251&quot; &quot;LREC252&quot; &quot;LREC253&quot; &quot;LREC254&quot; &quot;LREC255&quot; &quot;LREC256&quot; &quot;LREC257&quot; &quot;LREC258&quot; &quot;LREC259&quot;
-## [23] &quot;LREC260&quot; &quot;LREC261&quot; &quot;LREC262&quot;</code></pre>
+<pre><code>##  [1] &quot;LREC237&quot; &quot;LREC239&quot; &quot;LREC240&quot; &quot;LREC241&quot; &quot;LREC242&quot; &quot;LREC243&quot; &quot;LREC244&quot; &quot;LREC245&quot; &quot;LREC246&quot;
+## [10] &quot;LREC247&quot; &quot;LREC248&quot; &quot;LREC249&quot; &quot;LREC250&quot; &quot;LREC251&quot; &quot;LREC252&quot; &quot;LREC253&quot; &quot;LREC254&quot; &quot;LREC255&quot;
+## [19] &quot;LREC256&quot; &quot;LREC257&quot; &quot;LREC258&quot; &quot;LREC259&quot; &quot;LREC260&quot; &quot;LREC261&quot; &quot;LREC262&quot;</code></pre>
 <pre class="r"><code>coli_genomes[1:6, 2:4]</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -3017,18 +3017,18 @@ typeof(coli_genomes$Strain)</code></pre>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <pre class="r"><code># col and row names
 names(coli_genomes)</code></pre>
-<pre><code>##  [1] &quot;Strain&quot;              &quot;Biosample&quot;           &quot;Year.of.isolation&quot;   &quot;Source&quot;              &quot;Phylogroup&quot;         
-##  [6] &quot;Serotype&quot;            &quot;Clonotype&quot;           &quot;Sequence.Type&quot;       &quot;VF&quot;                  &quot;No..Plasmids&quot;       
-## [11] &quot;kmer&quot;                &quot;Contigs&quot;             &quot;N50&quot;                 &quot;longest.contig..bp.&quot; &quot;total.assembled.bp&quot; 
-## [16] &quot;contigs...1kb&quot;</code></pre>
+<pre><code>##  [1] &quot;Strain&quot;              &quot;Biosample&quot;           &quot;Year.of.isolation&quot;   &quot;Source&quot;             
+##  [5] &quot;Phylogroup&quot;          &quot;Serotype&quot;            &quot;Clonotype&quot;           &quot;Sequence.Type&quot;      
+##  [9] &quot;VF&quot;                  &quot;No..Plasmids&quot;        &quot;kmer&quot;                &quot;Contigs&quot;            
+## [13] &quot;N50&quot;                 &quot;longest.contig..bp.&quot; &quot;total.assembled.bp&quot;  &quot;contigs...1kb&quot;</code></pre>
 <pre class="r"><code>colnames(coli_genomes)</code></pre>
-<pre><code>##  [1] &quot;Strain&quot;              &quot;Biosample&quot;           &quot;Year.of.isolation&quot;   &quot;Source&quot;              &quot;Phylogroup&quot;         
-##  [6] &quot;Serotype&quot;            &quot;Clonotype&quot;           &quot;Sequence.Type&quot;       &quot;VF&quot;                  &quot;No..Plasmids&quot;       
-## [11] &quot;kmer&quot;                &quot;Contigs&quot;             &quot;N50&quot;                 &quot;longest.contig..bp.&quot; &quot;total.assembled.bp&quot; 
-## [16] &quot;contigs...1kb&quot;</code></pre>
+<pre><code>##  [1] &quot;Strain&quot;              &quot;Biosample&quot;           &quot;Year.of.isolation&quot;   &quot;Source&quot;             
+##  [5] &quot;Phylogroup&quot;          &quot;Serotype&quot;            &quot;Clonotype&quot;           &quot;Sequence.Type&quot;      
+##  [9] &quot;VF&quot;                  &quot;No..Plasmids&quot;        &quot;kmer&quot;                &quot;Contigs&quot;            
+## [13] &quot;N50&quot;                 &quot;longest.contig..bp.&quot; &quot;total.assembled.bp&quot;  &quot;contigs...1kb&quot;</code></pre>
 <pre class="r"><code>rownames(coli_genomes)</code></pre>
-<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot; &quot;21&quot; &quot;22&quot; &quot;23&quot;
-## [24] &quot;24&quot; &quot;25&quot;</code></pre>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot;
+## [20] &quot;20&quot; &quot;21&quot; &quot;22&quot; &quot;23&quot; &quot;24&quot; &quot;25&quot;</code></pre>
 <pre class="r"><code>names(coli_genomes[3]) &lt;- &quot;Year&quot;
 names(coli_genomes)[3] &lt;- &quot;Year&quot;
 colnames(coli_genomes[3]) &lt;- &quot;Year&quot;</code></pre>
@@ -3080,10 +3080,10 @@ unique(coli_genomes$Source)</code></pre>
 ## Levels: Avian Human Porcine</code></pre>
 <p>We can also rename some variables to use more easy names.</p>
 <pre class="r"><code>names(coli_genomes)  #see all variable names</code></pre>
-<pre><code>##  [1] &quot;Strain&quot;              &quot;Biosample&quot;           &quot;Year.of.isolation&quot;   &quot;Source&quot;              &quot;Phylogroup&quot;         
-##  [6] &quot;Serotype&quot;            &quot;Clonotype&quot;           &quot;Sequence.Type&quot;       &quot;VF&quot;                  &quot;No..Plasmids&quot;       
-## [11] &quot;kmer&quot;                &quot;Contigs&quot;             &quot;N50&quot;                 &quot;longest.contig..bp.&quot; &quot;total.assembled.bp&quot; 
-## [16] &quot;contigs...1kb&quot;</code></pre>
+<pre><code>##  [1] &quot;Strain&quot;              &quot;Biosample&quot;           &quot;Year.of.isolation&quot;   &quot;Source&quot;             
+##  [5] &quot;Phylogroup&quot;          &quot;Serotype&quot;            &quot;Clonotype&quot;           &quot;Sequence.Type&quot;      
+##  [9] &quot;VF&quot;                  &quot;No..Plasmids&quot;        &quot;kmer&quot;                &quot;Contigs&quot;            
+## [13] &quot;N50&quot;                 &quot;longest.contig..bp.&quot; &quot;total.assembled.bp&quot;  &quot;contigs...1kb&quot;</code></pre>
 <pre class="r"><code># rename variables
 names(coli_genomes)[3] &lt;- &quot;Year&quot;
 names(coli_genomes)[10] &lt;- &quot;Plasmids&quot;
@@ -3091,10 +3091,10 @@ names(coli_genomes)[15] &lt;- &quot;Assembly_length&quot;
 names(coli_genomes)[16] &lt;- &quot;contigs1kb&quot;
 # check
 names(coli_genomes)</code></pre>
-<pre><code>##  [1] &quot;Strain&quot;              &quot;Biosample&quot;           &quot;Year&quot;                &quot;Source&quot;              &quot;Phylogroup&quot;         
-##  [6] &quot;Serotype&quot;            &quot;Clonotype&quot;           &quot;Sequence.Type&quot;       &quot;VF&quot;                  &quot;Plasmids&quot;           
-## [11] &quot;kmer&quot;                &quot;Contigs&quot;             &quot;N50&quot;                 &quot;longest.contig..bp.&quot; &quot;Assembly_length&quot;    
-## [16] &quot;contigs1kb&quot;</code></pre>
+<pre><code>##  [1] &quot;Strain&quot;              &quot;Biosample&quot;           &quot;Year&quot;                &quot;Source&quot;             
+##  [5] &quot;Phylogroup&quot;          &quot;Serotype&quot;            &quot;Clonotype&quot;           &quot;Sequence.Type&quot;      
+##  [9] &quot;VF&quot;                  &quot;Plasmids&quot;            &quot;kmer&quot;                &quot;Contigs&quot;            
+## [13] &quot;N50&quot;                 &quot;longest.contig..bp.&quot; &quot;Assembly_length&quot;     &quot;contigs1kb&quot;</code></pre>
 </div>
 <div id="change-and-add-variables" class="section level2">
 <h2>Change and add variables</h2>
@@ -3116,61 +3116,63 @@ would like to represent the average contig length.</p>
 <p>It is very easy to calculate statistics of one variable. Imagine we
 want to know the average year of sample isolation.</p>
 <pre class="r"><code>mean(coli_genomes$Year.of.isolation)</code></pre>
-<pre><code>## Warning in mean.default(coli_genomes$Year.of.isolation): argument is not numeric or logical: returning NA</code></pre>
+<pre><code>## Warning in mean.default(coli_genomes$Year.of.isolation): argument is not numeric or logical:
+## returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>Yes, that error means that there are some NA values and mean cannot
 be calculated. We can check that and omit the NAs.</p>
 <pre class="r"><code># check if there is any NA
 is.na(coli_genomes)</code></pre>
-<pre><code>##    Strain Biosample  Year Source Phylogroup Serotype Clonotype Sequence.Type    VF Plasmids  kmer Contigs   N50
-## 1   FALSE     FALSE  TRUE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 2   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 3   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 4   FALSE     FALSE  TRUE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 5   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 6   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 7   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 8   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 12  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 13  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 14  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 15  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 16  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 17  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 18  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 19  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 20  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 21  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 22  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 23  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 24  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-## 25  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE   FALSE FALSE
-##    longest.contig..bp. Assembly_length contigs1kb average_contig
-## 1                FALSE           FALSE      FALSE          FALSE
-## 2                FALSE           FALSE      FALSE          FALSE
-## 3                FALSE           FALSE      FALSE          FALSE
-## 4                FALSE           FALSE      FALSE          FALSE
-## 5                FALSE           FALSE      FALSE          FALSE
-## 6                FALSE           FALSE      FALSE          FALSE
-## 7                FALSE           FALSE      FALSE          FALSE
-## 8                FALSE           FALSE      FALSE          FALSE
-## 12               FALSE           FALSE      FALSE          FALSE
-## 13               FALSE           FALSE      FALSE          FALSE
-## 14               FALSE           FALSE      FALSE          FALSE
-## 15               FALSE           FALSE      FALSE          FALSE
-## 16               FALSE           FALSE      FALSE          FALSE
-## 17               FALSE           FALSE      FALSE          FALSE
-## 18               FALSE           FALSE      FALSE          FALSE
-## 19               FALSE           FALSE      FALSE          FALSE
-## 20               FALSE           FALSE      FALSE          FALSE
-## 21               FALSE           FALSE      FALSE          FALSE
-## 22               FALSE           FALSE      FALSE          FALSE
-## 23               FALSE           FALSE      FALSE          FALSE
-## 24               FALSE           FALSE      FALSE          FALSE
-## 25               FALSE           FALSE      FALSE          FALSE</code></pre>
+<pre><code>##    Strain Biosample  Year Source Phylogroup Serotype Clonotype Sequence.Type    VF Plasmids  kmer
+## 1   FALSE     FALSE  TRUE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 2   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 3   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 4   FALSE     FALSE  TRUE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 5   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 6   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 7   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 8   FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 12  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 13  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 14  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 15  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 16  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 17  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 18  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 19  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 20  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 21  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 22  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 23  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 24  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+## 25  FALSE     FALSE FALSE  FALSE      FALSE    FALSE     FALSE         FALSE FALSE    FALSE FALSE
+##    Contigs   N50 longest.contig..bp. Assembly_length contigs1kb average_contig
+## 1    FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 2    FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 3    FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 4    FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 5    FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 6    FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 7    FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 8    FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 12   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 13   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 14   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 15   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 16   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 17   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 18   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 19   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 20   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 21   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 22   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 23   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 24   FALSE FALSE               FALSE           FALSE      FALSE          FALSE
+## 25   FALSE FALSE               FALSE           FALSE      FALSE          FALSE</code></pre>
 <pre class="r"><code># na.rm=TRUE will omit the NAs for this function
 mean(coli_genomes$Year.of.isolation, na.rm = TRUE)</code></pre>
-<pre><code>## Warning in mean.default(coli_genomes$Year.of.isolation, na.rm = TRUE): argument is not numeric or logical: returning NA</code></pre>
+<pre><code>## Warning in mean.default(coli_genomes$Year.of.isolation, na.rm = TRUE): argument is not numeric or
+## logical: returning NA</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>What if we want to remove observations with an NA from a dataset?</p>
 <pre class="r"><code>coli_genomes2 &lt;- na.omit(coli_genomes)</code></pre>
@@ -3200,21 +3202,21 @@ Foundation. <a href="https://swcarpentry.github.io/r-novice-gapminder-es/" class
 the dataset structure.</p></li>
 <li><p>Calculate the mean of numerical variables: isolation date
 (<em>Year</em>), antimicrobial resistance genes (<em>AMR</em>),
-virulence factors (<em>VF</em>),integron cassettes (<em>Integron</em>)
-and sequencing date (<em>seqs</em>) in those strains? Note. For the
-<em>seqs</em> variable you will need to use the function
-<code>as.Date()</code>.</p></li>
+virulence factors (<em>VF</em>), CRISPR cassesttes (<em>CRISPR</em>),
+integron cassettes (<em>Integron</em>) and sequencing date
+(<em>seqs</em>) in those strains? Note. For the <em>seqs</em> variable
+you will need to use the function <code>as.Date()</code>.</p></li>
 <li><p>Save the tables <em>coli_genomes_renamed</em> and <em>colis</em>
 in a single <em>Rdata</em> file.</p></li>
 <li><p>Add the values of the exercise 3 as a last row in the table.
 Note. For the <em>seqs</em> variable you will need to use the function
-<code>format()</code>.</p></li>
+<code>format.Date()</code> (or just <code>format()</code>)</p></li>
 </ol>
 </div>
 <div id="session-info" class="section level1">
 <h1>Session Info</h1>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>## R version 4.2.1 (2022-06-23)
+<pre><code>## R version 4.2.2 (2022-10-31)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
 ## Running under: macOS Monterey 12.5.1
 ## 
@@ -3228,13 +3230,18 @@ Note. For the <em>seqs</em> variable you will need to use the function
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] formatR_1.12 knitr_1.40  
+## [1] formatR_1.12  knitr_1.40    ggplot2_3.3.6 xlsx_0.6.5   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] digest_0.6.30   R6_2.5.1        jsonlite_1.8.3  magrittr_2.0.3  evaluate_0.17   highr_0.9       stringi_1.7.8  
-##  [8] cachem_1.0.6    rlang_1.0.6     cli_3.4.1       rstudioapi_0.14 jquerylib_0.1.4 bslib_0.4.0     vctrs_0.5.0    
-## [15] rmarkdown_2.17  tools_4.2.1     stringr_1.4.1   xfun_0.34       yaml_2.3.6      fastmap_1.1.0   compiler_4.2.1 
-## [22] htmltools_0.5.3 sass_0.4.2</code></pre>
+##  [1] highr_0.9        pillar_1.8.1     compiler_4.2.2   bslib_0.4.0      jquerylib_0.1.4 
+##  [6] tools_4.2.2      digest_0.6.30    jsonlite_1.8.3   evaluate_0.17    lifecycle_1.0.3 
+## [11] tibble_3.1.8     gtable_0.3.1     pkgconfig_2.0.3  rlang_1.0.6      cli_3.4.1       
+## [16] rstudioapi_0.14  yaml_2.3.6       xfun_0.34        fastmap_1.1.0    rJava_1.0-6     
+## [21] stringr_1.4.1    withr_2.5.0      dplyr_1.0.10     sass_0.4.2       generics_0.1.3  
+## [26] xlsxjars_0.6.1   vctrs_0.5.0      grid_4.2.2       tidyselect_1.2.0 glue_1.6.2      
+## [31] R6_2.5.1         fansi_1.0.3      rmarkdown_2.17   farver_2.1.1     magrittr_2.0.3  
+## [36] scales_1.2.1     htmltools_0.5.3  colorspace_2.0-3 labeling_0.4.2   utf8_1.2.2      
+## [41] stringi_1.7.8    munsell_0.5.0    cachem_1.0.6</code></pre>
 </div>
 <div id="course-home" class="section level1">
 <h1><a href="https://mredrejo.github.io/HPBBM2022/">Course home</a></h1>
