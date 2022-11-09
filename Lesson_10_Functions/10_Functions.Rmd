@@ -79,16 +79,28 @@ browseVignettes("xlsx")
 browseVignettes("seqinr")
 browseVignettes("ggplot2")
 ```
-Sometimes, you can come into two different namesake functions from independent packages. Also, to reduce the memory load you may want to use a function without loading the package. In those cases, there is a trick to call a specific function. In the example below, you will see that `ggplot()` function can be used if you specify the package with the prefix `ggplot::` or load the package in advance.
+Sometimes, you can come into two different namesake functions from independent packages. Also, to reduce the memory load you may want to use a function without loading the package. In those cases, as in the examples below, there is a trick to call a specific function, the prefix `package::`. However, it should be noted that in some packages the syntax is complex and you need to call more than one function to actually use a major function. In the example 2 below, you will see that `ggplot()` function can be used if you specify the package with the prefix `ggplot::` for all the required functions (see Lesson 13).
 ```{r error=TRUE}
+#example1, package getwiki
+install.packages("getwiki")
+vignette("getwiki")
+DNA <- getwiki::search_wiki("DNA")
+str(DNA)
+DNA$titles
+
+#example2, package ggplot2
 ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
     geom_point()
 ggplot2::ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
     geom_point()
+ggplot2::ggplot(iris, ggplot2::aes(Petal.Length, Petal.Width, colour = Species)) +
+    ggplot2::geom_point()
 library(ggplot2)
 ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
     geom_point()
 ```
+
+
 R has some built-in datasets that can be used as examples. You can check them using the function `data()`. Note that in the example we have plotted some data from the dataset named iris. 
 
 # Create user-written functions
