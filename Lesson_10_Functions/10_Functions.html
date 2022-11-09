@@ -2867,11 +2867,11 @@ str(DNA)</code></pre>
 ##  $ content: chr  &quot;A-DNA is one of the possible double helical structures which DNA can adopt. A-DNA is thought to be one of three&quot;| __truncated__ &quot;Circular DNA is DNA that forms a closed loop and has no ends.  Examples include:Plasmids, mobile genetic elemen&quot;| __truncated__ &quot;Deoxyribonucleic acid ( (listen); DNA) is a polymer composed of two polynucleotide chains that coil around each&quot;| __truncated__ &quot;DNA (deoxyribonucleic acid) is a molecule encoding the genetic instructions for life.DNA may also refer to:&quot; ...</code></pre>
 <pre class="r"><code>DNA$titles</code></pre>
 <pre><code>##  [1] &quot;A-DNA&quot;                 &quot;Circular DNA&quot;          &quot;DNA&quot;                  
-##  [4] &quot;DNA (disambiguation)&quot;  &quot;DNA Films&quot;             &quot;DNA extraction&quot;       
-##  [7] &quot;DNA ligase&quot;            &quot;DNA methylation&quot;       &quot;DNA polymerase&quot;       
-## [10] &quot;DNA profiling&quot;         &quot;DNA repair&quot;            &quot;DNA replication&quot;      
-## [13] &quot;DNA sequencing&quot;        &quot;DNA virus&quot;             &quot;DNA²&quot;                 
-## [16] &quot;DNA–DNA hybridization&quot; &quot;DnaA&quot;                  &quot;Extrachromosomal DNA&quot; 
+##  [4] &quot;DNA (disambiguation)&quot;  &quot;DNA Films&quot;             &quot;DNA Oyj&quot;              
+##  [7] &quot;DNA gyrase&quot;            &quot;DNA ligase&quot;            &quot;DNA methylation&quot;      
+## [10] &quot;DNA polymerase&quot;        &quot;DNA profiling&quot;         &quot;DNA repair&quot;           
+## [13] &quot;DNA replication&quot;       &quot;DNA sequencing&quot;        &quot;DNA virus&quot;            
+## [16] &quot;DNA²&quot;                  &quot;DNA–DNA hybridization&quot; &quot;DnaA&quot;                 
 ## [19] &quot;Mitochondrial DNA&quot;     &quot;Recombinant DNA&quot;</code></pre>
 <pre class="r"><code># example2, package ggplot2
 ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
@@ -2934,25 +2934,48 @@ myFunction(4)</code></pre>
 <pre><code>## [1] 0</code></pre>
 <pre class="r"><code>myFunction(22)</code></pre>
 <pre><code>## [1] 1943.333</code></pre>
-<p>We can include conditions, loops… Another example to identify
-even/odd numbers:</p>
+<pre class="r"><code>myFunction(3)</code></pre>
+<pre><code>## [1] 37</code></pre>
+<p>We can include conditions, loops… Another example can be a function
+to identify even/odd numbers:</p>
 <pre class="r"><code># A simple R function to check whether x is even or odd
-
-evenOdd = function(x) {
-    if (x%%2 == 0)
-        return(&quot;even&quot;) else return(&quot;odd&quot;)
+evenOdd &lt;- function(x) {
+    if (x%%2 == 0) {
+        return(&quot;even&quot;)
+    } else {
+        return(&quot;odd&quot;)
+    }
 }
-
 # test
 evenOdd(4)</code></pre>
 <pre><code>## [1] &quot;even&quot;</code></pre>
 <pre class="r"><code>evenOdd(3)</code></pre>
 <pre><code>## [1] &quot;odd&quot;</code></pre>
-<p>Sometimes creating an R script file, you want to create a small
-function and use it just once. To deal with those situations, you can
-use the <em>inline</em> function. To create an inline function you have
-to use the function command with the argument x and then the expression
-of the function. </p>
+<pre class="r"><code># note that simple ifs within a function does not need the
+# curly braces!
+evenOdd2 &lt;- function(x) {
+    if (x%%2 == 0)
+        return(&quot;even&quot;) else return(&quot;odd&quot;)
+}
+evenOdd2(4)</code></pre>
+<pre><code>## [1] &quot;even&quot;</code></pre>
+<pre class="r"><code>evenOdd2(3)</code></pre>
+<pre><code>## [1] &quot;odd&quot;</code></pre>
+<pre class="r"><code>evenOdd2(7)</code></pre>
+<pre><code>## [1] &quot;odd&quot;</code></pre>
+<pre class="r"><code>evenOdd2(8)</code></pre>
+<pre><code>## [1] &quot;even&quot;</code></pre>
+<p>In the above example, we found out that curly braces can be omitted
+sometimes in <em>if</em> statements or loops (see <a href="https://www.learnbyexample.org/r-for-loop/#for-loop-without-curly-braces" class="uri">https://www.learnbyexample.org/r-for-loop/#for-loop-without-curly-braces</a>).
+This modification makes the code handier, but also riskier, use it
+carefully. Remember, a great power entails a great responsibility. The
+same applies to functions. Thus, sometimes when creating an R script,
+you want to create a small function and use it just once. That happens
+usually when you want to use your own functions to parse data within an
+<code>apply</code> family function (see Lesson 12). To deal with those
+situations, you can use the <em>inline</em> function. To create an
+inline function you have to use the function command with the argument x
+and then the expression of the function.</p>
 <p>Example:</p>
 <pre class="r"><code># inline functions
 f &lt;- function(x) x^2 * 4 + x/3
@@ -3011,8 +3034,13 @@ Rectangle &lt;- function(length = 5, width = 4) {
     area = length * width
     return(area)
 }
-
-# Case 1:
+for (x in 0:4) print(x^2)</code></pre>
+<pre><code>## [1] 0
+## [1] 1
+## [1] 4
+## [1] 9
+## [1] 16</code></pre>
+<pre class="r"><code># Case 1:
 Rectangle(2, 3)</code></pre>
 <pre><code>## [1] 6</code></pre>
 <pre class="r"><code># Case 2: If you do not want to follow any order, you can
@@ -3172,6 +3200,7 @@ codon2aa_2(c(&quot;ATG&quot;, &quot;TGA&quot;))</code></pre>
 <li><p><em>R programming for data science,</em> <a href="https://bookdown.org/rdpeng/rprogdatascience/" class="uri">https://bookdown.org/rdpeng/rprogdatascience/</a></p></li>
 <li><p>Creating functions in <em>Programming in R</em> Swcarpentry, <a href="http://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html" class="uri">http://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html</a></p></li>
 <li><p>Functions in R programming in <em>GeeksforGeeks</em>: <a href="https://www.geeksforgeeks.org/functions-in-r-programming/" class="uri">https://www.geeksforgeeks.org/functions-in-r-programming/</a></p></li>
+<li><p>Learn R by examples: <a href="https://www.learnbyexample.org/" class="uri">https://www.learnbyexample.org/</a></p></li>
 </ul>
 </div>
 <div id="short-exercises" class="section level1">

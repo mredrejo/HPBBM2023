@@ -79,7 +79,9 @@ browseVignettes("xlsx")
 browseVignettes("seqinr")
 browseVignettes("ggplot2")
 ```
+
 Sometimes, you can come into two different namesake functions from independent packages. Also, to reduce the memory load you may want to use a function without loading the package. In those cases, as in the examples below, there is a trick to call a specific function, the prefix `package::`. However, it should be noted that in some packages the syntax is complex and you need to call more than one function to actually use a major function. In the example 2 below, you will see that `ggplot()` function can be used if you specify the package with the prefix `ggplot::` for all the required functions (see Lesson 13).
+
 ```{r error=TRUE}
 #example1, package getwiki
 install.packages("getwiki")
@@ -100,8 +102,7 @@ ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
     geom_point()
 ```
 
-
-R has some built-in datasets that can be used as examples. You can check them using the function `data()`. Note that in the example we have plotted some data from the dataset named iris. 
+R has some built-in datasets that can be used as examples. You can check them using the function `data()`. Note that in the example we have plotted some data from the dataset named iris.
 
 # Create user-written functions
 
@@ -134,28 +135,38 @@ myFunction <-  function(x){
 myFunction(4)
 myFunction(0)
 myFunction(22)
-
+myFunction(3)
 ```
 
-We can include conditions, loops... Another example to identify even/odd numbers:
+We can include conditions, loops... Another example can be a function to identify even/odd numbers:
 
 ```{r}
 # A simple R function to check
 # whether x is even or odd
-
-evenOdd = function(x){
+evenOdd <-  function(x){
+if(x %% 2 == 0){
+	return("even")
+  } else {
+  	return("odd")
+  }
+}
+#test
+evenOdd(4)
+evenOdd(3)
+# note that simple ifs within a function does not need the curly braces!
+evenOdd2 <-  function(x){
 if(x %% 2 == 0)
 	return("even")
 else
 	return("odd")
 }
-
-#test
-evenOdd(4)
-evenOdd(3)
+evenOdd2(4)
+evenOdd2(3)
+evenOdd2(7)
+evenOdd2(8)
 ```
 
-Sometimes creating an R script file, you want to create a small function and use it just once. To deal with those situations, you can use the *inline* function. To create an inline function you have to use the function command with the argument x and then the expression of the function. 
+In the above example, we found out that curly braces can be omitted sometimes in *if* statements or loops (see <https://www.learnbyexample.org/r-for-loop/#for-loop-without-curly-braces>). This modification makes the code handier, but also riskier, use it carefully. Remember, a great power entails a great responsibility. The same applies to functions. Thus, sometimes when creating an R script, you want to create a small function and use it just once. That happens usually when you want to use your own functions to parse data within an `apply` family function (see Lesson 12). To deal with those situations, you can use the *inline* function. To create an inline function you have to use the function command with the argument x and then the expression of the function.
 
 Example:
 
@@ -214,7 +225,7 @@ Rectangle <-  function(length=5, width=4){
 area = length * width
 return(area)
 }
-
+for (x in 0:4) print(x^2)
 # Case 1:
 Rectangle(2, 3)
 
@@ -270,7 +281,7 @@ price_calculator(5.3,"normal")
 #WTF?
 ```
 
-We just noticed that the function calculated the price for 5.3 samples, which is  nonsense. We should then introduce a checkpoint for the format of the introduced value for the variable samples.
+We just noticed that the function calculated the price for 5.3 samples, which is nonsense. We should then introduce a checkpoint for the format of the introduced value for the variable samples.
 
 ```{r, error=TRUE}
 #alternative with checkpoint for number of samples
@@ -368,6 +379,8 @@ codon2aa_2(c("ATG","CAT", "CAT","AAA","TAA"))
 -   Creating functions in *Programming in R* Swcarpentry, <http://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html>
 
 -   Functions in R programming in *GeeksforGeeks*: <https://www.geeksforgeeks.org/functions-in-r-programming/>
+
+-   Learn R by examples: <https://www.learnbyexample.org/>
 
 # [Short exercises]{style="color:green"}
 
