@@ -2,6 +2,7 @@
 title: "HPBBM2022"
 author: "Modesto"
 toc: true
+
 format:
   html:
     theme: sketchy
@@ -30,16 +31,16 @@ Also, it is likely that you find some mistypes or even some big mistakes through
 
 ## [Contents]{style="color:cornflowerblue"}
 
-[Lesson 9: Data input and output in R](Lesson_9_input_output/9_input_output.html)
+### [Lesson 9: Data input and output in R](Lesson_9_input_output/9_input_output.html)
 
-[Lesson 10: Write your own functions](Lesson_10_Functions/10_Functions.html)
+### [Lesson 10: Write your own functions](Lesson_10_Functions/10_Functions.html)
 
-Lesson 11: Data management
+### Lesson 11: Data management
 
-Lesson 12: Plots
+### Lesson 12: Plots
 
-Lesson 13: Advanced plots with ggplot
+### Lesson 13: Advanced plots with ggplot
 
-Lesson 14: Applications for Molecular Biology
+### Lesson 14: Applications for Molecular Biology
 
-Extra Lesson: Introduction to R projects, R Markdown and Quarto.
+### Extra Lesson: Introduction to R projects, R Markdown and Quarto.
