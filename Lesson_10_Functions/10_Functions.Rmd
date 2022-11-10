@@ -20,6 +20,7 @@ library(knitr)
 library(formatR)
 opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
 knitr::opts_knit$set(root.dir = "/Users/modesto/data/HPBBM2022")
+options(repos = list(CRAN="http://cran.rstudio.com/")) #this is to avoid error in install.packages() at knitting
 ```
 
 # [Wellcome & Disclaimer]{style="color:cornflowerblue"}
@@ -54,6 +55,8 @@ if(!require(xlsx)){
     install.packages("xlsx")
     library(xlsx)
 }
+
+detach(xlsx) #unload the package
 ```
 
 Try to read again the file coli_genomes_renamed.csv that we saved in the previous lesson and save it ready for MS Excel.
@@ -67,18 +70,22 @@ write.xlsx(coli_genomes,"data/coli_genomes.xlsx")
 
 In the above code we have used `require()` and `library()` functions to call for package loading. Those are very similar functions, often interchangeable. The main difference is that if you use `require()`*,* you will get a warning (see below for *warning* use), but not an error. Thus, your code will continue to run if possible.
 
+Also, if you want to unload a package from memory, you can use `detach()`.
+
 ```{r, error=TRUE}
 library(uam)
 require(uam)
 ```
 
-Many packages in CRAN also contain a reference manual and some of them also a *vignette*. A vignette is practical guide to each package. You can see all the installed vignettes with [`browseVignettes()`](https://rdrr.io/r/utils/browseVignettes.html). You can find a bunch of tutorials and tricks about how to use popular packages, but the *vignette* is an official and complete reference that is always helpful.
+Many packages in CRAN also contain a reference manual and some of them also a *vignette*. A vignette is practical guide to each package. You can see all the installed vignettes with [`browseVignettes()`](https://rdrr.io/r/utils/browseVignettes.html) or just `vignette()` for the primary vignette. You can find a bunch of tutorials and tricks about how to use popular packages, but the *vignette* is an official and complete reference that is always helpful.
 
 ```{r, error=TRUE}
 browseVignettes("xlsx") 
 browseVignettes("seqinr")
 browseVignettes("ggplot2")
 ```
+
+Note that in some cases, as in the package *seqinr*, there is no official vignette at CRAN. However, as R is an open access language, you will easily find information about any package or function in other websites, such as [rdrr.io](https://rdrr.io/), [rdocumentation.org](https://www.rdocumentation.org/) or [stackoverflow.com](https://stackoverflow.com/), among others.
 
 Sometimes, you can come into two different namesake functions from independent packages. Also, to reduce the memory load you may want to use a function without loading the package. In those cases, as in the examples below, there is a trick to call a specific function, the prefix `package::`. However, it should be noted that in some packages the syntax is complex and you need to call more than one function to actually use a major function. In the example 2 below, you will see that `ggplot()` function can be used if you specify the package with the prefix `ggplot::` for all the required functions (see Lesson 13).
 
@@ -112,7 +119,7 @@ We have discussed throughout the last lectures how R can help you if you to save
 
 Creating you own function will be very useful for automation of repetitive analyses or to encapsulate a sequence of expressions that need to be executed numerous times, perhaps under slightly different conditions. Functions are also often written when code must be shared with others or the public.
 
-In R, functions are also considered as objects. That means that (1) they can be nested, so you can define a function inside another function and (2) you can use functions as arguments to other functions. We will see very useful examples of this latter feature in Lesson 12, using custom functions as arguments for `lapply()` or `sapply()`.
+In R, functions are also considered as objects. That means that (1) they can be nested, so you can define a function inside another function and (2) you can use functions as arguments to other functions. We will see very useful examples of this latter feature in Lesson 12, using custom functions as arguments for `aggregate()`, `xtabs()`, `lapply()` or `sapply()`.
 
 The overall scheme of an R function is the following:
 
@@ -153,7 +160,7 @@ if(x %% 2 == 0){
 #test
 evenOdd(4)
 evenOdd(3)
-# note that simple ifs within a function does not need the curly braces!
+#  no need the curly braces!
 evenOdd2 <-  function(x){
 if(x %% 2 == 0)
 	return("even")
@@ -225,7 +232,7 @@ Rectangle <-  function(length=5, width=4){
 area = length * width
 return(area)
 }
-for (x in 0:4) print(x^2)
+
 # Case 1:
 Rectangle(2, 3)
 
@@ -244,7 +251,7 @@ Now we are going to try a longer code.
 
 ![](images/paste-EECF9E00.png)
 
-```{r}
+```{r, error=TRUE}
 #we need to arguments
 price_calculator <- function(samples, category){
   categories<-c(1,1.15,2)
@@ -255,15 +262,16 @@ price_calculator <- function(samples, category){
     price<-14 * samples * which(names(categories)==category)
   } else if (samples >= 50  ){
     price<-10 * samples * which(names(categories)==category)
-  } else {
-    #if we cannot calculate the price we return a message
-    price<-paste("No se ha podido calcular el precio. Revise los datos introducidos")
   }
-paste(price)
+paste("El precio es de",price, "euros.")
 }
+price_calculator(10,"normal")
+price_calculator(10,"urgent")
+price_calculator(10,"urgnt")
+
 
 #new version with checkpoints
-price_calculator <- function(samples, category = "normal"|"priority"|"urgent"){
+price_calculator2 <- function(samples, category = "normal"|"priority"|"urgent"){
     category <-  switch (category,
       normal = 1,
       priority = 1.5,
@@ -277,7 +285,10 @@ price_calculator <- function(samples, category = "normal"|"priority"|"urgent"){
     } 
     ifelse(length(price) > 0, return(price), stop("Prioridad incorecta. No se ha podido calcular el precio")  )
 }
-price_calculator(5.3,"normal")
+price_calculator2(10,"normal")
+price_calculator2(10,"urgent")
+price_calculator2(10,"urgnt")
+price_calculator2(5.3,"normal")
 #WTF?
 ```
 
@@ -285,7 +296,7 @@ We just noticed that the function calculated the price for 5.3 samples, which is
 
 ```{r, error=TRUE}
 #alternative with checkpoint for number of samples
-price_calculator <- function(samples, category = "normal"|"priority"|"urgent"){
+price_calculator3 <- function(samples, category = "normal"|"priority"|"urgent"){
   category <-  switch (category,
                        normal = 1,
                        priority = 1.5,
@@ -304,13 +315,13 @@ price_calculator <- function(samples, category = "normal"|"priority"|"urgent"){
 }
 
 #test again
-price_calculator(50, "urgente")
-price_calculator(50, "urgent")
-price_calculator(-5, "normal")
-price_calculator(5.2, "normal")
+price_calculator3(50, "urgente")
+price_calculator3(50, "urgent")
+price_calculator3(-5, "normal")
+price_calculator3(5.2, "normal")
 ```
 
-## In-class exercise
+## Exercise
 
 When creating functions, you can include any R functionality, including reading external data. Let's check the following example, within the context of molecular biology. It makes a short function that convert R into a molecular biology dogma interpreter. It takes as input a nucleic acid sequence codon and returns its encoded amino acid in IUPAC one letter code.
 
@@ -330,7 +341,7 @@ codon2aa("TAA")
 codon2aa("CAT")
 codon2aa("AXG")
 
-#Can you check the value of the variable 'aa'
+#Can you check the value of the variable 'aa'??
 aa
 ```
 
@@ -353,12 +364,8 @@ codon2aa_2 <- function(codons) {
   aa<-c()
   code<-read.csv2("data/genetic_code.csv", stringsAsFactors = FALSE)
   for (i in 1:length(codons)){ #loop over all the elements of the vector 'codons'
-    if(codons[i] %in% code$Codon){ #check for correct values
-      aa[i] <- code$AA[code$Codon==codons[i]]
-    } else {
-      stop("Uno o más de los codones no es correcto. No se ha podido traducir.")
-      #break and message in case of empty return
-    }
+    stopifnot("Uno o más de los codones no es correcto. No se ha podido traducir ;)" = codons[i] %in% code$Codon) #check for correct values
+    aa[i] <- code$AA[code$Codon==codons[i]]
   }
   return(aa)
 }
@@ -367,8 +374,9 @@ codon2aa_2 <- function(codons) {
 codon2aa_2(c("ATG","TGA"))
 codon2aa_2(c("ARG","TGA"))
 codon2aa_2(c("ATG","CAT", "CAT","AAA","TAA"))
-
 ```
+
+In this second example, we have used the function `stopifnot()` to check for the codons. This function is a shortcut for a standard `if{}` or `ifelse{}` to check the codons and a stop if they are not found.
 
 # References
 
