@@ -35,9 +35,9 @@ Also, it is likely that you find some mistypes or even some big mistakes through
 
 ### [Lesson 10: Write your own functions](Lesson_10_Functions/10_Functions.html)
 
-### Lesson 11: Data management
+### Lesson 11: Plots
 
-### Lesson 12: Plots
+### [Lesson 12: Data management](Lesson_12_data_management/12_adv_data_management.html)
 
 ### Lesson 13: Advanced plots with ggplot
 

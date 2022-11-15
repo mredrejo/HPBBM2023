@@ -1,0 +1,440 @@
+---
+title: 'Lesson 12: Data management & transformation in R'
+author: "Modesto"
+date: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    toc_depth: '2'
+    df_print: paged
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r wrap-hook, echo=FALSE}
+library(knitr)
+library(formatR)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+knitr::opts_knit$set(root.dir = "/Users/modesto/data/HPBBM2022")
+options(repos = list(CRAN="http://cran.rstudio.com/")) #this is to avoid error in install.packages() at knitting
+```
+
+# [Wellcome & Disclaimer]{style="color:cornflowerblue"}
+
+This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@UAM. This materials are the basis for GitHub-pages-based website that can be accessed [here](https://mredrejo.github.io/HPBBM2022/). Detailed academic information about the course contents, dates and assessment only can be found at the UAM Moodle site.
+
+All this material is open access and it is shared under [CC BY-NC](https://creativecommons.org/licenses/by-nc/2.0/) license.
+
+# Transform dataframes
+
+## Sorting and subsetting data
+
+When you want to present or analyze your data in R you often need to order a vector or a dataframe by the value of a variable. This order might be increasing or decreasing, numeric or alphabetic. There are two main functions in R to arrange your data, `sort()` and `order()`.
+
+Let's see an example using the dataset *coli_genomes_renamed.csv* that we saved in the [Lesson 9](Lesson_9_input_output/9_input_output.html#save)*.*
+
+```{r}
+#load the dataset
+coli_genomes <- read.csv2(file = "data/coli_genomes_renamed.csv")
+
+#test sort() & order() in a vector
+order(coli_genomes$Year)
+sort(coli_genomes$Year)
+sort(coli_genomes$Year, decreasing=TRUE)
+order(coli_genomes$Phylogroup)
+sort(coli_genomes$Phylogroup)
+```
+
+As you noticed, the R `order()` function returns a permutation of the order of the elements of a vector. The output is an index vector, not the vector itself. Note also that if the vector contains any `NA` values there will be at the end of the index vector by default.
+
+On the other hand, the `sort()` function returns sorted, in ascending order by default, the vector you pass as input.
+
+Both function will arrange the data increasingly, and can be used for numeric or string variables. If you set the `decreasing` argument to `TRUE` in a `sort()` or `order()`, you will have the vector of indices in descending order.
+
+You can use these functions also to arrange a dataframe by one vector. Alternatively, you may want to reverse order or *shuffle* a dataframe.
+
+```{r}
+#order the dataframe by one column, sort or order?
+coli_genomes[order(coli_genomes$Year),]
+coli_genomes[sort(coli_genomes$Year),] #what happened?
+
+# Custom order of rows (random)
+coli_genomes[sample(nrow(coli_genomes), replace = FALSE), ]
+# Reverse order of rows
+coli_genomes[nrow(coli_genomes):1, ]
+```
+
+Now, imagine you have a large dataset and you want to subset only some cases (=rows). You know already some ways to do that, but in the following example we are going to test the function `subset()` that is very convenient when you want to extract the cases that that fulfill several conditions.
+
+Imagine that for a new project we want to select the strains with better genome draft quality or from some subgroup. We will keep strains from phylogrupo A, with an assembly N50\>150,000 bp and less than 100 contigs \>= 1 kb.
+
+```{r}
+#option 1: multi-step
+selection<-coli_genomes[coli_genomes$contigs1kb<100,]
+selection<-selection[selection$N50>150000,]
+selection<-selection[selection$Phylogroup=='A',]
+
+#option 2: several which statements 
+selection2<-coli_genomes[which(coli_genomes$contigs1kb<100 & coli_genomes$N50>150000 & coli_genomes$Phylogroup=='A'),]
+
+#option 2b:with attach(dataframe) you avoid repeat the name of the dataframe
+attach(coli_genomes)
+selection2 <- coli_genomes[which(contigs1kb<100 & N50>150000 & Phylogroup=='A'),]
+detach(coli_genomes) #detach dataframe
+
+#option 3: subset() does the same
+selection3<-subset(coli_genomes, subset= contigs1kb<100 & N50>150000 & Phylogroup=='A')
+
+#Are they the same?
+all.equal(selection,selection2) 
+all.equal(selection,selection3)
+```
+
+It you want to verify that the three methods will give rise to the same output you can review the dataframe, or check their dimensions or structure with `dim()` or `str()`, but that is difficult for large datasets with hundreds or thousands of cases (see below). The function `all.equal()` will do that for you.
+
+## Combining dataframes
+
+When you work with a lot of data, you may have several tables and sometimes you want to merge the tables in different ways. An easy way can be the use of `cbind()` or `rbind()` if you have the same number of rows and columns. A more handy way is using the function `merge()`. We will see some alternatives using the *coli_genomes* dataframe and a new table, named *colis3.csv.*
+
+```{r, error=TRUE}
+colis <- read.csv2(file = 'data/colis3.csv')
+#rbind() and cbind()
+rbind(coli_genomes,colis) #did it work? why??
+cbind(coli_genomes, colis) 
+
+#merge()
+merge<-merge(coli_genomes,colis) #inner join
+str(merge)
+merge1<-merge(coli_genomes,colis, by="Strain")
+str(merge1)
+merge2<-merge(coli_genomes,colis, by="Year")
+str(merge2)
+merge3<-merge(coli_genomes,colis, by=c("Strain","Year"))
+str(merge3)
+merge4<-merge(coli_genomes,colis, all=TRUE) #outer join
+str(merge4)
+merge5<-merge(coli_genomes,colis, all.x=TRUE)
+str(merge5)
+merge6<-merge(coli_genomes,colis, all.y=TRUE)
+str(merge6)
+merge7<-merge(coli_genomes,colis, by=NULL)
+str(merge7)
+```
+
+As you noticed, the function `merge()` combines dataframes, however it is a generic function that can be also used with other objects (like vectors or matrices), but they will be coerced to `data.frame` class.
+
+By default, `merge()` will do a *natural join* or *inner join*, merging two dataframes in one that contains only once the common elements of both. The arguments `all=TRUE`, `all.x=TRUE` and `all.y=TRUE` will force an *outer* join in which all elements of both, the first or the second dataframes are selected. In these cases, if not all rows in the first data frame match all the rows in the second, the output is filled with `NA` values in those cases.
+
+Finally, the Cartesian product of both dataframes can be obtained in R setting as `NULL` the argument `by` of the `merge()` function.
+
+## Data matrix format (wide vs. long table)
+
+A common mistake in data analysis is the wrong identification of conditions and variables. In the table [*Zebrafish_data.csv*](data/Zebrafish_data.csv) we have the results of an experiment in which a collaborator scored the number of metastatic cancer cells upon the expression of different transcripts of the EFNA3 gene. Each transcript is cloned into a pLoC plasmid, and we have negative (empty plasmid) and positive controls (wt transcript). Let's import and check the data.
+
+```{r}
+ZFdata <- read.csv("data/Zebrafish_data.csv")
+str(ZFdata)
+head(ZFdata)
+```
+
+How many columns has the table? How many variables are there?
+
+Most likely you realized that this table format does not agree with the standard way to introduce the data in a table, the data-matrix (rows for cases and columns for variables).
+
+Having the data, we transform it in a datamatrix (aka *long* table) using the function `stack()`. You can also do it the other way around with the function `unstack().`
+
+```{r}
+ZF_stacked <- stack(ZFdata)
+str(ZF_stacked)
+head(ZF_stacked)
+ZF_old <- unstack(ZF_stacked)
+str(ZF_old)
+head(ZF_old)
+```
+
+However, some times the dataset is more complex and there are other variables that change the table structure, as in the table [*Zebrafish_full.csv*](data/Zebrafish_full.csv)*.* In this case, you can stack only the desired variables and then reconstruct the table.
+
+```{r}
+ZF_full <- read.csv("data/Zebrafish_full.csv")
+head(ZF_full)
+#stack
+ZF_full_some_stack <- stack(ZF_full[,1:6])
+#reconstruct the table
+ZF_full_stack <- cbind(ZF_full[,1],ZF_full_some_stack)
+#short way
+ZF_full_stack2 <- cbind(ZF_full[,1],stack(ZF_full[,1:6]))
+all.equal(ZF_full_stack,ZF_full_stack2)
+```
+
+Remember that ***datamatrix*** is not an R structure, but a general concept in data analysis. Also, for more complex dataframes, I suggest the function `melt()`. However, this function name refers to two different functions in two alternative packages: *reshape2* and *data.table*, with slightly different behavior.
+
+# Working efficiently with large datasets
+
+## Fast loading of huge datasets and creation of contingency tables
+
+We are going to make some examples with a huge dataset of Covid19 Vaccination data in EU. The data is publicly available at <https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea>. While you can download and open a file from internet in R, in order to use the same dataset, we have a file [*vaccines_EU_22oct2022.csv*](data/vaccines_EU_22oct2022.csv) in our data folder.
+
+```{r error=TRUE}
+#open directly from the ECDC
+#vaccines <- read.csv(file = "https://opendata.ecdc.europa.eu/covid19/vaccine_tracker/csv/data.csv", header=TRUE)
+#we will use all the same dataset that I already downloaded
+vaccines <- read.csv(file = 'data/vaccines_EU_22oct2022.csv', header=TRUE)
+#explore the data
+str(vaccines)
+head(vaccines)
+table(vaccines$Region)
+head(table(vaccines$Region, vaccines$NumberDosesReceived)) 
+summary(vaccines[which(vaccines$Region=="ES"),][,6]) #see the data from Spain
+
+table(vaccines)
+```
+
+When exploring (very) large datasets as in the example above you can find that some functions don't work because they can't handle all that data (*Error in table(vaccines) : attempt to make a table with \>= 2\^31 elements*). Here, we are going to use alternative methods, more efficient and convenient for this datasets.
+
+One of those tricks is the use of the package *data.table*, very handy for large datasets. In the following lines, we will compare reading/writting data with the function `fread()` and `fwrite().`
+
+```{r}
+#load the package may require installing it before
+if(!require(data.table)){
+    install.packages("data.table")
+}
+# if that doesn't work try: install.packages("data.table", type = "source", repos = "https://Rdatatable.gitlab.io/data.table")
+
+system.time(vaccines <- read.csv(file = 'data/vaccines_EU_22oct2022.csv', header=TRUE))
+system.time(vaccines<-fread('data/vaccines_EU_22oct2022.csv'))
+
+#we can also prevent loading of some columns  to save time
+system.time(vaccines2 <-fread('data/vaccines_EU_22oct2022.csv',drop=c(3,5,7,9,10)))  
+system.time(vaccines3 <-fread('data/vaccines_EU_22oct2022.csv',colClasses = "character")) #we can also select the variables by type
+```
+
+## Resume data
+
+Tabulating data is very common and quick way to obtain information from a dataset. As you already now, the `table()` function in R can be used to quickly create frequency tables. The output of both `xtabs()` and `table()` is nearly the same, although `xtabs()` is more convenient for complex cross tabulations. Still some users prefer the use of derivative `table()` uses, like including it within the `with()` function. I believe that `xtabs()` provides a more straightforward alternative. Moreover, `xtabs()` has interesting advantages: 1) row and column labels are included automatically, set to the variable names and 2) there is a data= argument, which means you just have to reference the variable names. With `xtabs()`, you do not list out the variables of interest separated by commas. Instead you use formula notation, which is \~variable1+variable2+... where variable1 and variable2 are the names of the variables of interest.
+
+```{r}
+
+xtabs(vaccines) #works
+#library(stats) if xtabs() does not work
+#compare table() and xtabs()
+table(vaccines$ReportingCountry)
+str(table(vaccines$ReportingCountry))
+xtabs(formula= ~ ReportingCountry  ,data=vaccines)
+str(xtabs(formula= ~ ReportingCountry  ,data=vaccines))
+
+#with 2 or more variables?
+table(vaccines[,c(ReportingCountry,as.factor(Vaccine))]) #not really
+with(vaccines, table(ReportingCountry, as.factor(Vaccine))) ## note "with"
+#alternative
+vaccines_split <- xtabs(formula= ~ ReportingCountry  + as.factor(Vaccine), data = vaccines)
+#now create a standard dataframe
+vaccines_split <- as.data.frame(xtabs(~ ReportingCountry  + as.factor(Vaccine), vaccines))
+```
+
+As discussed above, `xtabs()` can be used with more than two variables, although the resulting cross-tabulated table may be too long. Optionally, on the left hand side, one may give a vector or a matrix of counts; in the latter case, the columns are interpreted as corresponding to the levels of a variable.
+
+```{r}
+#also with several variables, although it takes some time
+vaccines_split2 <- xtabs(~ ReportingCountry + NumberDosesReceived + as.factor(Vaccine) + as.factor(TargetGroup),vaccines)
+vaccines_split2b <- xtabs(NumberDosesReceived ~ ReportingCountry  + as.factor(Vaccine) + as.factor(TargetGroup), vaccines)
+```
+
+Sometimes, it is better to use a shorter table as an example...
+
+Using *coli_genomes_renamed.csv*, could you make a table with genome frequencies by isolation source (*Source*), phylogenetic group (*Phylogroup*) and multilocus sequence type (*Sequence.Type*)?
+
+```{r}
+coli_genomes <- read.csv2(file = 'data/coli_genomes_renamed.csv', strip.white = TRUE) #load the table
+
+xgenomes <- xtabs(~ Source + Phylogroup+  Sequence.Type, coli_genomes)
+```
+
+This is quite a long cross-table, maybe you could find more convenient transforming it to a flat contingency table with `ftable()`.
+
+```{r}
+xgenomesf <- ftable(xtabs(~ Source + Phylogroup + Sequence.Type, coli_genomes))
+# Oh wait, what I want the STs on the left?
+xgenomesf2 <- ftable(xtabs(~ Sequence.Type + Source + Phylogroup, coli_genomes))
+# No, only the STs on the left
+xgenomesf3 <- ftable(xtabs(~ Sequence.Type + Source + Phylogroup, coli_genomes),row.vars=1)
+xgenomesf3b <- ftable(xtabs(~ Sequence.Type + Source + Phylogroup, coli_genomes),col.vars=2)
+xgenomesf3c <- ftable(xtabs(~ Sequence.Type + Source + Phylogroup, coli_genomes),col.vars=2:3)
+```
+
+As you notice, the format of the table can be defined by the order of the variables and also using the arguments `row.vars` and `col.vars` to define which variables will be summarized as column or row.
+
+Again, rather than concepts from R or RStudio, cross-tabulation and flat contingency tables are general concepts in data analysis.
+
+# Data aggregation and transformation
+
+## By() & aggregate()
+
+While frequency tables can be very quickly generated with `table()` and `xtable()`, sometimes you may want other calculations than frequency, like basic statistics per group or other, even custom, calculations.
+
+You have already tried the function `by()` as a very useful trick to make group-calculations. However, this function has some limitations when we have large datasets and when we try to use multiple factors that can be solved with `aggregate()`. In both cases, the function can be any function that suits your data, either from R packages or a custom function.
+
+In the following example, we are using a smaller dataset that we extracted by `sample()`.
+
+```{r error=TRUE}
+vaccines2 <- vaccines[sample(x = 1:nrow(vaccines),size = 1000, replace=FALSE),]
+
+#using by()
+by(vaccines2$NumberDosesReceived, INDICES = vaccines2$Region, FUN=mean, na.rm=TRUE)
+#more than one factor? how?
+by(vaccines2$NumberDosesReceived, INDICES = vaccines2$Region + vaccines2$Vaccine, FUN=mean, na.rm=TRUE)
+by(vaccines2$NumberDosesReceived, INDICES = c(vaccines2$Region,vaccines2$Vaccine), FUN=mean, na.rm=TRUE)
+by(vaccines2$NumberDosesReceived, INDICES = list(vaccines2$Region,vaccines2$Vaccine), FUN=mean, na.rm=TRUE)
+
+#aggregate is more convenient sometimes
+aggregate(vaccines2$NumberDosesReceived ~ vaccines2$Region, FUN=mean)
+aggregate(NumberDosesReceived ~ Region+Vaccine, data=vaccines2, FUN=mean) 
+aggregate(FirstDoseRefused ~ TargetGroup, data=vaccines2, FUN=median) 
+#by default NAs are disregarded
+aggregate(FirstDoseRefused ~ TargetGroup, data=vaccines2, na.action = NULL, FUN=median) 
+
+#we can make it for several numeric variables at the same time
+aggregate(cbind(NumberDosesReceived,FirstDose,SecondDose) ~ as.factor(TargetGroup), data=vaccines2, FUN=mean)
+```
+
+We can also add a custom function, using the short, inline notation:
+
+```{r}
+#we can also use custom functions here
+aggregate(cbind(VF,Plasmids) ~ as.factor(Source), data=coli_genomes, FUN=function(x) mean(x)*100/mean(coli_genomes$Contigs))
+```
+
+## Apply family of functions
+
+[![](images/apply_family-01.jpg)](https://www.r-bloggers.com/2016/03/apply-lapply-rapply-sapply-functions-in-r-2/)
+
+As you discussed previously, one of the issues with for loop can be its memory consumption and its slowness in executing a repetitive task at hand. Often dealing with large data and iterating it, for loop is not advised. R provides many few alternatives to be applied on vectors for looping operations. In this section, we deal with **apply** function and its variants. The functions `apply()`, `lapply()`, `sapply()`, `tapply()`, `rapply()` & `mapply()`. As a general definition, *Apply* is a very efficient tool to perform repetitive calculations. In the following examples we test some of the powers of the *applies*.
+
+```{r}
+apply(vaccines[,4:12],1,mean, na.rm=TRUE)
+apply(vaccines[,4:12],2,mean, na.rm=TRUE) # 1 for row-wise operation, 2 for column-wise
+
+lapply(by(vaccines$Population,vaccines$ReportingCountry,mean), log10) 
+sapply(by(vaccines$Population,vaccines$ReportingCountry,mean), log10) 
+class(lapply(by(vaccines$Population,vaccines$ReportingCountry,mean), log10) ) #lapply take a list (or object that can be coerced as one) and gives a list
+class(sapply(by(vaccines$Population,vaccines$ReportingCountry,mean), log10) ) #a wrapper of lapply that returns a vector or matrix instead of a list
+
+
+sapply(list(vaccines2$Population, vaccines2$FirstDose,vaccines2$SecondDose, vaccines2$NumberDosesReceived), median) # we can do it with several variables
+sapply(vaccines2,class) #calculations is a broad concept here
+
+#mapply is a matrix (or multivariable) version
+mapply(sub,vaccines2[,4],vaccines2[,6],vaccines2[,7]) 
+mapply(rep, letters[1:4], 4:1)
+
+#tapply breaks a vector into pieces, can be used instead of aggregate
+tapply(vaccines$NumberDosesReceived, vaccines$ReportingCountry, median,na.rm=TRUE) 
+tapply(coli_genomes$VF, coli_genomes$Source, mean, na.rm=TRUE) 
+
+#vapply is similar to sapply, but has a pre-specified type of return value
+vapply(vaccines[,8:11],mean,numeric(1))
+vapply(vaccines[,8:11],function(x) x^2,numeric(nrow(vaccines)))
+
+
+#rapply for recursive calculations
+rapply(vaccines, mean, class="integer") 
+rapply(vaccines, table, class="factor")
+vaccines$ReportingCountry<-as.factor(vaccines$ReportingCountry)
+vaccines$Vaccine<-as.factor(vaccines$Vaccine)
+vaccines$TargetGroup<-as.factor(vaccines$TargetGroup)
+vaccines$Region<-as.factor(vaccines$Region)
+rapply(vaccines, table, class="factor") #factors need to be defined and now it gives the counts for each group of each factor
+
+rapply(vaccines, median, how="list", class="integer", na.rm=TRUE) #returns a list
+rapply(vaccines, median,  how="unlist",class="integer", na.rm=TRUE) #gives a vector
+
+
+#what do you mean by RECURSIVELY?
+x <- list("a",list(24,443),434,list(54,list(6443,7234))) #this is a complex list with sublists
+
+str(x)
+
+rapply(x,log2,class=c("numeric"))
+(r <- rapply(x,log2,class=c("numeric"), how="unlist"))
+str(r)
+```
+
+Note that `tapply()` and `by()` are very similar. Indeed, `by()` is a wrapper of `tapply()`. On the other hand, `vapply()` is similar to `sapply`, but has a pre-specified type of return value, so it can be safer (or faster) to use sometimes. Finally, `rapply()` is not very often used, but it can be the best option for complex datasets, like those including nested lists or complex lists with several dataframes and/or vectors.
+
+The applications of *apply* functions are very wide. You can use them to parse data with many different input and output structures, even for plots. Check out the following example.
+
+```{r}
+#how can you generate several plots for different variable by factors??
+par(mfrow=c(1,3)) #arrange the three plots in a row (see Lesson 11)
+
+#option 1: looping
+system.time(for (i in 9:11){
+  barplot(by(coli_genomes[,i],list(coli_genomes$Source),mean),legend.text = names(coli_genomes[i]))
+})
+#option2: lapply
+ploteando <- function(x) {barplot(by(coli_genomes[,x],list(coli_genomes$Source),mean),legend.text = names(coli_genomes[x]))}
+system.time(lapply(9:11,FUN=ploteando))
+```
+
+In this example `lapply()` returns a list of plots and even for only 3 plots you can notice that it is faster than a loop.
+
+# References
+
+-   Manipulación de datos en R: <https://r-coder.com/manipulacion-datos-r/> [ES] & <https://r-coder.com/r-data-manipulation/> [EN]
+
+-   *R in action.* Robert I. Kabacoff. March 2022 ISBN 9781617296055
+
+-   Working with tables in R: <https://bookdown.org/kdonovan125/ibis_data_analysis_r4/working-with-tables-in-r.html>
+
+-   About flat tables in R: <https://cran.r-project.org/web/packages/memisc/vignettes/ftable-matrix.html>
+
+-   *data.table* cheatsheet: <https://raw.githubusercontent.com/rstudio/cheatsheets/main/datatable.pdf>
+
+-   Data aggregation: <https://r-coder.com/aggregate-r/>
+
+-   About *Applies*: <https://www.r-bloggers.com/2016/03/apply-lapply-rapply-sapply-functions-in-r-2/> & <https://gist.github.com/lyndametref/4d137fcba1ec4d9af80ad53245b358ff>
+
+# [Exercises]{style="color:green"}
+
+#### 1. Using the *merge3* dataset, create a data matrix table containing the strain name and the columns Plasmids, CRISPR, VR and AMR are transformed as a single variable.
+
+#### 2. Two students enrolled in different University courses: Rafa in A,B,D, E and G and Roger in B, C, D and F. Rafa got the following marks 8, 9 ,9.5, 8.75 and 9 and Roger obtained 10, 9.7, 9 and 10. Write a R program to create merged dataframes with all the marks (outer join), all the Rafa's marks (left outer), all the Roger's marks (right outer), and the marks in the common courses (inner join).
+
+#### 3. We are using the Covid19 test data for exercises 3-6. You can download the updated *csv* file from <https://opendata.ecdc.europa.eu/covid19/testing/csv/data.csv> (see also <https://www.ecdc.europa.eu/en/publications-data/covid-19-testing>). Read the data and write the table in your computer as *covid_tests.csv*.
+
+#### 4. Generate two contingency tables showing the number of tests done (1) by country per week and (2) by country per month.
+
+Hint. For the second table, use the function *ISOweek2date()* from the package "ISOweek" to transform the ISO date_week to standard date format.
+
+#### 3. Remove all the character columns to create a subset dataframe named *minitests*. You can use `subset()` and `sapply()` here.
+
+#### 4. Use apply() to obtain the min, max, median and mean of each column.
+
+#### 5. Use `tapply()` to obtain the mean, median and min of new_cases per country and construct a dataframe with the result.
+
+Hint. Consider how to handle NA's.
+
+#### 6. Create a function that calculates log10() of the mean, apply it to new_cases per country and append it to the dataframe from the previous exercise. Then, write the results in a csv file.
+
+# [Short exercises]{style="color:green"}
+
+The topics in this lesson can be dense and bewildering the first time. I selected some sheets of exercises from great websites that can give you an extra practice.
+
+-   <https://www.r-exercises.com/2016/04/14/merging-dataframes-exercises/>
+
+-   <https://www.r-bloggers.com/2016/05/cross-tabulation-with-xtabs-exercises/>
+
+-   <https://www.r-exercises.com/2016/09/08/efficient-processing-with-apply-exercises/>
+
+-   <https://www.r-exercises.com/2016/06/16/summary-statistics-with-aggregate/>
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
+
+# [Course home](https://mredrejo.github.io/HPBBM2022/)

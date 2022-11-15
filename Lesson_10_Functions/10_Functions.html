@@ -11,7 +11,6 @@
 
 <meta name="author" content="Modesto" />
 
-<meta name="date" content="2022-11-10" />
 
 <title>Lesson 10: Functions in R</title>
 
@@ -2758,7 +2757,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Lesson 10: Functions in R</h1>
 <h4 class="author">Modesto</h4>
-<h4 class="date">2022-11-10</h4>
+<h4 class="date">2022-11-11 (17:04 h)</h4>
 
 </div>
 
@@ -2809,7 +2808,7 @@ check related packages, such as <code>readxl</code> or
 install.packages(&quot;xlsx&quot;)</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//RtmpvDTWYz/downloaded_packages</code></pre>
+##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//Rtmp5LwzH4/downloaded_packages</code></pre>
 <pre class="r"><code># load
 library(xlsx)
 require(xlsx)
@@ -2873,7 +2872,7 @@ functions (see Lesson 13).</p>
 install.packages(&quot;getwiki&quot;)</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//RtmpvDTWYz/downloaded_packages</code></pre>
+##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//Rtmp5LwzH4/downloaded_packages</code></pre>
 <pre class="r"><code>vignette(&quot;getwiki&quot;)
 DNA &lt;- getwiki::search_wiki(&quot;DNA&quot;)
 str(DNA)</code></pre>
@@ -2882,10 +2881,10 @@ str(DNA)</code></pre>
 ##  $ content: chr  &quot;A-DNA is one of the possible double helical structures which DNA can adopt. A-DNA is thought to be one of three&quot;| __truncated__ &quot;Circular DNA is DNA that forms a closed loop and has no ends.  Examples include:Plasmids, mobile genetic elemen&quot;| __truncated__ &quot;Deoxyribonucleic acid ( (listen); DNA) is a polymer composed of two polynucleotide chains that coil around each&quot;| __truncated__ &quot;DNA (deoxyribonucleic acid) is a molecule encoding the genetic instructions for life.DNA may also refer to:&quot; ...</code></pre>
 <pre class="r"><code>DNA$titles</code></pre>
 <pre><code>##  [1] &quot;A-DNA&quot;                 &quot;Circular DNA&quot;          &quot;DNA&quot;                  
-##  [4] &quot;DNA (disambiguation)&quot;  &quot;DNA (duo)&quot;             &quot;DNA Films&quot;            
-##  [7] &quot;DNA Oyj&quot;               &quot;DNA ligase&quot;            &quot;DNA methylation&quot;      
-## [10] &quot;DNA polymerase&quot;        &quot;DNA profiling&quot;         &quot;DNA repair&quot;           
-## [13] &quot;DNA replication&quot;       &quot;DNA sequencing&quot;        &quot;DNA virus&quot;            
+##  [4] &quot;DNA (disambiguation)&quot;  &quot;DNA Films&quot;             &quot;DNA extraction&quot;       
+##  [7] &quot;DNA footprinting&quot;      &quot;DNA ligase&quot;            &quot;DNA methylation&quot;      
+## [10] &quot;DNA polymerase&quot;        &quot;DNA profiling&quot;         &quot;DNA replication&quot;      
+## [13] &quot;DNA sequencing&quot;        &quot;DNA vaccine&quot;           &quot;DNA virus&quot;            
 ## [16] &quot;DNA²&quot;                  &quot;DNA–DNA hybridization&quot; &quot;DnaA&quot;                 
 ## [19] &quot;Mitochondrial DNA&quot;     &quot;Recombinant DNA&quot;</code></pre>
 <pre class="r"><code># example2, package ggplot2
@@ -3150,7 +3149,6 @@ IUPAC one letter code.</p>
 <pre class="r"><code># the molecular biology dogma with R
 
 codon2aa &lt;- function(inputCodon) {
-    aa &lt;- c()
     code &lt;- read.csv2(&quot;data/genetic_code.csv&quot;, stringsAsFactors = FALSE)
     aa &lt;- code$AA[code$Codon == inputCodon]
     return(aa)
@@ -3170,8 +3168,6 @@ aa</code></pre>
 <pre><code>## Error in eval(expr, envir, enclos): objeto &#39;aa&#39; no encontrado</code></pre>
 <p>What just happened? There are a few things worth to comment here:</p>
 <ol style="list-style-type: decimal">
-<li><p>When writing a function, we need to define a vector before
-assigning it a value.</p></li>
 <li><p>If the function cannot find the right value to return, the output
 is empty: <code>character(0)</code></p></li>
 <li><p>The variable <code>aa</code> seems nonexistent! Variables defined
@@ -3204,7 +3200,9 @@ codon2aa_2(c(&quot;ATG&quot;, &quot;TGA&quot;))</code></pre>
 <pre><code>## Error in codon2aa_2(c(&quot;ARG&quot;, &quot;TGA&quot;)): Uno o más de los codones no es correcto. No se ha podido traducir ;)</code></pre>
 <pre class="r"><code>codon2aa_2(c(&quot;ATG&quot;, &quot;CAT&quot;, &quot;CAT&quot;, &quot;AAA&quot;, &quot;TAA&quot;))</code></pre>
 <pre><code>## [1] &quot;M&quot; &quot;H&quot; &quot;H&quot; &quot;K&quot; &quot;*&quot;</code></pre>
-<p>In this second example, we have used the function
+<p>In this second example, <code>aa</code> is not a numeric variable
+(=vector of 1 element), but a “normal vector”, so we need to define it
+before using in the loop. Also, we have used the function
 <code>stopifnot()</code> to check for the codons. This function is a
 shortcut for a standard <code>if{}</code> or <code>ifelse{}</code> to
 check the codons and a stop if they are not found.</p>

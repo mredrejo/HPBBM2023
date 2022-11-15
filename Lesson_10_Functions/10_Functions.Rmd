@@ -1,7 +1,7 @@
 ---
 title: 'Lesson 10: Functions in R'
 author: "Modesto"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 output:
   html_document:
     toc: yes
@@ -59,7 +59,7 @@ if(!require(xlsx)){
 detach(xlsx) #unload the package
 ```
 
-Try to read again the file coli_genomes_renamed.csv that we saved in the previous lesson and save it ready for MS Excel.
+Try to read again the file coli_genomes_renamed.csv that we saved in the previous lesson ([here](Lesson_9_input_output/9_input_output.html#save)) and save it ready for MS Excel.
 
 ```{r}
 #open it again
@@ -329,7 +329,6 @@ When creating functions, you can include any R functionality, including reading 
 #the molecular biology dogma with R
 
 codon2aa <- function(inputCodon) {
-  aa<-c()
   code<-read.csv2("data/genetic_code.csv", stringsAsFactors = FALSE)
   aa <- code$AA[code$Codon==inputCodon]
   return(aa)
@@ -347,11 +346,9 @@ aa
 
 What just happened? There are a few things worth to comment here:
 
-1.  When writing a function, we need to define a vector before assigning it a value.
+1.  If the function cannot find the right value to return, the output is empty: `character(0)`
 
-2.  If the function cannot find the right value to return, the output is empty: `character(0)`
-
-3.  The variable `aa` seems nonexistent! Variables defined in a function are only **local variables** and cannot be called outside the function.
+2.  The variable `aa` seems nonexistent! Variables defined in a function are only **local variables** and cannot be called outside the function.
 
 However, proteins are made up of more than one amino acid, so it'd be great if the input could be a vector of several codons instead a single codon.
 
@@ -376,7 +373,7 @@ codon2aa_2(c("ARG","TGA"))
 codon2aa_2(c("ATG","CAT", "CAT","AAA","TAA"))
 ```
 
-In this second example, we have used the function `stopifnot()` to check for the codons. This function is a shortcut for a standard `if{}` or `ifelse{}` to check the codons and a stop if they are not found.
+In this second example, `aa` is not a numeric variable (=vector of 1 element), but a "normal vector", so we need to define it before using in the loop. Also, we have used the function `stopifnot()` to check for the codons. This function is a shortcut for a standard `if{}` or `ifelse{}` to check the codons and a stop if they are not found.
 
 # References
 

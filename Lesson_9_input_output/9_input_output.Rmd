@@ -1,7 +1,7 @@
 ---
 title: 'Lesson 9: Read and write files in R'
 author: "Modesto"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 output:
   html_document:
     toc: yes
@@ -228,7 +228,9 @@ What if we want to remove observations with an NA from a dataset?
 coli_genomes2<-na.omit(coli_genomes)
 ```
 
+::: {#save}
 Finally, we are going to save our new dataset for future examples.
+:::
 
 ```{r}
 write.csv2(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
