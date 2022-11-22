@@ -131,7 +131,7 @@ By default, `merge()` will do a *natural join* or *inner join*, merging two data
 
 Finally, the Cartesian product of both dataframes can be obtained in R setting as `NULL` the argument `by` of the `merge()` function.
 
-## Data matrix format (wide vs. long table)
+## Data matrix format (wide vs. long table) {#zebra}
 
 A common mistake in data analysis is the wrong identification of conditions and variables. In the table [*Zebrafish_data.csv*](data/Zebrafish_data.csv) we have the results of an experiment in which a collaborator scored the number of metastatic cancer cells upon the expression of different transcripts of the EFNA3 gene. Each transcript is cloned into a pLoC plasmid, and we have negative (empty plasmid) and positive controls (wt transcript). Let's import and check the data.
 
@@ -364,22 +364,7 @@ str(r)
 
 Note that `tapply()` and `by()` are very similar. Indeed, `by()` is a wrapper of `tapply()`. On the other hand, `vapply()` is similar to `sapply`, but has a pre-specified type of return value, so it can be safer (or faster) to use sometimes. Finally, `rapply()` is not very often used, but it can be the best option for complex datasets, like those including nested lists or complex lists with several dataframes and/or vectors.
 
-The applications of *apply* functions are very wide. You can use them to parse data with many different input and output structures, even for plots. Check out the following example.
-
-```{r}
-#how can you generate several plots for different variable by factors??
-par(mfrow=c(1,3)) #arrange the three plots in a row (see Lesson 11)
-
-#option 1: looping
-system.time(for (i in 9:11){
-  barplot(by(coli_genomes[,i],list(coli_genomes$Source),mean),legend.text = names(coli_genomes[i]))
-})
-#option2: lapply
-ploteando <- function(x) {barplot(by(coli_genomes[,x],list(coli_genomes$Source),mean),legend.text = names(coli_genomes[x]))}
-system.time(lapply(9:11,FUN=ploteando))
-```
-
-In this example `lapply()` returns a list of plots and even for only 3 plots you can notice that it is faster than a loop.
+The applications of *apply* functions are very wide. You can use them to parse data with many different input and output structures, even for plots (see Lesson 11).
 
 # References
 
