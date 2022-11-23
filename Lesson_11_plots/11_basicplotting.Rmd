@@ -394,9 +394,9 @@ legend("topright", fill=unique(colorines2),legend=unique(names(colorines2)),ncol
 
 #### 2. The file *aapc.csv* is a plain text file that contains information amino acid composition in all the sequences deposited in the UniProtKB/Swiss-Prot protein data base. Use that file to reproduce the following barplot.
 
-![](images/paste-91E959E7.png)
+![](images/paste-91E959E7.png){width="499"}
 
-# [Short exercises]{style="color:green"}
+# [Extra exercises]{style="color:green"}
 
 -   R Bloggers exercises: <https://www.r-bloggers.com/2016/09/advanced-base-graphics-exercises/>
 
