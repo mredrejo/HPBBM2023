@@ -219,7 +219,7 @@ The stripchart and the boxplot strongly suggest that NC2s is probably the strong
 
 ## Plot customization
 
-There are many options to customize your plots, including font type and size, point shape, line type... Let's see some examples using code I borrow from <https://r-coder.com/plot-r/>
+There are many options to customize your plots, including font type and size, point shape, line type... You can see more info on the [References](#refs) section below. Let's see some examples using code I borrow from <https://r-coder.com/plot-r/>
 
 ```{r}
 #point shape with "pch"
@@ -281,7 +281,7 @@ text(coli_genomes$contigs1kb[selected] ~ coli_genomes$Contigs[selected],
      labels = coli_genomes$Strain[selected],
      cex = 0.6, pos = 4, col = "red")
 
-#another example
+#another different example
 attach(USJudgeRatings)
 plot(FAMI, INTG,
      main = "Familiarity with law vs Judicial integrity",
@@ -293,7 +293,7 @@ text(FAMI, INTG,
 detach(USJudgeRatings)
 ```
 
-You can look for more custom options because there are a lot. I also suggest looking at the `identify()` function, which allows the quick identification and labeling of selected points.
+You can look for more custom options because there are a lot. I also suggest looking at the `identify()` function, which allows the quick interactive identification and labeling of selected points.
 
 How would you plot several variables by groups? For this, we can use a loop or an *apply* family trick (see Lesson 12).
 
@@ -315,7 +315,46 @@ system.time(lapply(coli_genomes[,9:11],FUN=ploteando))
 
 In this example `lapply()` returns a list of plots but (in this case with only 3 plots) you can notice that it is not faster than a loop. Finally, loops are not so slow on R, at least small loops.
 
-# References
+### [Exercise]{style="color:green"}
+
+Repeat the scatterplot above of *contigs1kb* vs. *Contigs,* but coloring the points by *Source* as in the plot below. You just need to assign the colors in the plot to a new vector that encodes the levels of the factor as colors.
+
+Finally, use the function `legend()` to add a legend.
+
+```{r echo=FALSE, warning=FALSE}
+
+colorines <- sapply(coli_genomes$Source, FUN= function(x) switch(x,"Avian"=rgb(1,0,0,0.5),"Human"=rgb(0,1,0,0.5),"Porcine"=rgb(0,0,1,0.5)))
+names(colorines) <- coli_genomes$Source
+
+#plot
+plot(coli_genomes$contigs1kb ~ coli_genomes$Contigs, pch=19,col=colorines, xlab="Contigs", ylab="Contigs > 1kb")
+
+#legend
+legend(100,200, fill=unique(colorines),legend=unique(names(colorines)),ncol=2)
+```
+
+Here is the code for the plot, with some more options:
+
+```{r warning=FALSE, eval=FALSE}
+coli_genomes <- read.csv2(file = 'data/coli_genomes_renamed.csv', strip.white = TRUE, stringsAsFactors = TRUE)
+colorines <- sapply(coli_genomes$Source, FUN= function(x) switch(x,"Avian"=rgb(1,0,0,0.5),"Human"=rgb(0,1,0,0.5),"Porcine"=rgb(0,0,1,0.5)))
+names(colorines) <- coli_genomes$Source
+
+#option2, swicth in character vector will keep the original as names
+colorines2 <- sapply(as.character(coli_genomes$Source), FUN= function(x) switch(x,"Avian"=rgb(1,0,0,0.5),"Human"=rgb(0,1,0,0.5),"Porcine"=rgb(0,0,1,0.5)))
+all.equal(colorines,colorines2) #is the same?
+
+#plot
+plot(coli_genomes$contigs1kb ~ coli_genomes$Contigs, pch=19,col=colorines2, xlab="Contigs", ylab="Contigs > 1kb")
+
+#legend
+legend(100,200, fill=unique(colorines2),legend=unique(names(colorines2)),ncol=2)
+legend("top", fill=unique(colorines2),legend=unique(names(colorines2)),ncol=2)
+legend("bottom", fill=unique(colorines2),legend=unique(names(colorines2)),ncol=2)
+legend("topright", fill=unique(colorines2),legend=unique(names(colorines2)),ncol=2)
+```
+
+# References {#refs}
 
 -   *R in action.* Robert I. Kabacoff. March 2022 ISBN 9781617296055
 
@@ -337,15 +376,37 @@ In this example `lapply()` returns a list of plots but (in this case with only 3
 
 # [Exercises]{style="color:green"}
 
-#### Under construction!
+#### 1. Let\'s suppose we have the expression data for two genes (GeneA and GeneB) in 50 patients, 30 with colon cancer and 20 with lung cancer. 
 
-To Be Updated
+**For the exercise, we are using random data, generated as follows:**
+
+```{r eval=FALSE}
+(GeneA <- rnorm(50)) 
+(GeneB <- c(rep(-1, 30), rep(2, 20)) + rnorm(50))
+(tumor <- factor(c(rep("Colon", 30), rep("Lung", 20))))
+```
+
+**a. Before plotting the data, how would you test if there is difference in the expression level by the type of tumor?**
+
+**b. Plot boxplots and density curves of the expression of both genes by type of tumor. Do the plots agree with your answer to the question a?**
+
+[**Tips.**]{.underline} **Check out the functions `density()` and `lines()` in order to plot the density curves and `polygon()` if you want to have filled the area below the curves. Also, note that when plotting multiple lines, you must set the axis limits with the `xlim` and `ylim` arguments when plotting the first curve.**
+
+#### 2. The file *aapc.csv* is a plain text file that contains information amino acid composition in all the sequences deposited in the UniProtKB/Swiss-Prot protein data base. Use that file to reproduce the following barplot.
+
+![](images/paste-91E959E7.png)
 
 # [Short exercises]{style="color:green"}
 
 -   R Bloggers exercises: <https://www.r-bloggers.com/2016/09/advanced-base-graphics-exercises/>
 
--   More solved exercises: <https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/core_r_plotting_exericse_answers.nb.html>
+-   More solved exercises (with a Bioinformatics flavor!!):
+
+    -   Text: <https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/Core%20R%20Plotting%20Exercises.pdf>
+
+    -   Data: <https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/Core%20R%20Plotting%20Data.zip>
+
+    -   Answers: <https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/core_r_plotting_exericse_answers.nb.html>
 
 # Session Info
 
