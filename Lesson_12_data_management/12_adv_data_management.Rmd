@@ -176,7 +176,7 @@ Remember that ***datamatrix*** is not an R structure, but a general concept in d
 
 ## Fast loading of huge datasets and creation of contingency tables
 
-We are going to make some examples with a huge dataset of Covid19 Vaccination data in EU. The data is publicly available at <https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea>. While you can download and open a file from internet in R, in order to use the same dataset, we have a file [*vaccines_EU_22oct2022.csv*](data/vaccines_EU_22oct2022.csv) in our data folder.
+We are going to make some examples with a huge dataset of Covid19 Vaccination data in EU. The data is publicly available at <https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea>. While you can download and open a file from internet in R, in order to use the same dataset, we have a file [*vaccines_EU_22oct2022.csv*](../data/vaccines_EU_22oct2022.csv) in our data folder.
 
 ```{r error=TRUE}
 #open directly from the ECDC
@@ -245,7 +245,7 @@ vaccines_split2b <- xtabs(NumberDosesReceived ~ ReportingCountry  + as.factor(Va
 
 Sometimes, it is better to use a shorter table as an example...
 
-Using *coli_genomes_renamed.csv*, could you make a table with genome frequencies by isolation source (*Source*), phylogenetic group (*Phylogroup*) and multilocus sequence type (*Sequence.Type*)?
+Using [*coli_genomes_renamed.csv*](../data/coli_genomes_renamed.csv), could you make a table with genome frequencies by isolation source (*Source*), phylogenetic group (*Phylogroup*) and multilocus sequence type (*Sequence.Type*)?
 
 ```{r}
 coli_genomes <- read.csv2(file = 'data/coli_genomes_renamed.csv', strip.white = TRUE) #load the table
