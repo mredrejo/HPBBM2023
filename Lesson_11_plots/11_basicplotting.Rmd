@@ -58,7 +58,7 @@ plot(x, y, pch = 21,
      lwd = 3)      # Border width
 ```
 
-### Example Plot 1: [coli_genomes_renamed.csv](data/coli_genomes_renamed.csv)
+### Example Plot 1: [coli_genomes_renamed.csv](../data/coli_genomes_renamed.csv)
 
 Now let's plot our data.
 
@@ -89,7 +89,7 @@ Alternatively, you can save the plot using the **Plot** menu or the **Plots pane
 
 As you may know, the R function `cor()` calculate the correlation coefficient between two or more vectors and `cor.test()` allow us to quickly perform a correlation test between two variables to know if the correlation is statistically significant. However, a quick plot can be also very useful.
 
-Consider our example [coli_genomes_renamed.csv](data/coli_genomes_renamed.csv). In that table, we have some features of a list of *E. coli* isolates and the basic stats of the genome sequencing. Regarding this data, do you think that the number of contigs \> 1kb in the genome assemblies (*contigs1kb*) correlates with the total number of contigs (*Contigs*), the average contig length (*average_contig*) or the number of contigs that contain 50% of the genome (*N50*). Let's check the data using simple plots with the `plot()` function.
+In our table, we have some features of a list of *E. coli* isolates and the basic stats of the genome sequencing. Regarding this data, do you think that the number of contigs \> 1kb in the genome assemblies (*contigs1kb*) correlates with the total number of contigs (*Contigs*), the average contig length (*average_contig*) or the number of contigs that contain 50% of the genome (*N50*). Let's check the data using simple plots with the `plot()` function.
 
 ```{r, fig.width=6, fig.height=12}
 #correlation plots
@@ -129,7 +129,7 @@ From the perspective of classical data analysis, the first consideration to sele
 
 You can see a description of some of the more common plots, with examples [here](https://intro2r.com/simple-base-r-plots.html) or [here](https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html). Rather than going through all of them, we are going to use some examples to learn some basic plotting and see the effect of plot selection in order to understand your data and use them to answer questions.
 
-### Example Plot 2: [*Zebrafish_data.csv*](data/Zebrafish_data.csv)
+### Example Plot 2: [*Zebrafish_data.csv*](../data/Zebrafish_data.csv)
 
 We are loading again the table described in [Lesson 12](Lesson_12_data_management/12_adv_data_management.html#zebra) and we will try out some plots.
 
@@ -400,7 +400,7 @@ legend("topright", fill=unique(colorines2),legend=unique(names(colorines2)),ncol
 
 #### 3. A classic in biochemistry lab: Protein quantification (with special thanks to Carmen Mayoral). You have probably done that with Excel or GraphPad, but after this exercise I'm sure you'll consider a definitive upgrade in your protocols.
 
-**In our lab, we often purify recombinant DNA polymerases. We have recently purify a *WT* and *mutant* proteins, and we want to quantify the amount of pure proteins using a SDS-PAGE. To do so, we loaded decreasing volumes of the protein preparation (serial dilutions, but expresed as volume of the original sample in µL) along with known amounts (ng) of bovine seroalbumin (BSA) as a pattern, as in the image below. Bands were densitometer using [ImageJ](https://openwetware.org/wiki/Protein_Quantification_Using_ImageJ) opensource software (arbitrary units). The data are in three tables containing the BSA pattern (triplicates in [bsa_pattern.csv](data/bsa_pattern.csv)), the results for the wt protein ([curve_wt.csv](data/curve_wt.csv)) and for the mutant ([curve_mut.csv](data/curve_mut.csv)).**
+**In our lab, we often purify recombinant DNA polymerases. We have recently purify a *WT* and *mutant* proteins, and we want to quantify the amount of pure proteins using a SDS-PAGE. To do so, we loaded decreasing volumes of the protein preparation (serial dilutions, but expresed as volume of the original sample in µL) along with known amounts (ng) of bovine seroalbumin (BSA) as a pattern, as in the image below. Bands were densitometer using [ImageJ](https://openwetware.org/wiki/Protein_Quantification_Using_ImageJ) opensource software (arbitrary units). The data are in three tables containing the BSA pattern (triplicates in [bsa_pattern.csv](../data/bsa_pattern.csv)), the results for the wt protein ([curve_wt.csv](../data/curve_wt.csv)) and for the mutant ([curve_mut.csv](../data/curve_mut.csv)).**
 
 ![](images/paste-188BFD52.png)
 
