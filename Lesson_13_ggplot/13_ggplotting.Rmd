@@ -1,5 +1,5 @@
 ---
-title: 'Lesson 11: Plotting data'
+title: 'Lesson 13: GGplotting'
 author: "Modesto"
 date: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 output:
@@ -26,336 +26,325 @@ This site contains the materials for the *Coding tools for Biochemistry & Molecu
 
 All this material is open access and it is shared under [CC BY-NC](https://creativecommons.org/licenses/by-nc/2.0/) license.
 
-# Plot your data in R
+# Plot your data in R - Episode II
 
-## Basic Plots in R
+As we discussed in [Lesson 11](Lesson_11_plots/11_basicplotting.html), exploratory data visualization is one of the greatest advantage of R. One can quickly go from idea to data to graph with a unique balance of flexibility and ease.
 
-R has a number of built-in tools for diverse graph types such as histograms, scatter plots, stricharts, bar charts, boxplots, and more. Indeed, there are many functions in R to produce plots ranging from the very basic to the highly complex. We will show a few examples and use the plots as an excuse to add some new tricks for data analysis.
+There are many graphing options available in R. You already know that the graphing capabilities that come with a basic installation of R are already quite useful. There are also a number of packages for creating advances graphs like *grid*, *plotly*, or *lattice*. In this course we chose to use **ggplot2** because it is widely used and also the basis of many derivative packages for specific advanced plots. The main advantage of ggplot is that it breaks plots into components in a way that allows beginners to create relatively complex and aesthetically pleasing plots using an intuitive and relatively easy-to-remember syntax.
 
-In Lesson 13 we will use the ggplot2 package for efficient generation of complex and cool plots. However, you will see that it's sometimes useful to use the plotting functions in base R. These are installed by default with R and do not require any additional packages to be installed. They're quick to type, straightforward to use in simple cases, and run very quickly. Then, if you want to do anything beyond very simple plots, though, it's generally better to switch to *ggplot2*. In fact, once you already know how to use R's base graphics, having these examples side by side will help you transition to using *ggplot2* for when you want to make more sophisticated graphics.
+![From: <https://ourcodingclub.github.io/tutorials/dataviz-beautification/>](images/paste-3D34E648.png)
 
-## Quick plots
+One reason why ***ggplot2*** is generally more intuitive for beginners is because it uses a "graphing grammar" (see [Wilkinson et al.2000](https://www.tandfonline.com/doi/abs/10.1080/10618600.2000.10474897)), the *gg* of *ggplot2*. This is analogous to the way that learning a language grammar can help you construct hundreds of different sentences out of a small number of verbs, nouns, and adjectives, rather than memorizing each specific sentence. Similarly, by learning a small amount of the basic components of *ggplot2* and the [elements in its grammar]{.underline}, you will be able to create hundreds of different plots to show and render the data exactly in the way you think it's the best way.
 
-The function `plot()` can be used to generate different types of plots, as detailed in the table and examples below.
+## Example 1: Advanced plotting with ggplot in one line
 
-![Use of `plot()` function. Source: <https://r-coder.com/plot-r/>](images/paste-D2FB731B.png)
+```{r}
+#load the data
+library(data.table)
+vaccines<-fread('data/vaccines_EU_22oct2022.csv')
+#install & load ggplot2
+if(!require(ggplot2)) install.packages("ggplot2")
+library(ggplot2)
+#plot
+ggplot(vaccines, aes(x = YearWeekISO, y = log10(FirstDose), col=TargetGroup), stat=mean) +
+    geom_point() +   facet_wrap(~ ReportingCountry)
+```
+
+Although it should have taken a while, in the above code you generated a complex graphic in only one line. This examples contains four basic elements:
+
+1.  Data (in this case vaccines)
+
+2.  Aesthetic: `aes()`
+
+3.  Layer: `geom()`
+
+4.  Facet: `facet_wrap()`
+
+However, these are not all the possible elements in a *ggplot* coding. As with any language, the grammar of graphics can be [flexible]{.underline} and we may omit some elements o add more elements of the same type, just like we can add diverse kinds of complements (place, time...) to a sentence.
+
+From a general perspective (see ref. [3](https://ggplot2-book.org/index.html)), plots are composed of the **data**, the information you want to visualize, and a **mapping**, the description of how the data's variables are mapped to aesthetic attributes. There are five mapping components (again from ref. [3](https://ggplot2-book.org/index.html)):
+
+-   A **layer** is a collection of geometric elements and statistical transformations. Geometric elements, **geom**s for short, represent what you actually see in the plot: points, lines, polygons, maps, etc. Statistical transformations, **stat**s for short, summarize the data: for example, binning and counting observations to create a histogram, or fitting a linear model.
+
+-   **Scale**s map values in the data space to values in the aesthetic space. This includes the use of colour, shape or size. Scales also draw the legend and axes, which make it possible to read the original data values from the plot (an inverse mapping).
+
+-   A **coord**, or coordinate system, describes how data coordinates are mapped to the plane of the graphic. It also provides axes and gridlines to help read the graph. We normally use the Cartesian coordinate system, but a number of others are available, including polar coordinates and map projections.
+
+-   A **facet** specifies how (usually a factor type vector) to break up and display subsets of data as small multiples. This is also known as conditioning or latticing.
+
+-   A **theme** controls the finer points of display, like the font size and background colour. While the defaults in ggplot2 have been chosen with care, you may need to consult other references to create an attractive plot.
+
+Let's see all those element through more examples.
+
+## Example 2: From R base plot to ggplot
+
+The use of *ggplot* is usually associate to great, gorgeous charts and plots. However, once you learn how to use it and how adapt and readapt code to your data, you will probably use ggplot for every graph.
+
+In the following code, we are going to use *ggplot* to solve the [exercise 1 from Lesson 11](Lesson_11_plots/11_basicplotting.html#ex1).
+
+```{r}
+#create the same dataset
+set.seed(2013)
+(GeneA <- rnorm(50)) 
+(GeneB <- c(rep(-1, 30), rep(2, 20)) + rnorm(50))
+(tumor <- factor(c(rep("Colon", 30), rep("Lung", 20))))
+#for ggplot it is more convenient to work with dataframes
+genes <- data.frame(tumor,GeneA,GeneB)
+
+#basic plots
+
+#geneA
+ggplot(genes, aes(x=tumor, y=GeneA,color=tumor)) +
+  geom_boxplot()
+#geneB with custom colors
+ggplot(genes, aes(x=tumor, y=GeneB,fill=tumor)) +
+  scale_fill_manual(values=c("#999999", "#E69F00")) +
+  geom_boxplot()
+
+#together
+#we need to adapt dataset with stack()
+genes2 <- cbind(stack(genes[,2:3]),tumor)
+names(genes2) <- c("Expression","Gene","Tumor")
+#generate the plot
+p <- ggplot(genes2, aes(x=Gene, y=Expression,fill=Gene)) +
+  scale_fill_manual(values=c("#999999", "#E69F00")) +
+  geom_boxplot()
+p #see the plot
+p + facet_grid(.~ Tumor) #new version
+```
+
+For these simple plots, the degree of difficulty and the time consumption of making them with base R plot functions like `boxplot()` or `stripchart()` or with `ggplot()` is very similar, but this is only the very tip of the *ggplot* iceberg.
+
+# Plots customization
+
+Customization of your plot is very easy thanks to the *themes*, and other options, as in the examples below. Check for built-in *ggplot* themes: <https://ggplot2.tidyverse.org/reference/ggtheme.html>. Also, you can find some packages with custom themes and you can create your own theme (check [this](https://emanuelaf.github.io/own-ggplot-theme.html) article by Emanuela Furfaro).
+
+```{r}
+(q <- p + facet_grid(.~ Tumor) + theme_light())
+(q2 <- p+facet_grid(.~ Tumor) + theme_dark())
+(q3 <- p+facet_grid(.~ Tumor) + theme_linedraw())
+q+ stat_boxplot(geom ='errorbar', width=0.5, alpha=0.5) 
+q + theme(legend.position="top")
+q + theme(legend.position="bottom")
+q + theme(legend.position="none") 
+```
+
+Now, let's try some more cool example plots with these same data.
+
+```{r}
+r <- ggplot(genes2, aes(x=Gene, y=Expression,fill=Tumor)) +
+  scale_fill_manual(values=c("#999999", "#E69F00")) +
+  geom_boxplot()
+
+r + geom_dotplot(binaxis='y', stackdir='center',
+                 position=position_dodge(0.75))
+
+r + geom_point(pch = 21, position = position_jitterdodge())
+
+#more examples
+a <- ggplot(genes2, aes(x = Expression))
+a + geom_density(aes(fill = Gene),alpha=0.4) +
+  scale_fill_manual(values = c("#868686FF", "#EFC000FF")) +
+  theme_classic() + facet_grid(.~ Tumor)
+library(RColorBrewer)
+a <- ggplot(genes2, aes(x = Gene, y=Expression, fill=Tumor)) + 
+  scale_fill_brewer(palette = "Pastel1") + 
+  geom_violin(alpha=0.4, position="dodge")
+a
+```
+
+## Color palettes
+
+When you have large datasets or several factors in your data, selecting the colors is not trivial. In R, there are defined color combinations or palettes that you can select in your plot. Moreover, there are also several packages that contain custom color palettes suitable for base plots and/or *ggplots*, like [*viridis*](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) or *RColorBrewer*. You may also find interesting the package [*ggsci*](https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html), which contains palettes with colors used in scientific journals, data visualization libraries, science fiction movies...
+
+To obtain the desired plot, you sometimes need to rotate the axis x labels, which must be done within a `theme()` argument. You can customize the label rotation, justification, font...
 
 ```{r}
 coli_genomes <- read.csv2(file = 'data/coli_genomes_renamed.csv', strip.white = TRUE, stringsAsFactors = TRUE)
-attach(coli_genomes)
-#one variable
-plot(Year)
-#a factor
-plot(Source)
-#two variables
-plot(Contigs, kmer)
-#factor + numeric variable
-plot(Source,Contigs)
+p <- ggplot(coli_genomes,aes(x=Strain, y=contigs1kb, fill=Source)) + geom_bar(stat="identity", position = "dodge", alpha=0.6) 
+p
+p2 <- p + scale_fill_brewer(palette = "Dark2") + theme_linedraw() 
+p2
+p2b <- p + scale_fill_brewer(palette = "Pastel2") + theme_linedraw() 
+p2b
+p3 <- p2 + theme(axis.text.x = element_text(angle = 45,
+    hjust = 1, face = "bold"))
+p3
 ```
 
-### Example Plot 1: correlation?
-
-As you may know, the R function `cor()` calculate the correlation coefficient between two or more vectors and `cor.test()` allow us to quickly perform a correlation test between two variables to know if the correlation is statistically significant. However, a quick plot can be also very useful.
-
-Consider our example [coli_genomes_renamed.csv](data/coli_genomes_renamed.csv). In that table, we have some features of a list of *E. coli* isolates and the basic stats of the genome sequencing. Regarding this data, do you think that the number of contigs \> 1kb in the genome assemblies (*contigs1kb*) correlates with the total number of contigs (*Contigs*), the average contig length (*average_contig*) or the number of contigs that contain 50% of the genome (*N50*). Let's check the data using simple plots with the `plot()` function.
+In the example above, we generated a plot with some custom palettes. The palettes are available in *ggplot*, but in order to explore and edit them, you need to install the package.
 
 ```{r}
-coli_genomes <- read.csv2(file = 'data/coli_genomes_renamed.csv', strip.white = TRUE) #load the table
-
-plot(coli_genomes$contigs1kb ~ coli_genomes$Contigs, xlab="Contigs", ylab="Contigs > 1kb")
-abline(lm(coli_genomes$contigs1kb ~ coli_genomes$average_contig), col="red")
-text(2,2,"prueba")
-plot(coli_genomes$contigs1kb ~ coli_genomes$N50,  xlab="N50", ylab="Contigs > 1kb")
-abline(lm(coli_genomes$contigs1kb ~ coli_genomes$N50), col="red")
-plot(coli_genomes$contigs1kb ~ coli_genomes$average_contig, xlab="Average contig", ylab="Contigs > 1kb")
-abline(lm(coli_genomes$contigs1kb ~ coli_genomes$average_contig), col="red")
-
-#now we will check with a cor.test and add some text to the plot
-(test1 <- cor.test(coli_genomes$contigs1kb, coli_genomes$Contigs))
-(test2 <- cor.test(coli_genomes$contigs1kb, coli_genomes$N50))
-(test3 <- cor.test(coli_genomes$contigs1kb, coli_genomes$average_contig))
-
-
-plot(coli_genomes$contigs1kb ~ coli_genomes$Contigs, xlab="Contigs", ylab="Contigs > 1kb")
-abline(lm(coli_genomes$contigs1kb ~ coli_genomes$Contigs), col="red")
-text(120,200,paste("Pearson r2=",round(test1$estimate,2)))
-plot(coli_genomes$contigs1kb ~ coli_genomes$N50,  xlab="N50", ylab="Contigs > 1kb")
-abline(lm(coli_genomes$contigs1kb ~ coli_genomes$N50), col="red")
-text(250000,200,paste("Pearson r2=",round(test2$estimate,2)))
-plot(coli_genomes$contigs1kb ~ coli_genomes$average_contig, xlab="Average contig", ylab="Contigs > 1kb")
-abline(lm(coli_genomes$contigs1kb ~ coli_genomes$average_contig), col="red")
-text(40000,200,paste("Pearson r2=",round(test3$estimate,2)))
-
-#oh wait! why only one-vs-one?
-plot(coli_genomes[,c("VF","Plasmids","kmer","Contigs","N50","longest.contig..bp.","Assembly_length","contigs1kb","average_contig")], main = "Multiple Correlation plot")
-
-#
+if(!require(RColorBrewer)) install.packages("RColorBrewer")
+library(RColorBrewer)
+display.brewer.all()
+display.brewer.all(colorblindFriendly = TRUE) #only colorblind-friendly!
+#display only the a number of colors from specific palette
+display.brewer.pal(n = 3, name = 'Dark2')
 ```
 
-## Selecting the right plot
+## Saving your plot
 
-Data visualizations are a vital component of a data analysis, as they have the capability of summarizing large amounts of data efficiently in a graphical format and bring out new insights that can be difficult to understand from raw data. There are many chart types available, each with its own strengths and use cases. One of the trickiest parts of the analysis process is choosing the right way to represent your data using one of these visualizations. A wrong plot can lead to confusion or data misinterpretation (see some examples of bad graphs [here](https://www.analyticsvidhya.com/blog/2021/02/data-visualization-bad-representation-of-data/)).
-
-From the perspective of classical data analysis, the first consideration to select the right plot is the nature of your variables. Some plots are recommended for numerical data (quantitative variables) and other for categorical data (qualitative variables). Then, you should considering the role for your data visualization, i.e, question you want to address or the message you want to transmit. That will depend on how many variables, as well as their distribution, grouping or correlation.
-
-You can see a description of some of the more common plots, with examples [here](https://intro2r.com/simple-base-r-plots.html) or [here](https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html). Rather than going through all of them, we are going to use some examples to learn some basic plotting and see the effect of plot selection in order to understand your data and use them to answer questions.
-
-### Example Plot 2: [*Zebrafish_data.csv*](data/Zebrafish_data.csv)
-
-We are loading again the table described in [Lesson 12](Lesson_12_data_management/12_adv_data_management.html#zebra) and we will try out some plots.
-
-```{r, error=TRUE, ,fig.width=12, fig.height=6}
-#read data
-ZFdata <- read.csv("data/Zebrafish_data.csv")
-
-#some plots
-barplot(ZFdata)
-barplot(ZFdata$pLoC)
-par(mfrow=c(1,3)) #arrange the three plots in a row 
-barplot(ZFdata$pLoC, col="red", main="pLoc")
-barplot(ZFdata$EFNA3, col="green", main="EFNA3")
-barplot(ZFdata$NC1s, col="blue",main="NC1s")
-par(mfrow=c(2,3)) #arrange the three plots in a row 
-stripchart(ZFdata$pLoC, main="pLoc")
-stripchart(ZFdata$pLoC, method="stack", col="red", main="pLoc")
-stripchart(ZFdata$pLoC, method="overplot", col="red",  main="pLoc")
-stripchart(ZFdata$pLoC, method="jitter", col="red", main="pLoc")
-stripchart(ZFdata$EFNA3, method = "stack",col="green", main="EFNA3")
-stripchart(ZFdata$NC1s, method = "stack",col="blue", main="N1cs")
-par(mfrow=c(1,3)) #arrange the three plots in a row 
-hist(ZFdata$pLoC, col="red",  main="pLoc")
-hist(ZFdata$EFNA3, col="green", main="EFNA3")
-hist(ZFdata$NC1s, col="blue", main="N1cs")
-par(mfrow=c(1,3)) #arrange the three plots in a row 
-boxplot(ZFdata$pLoC, col="red",  main="pLoc")
-boxplot(ZFdata$EFNA3,  col="green", main="EFNA3")
-boxplot(ZFdata$NC1s, col="blue", main="N1cs")
-
-
-```
-
-Now try to answer some questions about your data and obtained plots:
-
-1.  Which construct has the strongest impact on the disemination of metastatic cells?
-
-2.  Which plot represent best the data?
-
-3.  Does a barplot represent the same information than a boxplot?
-
-Now, we are going to represent the same data again.
+Finally, saving plots is also very easy with *ggplot2*, check the function `ggsave()`.
 
 ```{r}
-oldpar <- par() #save original settings (optional)
-par(mfrow = c(1, 3), cex.lab = 1, cex = 1, lwd = 2) #new settings
-
-hist(ZFdata$pLoC, col=rgb(1,0,0,0.5),  main="pLoc", ylim = c(0,20), xlim = c(0,120), xlab = "Number of Metastatic cells")
-hist(ZFdata$EFNA3, col=rgb(0,1,0,0.5),  main="EFNA3", ylim = c(0,20), xlim = c(0,120), xlab = "Number of Metastatic cells")
-hist(ZFdata$NC1s, col=rgb(0,0,1,0.5),  main="NC1s", ylim = c(0,20), xlim = c(0,120), xlab = "Number of Metastatic cells")
-
-stripchart(ZFdata$pLoC, method="jitter", pch=19, col=rgb(1,0,0,0.5), vertical=TRUE,  main="pLoc", ylim = c(0,120), xlab = "Number of Metastatic cells")
-stripchart(ZFdata$EFNA3, method="jitter", pch=19, col=rgb(0,1,0,0.5), vertical=TRUE, main="EFNA3", ylim = c(0,120), xlab = "Number of Metastatic cells")
-stripchart(ZFdata$EFNA3, method="jitter", pch=19, col=rgb(0,1,0,0.5), vertical=TRUE, main="EFNA3", ylim = c(0,120), xlab = "Number of Metastatic cells")
-
-boxplot(ZFdata$pLoC, col=rgb(1,0,0,0.5),  ylim = c(0,120), xlab = "Number of Metastatic cells", main="pLoc")
-boxplot(ZFdata$EFNA3, col=rgb(0,1,0,0.5), ylim = c(0,120), xlab = "Number of Metastatic cells",  main="EFNA3")
-boxplot(ZFdata$NC1s, col=rgb(0,0,1,0.5), ylim = c(0,120), xlab = "Number of Metastatic cells", main="N1cs")
-
-par(oldpar) #restore (optional)
-#alternatively you can reset par with: par(no.readonly = TRUE) 
+#save 
+ggsave(filename = "plot_p3.svg", plot = p3,width = 10,height = 6)
 ```
 
-In these plots above, you can see how plots can be deeply customized, and you can select colors (by name, RGB, hex or HSV code), size and shape of the points (`cex` and `pch`), plot and axis titles (`main`, `xlab` and `ylab`) and some tricks to avoid points overlapping (`method = "jitter"` or `method="stacked"`). Also, we have used the function `par()` to arrange the plots integrated as a single plot. This is a very useful function that can be used to set or query many graphical parameters (see below). The arguments `mfrow` and `mfcol` are very useful to place graphs indicating the row and cols (or cols and row in `mfcol`). However, any other graph customization can be included here to avoid reapeat it during the plot.
-
-*Do you think, you can answer better the questions now?*
-
-Beyond some basic examples of plotting in R, the take-home message of this example is that the type of plot and the plot parameters (in this case the scale) can be essential for correct interpretation of the data and if they are not properly adjusted the plot can be strongly misleading.
-
-Further, to compare three conditions, we needed to make three independent plots. However, in the table, there are actually six conditions, and it is easy to imagine a table with more conditions. How could you plot that? Here is where the generation of a datamatrix table, as shown in Lesson 12 is very important.
+Of course, you can also do it the same way than with Base plots:
 
 ```{r}
-ZF_stacked <- stack(ZFdata)
-
-boxplot(ZF_stacked$values ~ ZF_stacked$ind,  col=c(rgb(1,0,0,0.5),rgb(0,1,0,0.5),rgb(0,0,1,0.5),rgb(1,0.5,0,0.5),rgb(0.5,0.5,0.5,0.5),rgb(0,1,1,0.5)))
-colorines=c(rgb(1,0,0,0.5),rgb(0,1,0,0.5),rgb(0,0,1,0.5),rgb(1,0.5,0,0.5),rgb(0.5,0.5,0.5,0.5),rgb(0,1,1,0.5)) #define the colors for the whole analysis
-boxplot(ZF_stacked$values ~ ZF_stacked$ind,  col=colorines)
-
-stripchart(ZF_stacked$values ~ ZF_stacked$ind, vertical = TRUE, method="jitter", col=colorines, pch=19, cex=1, ylab="Number of cells", xlab="Plasmid")
-
-#what about barplot?
-means <- aggregate(values ~ ind, data=ZF_stacked, mean) #you can use by() or tapply()
-barplot(means$values, ylim=c(0,120), col=colorines, ylab="Number of cells", xlab="Plasmid")
+svg("plot_p3b.svg")
+print(p3)
+dev.off()
 ```
 
-The stripchart and the boxplot strongly suggest that NC2s is probably the strongest transcript, but that is not shown in the barplot. These plots clearly show that barplots are intended for single values (categorical data) and can mislead your conclusions.
+## Example 3: Plotting multiple variables
 
-## Plot customization
+One of the nice ways to summarize data is plotting more than one variable in the same plot. However, you should consider that different data may need different scale to be render in the same plot. Thus, you should scale up/down the data of one variable to the values of the second variable. Then, for the secondary axis, you just need to apply the same scaling factor in the opposite direction.
 
-There are many options to customize your plots, including font type and size, point shape, line type... Let's see some examples using code I borrow from <https://r-coder.com/plot-r/>
+In the following example, we plot the number of *Contigs* and the *Assembly length* from our [*coli_genomes.csv*](../data/coli_genomes.csv).
 
 ```{r}
-#point shape with "pch"
-r <- c(sapply(seq(5, 25, 5), function(i) rep(i, 5)))
-t <- rep(seq(25, 5, -5), 5)
-
-plot(r, t, pch = 1:25, cex = 3, yaxt = "n", xaxt = "n",
-     ann = FALSE, xlim = c(3, 27), lwd = 1:3)
-text(r - 1.5, t, 1:25)
-
-#line type with "lty"
-M <- matrix(1:36, ncol = 6)
-matplot(M, type = c("l"), lty = 1:6, col = "black", lwd = 3)
-
-# Just to indicate the line types in the plot
-j <- 0
-invisible(sapply(seq(4, 40, by = 6),
-                 function(i) {
-                   j <<- j + 1
-                   text(2, i, paste("lty =", j))}))
-
-
-#plot box
-par(mfrow = c(2, 3))
-#generate some sample data
-x <- rnorm(500)
-y <- x + rnorm(500)
-#plots
-plot(x, y, bty = "o", main = "Default")
-plot(x, y, bty = "7", main = "bty = '7'")
-plot(x, y, bty = "L", main = "bty = 'L'")
-plot(x, y, bty = "U", main = "bty = 'U'")
-plot(x, y, bty = "C", main = "bty = 'C'")
-plot(x, y, bty = "n", main = "bty = 'n'")
-
-par(mfrow = c(1, 1))
-
-#point labels
-attach(USJudgeRatings)
-
-# Create the plot
-plot(FAMI, INTG,
-     main = "Familiarity with law vs Judicial integrity",
-     xlab = "Familiarity", ylab = "Integrity",
-     pch = 18, col = "blue")
-
-# Plot the labels
-text(FAMI, INTG,
-     labels = row.names(USJudgeRatings),
-     cex = 0.6, pos = 4, col = "red")
-
-#only some points
-
-plot(FAMI, INTG,
-     main = "Familiarity with law vs Judicial integrity",
-     xlab = "Familiarity", ylab = "Integrity",
-     pch = 18, col = "blue")
-
-# Select the index of the elements to be labelled
-selected <- c(10, 15, 20)
-
-# Index the elements with the vector
-text(FAMI[selected], INTG[selected],
-     labels = row.names(USJudgeRatings)[selected],
-     cex = 0.6, pos = 4, col = "red")
-
-detach(USJudgeRatings)
+#barplot
+plots2 <- ggplot(data=coli_genomes) + 
+  geom_bar(aes(x = Strain, y = Contigs, color = Source, fill = Source), stat="identity") 
+#add the points and adjust the scale in the right axis
+plots2b <- plots2 +
+  geom_point(aes(x = Strain, y = Assembly_length/15000,  fill = Source, alpha=0.8),col="black",shape=21, size=3)
+plots2b
+plots2c <- plots2b  +   scale_y_continuous(name = "Number of Contigs",limits = c(0, 400), expand=c(0,0), sec.axis = sec_axis(~15000 * ., name  = "Assembly length")) 
+plots2c
+#add colors and more customization
+plots2custom <- plots2b +   
+    scale_fill_brewer(palette = "Set1") + scale_color_brewer(palette = "Set1") +
+    theme_bw() + theme(axis.text.x = element_text(angle = 45, hjust = 1, face = "bold")) +
+    guides(alpha = "none", color = "none") 
+plots2custom
 ```
 
-You can look for more custom options because there are a lot. I also suggest looking at the `identify()` function, which allows the quick identification and labeling of selected points.
+We did the plot in different stages, to check each of the variables and the scale of the secondary axis before apply the customization.
 
-### Example Plot 3: [*vaccines_EU_22oct2022.csv*](data/vaccines_EU_22oct2022.csv)
+As you noticed, axis customization may entail adjust the *limits* with`limits()`, the axis expansion below and above those limits with `expand()`, and other aspects as the axis ticks *with* `breaks()`*.* We also can add/remove a legend with the argument `guides()`*.*
 
-Now let's think in a larger and more complicated dataset, as the Covid19 vaccination table. How would you plot the number of 1st dose vaccination per week in each country?
+# ggplot and beyond
+
+As mentioned above, *ggplot* is already an standard and the base of many derivative packages. We are going to see a couple of examples.
+
+## Interactive plots
+
+Another interesting application of *ggplot* is its use for the generation of interactive plots to be published on websites. One that you might find of interest is the package *heatmaply*, that generates interactive heatmaps. Further, I find awesome the use of the package *plotly()* for very quick upgrade of any plot as interactive.
+
+See the examples:
 
 ```{r}
-par(mfrow=c(1,3) ) 
-#how can you generate several plots for different variable by factors??
+#install.packages("ggplotly")
+#install.packages("heatmaply")
 
-#option 1: looping
-system.time(for (i in 9:11){
-  boxplot(by(coli_genomes[,i],coli_genomes$Source,summary))
-})
+library(heatmaply)
+#aggregate the data with xtabs
+matrix <- xtabs( ~ coli_genomes[,4]+coli_genomes[,5])
+#xtabs objects must be converted into dataframes, but heatmaply requires a matrix...
+heatmaply(as.data.frame.matrix(matrix))
+
+library(plotly)
+ggplotly(plots2custom)
+
+```
+
+## Plotting a sequence logo with gglogo
+
+R is very useful for many applications in Biochemistry and Molecular Biology, and *ggplot* is a very good example of that. The example below actually belong to Lessons 13 and 14.We are going to use the script PSSM.R from unit R1 (thanks to Luis!).
+
+```{r}
+Counts<-matrix(c(2,38,0,0,0,0,10,8,4,7,21,9,9,11,9,23,4,15,10,0,46,0,0,0,32,17,
+                 10,15,11,18,9,16,23,11,20,8,10,8,0,46,0,46,2,17,21,13,14,15,
+                 27,8,13,8,16,22,24,0,0,0,46,0,2,4,11,11,0,4,1,11,1,4,6,1),
+               nrow=4,byrow = T,
+               dimnames=list(Nucleotide=c("A","C","G","T"),Pos=1:18))
+counts <- data.frame(Counts)
+names(counts) <- 1:18
+counts <- cbind(stack(counts),c("A","C","G","T"))
+colnames(counts) <- c("values","pos","nucleotide")
+ggplot(counts, aes(x=pos, y=values, fill=nucleotide)) + 
+    geom_bar(position="stack", stat="identity")
+```
+
+This is not a very interesting plot. Now, in order to plot the PSSM as a sequence logo, we are going to use the package *ggseqlogo*. Also, to arrange plot, we will use the packages "gridExtra", which is very handy and commonly used.
+
+```{r}
+install.packages("ggseqlogo")
+library(ggseqlogo)
+
+ggseqlogo(Counts) 
 
 
-#option2: lapply
-ploteando <- function(x) {boxplot(by(x,coli_genomes$Source,summary))}
-system.time(lapply(coli_genomes[,9:11],FUN=ploteando))
+#install.packages("gridExtra")
+p1 <- ggseqlogo(Counts, method="prob")
+p2 <- ggseqlogo(Counts, method="bits")
+gridExtra::grid.arrange(p1, p2)
+```
 
+Let's plot some protein logo from the example sequences in the package. Remember that we are working with an add-ons to *ggplot*. That means that all *ggplot* elements can be used.
 
-library(data.table)
-vaccines<-fread('data/vaccines_EU_22oct2022.csv')
-#adapt date
-vaccines2 <- vaccines[sample(x = 1:nrow(vaccines),size = 1000, replace=FALSE),]
-
-library(ISOweek)
-vaccines2$date <- paste(vaccines2$YearWeekISO, "1", sep = "-")
-vaccines2$date <- as.Date(ISOweek2date(vaccines2$date))
-
-#groups extract
-Firstdosecountry <- lapply(1:length(unique(vaccines2$ReportingCountry)), FUN=function(i) subset(vaccines2[,c(17,6)],subset=(vaccines2$ReportingCountry==unique(vaccines2$ReportingCountry[i]))))
-names(Firstdosecountry)=unique(vaccines2$ReportingCountry)
-#plot
-
-ploteando2 <- function(x) {plot(cbind(Firstdosecountry[[x]][,1],Firstdosecountry[[x]][,2]), main=names(Firstdosecountry[x]))}
-lapply(Firstdosecountry,plot)
-
-
-system.time(lapply(6,FUN=ploteando2))
-
+```{r}
+data(ggseqlogo_sample)
+str(seqs_aa)
+head(seqs_aa)
+ggseqlogo(seqs_aa, ncol=4)
+ggseqlogo(seqs_aa, ncol=2) +   theme_light()
 ```
 
 # References
 
--   *R in action.* Robert I. Kabacoff. March 2022 ISBN 9781617296055
+1.  *R in action.* Robert I. Kabacoff. March 2022 ISBN 9781617296055
 
--   R Graphics Cookbook: <https://r-graphics.org/> (Chapter 2).
+2.  R Graphics Cookbook: <https://r-graphics.org/> (I recommend the Appendix A: Understanding ggplot).
 
--   Graphics with Base R: <https://intro2r.com/graphics_base_r.html>
+3.  GGplot cheatsheet: <https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf>
 
--   I also advise checking articles and posts that you can find with Google, such as:
+4.  ggplot2: elegant graphics for data analysis: <https://ggplot2-book.org/index.html>
 
-    -   How to choose the right chart for your data: <https://dexibit.com/how-to-choose-the-right-chart-to-visualize-your-data/>
+5.  ggplot in "Introducción a la ciencia de datos" (spanish!): <http://rafalab.dfci.harvard.edu/dslibro/ggplot2.html>
 
-    -   How to choose the Right Chart for Data Visualization: <https://www.analyticsvidhya.com/blog/2021/09/how-to-choose-the-right-chart-for-data-visualization/>
-
-    -   Basic plots in R: <https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html>
-
-    -   R Base Plotting: <https://rstudio-pubs-static.s3.amazonaws.com/84527_6b8334fd3d9348579681b24d156e7e9d.html>
-
-    -   Base plotting in R: <https://towardsdatascience.com/base-plotting-in-r-eb365da06b22>
+6.  Color palettes in R: <https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/>
 
 # [Exercises]{style="color:green"}
 
-#### 1. Using the *merge3* dataset, create a data matrix table containing the strain name and the columns Plasmids, CRISPR, VR and AMR are transformed as a single variable.
+#### 1. The table [coli_curve.csv](../data/coli_curve.csv) contains the growth curves of three *E. coli* strains. Plot the curves as *scatterplot* and lines containing the 90% confidence interval for the three strains.
 
-#### 2. Two students enrolled in different University courses: Rafa in A,B,D, E and G and Roger in B, C, D and F. Rafa got the following marks 8, 9 ,9.5, 8.75 and 9 and Roger obtained 10, 9.7, 9 and 10. Write a R program to create merged dataframes with all the marks (outer join), all the Rafa's marks (left outer), all the Roger's marks (right outer), and the marks in the common courses (inner join).
+Tips.
 
-#### 3. We are using the Covid19 test data for exercises 3-6. You can download the updated *csv* file from <https://opendata.ecdc.europa.eu/covid19/testing/csv/data.csv> (see also <https://www.ecdc.europa.eu/en/publications-data/covid-19-testing>). Read the data and write the table in your computer as *covid_tests.csv*.
+-   Check the ggplot *geom* `geom_smooth()` for the confidence interval.
 
-#### 4. Generate two contingency tables showing the number of tests done (1) by country per week and (2) by country per month.
+-   Also, it would be better if you color the data by strains, but keep the information of each sample measure using, for instance, the point shape.
 
-Hint. For the second table, use the function *ISOweek2date()* from the package "ISOweek" to transform the ISO date_week to standard date format.
+#### 2. The table [*microbe_download.csv*](../data/microbe_download.csv) contains the data of worldwide human deceases associated with antimicrobial resistance, as indicated in the column *Counterfactual* (data from <https://vizhub.healthdata.org/microbe/>). Explore the data and use it to reproduce the following barplots.
 
-#### 3. Remove all the character columns to create a subset dataframe named *minitests*. You can use `subset()` and `sapply()` here.
+Tips.
 
-#### 4. Use apply() to obtain the min, max, median and mean of each column.
+-   You will need to check `geom_errorbar()` for the first plot.
 
-#### 5. Use `tapply()` to obtain the mean, median and min of new_cases per country and construct a dataframe with the result.
+-   For the second plot, you will need to order the data by the *total* number of Deaths.
 
-Hint. Consider how to handle NA's.
+-   Also, adjust the plot margins in order to show all the x-axis labels.
 
-#### 6. Create a function that calculates log10() of the mean, apply it to new_cases per country and append it to the dataframe from the previous exercise. Then, write the results in a csv file.
+![](images/paste-EBB66D26.png)
 
-# [Short exercises]{style="color:green"}
+![](images/paste-7CC786DA.png)
 
-The topics in this lesson can be dense and bewildering the first time. I selected some sheets of exercises from great websites that can give you an extra practice.
+# [Extra exercises]{style="color:green"}
 
--   <https://www.r-exercises.com/2016/04/14/merging-dataframes-exercises/>
+-   Solved exercises from NCI-NIH: <https://btep.ccr.cancer.gov/docs/data-visualization-with-r/Practice_Exercises/ExercisesLesson2/>
 
--   <https://www.r-bloggers.com/2016/05/cross-tabulation-with-xtabs-exercises/>
+-   Solved exercises from *Babraham Institute* `ggplot` course:
 
--   <https://www.r-exercises.com/2016/09/08/efficient-processing-with-apply-exercises/>
+    -   Text: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/Intro%20to%20ggplot2%20Exercises.pdf>
 
--   <https://www.r-exercises.com/2016/06/16/summary-statistics-with-aggregate/>
+    -   Data: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/ggplot_data_files.zip>
+
+    -   Answers: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/ggplot_exercise_answers.html>
 
 # Session Info
 

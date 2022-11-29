@@ -376,7 +376,7 @@ legend("topright", fill=unique(colorines2),legend=unique(names(colorines2)),ncol
 
 # [Exercises]{style="color:green"}
 
-#### 1. Let\'s suppose we have the expression data for two genes (GeneA and GeneB) in 50 patients, 30 with colon cancer and 20 with lung cancer. 
+#### 1. Let's suppose we have the expression data for two genes (GeneA and GeneB) in 50 patients, 30 with colon cancer and 20 with lung cancer. {#ex1}
 
 **For the exercise, we are using random data, generated as follows:**
 
