@@ -1,0 +1,209 @@
+---
+title: 'Lesson 14: R for Biochemistry & Molecular Biology'
+author: "Modesto"
+date: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: yes
+    toc_depth: 2
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+---
+
+```{r wrap-hook, echo=FALSE}
+library(knitr)
+library(formatR)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+knitr::opts_knit$set(root.dir = "/Users/modesto/data/HPBBM2022")
+options(repos = list(CRAN="http://cran.rstudio.com/")) #this is to avoid error in install.packages() at knitting
+```
+
+# [Wellcome & Disclaimer]{style="color:cornflowerblue"}
+
+This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@UAM. This materials are the basis for GitHub-pages-based website that can be accessed [here](https://mredrejo.github.io/HPBBM2022/). Detailed academic information about the course contents, dates and assessment only can be found at the UAM Moodle site.
+
+All this material is open access and it is shared under [CC BY-NC](https://creativecommons.org/licenses/by-nc/2.0/) license.
+
+# Working with sequences
+
+## Regular expressions as a shortcut to explore sequence
+
+Biological data, like protein or nucleic acid sequences can be stored and explored in different formats, each following its own structure. As you can imagine, that facilitates the use of *regular expressions* in any programming language to access that data. The use of regular expressions in R is similar to other languages, particularly, to the use you learnt in Python. Anyway, I suggest that you have a look to the [References](#refs) below.
+
+In the code below, we are going to use some simple regular expressions to explore and analyze the data in a multifasta file containing the whole proteome of the bacteria *Bacillus thuringiensis HER1410.*
+
+```{r}
+#read the text file with readLines()
+proteome <- readLines("data/HER1410.fasta")
+#number of sequences in the multifasta
+length(grep(proteome, pattern=">"))
+#extract of recombinases
+grep("recombinase", proteome,value=TRUE)
+#enzymes (aka "-ases")
+head(grep("ase", proteome,value=TRUE,ignore.case=TRUE))
+
+#extract names
+fastanames <- proteome[grep(proteome, pattern=">")] #extract the names of the sequences
+#remove some pattern
+sub(">","",grep("ase", proteome,value=TRUE,ignore.case=TRUE)) 
+
+# regexpr
+(r <- regexpr("(.*)DNA(.*)",fastanames[1:200])) #find all the lines with "DNA" (only 200 lines to don't make it too long)
+#which ones?
+(dna <- which(r > 0, arr.ind = TRUE))
+dna.length <- attr(r,"match.length")[dna]
+ #extract the results
+nombres <- list()
+for (i in 1:length(dna)){
+  nombres[[i]] <- substr(fastanames[dna[i]], 1, 1 + dna.length[i])
+}
+nombres
+```
+
+## Working with sequences as objects
+
+```{r}
+
+#reading fasta and playing with it
+#install.packages("seqinr")
+library(seqinr)
+prots <- read.fasta("data/HER1410.fasta")
+str(prots)
+prots[[1]]
+getName(prots)
+seq <- getSequence(prots[[1]])
+getName(prots[[1]])
+paste(seq, collapse= "")
+paste(prots[[1]], collapse= "")
+aaa(toupper(seq))
+aaa(toupper(unlist(seq)))
+aaa(toupper(as.vector(seq)))
+pmw(toupper(unlist(seq))) 
+(stats1 <- AAstat(toupper(seq), plot = T))
+barplot(stats1$Compo, bty="7")
+
+#cool color palette
+library(RColorBrewer)
+coul = colorRampPalette(brewer.pal(9, "Set1"))(20)
+barplot(stats1$Compo, col=coul, bty="7")
+
+#dotplot
+grep("recombinase",getAnnot(prots))
+dotPlot(prots[[5]],prots[[2483]], wsize=3, nmatch=2)
+dotPlot(prots[[2177]],prots[[2432]], wsize=3, nmatch=2)
+dotPlot(prots[[2177]],prots[[2432]], col=c("floralwhite","dodgerblue"), 
+        wsize=6, nmatch=3, xlab=getName(prots[[2177]]),ylab=getName(prots[[2432]]))
+#extract the recombinases to a new file
+recs <- prots[grep("recombinase",getAnnot(prots))]
+#save to a file
+write.fasta(recs, names=names(recs), file.out="data/recombinases.faa")
+
+
+#now the nt sequence
+plasmid_nt <- read.fasta("data/HER1410nt.fasta")
+
+count(unlist(plasmid_nt),3)
+count(unlist(plasmid_nt),5)
+
+uco(plasmid_nt[[1]],frame=0)
+uco(plasmid_nt[[1]],frame=2)
+translate(plasmid_nt[[1]])
+GC(plasmid_nt[[1]])
+plasmid_nt[[1]][1:100]
+comp(plasmid_nt[[1]][1:100])
+rev(comp(plasmid_nt[[1]][1:100]))
+```
+
+# Bioconductor
+
+```{r}
+
+#bioconductor example
+if (!require("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+
+
+library(pasillaBamSubset) #install from BiocManager if not available
+library(GenomicRanges) # readGAlignments
+library(ShortRead) # alphabetByCycle
+
+flag <- scanBamFlag(isMinusStrand=FALSE) #restict data to avoid high memory use
+param <- ScanBamParam(what=c("seq", "qual"), flag=flag) #establish paarameters
+#Input the sequences and qualities using readGAlignments
+fl <- untreated1_chr4()
+res <- readGAlignments(fl, param=param)
+str(res)
+head(res)
+#Summarize nucleotide use by cycle (read position alignment) and plot the result
+abc <- alphabetByCycle(mcols(res)$seq)
+(head(abc))
+matplot(t(abc[1:4,]), type="l", lty=1, lwd=2, xlab="Cycle", ylab="Count")
+legend("topright", legend=rownames(abc)[1:4], lty=1, lwd=2, col=1:4)
+
+#Convert encoding quality scores to a numeric matrix
+qual <- as(mcols(res)$qual, "matrix")
+str(qual)
+#summarize these as boxplots, one for each cycle (column) of the matrix 
+boxplot(qual ~ col(qual), outline=FALSE, xlab="Cycle", ylab="Quality")
+```
+
+# References {#refs}
+
+1.  *R in action.* Robert I. Kabacoff. March 2022 ISBN 9781617296055
+
+2.  Regular expressions in R: <https://rstudio-pubs-static.s3.amazonaws.com/74603_76cd14d5983f47408fdf0b323550b846.html>
+
+3.  R Programming for Data Science (Chapter 17): <https://bookdown.org/rdpeng/rprogdatascience/>
+
+4.  ggplot2: elegant graphics for data analysis: <https://ggplot2-book.org/index.html>
+
+5.  ggplot in "Introducción a la ciencia de datos" (spanish!): <http://rafalab.dfci.harvard.edu/dslibro/ggplot2.html>
+
+6.  Color palettes in R: <https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/>
+
+# [Exercises]{style="color:green"}
+
+#### 1. The table [coli_curve.csv](../data/coli_curve.csv) contains the growth curves of three *E. coli* strains. Plot the curves as *scatterplot* and lines containing the 90% confidence interval for the three strains.
+
+Tips.
+
+-   Check the ggplot *geom* `geom_smooth()` for the confidence interval.
+
+-   Also, it would be better if you color the data by strains, but keep the information of each sample measure using, for instance, the point shape.
+
+#### 2. The table [*microbe_download.csv*](../data/microbe_download.csv) contains the data of worldwide human deceases associated with antimicrobial resistance, as indicated in the column *Counterfactual* (data from <https://vizhub.healthdata.org/microbe/>). Explore the data and use it to reproduce the following barplots.
+
+Tips.
+
+-   You will need to check `geom_errorbar()` for the first plot.
+
+-   For the second plot, you will need to order the data by the *total* number of Deaths.
+
+-   Also, adjust the plot margins in order to show all the x-axis labels.
+
+![](images/paste-EBB66D26.png)
+
+![](images/paste-7CC786DA.png)
+
+# [Extra exercises]{style="color:green"}
+
+-   Solved exercises from NCI-NIH: <https://btep.ccr.cancer.gov/docs/data-visualization-with-r/Practice_Exercises/ExercisesLesson2/>
+
+-   Solved exercises from *Babraham Institute* `ggplot` course:
+
+    -   Text: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/Intro%20to%20ggplot2%20Exercises.pdf>
+
+    -   Data: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/ggplot_data_files.zip>
+
+    -   Answers: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/ggplot_exercise_answers.html>
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
+
+# [Course home](https://mredrejo.github.io/HPBBM2022/)
