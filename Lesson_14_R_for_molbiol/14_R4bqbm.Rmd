@@ -30,42 +30,45 @@ All this material is open access and it is shared under [CC BY-NC](https://creat
 
 ## Regular expressions as a shortcut to explore sequence
 
-Biological data, like protein or nucleic acid sequences can be stored and explored in different formats, each following its own structure. As you can imagine, that facilitates the use of *regular expressions* in any programming language to access that data. The use of regular expressions in R is similar to other languages, particularly, to the use you learnt in Python. Anyway, I suggest that you have a look to the [References](#refs) below.
+Biological data, like protein or nucleic acid sequences can be stored and explored in different formats, each following its own structure. As you can imagine, that facilitates the use of *regular expressions* in any programming language to access that data. The use of regular expressions in R is similar to other languages, particularly, to the use you learnt in Python. Anyway, I suggest that you have a look to the [References](#refs) below. However, for advanced manipulation of string object, I'd advice the package [Strings](https://stringr.tidyverse.org/).
 
 In the code below, we are going to use some simple regular expressions to explore and analyze the data in a multifasta file containing the whole proteome of the bacteria *Bacillus thuringiensis HER1410.*
 
 ```{r}
 #read the text file with readLines()
 proteome <- readLines("data/HER1410.fasta")
-#number of sequences in the multifasta
+#number of sequences in the multifasta using grep
 length(grep(proteome, pattern=">"))
 #extract of recombinases
 grep("recombinase", proteome,value=TRUE)
 #enzymes (aka "-ases")
-head(grep("ase", proteome,value=TRUE,ignore.case=TRUE))
-
+head(grep("ase", proteome,value=TRUE))
+head(grep("ase", proteome,value=TRUE,ignore.case=TRUE)) #lower- & uppercase
 #extract names
 fastanames <- proteome[grep(proteome, pattern=">")] #extract the names of the sequences
 #remove some pattern
 sub(">","",grep("ase", proteome,value=TRUE,ignore.case=TRUE)) 
 
-# regexpr
+# regexpr returns the indices of the string where the match begins and the length of the match
 (r <- regexpr("(.*)DNA(.*)",fastanames[1:200])) #find all the lines with "DNA" (only 200 lines to don't make it too long)
 #which ones?
 (dna <- which(r > 0, arr.ind = TRUE))
 dna.length <- attr(r,"match.length")[dna]
- #extract the results
+#extract the results with a loop
 nombres <- list()
 for (i in 1:length(dna)){
   nombres[[i]] <- substr(fastanames[dna[i]], 1, 1 + dna.length[i])
 }
-nombres
+head(nombres)
 ```
 
 ## Working with sequences as objects
 
-```{r}
+The use or regular expressions is very convenient for some quick overview of the (multi)fasta files, but not for more specific analyses. Working with sequences can be facilitated with diverse packages, being *seqinr* and *Biostrings* the more widely used in the literature.
 
+In the following example, we are reading the same protein multifasta and we will obtain basic statistics, subset and save fasta sequences using *SeqinR (=seqinr)*.
+
+```{r}
 #reading fasta and playing with it
 #install.packages("seqinr")
 library(seqinr)
@@ -86,7 +89,7 @@ barplot(stats1$Compo, bty="7")
 
 #cool color palette
 library(RColorBrewer)
-coul = colorRampPalette(brewer.pal(9, "Set1"))(20)
+coul = colorRampPalette(brewer.pal(9, "Set1"))(20) #palette is expanded from 9 to 20 colors
 barplot(stats1$Compo, col=coul, bty="7")
 
 #dotplot
@@ -99,8 +102,15 @@ dotPlot(prots[[2177]],prots[[2432]], col=c("floralwhite","dodgerblue"),
 recs <- prots[grep("recombinase",getAnnot(prots))]
 #save to a file
 write.fasta(recs, names=names(recs), file.out="data/recombinases.faa")
+```
 
+As you noticed in the code above, the function `read.fasta()` can read any (multi)fasta file containing a protein or nucleic acid sequence and create a list of lists. Thus, if you want to extract a sequence as a single element, you need to extract if from the list with `unlist()` or convert it to a vector with `as.vector()`.
 
+Once you read the fasta, you can extract the headline name with `getName()` or the sequence with `getSequence()`. Additionally, you can obtain and plot basic stats or compare sequences using `dotPlot()`. Moreover, if you extract a subset of sequences, you can use `write.fasta()` to save those sequences in a new fasta file.
+
+Finally, as in the example below, you can also play with a nucleotide sequence and obtain some useful data, like the `GC()` content, the encoded proteins or the reverse complementary sequence with `rev()` and `comp()`, respectively.
+
+```{r}
 #now the nt sequence
 plasmid_nt <- read.fasta("data/HER1410nt.fasta")
 
@@ -116,39 +126,95 @@ comp(plasmid_nt[[1]][1:100])
 rev(comp(plasmid_nt[[1]][1:100]))
 ```
 
-# Bioconductor
+## Connect with sequence databases with *seqinr*
+
+You can query to NCBI, Uniprot and other databases directly using seqinr. The *seqinr* package was written by the group that created the ACNUC database in Lyon, France (<http://pbil.univ-lyon1.fr/databases/acnuc/acnuc.html>). The ACNUC database is a database that contains most of the data from the NCBI Sequence Database, as well as data from other sequence databases such as UniProt and Ensembl. the ACNUC database is organised into various different ACNUC (sub)-databases, which contain different parts of the NCBI database, and when you want to search the NCBI database via R, you will need to specify which ACNUC sub-database the NCBI data that you want to query is stored in.
+
+To obtain a full list of the ACNUC sub-databases that you can access using *seqinr*, you can use the `choosebank()` function from *seqinr*. Then, you just need to select the database and query your sequence. However, as you can see in the example below it does not work currently. I mentioned this here because I used this previously and found it very useful. In case you want to try it again in the future you can check the examples in the [Reference 4](#r4) below.
+
+```{r error=TRUE}
+choosebank()
+#select genbank
+choosebank("swissprot")
+query("pol","AC=P0DPS1",verbose=TRUE,invisible=FALSE)
+polseq <- getSequence(pol$req[[1]])
+closebank()
+```
+
+## The package *rentrez*
+
+`rentrez` is an R package that helps users query the NCBI's databases to download diverse type of data and metadata, including sequences or research papers.
 
 ```{r}
+install.packages("rentrez")
+library(rentrez)
+pols <- entrez_search(db = "pubmed", term = "DNA polymerase") 
+pols$ids #only keep 20
+Gon <- entrez_search(db = "pubmed", term = "Gonzalez", retmax=100)
+Gon$ids #now kept 100
 
-#bioconductor example
-if (!require("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
-
-
-
-library(pasillaBamSubset) #install from BiocManager if not available
-library(GenomicRanges) # readGAlignments
-library(ShortRead) # alphabetByCycle
-
-flag <- scanBamFlag(isMinusStrand=FALSE) #restict data to avoid high memory use
-param <- ScanBamParam(what=c("seq", "qual"), flag=flag) #establish paarameters
-#Input the sequences and qualities using readGAlignments
-fl <- untreated1_chr4()
-res <- readGAlignments(fl, param=param)
-str(res)
-head(res)
-#Summarize nucleotide use by cycle (read position alignment) and plot the result
-abc <- alphabetByCycle(mcols(res)$seq)
-(head(abc))
-matplot(t(abc[1:4,]), type="l", lty=1, lwd=2, xlab="Cycle", ylab="Count")
-legend("topright", legend=rownames(abc)[1:4], lty=1, lwd=2, col=1:4)
-
-#Convert encoding quality scores to a numeric matrix
-qual <- as(mcols(res)$qual, "matrix")
-str(qual)
-#summarize these as boxplots, one for each cycle (column) of the matrix 
-boxplot(qual ~ col(qual), outline=FALSE, xlab="Cycle", ylab="Quality")
+#we can also fetch data
+her1410 <- entrez_search(db = "nuccore", term = "HER1410") 
+her1410$ids
+her1410_1 <- entrez_fetch(db="nuccore", id=her1410$ids[1], rettype="fasta")
+her1410_1
+class(her1410_1)
+dim(her1410_1)
+length(her1410_1)
+write(her1410_1,file="her1410_1.fasta")
+seq1 <- read.fasta("her1410_1.fasta")
 ```
+
+As you can see, you can very easily download the data from any NCBI database. Regarding sequences, the main drawback of the function `entrez_fecth()` is that the downloaded sequences are character objects and transform it into sequences that you can handle with *seqinr* or other packages is not straightforward and it requires some polishing (see [ref. 7](#r7)). Alternatively, you can save the data as a new fasta file in your computer before importing with *seqinr,* as in the following example.
+
+```{r}
+#compare two files
+her1410_2 <- entrez_fetch(db="nuccore", id=her1410$ids[2], rettype="fasta")
+write(her1410_2,file="her1410_2.fasta")
+seq2 <- read.fasta("her1410_2.fasta")
+
+#codon frequencies
+freq1 <- count(unlist(seq1),3, freq=TRUE)
+freq2 <- count(unlist(seq2),3, freq=TRUE)
+
+stop1 <- freq1[which(names(freq1)=="tga"| names(freq1)== "tag" | names(freq1)== "taa")]
+stop2 <- freq2[which(names(freq2)=="tga"| names(freq2)== "tag" | names(freq2)== "taa")]
+stops <- rbind(stop1,stop2)
+stops <-  as.data.frame(stops)
+stops$sequences <- c(her1410$ids[1],her1410$ids[2])
+stops <- cbind(stops$sequences,stack(stops[,1:3]))
+names(stops) <- c("sequences","freqs","stop_codon")
+#plot
+library(ggplot2)
+p <- ggplot(data=stops) + geom_bar(aes(x=toupper(stop_codon),y=freqs,col=sequences,fill=sequences),stat="identity",position="dodge",alpha=0.8) 
+p + scale_fill_brewer(palette = "Dark2") + scale_color_brewer(palette = "Dark2") + theme_linedraw() + ylab("Codon frequency") + xlab("Stop codon") +  guides(color="none", fill=guide_legend(title="HER1410 sequences"))
+```
+
+# Bioconductor
+
+Bioconductor is a repository of R packages for "the analysis and comprehension of high-throughput genomic data". It started 2002 as a platform for understanding analysis of microarray data, being the first R version 1996, and the first stable beta in 2000. Currently, it contains 2183 packages (release [3.16](https://bioconductor.org/news/bioc_3_16_release/), November 2, 2022) for diverse bioinformatics tasks. It also contains many learning resources, spanning [vignettes](https://bioconductor.org/help/package-vignettes/), [course materials](https://bioconductor.org/help/course-materials/), and [workflows](https://bioconductor.org/packages/release/BiocViews.html#___AnnotationData).
+
+The diversity of packages in Bioconductor allows working with widely used bioinformatics apps and file formats (fasta, fastq, BAM, SAM, vcf...), for different stages of sequence analysis, quantification, annotation... You can explore [packages by categories](https://bioconductor.org/packages/release/BiocViews.html#___Software) on the Bioconductor site.
+
+![Illustrative description elaborating the different file types at various stages in a typical analysis, with the package names (in pink boxes) that one will use for each stage. From: <https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.html>](images/paste-8062F001.png)
+
+Some of the most common Bioconductor packages and functions are:
+
+-   [**GenomicRanges**](http://bioconductor.org/packages/release/bioc/html/GenomicRanges.html): 'Ranges' to describe data and annotation; `GRanges()`, `GRangesList()`
+
+-   [**Biostrings**](https://bioconductor.org/packages/release/bioc/html/Biostrings.html): DNA and other sequences, `DNAStringSet()`
+
+-   [**GenomicAlignments**](https://bioconductor.org/packages/release/bioc/html/GenomicAlignments.html): Aligned reads; `GAlignemts()` and friends
+
+-   [**GenomicFeatures**](https://bioconductor.org/packages/release/bioc/html/GenomicFeatures.html), [**AnnotationDbi**](https://bioconductor.org/packages/release/bioc/html/AnnotationDbi.html): annotation resources, `TxDb`, and `org` packages.
+
+-   [**SummarizedExperiment**](https://bioconductor.org/packages/release/bioc/html/SummarizedExperiment.html): coordinating experimental data
+
+-   [**rtracklayer**](https://bioconductor.org/packages/release/bioc/html/rtracklayer.html): import Genome annotations e.g BED, WIG, GTF, etc.
+
+-   [**Annotationhub**](https://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub.html): access to Ensembl, UCSC, NCBI and other databases.
+
+I recommend you to check the examples in the [reference 9](#ref9) below and other [workflows](https://bioconductor.org/packages/release/BiocViews.html#___AnnotationData) that you can find at Bioconductor.
 
 # References {#refs}
 
@@ -158,47 +224,37 @@ boxplot(qual ~ col(qual), outline=FALSE, xlab="Cycle", ylab="Quality")
 
 3.  R Programming for Data Science (Chapter 17): <https://bookdown.org/rdpeng/rprogdatascience/>
 
-4.  ggplot2: elegant graphics for data analysis: <https://ggplot2-book.org/index.html>
+4.  ::: {#r4}
+    A little book of R for bioinformatics: <https://a-little-book-of-r-for-bioinformatics.readthedocs.io/en/latest/index.html>
+    :::
 
-5.  ggplot in "Introducción a la ciencia de datos" (spanish!): <http://rafalab.dfci.harvard.edu/dslibro/ggplot2.html>
+5.  *rentrez* vignette: <https://cran.r-project.org/web/packages/rentrez/vignettes/rentrez_tutorial.html>
 
-6.  Color palettes in R: <https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/>
+6.  Biostrings: <https://kasperdanielhansen.github.io/genbioconductor/html/Biostrings.html>
+
+7.  ::: {#r7}
+    Example of the generation of multiple sequence alignments and phylogenies with R: <https://rpubs.com/bhuvic/828540>
+    :::
+
+8.  Where do I start using Bioconductor: <http://lcolladotor.github.io/2014/10/16/startbioc/#.Y4ZCaOyZP0p>
+
+9.  ::: {#ref9}
+    Bioconductor Workflow: Introduction to Bioconductor for Sequence Data: <https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.html>
+    :::
 
 # [Exercises]{style="color:green"}
 
-#### 1. The table [coli_curve.csv](../data/coli_curve.csv) contains the growth curves of three *E. coli* strains. Plot the curves as *scatterplot* and lines containing the 90% confidence interval for the three strains.
+#### Write a function that, given an input name:
 
-Tips.
+#### 1-. It downloads a sequence from the nucleotide database in Genbank. The function needs to check if the different available sequences for that name are identical and rule out duplicates.
 
--   Check the ggplot *geom* `geom_smooth()` for the confidence interval.
+#### 2-. It plots the nucleotide composition (% of A, C, G and T) and the amino acids frequencies in the 6 possible frames.
 
--   Also, it would be better if you color the data by strains, but keep the information of each sample measure using, for instance, the point shape.
+#### 3-. It should also download the protein sequences with that name and count the number of enzymes (you can use *ase* as keyword) and the number orfans (*hypothetical protein*). 
 
-#### 2. The table [*microbe_download.csv*](../data/microbe_download.csv) contains the data of worldwide human deceases associated with antimicrobial resistance, as indicated in the column *Counterfactual* (data from <https://vizhub.healthdata.org/microbe/>). Explore the data and use it to reproduce the following barplots.
+#### Test your function with the nucleotide sequences of the plasmids pSE-12228-03 and pCERC7.
 
-Tips.
-
--   You will need to check `geom_errorbar()` for the first plot.
-
--   For the second plot, you will need to order the data by the *total* number of Deaths.
-
--   Also, adjust the plot margins in order to show all the x-axis labels.
-
-![](images/paste-EBB66D26.png)
-
-![](images/paste-7CC786DA.png)
-
-# [Extra exercises]{style="color:green"}
-
--   Solved exercises from NCI-NIH: <https://btep.ccr.cancer.gov/docs/data-visualization-with-r/Practice_Exercises/ExercisesLesson2/>
-
--   Solved exercises from *Babraham Institute* `ggplot` course:
-
-    -   Text: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/Intro%20to%20ggplot2%20Exercises.pdf>
-
-    -   Data: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/ggplot_data_files.zip>
-
-    -   Answers: <https://www.bioinformatics.babraham.ac.uk/training/ggplot_course/ggplot_exercise_answers.html>
+# 
 
 # Session Info
 
