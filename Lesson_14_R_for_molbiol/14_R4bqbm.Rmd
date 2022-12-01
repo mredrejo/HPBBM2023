@@ -143,6 +143,8 @@ closebank()
 
 ## The package *rentrez*
 
+Like *seqinr*, other R packages allow accessing to NCBI and other databases, including [*APE*](http://ape-package.ird.fr/) or [*genbankr*](https://bioconductor.org/packages/release/bioc/vignettes/genbankr/inst/doc/genbankr.html)*.* The latter takes advantage of the packages [*rentrez*](https://mran.microsoft.com/snapshot/2014-12-12/web/packages/rentrez/vignettes/rentrez_tutorial.html).
+
 `rentrez` is an R package that helps users query the NCBI's databases to download diverse type of data and metadata, including sequences or research papers.
 
 ```{r}

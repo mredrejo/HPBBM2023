@@ -1487,7 +1487,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">Lesson 14: R for Biochemistry &amp;
 Molecular Biology</h1>
 <h4 class="author">Modesto</h4>
-<h4 class="date">2022-12-01 (11:45 h)</h4>
+<h4 class="date">2022-12-01 (12:56 h)</h4>
 
 </div>
 
@@ -4430,7 +4430,7 @@ nombres &lt;- list()
 for (i in 1:length(dna)) {
     nombres[[i]] &lt;- substr(fastanames[dna[i]], 1, 1 + dna.length[i])
 }
-nombres</code></pre>
+head(nombres)</code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;&gt;QKO37013.1 DNA primase (plasmid) [Bacillus thuringiensis]&quot;
 ## 
@@ -6997,7 +6997,9 @@ query(&quot;pol&quot;, &quot;AC=P0DPS1&quot;, verbose = TRUE, invisible = FALSE)
 ## I&#39;m checking the status of the socket connection...
 ## ... and everything is OK up to now.
 ## I&#39;m sending query to server...
-## ... answer from server is: code=0&amp;lrank=2&amp;count=1&amp;type=SQ&amp;locus=T 
+## ... answer from server is:  
+## ... answer from server is empty!
+## ... reading again ( 0 ).
 ## I&#39;m trying to analyse answer from server...
 ## ... and everything is OK up to now.
 ## ... and the rank of the resulting list is: 2 .
@@ -7012,22 +7014,32 @@ query(&quot;pol&quot;, &quot;AC=P0DPS1&quot;, verbose = TRUE, invisible = FALSE)
 </div>
 <div id="the-package-rentrez" class="section level2">
 <h2>The package <em>rentrez</em></h2>
+<p>Like <em>seqinr</em>, other R packages allow accessing to NCBI and
+other databases, including <a href="http://ape-package.ird.fr/"><em>APE</em></a> or <a href="https://bioconductor.org/packages/release/bioc/vignettes/genbankr/inst/doc/genbankr.html"><em>genbankr</em></a><em>.</em>
+The latter takes advantage of the packages <a href="https://mran.microsoft.com/snapshot/2014-12-12/web/packages/rentrez/vignettes/rentrez_tutorial.html"><em>rentrez</em></a>.</p>
 <p><code>rentrez</code> is an R package that helps users query the
 NCBI’s databases to download diverse type of data and metadata,
 including sequences or research papers.</p>
 <pre class="r"><code>install.packages(&quot;rentrez&quot;)</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//Rtmpadktdn/downloaded_packages</code></pre>
+##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//RtmpdX58ac/downloaded_packages</code></pre>
 <pre class="r"><code>library(rentrez)
-pols &lt;- entrez_search(db = &quot;pubmed&quot;, term = &quot;DNA polymerase&quot;)
-pols$ids  #only keep 20</code></pre>
-<pre><code>##  [1] &quot;36450490&quot; &quot;36450243&quot; &quot;36450242&quot; &quot;36449924&quot; &quot;36449645&quot; &quot;36449395&quot;
-##  [7] &quot;36449160&quot; &quot;36448800&quot; &quot;36448787&quot; &quot;36447970&quot; &quot;36447952&quot; &quot;36447428&quot;
-## [13] &quot;36446883&quot; &quot;36445091&quot; &quot;36444550&quot; &quot;36444407&quot; &quot;36444404&quot; &quot;36444401&quot;
-## [19] &quot;36443871&quot; &quot;36443703&quot;</code></pre>
-<pre class="r"><code>Gon &lt;- entrez_search(db = &quot;pubmed&quot;, term = &quot;Gonzalez&quot;, retmax = 100)
-Gon$ids  #now kept 100</code></pre>
+(pols &lt;- entrez_search(db = &quot;pubmed&quot;, term = &quot;DNA polymerase&quot;))</code></pre>
+<pre><code>## Entrez search result with 360699 hits (object contains 20 IDs and no web_history object)
+##  Search term (as translated):  &quot;dna directed dna polymerase&quot;[MeSH Terms] OR (&quot;dna ...</code></pre>
+<pre class="r"><code>str(pols)</code></pre>
+<pre><code>## List of 5
+##  $ ids             : chr [1:20] &quot;36450490&quot; &quot;36450243&quot; &quot;36450242&quot; &quot;36449924&quot; ...
+##  $ count           : int 360699
+##  $ retmax          : int 20
+##  $ QueryTranslation: chr &quot;\&quot;dna directed dna polymerase\&quot;[MeSH Terms] OR (\&quot;dna directed\&quot;[All Fields] AND \&quot;dna\&quot;[All Fields] AND \&quot;poly&quot;| __truncated__
+##  $ file            :Classes &#39;XMLInternalDocument&#39;, &#39;XMLAbstractDocument&#39; &lt;externalptr&gt; 
+##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;esearch&quot; &quot;list&quot;</code></pre>
+<pre class="r"><code>(Gon &lt;- entrez_search(db = &quot;pubmed&quot;, term = &quot;Gonzalez&quot;, retmax = 100))</code></pre>
+<pre><code>## Entrez search result with 61661 hits (object contains 100 IDs and no web_history object)
+##  Search term (as translated):  &quot;Gonzalez&quot;[All Fields]</code></pre>
+<pre class="r"><code>Gon$ids  #now kept 100</code></pre>
 <pre><code>##   [1] &quot;36450981&quot; &quot;36450605&quot; &quot;36450604&quot; &quot;36450401&quot; &quot;36450096&quot; &quot;36449888&quot;
 ##   [7] &quot;36449857&quot; &quot;36449571&quot; &quot;36449160&quot; &quot;36448486&quot; &quot;36447564&quot; &quot;36446842&quot;
 ##  [13] &quot;36446653&quot; &quot;36446191&quot; &quot;36445909&quot; &quot;36445230&quot; &quot;36444226&quot; &quot;36444126&quot;
