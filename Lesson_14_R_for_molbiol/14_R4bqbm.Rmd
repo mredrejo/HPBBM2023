@@ -148,9 +148,9 @@ closebank()
 ```{r}
 install.packages("rentrez")
 library(rentrez)
-pols <- entrez_search(db = "pubmed", term = "DNA polymerase") 
-pols$ids #only keep 20
-Gon <- entrez_search(db = "pubmed", term = "Gonzalez", retmax=100)
+(pols <- entrez_search(db = "pubmed", term = "DNA polymerase") )
+str(pols)
+(Gon <- entrez_search(db = "pubmed", term = "Gonzalez", retmax=100))
 Gon$ids #now kept 100
 
 #we can also fetch data
