@@ -362,6 +362,8 @@ legend("topright", fill=unique(colorines2),legend=unique(names(colorines2)),ncol
 
 -   Graphics with Base R: <https://intro2r.com/graphics_base_r.html>
 
+-   [Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm (Weissberger et al. Plos Biology 2015).](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002128)
+
 -   I also advise checking articles and posts that you can find with Google, such as:
 
     -   How to choose the right chart for your data: <https://dexibit.com/how-to-choose-the-right-chart-to-visualize-your-data/>

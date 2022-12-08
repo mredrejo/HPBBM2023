@@ -330,9 +330,9 @@ Tips.
 
 -   Also, adjust the plot margins in order to show all the x-axis labels.
 
-![](images/paste-EBB66D26.png)
+![](images/paste-CB40FF4F.png)
 
-![](images/paste-7CC786DA.png)
+![](images/paste-4596689A.png)
 
 # [Extra exercises]{style="color:green"}
 
