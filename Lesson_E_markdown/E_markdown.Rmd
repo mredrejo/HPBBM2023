@@ -32,7 +32,7 @@ Working with relative paths can get a little bit confusing, especially if run la
 
 ![](images/proj.jpg)
 
-As you can see in the screenshot you can easily start a new project in RStudio using the *File* menu. Then, just select a name and save it on your computer (it will be have the extension *Rproj*).
+As you can see in the screenshot above you can easily start a new project in RStudio using the *File* menu. Then, just select a name and save it on your computer (it will be have the extension *Rproj*).
 
 Now here's the cool part: When you open your project, you will see that the project folder will be your default relative path, which you can check with `getwd()`. Also, in the top-right corner of Rstudio you can see the project name and the containing folder.
 
@@ -54,13 +54,41 @@ Also, they can be written using a *Visual* mode (above) that looks like any othe
 
 ![](images/paste-01DC4185.png)
 
-I found two main advantages in using RMarkdown documents for my data analysis. Initially, I started to use it in order to generate formatted reports including all the information about the project in a paper-like format, from the background to the data analysis and the conclusions. Indeed, those "reports" can be as fancy as you wish, from html or latex-formatted pdf, to MS Word or even Powerpoint presentations. A second benefit of the use of markdown is that it facilitates your own work a lot, specially when you work in several different projects or you if you need to do some analysis after some time.
+I found two main advantages in using RMarkdown documents for my data analysis. Initially, I started to use it in order to generate formatted reports including all the information about the project in a paper-like format, from the background to the data analysis and the conclusions. Indeed, those "reports" can be as fancy as you wish, from html or latex-formatted pdf, to MS Word or even presentations. A second benefit of the use of markdown is that it facilitates your own work a lot, specially when you work in several different projects or you if you need to do some analysis after some time. Additionally, you can use Rmarkdown documents for web applications based in R using [Shiny](https://shiny.rstudio.com/).
+
+Moreover, there are a number of specialized sites to publish your Rmarkdown documents, such as [Rpubs](https://rpubs.com/), [bookdown.org](https://bookdown.org/home/about/) or [RStudio connect](https://rstudio.com/products/connect/).
+
+## Create your first R Markdown document
+
+Like any other language, learning the syntax is much easier by making some examples. We can convert in a Markdown html document one of our exercises in a few steps:
+
+1.  Start a new R Markdown document. Initially, it will ask you a title, author and date. You can also specify here the type of output document. This data will be included in the header of your *rmd* document, a configuration section written in [YAML](https://en.wikipedia.org/wiki/YAML) format that can be edited anytime. This section also can include information about the use of a TOC (Table of Contents), section numbering, html themes...
+
+    ![](images/paste-D97F7F4E.png){width="450"}
+
+2.  Once you have your new document, it will include some default instructions about how to write and create coding chunks. You can switch between `Source` and `Visual` format to see the difference and then **replace the instructions for some text like the exercise wording.**
+
+3.  **Add your exercise script into one chunk and try it**. You can also split it into more than one chunk and intercalate some explanations.
+
+4.  Add a final chunk with the `sessionInfo()` to facilitate reproducibility.
+
+5.  **Knit it!** You can try knitting into *html*, *pdf* or *word* document.
+
+Note that knitting into *pdf* may require the installation of a LaTeX distribution or R package. There are several alternatives, like `tinytex`, `MacTeX` or `MikTeX`, among others (see [references 9 and 10](#r9)).
 
 ## R Notebooks
 
-Technically, **R Markdown is a file, whereas R Notebook is a way to work with R Markdown files**. R Notebooks do not have their own file format, they all use *Rmd*. All R Notebooks can be 'knitted' to R Markdown outputs, and all R Markdown documents can be interfaced as a Notebook. The R nb document is launched directly and no wizard (as in the case of .RMD) appears. Along with the notebook file, an additional html file that extension \*.nb.html is generated. The notebook has the option for Preview. If any code is altered or edited, the new output is not shown. The output is shown in the code editor itself. Whatever the old output was it is only rendered. No new output is generated from the code change. In order to show the code output, we need to execute the chunk and then it will appear in the output. The YAML header has output as: output: **html_notebook**
+Technically, **R Markdown is a file, whereas R Notebook is a way to work with R Markdown files**. R Notebooks do not have their own file format, they all use *Rmd*. All R Notebooks can be 'knitted' to R Markdown outputs, and all R Markdown documents can be interfaced as a Notebook. The R nb document is launched directly and no wizard (as in the case of .RMD) appears. Along with the notebook file, an additional html file that extension *\*.nb.html* is generated. The notebook has the option for Preview. If any code is altered or edited, the new output is not shown. The output is shown in the code editor itself. Whatever the old output was it is only rendered. No new output is generated from the code change. In order to show the code output, we need to execute the chunk and then it will appear in the output. The YAML header has output as: output: **html_notebook**
 
-Writing an R Notebook document is no different than writing an R Markdown document. The text and code chunk syntax does not differ from what you learned in the R Markdown tutorial. The primary difference is in the interativeness of an R Notebook. Primarily that when executing chunks in an R Markdown document, **all the code is sent to the console at once**, but in an R Notebook, **only one line at a time is sent**. This allows execution to stop if a line raises an error
+Writing an R Notebook document is no different than writing an R Markdown document. The text and code chunk syntax does not differ from what you learned in the R Markdown tutorial. The primary difference is in the interativeness of an R Notebook. Primarily that when executing chunks in an R Markdown document, **all the code is sent to the console at once**, but in an R Notebook, **only one line at a time is sent**. This allows execution to stop if a line raises an error.
+
+# Quarto
+
+In 2022, RStudio launched Quarto, a novel markdown flavor, based in [Pandoc](https://en.wikipedia.org/wiki/Pandoc), a free-software document converter, that expanded the possibilities of RMarkdown with new format options and enriched templates. See some examples [here](https://quarto.org/docs/gallery/).
+
+Quarto is particularly designed to generate complex documents, like a whole website or books. It requires a *.qmd* file and a companion YAML document that includes the site/book structure, metadata and configuration. You can check the [Quarto Reference](https://quarto.org/docs/projects/quarto-projects.html#project-metadata) to learn how to configure your yml file. As an example, have a look to the [\_quarto.yml](https://github.com/StrBio/strbio2022_23/blob/main/_quarto.yml) file for this site on [Structural Bioinformatics](https://strbio.github.io/strbio2022_23/).
+
+Besides the references below, I suggest you to check these [examples](https://quarto.org/docs/gallery/) and the this [video about the use of Quarto](https://youtu.be/y5VcxMOnj3M) to create amazing websites, books and interactive sites.
 
 # References {#refs}
 
@@ -72,21 +100,19 @@ Writing an R Notebook document is no different than writing an R Markdown docume
 
 4.  R Markdown Cheat Sheet: <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
 
-5.  r-cubed: **R**eproducible **R**esearch in **R**: <https://jose.theoj.org/papers/10.21105/jose.00122>
+5.  Formatting HTML documents with RMarkdown: <https://bookdown.org/yihui/rmarkdown/html-document.html>
 
-# [Exercises]{style="color:green"}
+6.  r-cubed: **R**eproducible **R**esearch in **R**: <https://jose.theoj.org/papers/10.21105/jose.00122>
 
-#### Write a function that, given an input name:
+7.  Create interactive documents with Quarto: <https://appsilon.com/r-quarto-tutorial/>
 
-#### 1-. It downloads a sequence from the nucleotide database in Genbank. The function needs to check if the different available sequences for that name are identical and rule out duplicates.
+8.  Quarto Reference Guide: <https://quarto.org/docs/guide/>
 
-#### 2-. It plots the nucleotide composition (% of A, C, G and T) and the amino acids frequencies in the 6 possible frames.
+9.  ::: {#r9}
+    Create PDF reports with R Markdown: [https://medium.com/\@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9](https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9)
+    :::
 
-#### 3-. It should also download the protein sequences with that name and count the number of enzymes (you can use *ase* as keyword) and the number orfans (*hypothetical protein*).
-
-#### Test your function with the nucleotide sequences of the plasmids pSE-12228-03 and pCERC7.
-
-# 
+10. R Markdown and Tinytex installation: <https://bookdown.org/yihui/rmarkdown/installation.html>
 
 # Session Info
 

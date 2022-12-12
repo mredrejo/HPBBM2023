@@ -23,9 +23,7 @@ All this material is open access and it is shared under [CC BY-NC](https://creat
 ## Under construction
 :::
 
-Note that this site is a draft under development and I only expect to have a first complete version by the end of the semester at the earliest (December 2022). Any feedback, help or suggestions will be very warmly welcome.
-
-![](data/8275a.jpg "Under construction...")
+This is the first complete draft of this site, but it is intended to be expanded and corrected throughout the next weeks. Any feedback, help, or suggestions will be very warmly welcome.
 
 Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I and the future students will appreciate it if you let me know about anything that could be corrected or just improved.
 
@@ -43,4 +41,4 @@ Also, it is likely that you find some mistypes or even some big mistakes through
 
 ### [Lesson 14: Applications for Molecular Biology](Lesson_14_R_for_molbiol/14_R4bqbm.html)
 
-### Extra Lesson: Introduction to R projects, R Markdown and Quarto.
+### [Extra Lesson: Introduction to R projects, R Markdown and Quarto.](Lesson_E_markdown/E_markdown.html)
