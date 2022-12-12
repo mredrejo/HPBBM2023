@@ -58,7 +58,7 @@ I found two main advantages in using RMarkdown documents for my data analysis. I
 
 Moreover, there are a number of specialized sites to publish your Rmarkdown documents, such as [Rpubs](https://rpubs.com/), [bookdown.org](https://bookdown.org/home/about/) or [RStudio connect](https://rstudio.com/products/connect/).
 
-## Create your first R Markdown document
+## [Create your first R Markdown document]{style="color:green"}
 
 Like any other language, learning the syntax is much easier by making some examples. We can convert in a Markdown html document one of our exercises in a few steps:
 
