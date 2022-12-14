@@ -14,7 +14,7 @@ editor: visual
 
 ## [Wellcome & Disclaimer]{style="color:cornflowerblue"}
 
-This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). Detailed academic information about the course contents, dates and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/).
+This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lesson (Lesson 8) that are not included here. Detailed academic information about the course contents, dates and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/).
 
 This site is on a [GitHub repo](https://github.com/mredrejo/HPBBM2022), containing the source *R Markdown files*. When you "knit" the report, R Studio will execute the code within each chunk in the notebook and the results appear beneath the code in the output file (usually HTML or PDF). Check also <https://bookdown.org/yihui/rmarkdown-cookbook/spin.html> for more info about how to use Notebooks and Markdown. Markdown recently evolved to **Quarto**, which has increased capabilities. To learn more about Quarto see <https://quarto.org>. Check also the [final lesson](Lesson_E_markdown/E_markdown.html) of this course.
 
@@ -27,6 +27,22 @@ All this material is open access and it is shared under [CC BY-NC](https://creat
 This is the first complete draft of this site, but it is intended to be expanded and corrected throughout the next weeks and new versions will be available the following years. Any feedback, help, or suggestions will be very warmly welcome.
 
 Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I, and the future students, will appreciate it if you let me know about anything that could be corrected or just improved. You can reach me by [email](mailto::modesto.redrejo@uam.es) or [![](index_files/tw.png "@mredrejo"){width="14" height="11"} Twitter](https://twitter.com/mredrejo "Twitter").
+
+## [Bibliography and Resources]{style="color:cornflowerblue"}
+
+Each lesson contains its own recommended resources, but I wanted to highlight here some curated general open access and open source resources to introduce you into R and R Studio.
+
+-   Grolemund, G. [*Hands-on Programming in R*](https://rstudio-education.github.io/)*.*
+
+-   Peng, R. D. R [*Programming for Data Science.*](https://bookdown.org/rdpeng/rprogdatascience/)
+
+-   Coulatti, R. I. [*R Crash Course for Biologist*.](https://github.com/ColauttiLab/RCrashCourse_Book)
+
+-   Chang, W. R. [R Graphics Cookbook.](https://r-graphics.org/)
+
+-   Doyle, M., Chung, J. & Perreau V. [Introduction to R for Biologists.](https://melbournebioinformatics.github.io/r-intro-biologists/intro_r_biologists.html)
+
+-   [Learn R by example](https://www.learnbyexample.org/r/)
 
 ## [Contents]{style="color:cornflowerblue"}
 
