@@ -200,9 +200,9 @@ Remember that ***datamatrix*** is not an R structure, but a general concept in d
 
 We are going to make some examples with a huge dataset of Covid19 Vaccination data in EU. The data is publicly available at <https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea>. While you can download and open a file from internet in R, in order to use the same dataset, we have a file [*vaccines_EU_22oct2022.csv*](../data/vaccines_EU_22oct2022.csv) in our data folder.
 
-NOTE: From this point on, we will show only the first 25 lines of the output of some code chunks (you will notice that the output starts and ends with ***...***). Otherwise, this document is very long and difficult to follow. Run the code yourself to see the full returned output.
+NOTE: From this point on, we will show only the first 20-25 lines of the output of some code chunks (you will notice that the output starts and ends with ***...***). Otherwise, this document is very long and difficult to follow. Run the code yourself to see the full returned output.
 
-```{r error=TRUE, output.lines=(1:25)}
+```{r error=TRUE, output.lines=(1:20)}
 #open directly from the ECDC
 #vaccines <- read.csv(file = "https://opendata.ecdc.europa.eu/covid19/vaccine_tracker/csv/data.csv", header=TRUE)
 #we will use all the same dataset that I already downloaded
@@ -212,6 +212,9 @@ str(vaccines)
 head(vaccines)
 table(vaccines$Region)
 head(table(vaccines$Region, vaccines$NumberDosesReceived)) 
+```
+
+```{r error=TRUE}
 summary(vaccines[which(vaccines$Region=="ES"),][,6]) #see the data from Spain
 
 table(vaccines)
