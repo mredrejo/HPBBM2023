@@ -2757,7 +2757,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Lesson 10: Functions in R</h1>
 <h4 class="author">Modesto</h4>
-<h4 class="date">2022-11-11 (17:04 h)</h4>
+<h4 class="date">2022-12-14 (17:05 h)</h4>
 
 </div>
 
@@ -2806,9 +2806,11 @@ check related packages, such as <code>readxl</code> or
 <pre class="r"><code># install the package you may require other packages,add
 # dependencies=TRUE if this example doesn&#39;t work
 install.packages(&quot;xlsx&quot;)</code></pre>
+<pre><code>## Installing package into &#39;/Users/modesto/Library/R/x86_64/4.2/library&#39;
+## (as &#39;lib&#39; is unspecified)</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//Rtmp5LwzH4/downloaded_packages</code></pre>
+##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//Rtmp9nVz5t/downloaded_packages</code></pre>
 <pre class="r"><code># load
 library(xlsx)
 require(xlsx)
@@ -2822,7 +2824,8 @@ if (!require(xlsx)) {
 detach(xlsx)  #unload the package</code></pre>
 <pre><code>## Error in detach(xlsx): invalid &#39;name&#39; argument</code></pre>
 <p>Try to read again the file coli_genomes_renamed.csv that we saved in
-the previous lesson and save it ready for MS Excel.</p>
+the previous lesson (<a href="Lesson_9_input_output/9_input_output.html#save">here</a>) and save
+it ready for MS Excel.</p>
 <pre class="r"><code># open it again
 coli_genomes &lt;- read.csv2(file = &quot;data/coli_genomes_renamed.csv&quot;)
 # save
@@ -2870,9 +2873,11 @@ the package with the prefix <code>ggplot::</code> for all the required
 functions (see Lesson 13).</p>
 <pre class="r"><code># example1, package getwiki
 install.packages(&quot;getwiki&quot;)</code></pre>
+<pre><code>## Installing package into &#39;/Users/modesto/Library/R/x86_64/4.2/library&#39;
+## (as &#39;lib&#39; is unspecified)</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//Rtmp5LwzH4/downloaded_packages</code></pre>
+##  /var/folders/6z/hz95tt497dgd98vmjzfch5nw0000gn/T//Rtmp9nVz5t/downloaded_packages</code></pre>
 <pre class="r"><code>vignette(&quot;getwiki&quot;)
 DNA &lt;- getwiki::search_wiki(&quot;DNA&quot;)
 str(DNA)</code></pre>
@@ -2881,10 +2886,10 @@ str(DNA)</code></pre>
 ##  $ content: chr  &quot;A-DNA is one of the possible double helical structures which DNA can adopt. A-DNA is thought to be one of three&quot;| __truncated__ &quot;Circular DNA is DNA that forms a closed loop and has no ends.  Examples include:Plasmids, mobile genetic elemen&quot;| __truncated__ &quot;Deoxyribonucleic acid ( (listen); DNA) is a polymer composed of two polynucleotide chains that coil around each&quot;| __truncated__ &quot;DNA (deoxyribonucleic acid) is a molecule encoding the genetic instructions for life.DNA may also refer to:&quot; ...</code></pre>
 <pre class="r"><code>DNA$titles</code></pre>
 <pre><code>##  [1] &quot;A-DNA&quot;                 &quot;Circular DNA&quot;          &quot;DNA&quot;                  
-##  [4] &quot;DNA (disambiguation)&quot;  &quot;DNA Films&quot;             &quot;DNA extraction&quot;       
-##  [7] &quot;DNA footprinting&quot;      &quot;DNA ligase&quot;            &quot;DNA methylation&quot;      
-## [10] &quot;DNA polymerase&quot;        &quot;DNA profiling&quot;         &quot;DNA replication&quot;      
-## [13] &quot;DNA sequencing&quot;        &quot;DNA vaccine&quot;           &quot;DNA virus&quot;            
+##  [4] &quot;DNA (disambiguation)&quot;  &quot;DNA (duo)&quot;             &quot;DNA Films&quot;            
+##  [7] &quot;DNA extraction&quot;        &quot;DNA ligase&quot;            &quot;DNA methylation&quot;      
+## [10] &quot;DNA profiling&quot;         &quot;DNA repair&quot;            &quot;DNA replication&quot;      
+## [13] &quot;DNA sequencing&quot;        &quot;DNA supercoil&quot;         &quot;DNA virus&quot;            
 ## [16] &quot;DNA²&quot;                  &quot;DNA–DNA hybridization&quot; &quot;DnaA&quot;                 
 ## [19] &quot;Mitochondrial DNA&quot;     &quot;Recombinant DNA&quot;</code></pre>
 <pre class="r"><code># example2, package ggplot2
@@ -3297,23 +3302,48 @@ obtain the translated sequence.</p></li>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] ggplot2_3.3.6 xlsx_0.6.5    formatR_1.12  knitr_1.40   
+## [1] ggplot2_3.4.0 xlsx_0.6.5    formatR_1.12  knitr_1.41   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] highr_0.9        bslib_0.4.0      compiler_4.2.2   pillar_1.8.1    
+##  [1] highr_0.9        bslib_0.4.1      compiler_4.2.2   pillar_1.8.1    
 ##  [5] jquerylib_0.1.4  tools_4.2.2      digest_0.6.30    jsonlite_1.8.3  
-##  [9] evaluate_0.17    lifecycle_1.0.3  tibble_3.1.8     gtable_0.3.1    
-## [13] pkgconfig_2.0.3  rlang_1.0.6      cli_3.4.1        rstudioapi_0.14 
-## [17] getwiki_0.9.0    yaml_2.3.6       xfun_0.34        fastmap_1.1.0   
-## [21] rJava_1.0-6      withr_2.5.0      dplyr_1.0.10     stringr_1.4.1   
-## [25] generics_0.1.3   xlsxjars_0.6.1   sass_0.4.2       vctrs_0.5.0     
-## [29] tidyselect_1.2.0 grid_4.2.2       glue_1.6.2       R6_2.5.1        
-## [33] fansi_1.0.3      rmarkdown_2.17   farver_2.1.1     magrittr_2.0.3  
-## [37] scales_1.2.1     htmltools_0.5.3  colorspace_2.0-3 labeling_0.4.2  
-## [41] utf8_1.2.2       stringi_1.7.8    munsell_0.5.0    cachem_1.0.6</code></pre>
+##  [9] evaluate_0.18    lifecycle_1.0.3  tibble_3.1.8     gtable_0.3.1    
+## [13] pkgconfig_2.0.3  rlang_1.0.6      DBI_1.1.3        cli_3.4.1       
+## [17] rstudioapi_0.14  getwiki_0.9.0    yaml_2.3.6       xfun_0.35       
+## [21] fastmap_1.1.0    rJava_1.0-6      withr_2.5.0      dplyr_1.0.10    
+## [25] stringr_1.4.1    generics_0.1.3   xlsxjars_0.6.1   sass_0.4.4      
+## [29] vctrs_0.5.1      tidyselect_1.2.0 grid_4.2.2       glue_1.6.2      
+## [33] R6_2.5.1         fansi_1.0.3      rmarkdown_2.18   farver_2.1.1    
+## [37] magrittr_2.0.3   scales_1.2.1     htmltools_0.5.3  assertthat_0.2.1
+## [41] colorspace_2.0-3 labeling_0.4.2   utf8_1.2.2       stringi_1.7.8   
+## [45] munsell_0.5.0    cachem_1.0.6</code></pre>
 </div>
 <div id="course-home" class="section level1">
 <h1><a href="https://mredrejo.github.io/HPBBM2022/">Course home</a></h1>
+<div id="lesson-9-data-input-and-output-in-r" class="section level3">
+<h3><a href="Lesson_9_input_output/9_input_output.html">Lesson 9: Data
+input and output in R</a></h3>
+</div>
+<div id="lesson-11-plots" class="section level3">
+<h3><a href="Lesson_11_plots/11_basicplotting.html">Lesson 11:
+Plots</a></h3>
+</div>
+<div id="lesson-12-data-management" class="section level3">
+<h3><a href="Lesson_12_data_management/12_adv_data_management.html">Lesson 12:
+Data management</a></h3>
+</div>
+<div id="lesson-13-advanced-plots-with-ggplot" class="section level3">
+<h3><a href="Lesson_13_ggplot/13_ggplotting.html">Lesson 13: Advanced
+plots with ggplot</a></h3>
+</div>
+<div id="lesson-14-applications-for-molecular-biology" class="section level3">
+<h3><a href="Lesson_14_R_for_molbiol/14_R4bqbm.html">Lesson 14:
+Applications for Molecular Biology</a></h3>
+</div>
+<div id="extra-lesson-introduction-to-r-projects-r-markdown-and-quarto." class="section level3">
+<h3><a href="Lesson_E_markdown/E_markdown.html">Extra Lesson:
+Introduction to R projects, R Markdown and Quarto.</a></h3>
+</div>
 </div>
 
 

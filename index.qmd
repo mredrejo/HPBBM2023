@@ -30,7 +30,7 @@ Also, it is likely that you find some mistypes or even some big mistakes through
 
 ## [Bibliography and Resources]{style="color:cornflowerblue"}
 
-Each lesson contains its own recommended resources, but I wanted to highlight here some curated general open access and open source resources to introduce you into R and R Studio.
+Each lesson contains its own specific references, but I wanted to highlight here some curated general open access and open source resources to introduce yourself into R and R Studio.
 
 -   Grolemund, G. [*Hands-on Programming in R*](https://rstudio-education.github.io/)*.*
 
