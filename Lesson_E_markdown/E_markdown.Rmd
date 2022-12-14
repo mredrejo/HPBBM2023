@@ -126,14 +126,14 @@ sessionInfo()
 
 # [Course home](https://mredrejo.github.io/HPBBM2022/)
 
-### [Lesson 9: Data input and output in R](Lesson_9_input_output/9_input_output.html)
+### [Lesson 9: Data input and output in R](../Lesson_9_input_output/9_input_output.html)
 
-### [Lesson 10: Write your own functions](Lesson_10_Functions/10_Functions.html)
+### [Lesson 10: Write your own functions](../Lesson_10_Functions/10_Functions.html)
 
-### [Lesson 11: Plots](Lesson_11_plots/11_basicplotting.html)
+### [Lesson 11: Plots](../Lesson_11_plots/11_basicplotting.html)
 
-### [Lesson 12: Data management](Lesson_12_data_management/12_adv_data_management.html)
+### [Lesson 12: Data management](../Lesson_12_data_management/12_adv_data_management.html)
 
-### [Lesson 13: Advanced plots with ggplot](Lesson_13_ggplot/13_ggplotting.html)
+### [Lesson 13: Advanced plots with ggplot](../Lesson_13_ggplot/13_ggplotting.html)
 
-### [Lesson 14: Applications for Molecular Biology](Lesson_14_R_for_molbiol/14_R4bqbm.html)
+### [Lesson 14: Applications for Molecular Biology](../Lesson_14_R_for_molbiol/14_R4bqbm.html)
