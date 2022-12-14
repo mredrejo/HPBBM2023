@@ -1,6 +1,7 @@
 ---
 title: "HPBBM2022"
 author: "Modesto"
+date: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 toc: true
 
 format:
@@ -13,9 +14,9 @@ editor: visual
 
 ## [Wellcome & Disclaimer]{style="color:cornflowerblue"}
 
-This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@UAM. These materials are available on a [GitHub repo](https://github.com/mredrejo/HPBBM2022). Detailed academic information about the course contents, dates and assessment only can be found at the UAM Moodle site.
+This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). Detailed academic information about the course contents, dates and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/).
 
-This site contains *R Markdown Notebooks*. When you "knit" the report, R Studio will execute the code within each chunk in the notebook and the results appear beneath the code in the output file (usually HTML or PDF). Check also <https://bookdown.org/yihui/rmarkdown-cookbook/spin.html> for more info about how to use Notebooks and Markdown. Markdown recently evolved to **Quarto**, which has increased capabilities. To learn more about Quarto see <https://quarto.org>. We will discuss about the use of R Projects, R Markdown and Quarto at the end of this course.
+This site is on a [GitHub repo](https://github.com/mredrejo/HPBBM2022), containing the source *R Markdown files*. When you "knit" the report, R Studio will execute the code within each chunk in the notebook and the results appear beneath the code in the output file (usually HTML or PDF). Check also <https://bookdown.org/yihui/rmarkdown-cookbook/spin.html> for more info about how to use Notebooks and Markdown. Markdown recently evolved to **Quarto**, which has increased capabilities. To learn more about Quarto see <https://quarto.org>. Check also the [final lesson](Lesson_E_markdown/E_markdown.html) of this course.
 
 All this material is open access and it is shared under [CC BY-NC](https://creativecommons.org/licenses/by-nc/2.0/) license.
 
@@ -23,9 +24,9 @@ All this material is open access and it is shared under [CC BY-NC](https://creat
 ## Under construction
 :::
 
-This is the first complete draft of this site, but it is intended to be expanded and corrected throughout the next weeks. Any feedback, help, or suggestions will be very warmly welcome.
+This is the first complete draft of this site, but it is intended to be expanded and corrected throughout the next weeks and new versions will be available the following years. Any feedback, help, or suggestions will be very warmly welcome.
 
-Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I and the future students will appreciate it if you let me know about anything that could be corrected or just improved.
+Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I, and the future students, will appreciate it if you let me know about anything that could be corrected or just improved. You can reach me by [email](mailto::modesto.redrejo@uam.es) or [![](index_files/tw.png "@mredrejo"){width="14" height="11"} Twitter](https://twitter.com/mredrejo "Twitter").
 
 ## [Contents]{style="color:cornflowerblue"}
 
