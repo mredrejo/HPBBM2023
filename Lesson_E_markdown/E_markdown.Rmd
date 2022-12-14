@@ -96,7 +96,11 @@ Besides the references below, I suggest you to check these [examples](https://qu
 
 2.  RStudio Projects: <https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects>
 
-3.  Version control in R (Spanish): <https://swcarpentry.github.io/git-novice-es/14-supplemental-rstudio/>
+3.  Version control in R (Spanish):
+
+    -   <https://swcarpentry.github.io/git-novice-es/14-supplemental-rstudio/>
+
+    -   <https://rstudio-pubs-static.s3.amazonaws.com/500747_14d4ccd16023430d82d175bae0d2f5a6.html>
 
 4.  R Markdown Cheat Sheet: <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
 

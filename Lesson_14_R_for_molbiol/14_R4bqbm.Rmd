@@ -18,6 +18,29 @@ library(formatR)
 opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
 knitr::opts_knit$set(root.dir = "/Users/modesto/data/HPBBM2022")
 options(repos = list(CRAN="http://cran.rstudio.com/")) #this is to avoid error in install.packages() at knitting
+
+
+hook_output <- knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  lines <- options$output.lines
+  if (is.null(lines)) {
+    return(hook_output(x, options))  # pass to default hook
+  }
+  x <- unlist(strsplit(x, "\n"))
+  more <- "..."
+  if (length(lines)==1) {        # first n lines
+    if (length(x) > lines) {
+      # truncate the output, but add ....
+      x <- c(head(x, lines), more)
+    }
+  } else {
+    x <- c(more, x[lines], more)
+  }
+  # paste these lines together
+  x <- paste(c(x, ""), collapse = "\n")
+  hook_output(x, options)
+})
+
 ```
 
 # [Wellcome & Disclaimer]{style="color:cornflowerblue"}
@@ -47,7 +70,7 @@ head(grep("ase", proteome,value=TRUE,ignore.case=TRUE)) #lower- & uppercase
 #extract names
 fastanames <- proteome[grep(proteome, pattern=">")] #extract the names of the sequences
 #remove some pattern
-sub(">","",grep("ase", proteome,value=TRUE,ignore.case=TRUE)) 
+head(sub(">","",grep("ase", proteome,value=TRUE,ignore.case=TRUE)) ,20)
 
 # regexpr returns the indices of the string where the match begins and the length of the match
 (r <- regexpr("(.*)DNA(.*)",fastanames[1:200])) #find all the lines with "DNA" (only 200 lines to don't make it too long)
@@ -68,14 +91,20 @@ The use or regular expressions is very convenient for some quick overview of the
 
 In the following example, we are reading the same protein multifasta and we will obtain basic statistics, subset and save fasta sequences using *SeqinR (=seqinr)*.
 
-```{r}
+NOTE: From this point on, we will show only the first 25 lines of the output of some code chunks (you will notice that the output starts and ends with ***...***). Otherwise, this document is very long and difficult to follow. Run the code yourself to see the full returned output.
+
+```{r output.lines=(1:25)}
 #reading fasta and playing with it
 #install.packages("seqinr")
 library(seqinr)
 prots <- read.fasta("data/HER1410.fasta")
 str(prots)
-prots[[1]]
 getName(prots)
+```
+
+```{r }
+prots[[1]]
+
 seq <- getSequence(prots[[1]])
 getName(prots[[1]])
 paste(seq, collapse= "")
@@ -110,7 +139,7 @@ Once you read the fasta, you can extract the headline name with `getName()` or t
 
 Finally, as in the example below, you can also play with a nucleotide sequence and obtain some useful data, like the `GC()` content, the encoded proteins or the reverse complementary sequence with `rev()` and `comp()`, respectively.
 
-```{r}
+```{r }
 #now the nt sequence
 plasmid_nt <- read.fasta("data/HER1410nt.fasta")
 
@@ -119,7 +148,11 @@ count(unlist(plasmid_nt),5)
 
 uco(plasmid_nt[[1]],frame=0)
 uco(plasmid_nt[[1]],frame=2)
+```
+```{r output.lines=(1:25)}
 translate(plasmid_nt[[1]])
+```
+```{r }
 GC(plasmid_nt[[1]])
 plasmid_nt[[1]][1:100]
 comp(plasmid_nt[[1]][1:100])
@@ -147,7 +180,7 @@ Like *seqinr*, other R packages allow accessing to NCBI and other databases, inc
 
 `rentrez` is an R package that helps users query the NCBI's databases to download diverse type of data and metadata, including sequences or research papers.
 
-```{r}
+```{r }
 install.packages("rentrez")
 library(rentrez)
 (pols <- entrez_search(db = "pubmed", term = "DNA polymerase") )
@@ -159,7 +192,7 @@ Gon$ids #now kept 100
 her1410 <- entrez_search(db = "nuccore", term = "HER1410") 
 her1410$ids
 her1410_1 <- entrez_fetch(db="nuccore", id=her1410$ids[1], rettype="fasta")
-her1410_1
+head(her1410_1)
 class(her1410_1)
 dim(her1410_1)
 length(her1410_1)
@@ -252,7 +285,7 @@ I recommend you to check the examples in the [reference 9](#ref9) below and othe
 
 #### 2-. It plots the nucleotide composition (% of A, C, G and T) and the amino acids frequencies in the 6 possible frames.
 
-#### 3-. It should also download the protein sequences with that name and count the number of enzymes (you can use *ase* as keyword) and the number orfans (*hypothetical protein*). 
+#### 3-. It should also download the protein sequences with that name and count the number of enzymes (you can use *ase* as keyword) and the number orfans (*hypothetical protein*).
 
 #### Test your function with the nucleotide sequences of the plasmids pSE-12228-03 and pCERC7.
 
