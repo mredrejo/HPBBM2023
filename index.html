@@ -2,22 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.318">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Modesto">
-<meta name="dcterms.date" content="2022-12-14">
+<meta name="dcterms.date" content="2023-01-05">
 
 <title>HPBBM2022</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
+
 
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
 <script src="index_files/libs/quarto-html/quarto.js"></script>
@@ -25,10 +31,10 @@ ul.task-list{list-style: none;}
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="index_files/libs/quarto-html/anchor.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link id="quarto-text-highlighting-styles" href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -37,7 +43,7 @@ ul.task-list{list-style: none;}
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc">
+  <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -45,13 +51,13 @@ ul.task-list{list-style: none;}
   <li><a href="#bibliography-and-resources" id="toc-bibliography-and-resources" class="nav-link" data-scroll-target="#bibliography-and-resources"><span style="color:cornflowerblue">Bibliography and Resources</span></a></li>
   <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents"><span style="color:cornflowerblue">Contents</span></a>
   <ul class="collapse">
-  <li><a href="#lesson-9-data-input-and-output-in-r" id="toc-lesson-9-data-input-and-output-in-r" class="nav-link" data-scroll-target="#lesson-9-data-input-and-output-in-r"><span>Lesson 9: Data input and output in R</span></a></li>
-  <li><a href="#lesson-10-write-your-own-functions" id="toc-lesson-10-write-your-own-functions" class="nav-link" data-scroll-target="#lesson-10-write-your-own-functions"><span>Lesson 10: Write your own functions</span></a></li>
-  <li><a href="#lesson-11-plots" id="toc-lesson-11-plots" class="nav-link" data-scroll-target="#lesson-11-plots"><span>Lesson 11: Plots</span></a></li>
-  <li><a href="#lesson-12-data-management" id="toc-lesson-12-data-management" class="nav-link" data-scroll-target="#lesson-12-data-management"><span>Lesson 12: Data management</span></a></li>
-  <li><a href="#lesson-13-advanced-plots-with-ggplot" id="toc-lesson-13-advanced-plots-with-ggplot" class="nav-link" data-scroll-target="#lesson-13-advanced-plots-with-ggplot"><span>Lesson 13: Advanced plots with ggplot</span></a></li>
-  <li><a href="#lesson-14-applications-for-molecular-biology" id="toc-lesson-14-applications-for-molecular-biology" class="nav-link" data-scroll-target="#lesson-14-applications-for-molecular-biology"><span>Lesson 14: Applications for Molecular Biology</span></a></li>
-  <li><a href="#extra-lesson-introduction-to-r-projects-r-markdown-and-quarto." id="toc-extra-lesson-introduction-to-r-projects-r-markdown-and-quarto." class="nav-link" data-scroll-target="#extra-lesson-introduction-to-r-projects-r-markdown-and-quarto."><span>Extra Lesson: Introduction to R projects, R Markdown and Quarto.</span></a></li>
+  <li><a href="#lesson-9-data-input-and-output-in-r" id="toc-lesson-9-data-input-and-output-in-r" class="nav-link" data-scroll-target="#lesson-9-data-input-and-output-in-r">Lesson 9: Data input and output in R</a></li>
+  <li><a href="#lesson-10-write-your-own-functions" id="toc-lesson-10-write-your-own-functions" class="nav-link" data-scroll-target="#lesson-10-write-your-own-functions">Lesson 10: Write your own functions</a></li>
+  <li><a href="#lesson-11-plots" id="toc-lesson-11-plots" class="nav-link" data-scroll-target="#lesson-11-plots">Lesson 11: Plots</a></li>
+  <li><a href="#lesson-12-data-management" id="toc-lesson-12-data-management" class="nav-link" data-scroll-target="#lesson-12-data-management">Lesson 12: Data management</a></li>
+  <li><a href="#lesson-13-advanced-plots-with-ggplot" id="toc-lesson-13-advanced-plots-with-ggplot" class="nav-link" data-scroll-target="#lesson-13-advanced-plots-with-ggplot">Lesson 13: Advanced plots with ggplot</a></li>
+  <li><a href="#lesson-14-applications-for-molecular-biology" id="toc-lesson-14-applications-for-molecular-biology" class="nav-link" data-scroll-target="#lesson-14-applications-for-molecular-biology">Lesson 14: Applications for Molecular Biology</a></li>
+  <li><a href="#extra-lesson-introduction-to-r-projects-r-markdown-and-quarto." id="toc-extra-lesson-introduction-to-r-projects-r-markdown-and-quarto." class="nav-link" data-scroll-target="#extra-lesson-introduction-to-r-projects-r-markdown-and-quarto.">Extra Lesson: Introduction to R projects, R Markdown and Quarto.</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -62,8 +68,6 @@ ul.task-list{list-style: none;}
 <div class="quarto-title">
 <h1 class="title">HPBBM2022</h1>
 </div>
-
-
 
 
 
@@ -79,9 +83,10 @@ ul.task-list{list-style: none;}
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 14, 2022</p>
+      <p class="date">January 5, 2023</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -90,8 +95,12 @@ ul.task-list{list-style: none;}
 
 <section id="wellcome-disclaimer" class="level2">
 <h2 class="anchored" data-anchor-id="wellcome-disclaimer"><span style="color:cornflowerblue">Wellcome &amp; Disclaimer</span></h2>
-<p>This site contains the materials for the <em>Coding tools for Biochemistry &amp; Molecular Biology</em> (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor’s Degree in Biochemistry @<a href="www.uam.es">UAM</a> (Universidad Autónoma de Madrid, Spain). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lesson (Lesson 8) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the <a href="https://moodle.uam.es/">UAM Moodle site</a>.</p>
-<p>Each lesson contains <span style="color:green"><em>R challenges or exercises</em></span>, some of them from freely available online solved exercises and others that I created. The answers to the latter are not available online, but I’ll be glad to provide them upon request.</p>
+<div id="p" style="float: left; position: relative; top: 0px; padding: 0px;">
+<p>This site contains the materials for the <em>Coding tools for Biochemistry &amp; Molecular Biology</em> (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor’s Degree in Biochemistry @<a href="www.uam.es">UAM</a> (Universidad Autónoma de Madrid, Spain). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lesson (Lesson 8) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the <a href="https://moodle.uam.es/">UAM Moodle site</a>. Each lesson contains <span style="color:green"><em>R challenges or exercises</em></span>, some of them from freely available online solved exercises and others that I created. The answers to the latter are not available online, but I’ll be glad to provide them upon request.</p>
+</div>
+<div style="float: right; position: relative; top: 0px; padding: 3px;">
+<p><img src="HPBBM2022.png" class="img-fluid" width="209"></p>
+</div>
 <p>This site is on a <a href="https://github.com/mredrejo/HPBBM2022">GitHub repo</a>, containing the source <em>R Markdown files</em> and the data used in the examples and exercises. You can use <a href="https://yehonal.github.io/DownGit/#/home">DownGit</a> links to download specific folders in a Zip file, like the <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data">data</a> folder. When you “knit” the report, R Studio will execute the code within each chunk in the notebook and the results appear beneath the code in the output file (usually HTML or PDF). Check also <a href="https://bookdown.org/yihui/rmarkdown-cookbook/spin.html" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/spin.html</a> for more info about how to use Notebooks and Markdown. Markdown recently evolved to <strong>Quarto</strong>, which has increased capabilities. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>. Check also the <a href="Lesson_E_markdown/E_markdown.html">final lesson</a> of this course.</p>
 <p>All this material is open access and it is shared under <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC BY-NC</a> license.</p>
 <div class="callout-warning callout callout-style-default callout-captioned">
@@ -149,8 +158,26 @@ Under construction
 
 </main>
 <!-- /main column -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -172,7 +199,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -200,31 +244,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -232,7 +295,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
