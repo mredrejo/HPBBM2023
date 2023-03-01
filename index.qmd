@@ -1,7 +1,12 @@
 ---
 title: "HPBBM2022"
-author: "Modesto"
-date: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+author: 
+  - name: Modesto
+    url: https://mredrejo.github.io/rnrlab
+    affiliation: Department of Biochemistry, UAM
+    affiliation_url: https://www.uam.es/
+date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+
 toc: true
 
 format:
@@ -12,18 +17,17 @@ format:
 editor: visual
 ---
 
+> There are only two kinds of programming languages: the ones people complain about and the ones nobody uses. ---*Bjarne Stroustrup*
+
 ## [Wellcome & Disclaimer]{style="color:cornflowerblue"}
 
 ::: {#p style="float: left; position: relative; top: 0px; padding: 0px;"}
-This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lesson (Lesson 8) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/).
-Each lesson contains [*R challenges or exercises*]{style="color:green"}, some of them from freely available online solved exercises and others that I created. The answers to the latter are not available online, but I'll be glad to provide them upon request.
+This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lesson (Lesson 8) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/). Each lesson contains [*R challenges or exercises*]{style="color:green"}, some of them from freely available online solved exercises and others that I created. The answers to the latter are not available online, but I'll be glad to provide them upon request.
 :::
 
 ::: {style="float: right; position: relative; top: 0px; padding: 3px;"}
 ![](HPBBM2022.png){width="209"}
 :::
-
-
 
 This site is on a [GitHub repo](https://github.com/mredrejo/HPBBM2022), containing the source *R Markdown files* and the data used in the examples and exercises. You can use [DownGit](https://yehonal.github.io/DownGit/#/home) links to download specific folders in a Zip file, like the [data](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data) folder. When you "knit" the report, R Studio will execute the code within each chunk in the notebook and the results appear beneath the code in the output file (usually HTML or PDF). Check also <https://bookdown.org/yihui/rmarkdown-cookbook/spin.html> for more info about how to use Notebooks and Markdown. Markdown recently evolved to **Quarto**, which has increased capabilities. To learn more about Quarto see <https://quarto.org>. Check also the [final lesson](Lesson_E_markdown/E_markdown.html) of this course.
 
