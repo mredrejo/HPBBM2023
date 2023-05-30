@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Modesto">
 
-<title>HPBBM2022</title>
+<title>HPBBM2023</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,12 +50,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#bibliography-and-resources" id="toc-bibliography-and-resources" class="nav-link" data-scroll-target="#bibliography-and-resources"><span style="color:cornflowerblue">Bibliography and Resources</span></a></li>
   <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents"><span style="color:cornflowerblue">Contents</span></a>
   <ul class="collapse">
-  <li><a href="#lesson-9-data-input-and-output-in-r" id="toc-lesson-9-data-input-and-output-in-r" class="nav-link" data-scroll-target="#lesson-9-data-input-and-output-in-r">Lesson 9: Data input and output in R</a></li>
-  <li><a href="#lesson-10-write-your-own-functions" id="toc-lesson-10-write-your-own-functions" class="nav-link" data-scroll-target="#lesson-10-write-your-own-functions">Lesson 10: Write your own functions</a></li>
-  <li><a href="#lesson-11-plots" id="toc-lesson-11-plots" class="nav-link" data-scroll-target="#lesson-11-plots">Lesson 11: Plots</a></li>
-  <li><a href="#lesson-12-data-management" id="toc-lesson-12-data-management" class="nav-link" data-scroll-target="#lesson-12-data-management">Lesson 12: Data management</a></li>
-  <li><a href="#lesson-13-advanced-plots-with-ggplot" id="toc-lesson-13-advanced-plots-with-ggplot" class="nav-link" data-scroll-target="#lesson-13-advanced-plots-with-ggplot">Lesson 13: Advanced plots with ggplot</a></li>
-  <li><a href="#lesson-14-applications-for-molecular-biology" id="toc-lesson-14-applications-for-molecular-biology" class="nav-link" data-scroll-target="#lesson-14-applications-for-molecular-biology">Lesson 14: Applications for Molecular Biology</a></li>
+  <li><a href="#lesson-r3-data-input-and-output-in-r" id="toc-lesson-r3-data-input-and-output-in-r" class="nav-link" data-scroll-target="#lesson-r3-data-input-and-output-in-r">Lesson R3: Data input and output in R</a></li>
+  <li><a href="#lesson-r4-write-your-own-functions" id="toc-lesson-r4-write-your-own-functions" class="nav-link" data-scroll-target="#lesson-r4-write-your-own-functions">Lesson R4: Write your own functions</a></li>
+  <li><a href="#lesson-r5-plots" id="toc-lesson-r5-plots" class="nav-link" data-scroll-target="#lesson-r5-plots">Lesson R5: Plots</a></li>
+  <li><a href="#lesson-r6-data-management" id="toc-lesson-r6-data-management" class="nav-link" data-scroll-target="#lesson-r6-data-management">Lesson R6: Data management</a></li>
+  <li><a href="#lesson-r7-advanced-plots-with-ggplot" id="toc-lesson-r7-advanced-plots-with-ggplot" class="nav-link" data-scroll-target="#lesson-r7-advanced-plots-with-ggplot">Lesson R7: Advanced plots with ggplot</a></li>
+  <li><a href="#lesson-r8-applications-for-molecular-biology" id="toc-lesson-r8-applications-for-molecular-biology" class="nav-link" data-scroll-target="#lesson-r8-applications-for-molecular-biology">Lesson R8: Applications for Molecular Biology</a></li>
   <li><a href="#extra-lesson-introduction-to-r-projects-r-markdown-and-quarto." id="toc-extra-lesson-introduction-to-r-projects-r-markdown-and-quarto." class="nav-link" data-scroll-target="#extra-lesson-introduction-to-r-projects-r-markdown-and-quarto.">Extra Lesson: Introduction to R projects, R Markdown and Quarto.</a></li>
   </ul></li>
   </ul>
@@ -65,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HPBBM2022</h1>
+<h1 class="title">HPBBM2023</h1>
 </div>
 
 
@@ -90,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">January 12, 2023</p>
+      <p class="date-modified">May 30, 2023</p>
     </div>
   </div>
     
@@ -105,12 +105,14 @@ ul.task-list li input[type="checkbox"] {
 <section id="wellcome-disclaimer" class="level2">
 <h2 class="anchored" data-anchor-id="wellcome-disclaimer"><span style="color:cornflowerblue">Wellcome &amp; Disclaimer</span></h2>
 <div id="p" style="float: left; position: relative; top: 0px; padding: 0px;">
-<p>This site contains the materials for the <em>Coding tools for Biochemistry &amp; Molecular Biology</em> (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor’s Degree in Biochemistry @<a href="www.uam.es">UAM</a> (Universidad Autónoma de Madrid, Spain). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lesson (Lesson 8) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the <a href="https://moodle.uam.es/">UAM Moodle site</a>. Each lesson contains <span style="color:green"><em>R challenges or exercises</em></span>, some of them from freely available online solved exercises and others that I created. The answers to the latter are not available online, but I’ll be glad to provide them upon request.</p>
+<p>This site contains the materials for the <em>Coding tools for Biochemistry &amp; Molecular Biology</em> (Herramientas de Programación para Bioquímica y Biología Molecular, aka <strong>HPBBM</strong>) course of fall 2023 in the Bachelor’s Degree in Biochemistry @<a href="www.uam.es">UAM</a> (Universidad Autónoma de Madrid, Spain). Materials from last year are avilable in the <a href="https://mredrejo.github.io/HPBBM2022/">HPBBM2022 site</a> and <a href="https://github.com/mredrejo/HPBBM2022">GitHub repo</a>.</p>
+<p>The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lessons (Lessons R1 &amp; R2) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the <a href="https://moodle.uam.es/">UAM Moodle site</a>.</p>
+<p>Each lesson contains <span style="color:green"><em>R challenges or exercises</em></span>, some of them from freely available online solved exercises and others that I created. The answers to the latter are not available online, but I’ll be glad to provide them upon request.</p>
 </div>
 <div style="float: right; position: relative; top: 0px; padding: 3px;">
-<p><img src="HPBBM2022.png" class="img-fluid" width="209"></p>
+<p><img src="HPBBM2023.png" class="img-fluid" width="228"></p>
 </div>
-<p>This site is on a <a href="https://github.com/mredrejo/HPBBM2022">GitHub repo</a>, containing the source <em>R Markdown files</em> and the data used in the examples and exercises. You can use <a href="https://yehonal.github.io/DownGit/#/home">DownGit</a> links to download specific folders in a Zip file, like the <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data">data</a> folder. When you “knit” the report, R Studio will execute the code within each chunk in the notebook and the results appear beneath the code in the output file (usually HTML or PDF). Check also <a href="https://bookdown.org/yihui/rmarkdown-cookbook/spin.html" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/spin.html</a> for more info about how to use Notebooks and Markdown. Markdown recently evolved to <strong>Quarto</strong>, which has increased capabilities. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>. Check also the <a href="Lesson_E_markdown/E_markdown.html">final lesson</a> of this course.</p>
+<p>This site is on a <a href="https://github.com/mredrejo/HPBBM2023">GitHub repo</a>, containing the source <em>R Markdown files</em> and the data used in the examples and exercises. You can use <a href="https://yehonal.github.io/DownGit/#/home">DownGit</a> links to download specific folders in a Zip file, like the <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data">data</a> folder. When you “knit” the report, R Studio will execute the code within each chunk in the notebook and the results appear beneath the code in the output file (usually HTML or PDF). Check also <a href="https://bookdown.org/yihui/rmarkdown-cookbook/spin.html" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/spin.html</a> for more info about how to use Notebooks and Markdown. Markdown recently evolved to <strong>Quarto</strong>, which has increased capabilities. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>. Check also the <a href="Lesson_E_markdown/E_markdown.html">final lesson</a> of this course.</p>
 <p>All this material is open access and it is shared under <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC BY-NC</a> license.</p>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -142,23 +144,23 @@ Under construction
 </section>
 <section id="contents" class="level2">
 <h2 class="anchored" data-anchor-id="contents"><span style="color:cornflowerblue">Contents</span></h2>
-<section id="lesson-9-data-input-and-output-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-9-data-input-and-output-in-r"><a href="Lesson_9_input_output/9_input_output.html">Lesson 9: Data input and output in R</a></h3>
+<section id="lesson-r3-data-input-and-output-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-r3-data-input-and-output-in-r"><a href="Lesson_9_input_output/9_input_output.html">Lesson R3: Data input and output in R</a></h3>
 </section>
-<section id="lesson-10-write-your-own-functions" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-10-write-your-own-functions"><a href="Lesson_10_Functions/10_Functions.html">Lesson 10: Write your own functions</a></h3>
+<section id="lesson-r4-write-your-own-functions" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-r4-write-your-own-functions"><a href="Lesson_10_Functions/10_Functions.html">Lesson R4: Write your own functions</a></h3>
 </section>
-<section id="lesson-11-plots" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-11-plots"><a href="Lesson_11_plots/11_basicplotting.html">Lesson 11: Plots</a></h3>
+<section id="lesson-r5-plots" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-r5-plots"><a href="Lesson_11_plots/11_basicplotting.html">Lesson R5: Plots</a></h3>
 </section>
-<section id="lesson-12-data-management" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-12-data-management"><a href="Lesson_12_data_management/12_adv_data_management.html">Lesson 12: Data management</a></h3>
+<section id="lesson-r6-data-management" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-r6-data-management"><a href="Lesson_12_data_management/12_adv_data_management.html">Lesson R6: Data management</a></h3>
 </section>
-<section id="lesson-13-advanced-plots-with-ggplot" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-13-advanced-plots-with-ggplot"><a href="Lesson_13_ggplot/13_ggplotting.html">Lesson 13: Advanced plots with ggplot</a></h3>
+<section id="lesson-r7-advanced-plots-with-ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-r7-advanced-plots-with-ggplot"><a href="Lesson_13_ggplot/13_ggplotting.html">Lesson R7: Advanced plots with ggplot</a></h3>
 </section>
-<section id="lesson-14-applications-for-molecular-biology" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-14-applications-for-molecular-biology"><a href="Lesson_14_R_for_molbiol/14_R4bqbm.html">Lesson 14: Applications for Molecular Biology</a></h3>
+<section id="lesson-r8-applications-for-molecular-biology" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-r8-applications-for-molecular-biology"><a href="Lesson_14_R_for_molbiol/14_R4bqbm.html">Lesson R8: Applications for Molecular Biology</a></h3>
 </section>
 <section id="extra-lesson-introduction-to-r-projects-r-markdown-and-quarto." class="level3">
 <h3 class="anchored" data-anchor-id="extra-lesson-introduction-to-r-projects-r-markdown-and-quarto."><a href="Lesson_E_markdown/E_markdown.html">Extra Lesson: Introduction to R projects, R Markdown and Quarto.</a></h3>
