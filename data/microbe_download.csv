@@ -1,0 +1,66 @@
+Location,Age,Sex,Measure,Metric,Pathogen,Pathogen Type,Infectious syndrome,Counterfactual,Year,Value,Upper,Lower
+Global,All Ages,Both sexes,Deaths,Number,Escherichia coli,Bacteria,All infectious syndromes,Associated,2019,828589.226715106,1116865.0468929708,600869.0340991885
+Global,All Ages,Both sexes,Deaths,Number,Staphylococcus aureus,Bacteria,All infectious syndromes,Associated,2019,748410.1654542991,1002944.1575426058,553691.6699000844
+Global,All Ages,Both sexes,Deaths,Number,Klebsiella pneumoniae,Bacteria,All infectious syndromes,Associated,2019,641703.1861293293,863301.723038044,465321.6053346201
+Global,All Ages,Both sexes,Deaths,Number,Streptococcus pneumoniae,Bacteria,All infectious syndromes,Associated,2019,596153.2273330095,726811.466879573,490039.9376848491
+Global,All Ages,Both sexes,Deaths,Number,Acinetobacter baumannii,Bacteria,All infectious syndromes,Associated,2019,423370.5471984872,646925.715043771,252119.45830745363
+Global,All Ages,Both sexes,Deaths,Number,Pseudomonas aeruginosa,Bacteria,All infectious syndromes,Associated,2019,334342.5459838624,457259.6790545829,234231.31164437789
+Global,All Ages,Both sexes,Deaths,Number,Mycobacterium tuberculosis,Bacteria,All infectious syndromes,Associated,2019,204235.9379249349,303223.666319628,133799.2624709007
+Global,All Ages,Both sexes,Deaths,Number,Enterococcus faecium,Bacteria,All infectious syndromes,Associated,2019,199742.46040604415,303061.8637309512,123281.10576148069
+Global,All Ages,Both sexes,Deaths,Number,Enterobacter spp.,Bacteria,All infectious syndromes,Associated,2019,185222.64695338905,264049.4340819916,122141.26415937624
+Global,All Ages,Both sexes,Deaths,Number,Group B Streptococcus,Bacteria,All infectious syndromes,Associated,2019,172960.97931690264,232201.50029969172,125001.59471325633
+Global,All Ages,Both sexes,Deaths,Number,Salmonella enterica serovar Typhi,Bacteria,All infectious syndromes,Associated,2019,127174.68504405733,193319.6124209941,80870.58496193403
+Global,All Ages,Both sexes,Deaths,Number,Enterococcus faecalis,Bacteria,All infectious syndromes,Associated,2019,112045.79011781032,166704.8155839736,69207.84226246556
+Global,All Ages,Both sexes,Deaths,Number,Proteus spp.,Bacteria,All infectious syndromes,Associated,2019,79976.70656952553,115074.54233905752,52665.98544423034
+Global,All Ages,Both sexes,Deaths,Number,Other enterococci,Bacteria,All infectious syndromes,Associated,2019,67061.73712489216,98417.2220179645,44015.868941727254
+Global,All Ages,Both sexes,Deaths,Number,Serratia spp.,Bacteria,All infectious syndromes,Associated,2019,42654.44513742188,65328.37116667785,26968.385961367458
+Global,All Ages,Both sexes,Deaths,Number,Group A Streptococcus,Bacteria,All infectious syndromes,Associated,2019,39025.03354467976,77053.46306884813,18312.667961798594
+Global,All Ages,Both sexes,Deaths,Number,Citrobacter spp.,Bacteria,All infectious syndromes,Associated,2019,35548.412175871104,52906.19189537231,21654.082115160974
+Global,All Ages,Both sexes,Deaths,Number,Haemophilus influenzae,Bacteria,All infectious syndromes,Associated,2019,31538.69662816109,39043.130628754094,25522.67858006566
+Global,All Ages,Both sexes,Deaths,Number,Shigella spp.,Bacteria,All infectious syndromes,Associated,2019,29147.21021327467,57684.524712671904,11773.787919078874
+Global,All Ages,Both sexes,Deaths,Number,Non-typhoidal Salmonella,Bacteria,All infectious syndromes,Associated,2019,27147.933103875584,46772.55975249605,14040.385916738178
+Global,All Ages,Both sexes,Deaths,Number,Salmonella enterica serovar Paratyphi,Bacteria,All infectious syndromes,Associated,2019,20236.115936448667,39082.49359821319,8544.185108275726
+Global,All Ages,Both sexes,Deaths,Number,Morganella spp.,Bacteria,All infectious syndromes,Associated,2019,3021.5206503533886,4593.360136533504,1934.3584086560127
+Global,All Ages,Both sexes,Deaths,Number,Mycobacterium tuberculosis,Bacteria,All infectious syndromes,Susceptible,2019,975633.0631745888,1090508.1392228096,849064.5786314241
+Global,All Ages,Both sexes,Deaths,Number,Staphylococcus aureus,Bacteria,All infectious syndromes,Susceptible,2019,356881.95897810627,487455.2085425351,262935.80018907564
+Global,All Ages,Both sexes,Deaths,Number,Streptococcus pneumoniae,Bacteria,All infectious syndromes,Susceptible,2019,232765.09860136686,286603.4544488823,189255.6655356458
+Global,All Ages,Both sexes,Deaths,Number,Pseudomonas aeruginosa,Bacteria,All infectious syndromes,Susceptible,2019,224889.45470497425,311517.8744467352,158335.06062038487
+Global,All Ages,Both sexes,Deaths,Number,Non-typhoidal Salmonella,Bacteria,All infectious syndromes,Susceptible,2019,187782.29747987777,284498.5929166394,114641.5061527697
+Global,All Ages,Both sexes,Deaths,Number,Group A Streptococcus,Bacteria,All infectious syndromes,Susceptible,2019,159198.09853537002,284710.98057463043,88973.76645904608
+Global,All Ages,Both sexes,Deaths,Number,Klebsiella pneumoniae,Bacteria,All infectious syndromes,Susceptible,2019,148100.56856212948,204473.9563170535,101462.46558754642
+Global,All Ages,Both sexes,Deaths,Number,Group B Streptococcus,Bacteria,All infectious syndromes,Susceptible,2019,146634.37337301197,196052.20217671167,107956.1172867644
+Global,All Ages,Both sexes,Deaths,Number,Enterobacter spp.,Bacteria,All infectious syndromes,Susceptible,2019,138863.84099031103,205174.30974236125,89178.21045750883
+Global,All Ages,Both sexes,Deaths,Number,Escherichia coli,Bacteria,All infectious syndromes,Susceptible,2019,121087.37229620334,167667.49277613548,84677.73623732332
+Global,All Ages,Both sexes,Deaths,Number,Enterococcus faecalis,Bacteria,All infectious syndromes,Susceptible,2019,108083.67728606863,165656.45510408614,65699.36017486585
+Global,All Ages,Both sexes,Deaths,Number,Shigella spp.,Bacteria,All infectious syndromes,Susceptible,2019,84180.27969277592,159767.44968253086,37480.25319500355
+Global,All Ages,Both sexes,Deaths,Number,Haemophilus influenzae,Bacteria,All infectious syndromes,Susceptible,2019,69441.7706392684,85727.6499681127,56420.356033524855
+Global,All Ages,Both sexes,Deaths,Number,Serratia spp.,Bacteria,All infectious syndromes,Susceptible,2019,57720.01261562223,89282.56312441782,35743.1432857068
+Global,All Ages,Both sexes,Deaths,Number,Salmonella enterica serovar Typhi,Bacteria,All infectious syndromes,Susceptible,2019,54726.752014185055,85684.48968814942,33373.16303268771
+Global,All Ages,Both sexes,Deaths,Number,Other enterococci,Bacteria,All infectious syndromes,Susceptible,2019,33011.373051338756,48562.26206998684,21412.17262551612
+Global,All Ages,Both sexes,Deaths,Number,Proteus spp.,Bacteria,All infectious syndromes,Susceptible,2019,29278.510852632757,41926.8471822099,19475.783550718515
+Global,All Ages,Both sexes,Deaths,Number,Acinetobacter baumannii,Bacteria,All infectious syndromes,Susceptible,2019,29093.094674500793,45707.420758024826,16920.95637946428
+Global,All Ages,Both sexes,Deaths,Number,Enterococcus faecium,Bacteria,All infectious syndromes,Susceptible,2019,19467.705207658626,29520.426455112032,11848.81550079266
+Global,All Ages,Both sexes,Deaths,Number,Citrobacter spp.,Bacteria,All infectious syndromes,Susceptible,2019,18574.599021589565,27698.44794401296,11446.960496155285
+Global,All Ages,Both sexes,Deaths,Number,Salmonella enterica serovar Paratyphi,Bacteria,All infectious syndromes,Susceptible,2019,3112.935168515315,6822.999084873425,1127.2690618564457
+Global,All Ages,Both sexes,Deaths,Number,Morganella spp.,Bacteria,All infectious syndromes,Susceptible,2019,2483.921577820309,3709.0348692554285,1632.8260879390216
+Global,All Ages,Both sexes,Deaths,Number,Other pathogens,Other,All infectious syndromes,Untested,2019,1385309.1673149378,1862114.7614523603,1006797.7058350864
+Global,All Ages,Both sexes,Deaths,Number,Polymicrobial,Polymicrobial,All infectious syndromes,Untested,2019,731649.2804192409,917601.7249747282,586751.1071205139
+Global,All Ages,Both sexes,Deaths,Number,Viruses of LRI & meningitis,Viruses,All infectious syndromes,Untested,2019,438673.1090839538,517507.5037636733,374320.82273241977
+Global,All Ages,Both sexes,Deaths,Number,Fungi,Fungi,All infectious syndromes,Untested,2019,326931.9961044549,483519.32415556983,212561.74921716092
+Global,All Ages,Both sexes,Deaths,Number,Rotavirus,Viruses,All infectious syndromes,Untested,2019,193502.13167335902,338201.0737890945,96878.49015270534
+Global,All Ages,Both sexes,Deaths,Number,Neisseria meningitidis,Bacteria,All infectious syndromes,Untested,2019,140938.6948537372,202541.03152543434,96818.09457964587
+Global,All Ages,Both sexes,Deaths,Number,Norovirus,Viruses,All infectious syndromes,Untested,2019,123348.97015554064,276957.56051610276,23796.6693317903
+Global,All Ages,Both sexes,Deaths,Number,Campylobacter spp.,Bacteria,All infectious syndromes,Untested,2019,122755.94970991308,266020.78765116853,39291.483280601715
+Global,All Ages,Both sexes,Deaths,Number,Cryptosporidium spp.,Protozoa,All infectious syndromes,Untested,2019,110974.5374259318,318008.98061733856,24191.14181296561
+Global,All Ages,Both sexes,Deaths,Number,Vibrio cholerae,Bacteria,All infectious syndromes,Untested,2019,96371.09492766946,159110.20243822865,52716.83467102679
+Global,All Ages,Both sexes,Deaths,Number,Chlamydia spp.,Bacteria,All infectious syndromes,Untested,2019,95304.02604117566,122050.10310296576,74250.92914204218
+Global,All Ages,Both sexes,Deaths,Number,Mycoplasma spp.,Bacteria,All infectious syndromes,Untested,2019,89448.19476597379,108035.23758296763,74355.11182773211
+Global,All Ages,Both sexes,Deaths,Number,Adenovirus,Viruses,All infectious syndromes,Untested,2019,77870.28076985787,124005.14611645509,45734.63478306561
+Global,All Ages,Both sexes,Deaths,Number,Legionella spp.,Bacteria,All infectious syndromes,Untested,2019,56361.979172618114,74425.7705331756,44236.9435740578
+Global,All Ages,Both sexes,Deaths,Number,Other Klebsiella species,Bacteria,All infectious syndromes,Untested,2019,53897.10103276917,92737.62724532532,28581.714890484018
+Global,All Ages,Both sexes,Deaths,Number,Clostridioides difficile,Bacteria,All infectious syndromes,Untested,2019,33164.49579457895,44928.0446764547,25301.45212709518
+Global,All Ages,Both sexes,Deaths,Number,Entamoeba histolytica,Protozoa,All infectious syndromes,Untested,2019,29832.15301961698,70604.08977727297,8821.131428561383
+Global,All Ages,Both sexes,Deaths,Number,Aeromonas spp.,Bacteria,All infectious syndromes,Untested,2019,21255.991090495987,38076.24110862947,9916.838573320994
+Global,All Ages,Both sexes,Deaths,Number,Listeria monocytogenes,Bacteria,All infectious syndromes,Untested,2019,14882.072451905382,21575.03336660474,10148.962957539501
+Global,All Ages,Both sexes,Deaths,Number,Providencia spp.,Bacteria,All infectious syndromes,Untested,2019,5030.81355994121,7721.755326999346,3106.2089439272168
+Global,All Ages,Both sexes,Deaths,Number,Neisseria gonorrhoeae,Bacteria,All infectious syndromes,Untested,2019,2962.714641467607,3362.349077274007,2324.2386052757547

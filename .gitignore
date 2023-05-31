@@ -12,3 +12,5 @@ data/coli_genomes.xlsx
 answers_to_exercises/lesson12_answers.Rmd
 data/coli_genomes.xlsx
 exams/scripts_calificar/respuestas_P_1.R
+
+/.quarto/
