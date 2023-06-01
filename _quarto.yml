@@ -3,47 +3,49 @@ project:
   output-dir: docs
 website:
   title: "HPBBM2023"
-  search: 
+  search:
     location: navbar
     type: overlay
   navbar:
     background: dark
     pinned: true
-    logo: "HPBBM2023.png"
+    logo: HPBBM2023.png
     tools:
-      - icon: github
-        href: https://github.com/mredrejo/HPBBM2023
-      - icon: cloud-download
-        href: https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2023/tree/main/data
-        text: Download Data
+    - icon: github
+      href: https://github.com/mredrejo/HPBBM2023
+    - icon: cloud-download
+      href: https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2023/tree/main/data
+      text: Download Data
     right:
-      - href: index.qmd
-        text: Home
-      - text: "Contents"
-        menu:
-          - r3.qmd
-          - r4.qmd
-          - r5.qmd
-          - r6.qmd
-          - r7.qmd
-          - r7.qmd
-          - r7.qmd
-  page-footer: 
-    left: "Copyright 2023, Modesto Redrejo Rodríguez" 
-    right: 
-      - icon: github
-        href: https://github.com/mredrejo/HPBBM2023
-      - icon: twitter 
-        href: https://twitter.com/mredrejo
+    - href: index.qmd
+      text: Home
+    - text: Course Contents
+      menu:
+      - r3.qmd
+      - r4.qmd
+      - r5.qmd
+      - r6.qmd
+      - r7.qmd
+      - r7.qmd
+      - r7.qmd
+  page-footer:
+    left: "Modesto Redrejo Rodríguez, 2023"
+    right:
+    - icon: badge-cc-fill
+      href: https://creativecommons.org/licenses/by-nc/2.0/
+    - icon: twitter
+      href: https://twitter.com/mredrejo
   page-navigation: true
 format:
   html:
     theme: united
-    css: styles.css
+    css:
+    - styles.css
+    - include/webex.css
     toc: true
+    include-after-body: include/webex.js
     smooth-scroll: true
     anchor-sections: true
     link-external-icon: true
     link-external-newwindow: true
 editor: visual
-

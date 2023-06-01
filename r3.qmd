@@ -1,7 +1,6 @@
 ---
 title: "R3: Read and write data in R"
 date: "May 31, 2023"
-
 date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 
   - Input
@@ -13,6 +12,7 @@ categories:
 format: 
   html:
     page-layout: full
+
 toc: true
 toc-location: left
 toc-depth: 2
@@ -25,21 +25,19 @@ link-external-newwindow: true
 ```{r wrap-hook, echo=FALSE}
 library(knitr)
 library(formatR)
+library(webexercises)
 opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
 #in RMD files, the default wd for R code chunks is the directory that contains the Rmd document. 
 #We change it here to share the working directory with all the Rmd files of the course
 knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
+
 ```
 
-# [Wellcome & Disclaimer]{style="color:darkblue"}
+# [Data input & output in R]{style="color:darkblue"}
 
-This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular) course of fall 2022 in the Bachelor's Degree in Biochemistry \@UAM. This materials are the basis for GitHub-pages-based website that can be accessed [here](https://mredrejo.github.io/HPBBM2022/). Detailed academic information about the course contents, dates and assessment only can be found at the UAM Moodle site.
+As you already know, launching R starts an interactive session with input from the keyboard and output on the screen. If you are using small datasets, you can define and enter your data directly in the Console, as you did in the examples before. Also, you can define your objects and enter your data interactively with the functions `scan()` and `readline()` as in the examples below. Regarding the output, you can just call the object by its name or use the function `print()`, which displays on the screen the contents of its argument object. You can try the code below.[^1]
 
-All this material is open access and it is shared under [CC BY-NC](https://creativecommons.org/licenses/by-nc/2.0/) license.
-
-# Data input & output in R
-
-As you already know, launching R starts an interactive session with input from the keyboard and output to the screen. If you are using small datasets, you can directly define and introduce your data in the Console, as you did in the examples before. Additionally, you can define your objects and introduce your data interactively with the functions `scan()`and `readline()` as in the following examples. Regarding the output, you can just call the object by its name or use the function `print()`, which displays on the screen the contents of its argument object.
+[^1]: Since it is interactive we cannot run it when we render the source file into a web page. This can be prevented in markdown/quarto with the option \`eval: false\` in the chunk.
 
 ```{r}
 #| echo: true
@@ -54,54 +52,84 @@ print(str)
 edit(str)
 ```
 
-Although, seldom used, you can also edit the contents of your objects using the function `edit()`. This function can be used to edit different objects, including vectors, strings, matrices or dataframes. MacOS users need to install XQuartz X11 tool.
+Although, seldom used, you can also edit the contents of your objects using the function `edit()`. This function can be used to edit different objects, including vectors, strings, matrices or dataframes. MacOS users may need to install [XQuartz X11](https://www.xquartz.org/) tool.
 
 # Working directory
 
-More often, you can process commands from a script file (a file containing R statements) and also import data from text files, databases (MySQL) or other proprietary formats, such as Excel or GraphPad Prism. We will focus on text files by the moment, as importing files in specific formats requires dedicated external packages. By default, R will read/write in the *working directory (wd)*, which is indicated in your Console panel.
+More often, you can process commands from a script file (a file containing R statements) and also import data from text files, databases (MySQL) or other proprietary formats, such as Excel or GraphPad Prism. We will focus on text files by the moment, as importing files in specific formats requires dedicated external packages. By default, R will read/write in the *working directory (wd)*. The *wd* is indicated in the Console panel, as you can see below in a screenshot of my Rstudio screen right now.
 
-![](images/paste-911888EF.png)
+![](images/console.png){width="545"}
 
 Note that the abbreviation '\~' stands for your home directory (for me `/Users/modesto` or `/home/modesto` on MacOS or Linux, respectively).
 
-The functions `getwd()` and `setwd()` allow you to check and change the *wd*. As this is a Markdown document, that `setwd()` within an R chunk only changes the working directory **for that particular chunk**. Remember that you can write `?getwd()` or `?setwd()` for help.
+The functions `getwd()` and `setwd()` allow you to check and change the *wd*. Try the examples below and pay attention to the output. Remember that you can write `?getwd()` or `?setwd()` for help.
 
 ```{r, error=TRUE}
 getwd()
 setwd("/Users/modesto")
 getwd()
-setwd("/Users/modsto/data/HPBBM2022") 
-setwd("/Users/modesto/data/HPBBM2022")
+setwd("/Users/modsto/Documents/GitHub/HPBBM2023") 
+setwd("/Users/modesto/Documents/GitHub/HPBBM2023")
 getwd()
 ```
 
 In RStudio, the *default working directory* can be set from the "tools" and "global options" menu. Also, you can change the *wd* for your session in the menu **Session \> Set Working Directory** and change it to that of source file (for instant your R script), the project or the selected directory in the files panel.
 
+
+------------------------------------------------------------------------
+
+## [Quick exercise (I)]{style="color:darkseagreen"}
+
+Let's see if you understood. Consider the following tree of directories.
+
+![](images/tree.png){width="279"}
+
+How would you change de *wd* to the folder `HPBBM2023/data` and read the file *small_matrix.csv*?
+
+```{r wd, echo = FALSE, results = 'asis'}
+opts_p <- c(
+   "setwd(\"/data\")",
+   answer = "setwd(\"/home/modesto/teaching/2023_2024/HPBBM2023/data\")",
+   "setwd(\"/Users/modesto/teaching/2023_2024/HPBBM2023/data\")")
+
+cat("**Select the right answer**",longmcq(opts_p))
+```
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+
 # Reading/writing data in R
 
 The most common way to read your data in R is importing it as a table, using the function `read.table()`. Note that the resultant object will become a *Dataframe*, even when all the entries got to be numeric. A followup call towards `as.matrix()` will turn it into in a matrix.
 
-In the following example we read a file called *small_matrix.csv*, located in the folder data. If we attempt to make some matrix calculations, R will force the dataframe to a matrix when possible, but it will return an Error for many matrix-specific operations or functions unless, we transform the dataframe into a matrix.
+In the following example lines we read a file called [*small_matrix.csv*](data/small_matrix.csv), located in the `data`folder. If we attempt to make some matrix calculations, R will force the dataframe to a matrix when possible, but it will return an Error for many matrix-specific operations or functions unless, we transform the dataframe into a matrix.
 
 ```{r error=TRUE}
-sm <- read.table("data/small_matrix.csv", sep=",")
+sm <- read.table("small_matrix.csv", sep=",") #what happens here?
+#right path
+sm <- read.table("data/small_matrix.csv", sep=",") 
 sm
+#is this an object type matrix?
 is.matrix(sm)
+#can we operate with it as a matrix?
 t(sm)
 sm * 3
 diag(sm)
+#some operations cannot coerce a matrix
 diag(as.matrix(sm))
 heatmap(sm)
 heatmap(as.matrix(sm))
 ```
 
-You can write any data object(s) as binary data file or as text files.
+You can write any data object(s) as binary data file or as text files. Compare the different files saved in the code below.
 
 ```{r}
 vector2 <- c(3, 5:13)
 write(vector2,file="data/vector2.txt")
 write.table(sm,"data/sm.csv")
-write.table(sm,"data/sm2.csv", row.names = FALSE, col.names = FALSE, sep=";")
+write.table(sm,"data/sm2.csv", row.names = FALSE, col.names=FALSE, sep=",")
 
 save(vector, vector2,file="data/vector2.Rdata")
 save.image(file='data/myEnvironment.RData')
@@ -114,13 +142,34 @@ sm_bis <- load("data/vector2.Rdata")
 sm_bis
 ```
 
+------------------------------------------------------------------------
+
+## [Quick exercise (II)]{style="color:darkseagreen"}
+
+We are using the same directory tree. Your *wd* is `HPBBM2022/data` and you need to save a data.frame named `table1` as `table1.csv` in the folder `HPBBM2022/data` using `;` as separator. How would you do it *without changing* the working directory?
+
+```{r  echo = FALSE, results = 'asis'}
+opts_p <- c(
+   answer = "write.table(table1, \"../../../HPBBM2023/data/table1.csv\", sep=\";\" ",
+   "write.table(table1, \"../../HPBBM2023/data/table1.csv\", sep=\";\" ",
+   "write.table(table1, \"../../../HPBBM2023/data/table1.csv\""
+)
+
+
+cat("**Select the right answer**",longmcq(opts_p))
+```
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
 # Basic Data Management in R
 
 Now we are going to import and explore an example dataset, containing metadata from an Illumina sequencing project of pathogenic *E. coli* strains (Flament-Simon et al. 2020, <https://doi.org/10.1038/s41598-020-69356-6>). However, for didactic purposes, the original data have been simplified and manipulated and the attached datasets do not fully correspond to the actual data.
 
 ## Explore a dataframe
 
-As you can see in the R help, the function `read.table()` has several default options as FALSE, like `header=FALSE`. When you have a spreadsheet export file, i.e. having a table where the fields are divided by commas in place of spaces, you can use `read.csv()` in place of read.table(). For Spaniards, there is also `read.csv2()`, which uses a comma for the decimal point and a semicolon for the separator. The latter functions are wrappers of `read.table()` with custom default options.
+As you can see in the R help, the function `read.table()` has several default options as FALSE, like `header=FALSE`. When you have a spreadsheet export file, i.e. having a table where the fields are divided by commas in place of spaces, you can use `read.csv()` in place of `read.table()`. For Spaniards, there is also `read.csv2()`, which uses a comma for the decimal point and a semicolon for the separator. The latter functions are wrappers of `read.table()` with custom default options. Likewise, there are `write.csv()` and `write.csv2()`, which are wrappers of `write.table()`.
 
 ```{r error=TRUE}
 #Note differences between read.table(), read.csv() and read.csv2()
@@ -220,31 +269,73 @@ coli_genomes$average_contig<-coli_genomes$Assembly_length / coli_genomes$Contigs
 It is very easy to calculate statistics of one variable. Imagine we want to know the average year of sample isolation.
 
 ```{r}
-mean(coli_genomes$Year.of.isolation) 
+mean(coli_genomes$Year) 
 ```
 
-Yes, that error means that there are some NA values and mean cannot be calculated. We can check that and omit the NAs.
+As you may have guessed, the `NA` output means that there are some NA values and mean cannot be calculated. We can check that and omit the NAs.
 
 ```{r}
-#check if there is any NA
+#check for NA values
 is.na(coli_genomes)
+#alternative to check only NA-containing rows (a FALSE output indicates an incomplete observation)
+complete.cases(coli_genomes)
 #na.rm=TRUE will omit the NAs for this function
-mean(coli_genomes$Year.of.isolation, na.rm=TRUE)
+mean(coli_genomes$Year, na.rm=TRUE)
 ```
 
-What if we want to remove observations with an NA from a dataset?
+What if we want to remove observations with an NA from the whole table?
 
 ```{r}
+#create a new data.frame without NAs
 coli_genomes2<-na.omit(coli_genomes)
+#can we now compute the mean without na.rm=T?
+mean(coli_genomes2$Year)
+```
+
+In fact, you can use `na.omit()` for any object, either an vector, data.frame or a list.
+
+------------------------------------------------------------------------
+
+## [Quick exercise (III)]{style="color:darkseagreen"}
+
+Now, we need to save the current version of `coli_genomes` in the data folder, using the `,` as field separator.
+
+```{r  echo = FALSE, results = 'asis'}
+
+opts <- c("write.tabla", 
+            "write.csv2", 
+            answer = "write.csv", 
+            "save")
+
+q1 <- mcq(opts)
+
+cat("Which of the following functions can you use to save the dataframe using `,` as field separator?", q1)
+```
+
+How would you do it?
+
+```{r  echo = FALSE, results = 'asis'}
+opts_p <- c(
+   answer = "write.table(coli_genomes, \"data/coli_genomes_renamed.csv\", sep=\",\" )",
+   "write.csv2(coli_genomes, \"data/coli_genomes_renamed.csv\" )",
+   "write.csv(coli_genomes, \"../coli_genomes_renamed.csv\") ",
+    answer = "write.csv(coli_genomes, \"data/coli_genomes_renamed.csv\")")
+
+
+cat("**Select the right answer**",longmcq(opts_p))
 ```
 
 ::: {#save}
-Finally, we are going to save our new dataset for future examples.
+Finally, do save the new dataset in your folder for future examples.
 :::
 
 ```{r}
-write.csv2(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
+write.csv(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
 ```
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
 
 # References
 
@@ -260,7 +351,7 @@ write.csv2(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
 
 -   R para análisis científicos reproducibles. Sofware Carpentry Foundation. <https://swcarpentry.github.io/r-novice-gapminder-es/>
 
-# [Short exercises]{style="color:green"}
+# [Review exercises]{style="color:darkgreen"}
 
 1.  Try the input/output examples from *Techvidvan* website <https://techvidvan.com/tutorials/r-input-and-output-functions/>
 
@@ -276,6 +367,5 @@ write.csv2(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
 
 ```{r}
 sessionInfo()
-```
 
-# [Course home](https://mredrejo.github.io/HPBBM2022/)
+```
