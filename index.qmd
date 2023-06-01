@@ -5,6 +5,7 @@ author:
     url: https://mredrejo.github.io/HPBBM2023/
     affiliation: Department of Biochemistry, UAM
     affiliation_url: https://www.uam.es/
+date: "May 30, 2023"
 date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 
   - R
