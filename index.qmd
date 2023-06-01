@@ -2,11 +2,10 @@
 title: "HPBBM2023"
 author: 
   - name: Modesto
-    url: https://mredrejo.github.io/HPBBM2023/
     affiliation: Department of Biochemistry, UAM
     affiliation_url: https://www.uam.es/
 date: "May 30, 2023"
-date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+
 categories: 
   - R
   - RStudio
@@ -32,18 +31,21 @@ editor: visual
 ## Under construction
 :::
 
+
+::: {style="float: right; position: relative; top: 0px; padding: 3px;"}
+![Logo generated with hexSticker package.[^1]](HPBBM2023.png){width="228"}
+:::
+
 This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular, a.k.a. **HPBBM**) course of **fall 2023** in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). Source files are available at the [{{< bi github >}} repo](https://github.com/mredrejo/HPBBM2023), containing the source files and the data used in the examples and exercises. The icon [{{< bi cloud-download >}}](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data) on the top-right corner in all the site pages will allow you to download the repo **data** folder (link generated with [DownGit](https://yehonal.github.io/DownGit/#/home)). Note that this folder can be updated during the course. For reference, materials from **2022** course edition are available in the [HPBBM2022 site](https://mredrejo.github.io/HPBBM2022/).
 
 Course Syllabus can be checked at [UAM site](https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs) and a PDF version is available [here](HPBBM_syllabus2023.pdf). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lessons (Lessons R1 & R2) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/).
-
 In this site, the lessons pages have been generated as *Quarto* to obtain source files (*.qmd*) that contain formatted text and chunks of R code that are executed upon rendering (see [lesson R7](r7.html) for more info about Markdown and Quarto in RStudio). Lessons also contain embedded interactive [short exercises]{style="color:darkseagreen"} (generated with [`learnr`](https://rstudio.github.io/learnr/) y/o [`webexercises`](https://psyteachr.github.io/webexercises/articles/webexercises.html) packages), and a final section of [*Review exercises*]{style="color:darkgreen"}, some of them from freely available online solved exercises and others that we created. The answers to the latter are not available online, but I'll be glad to provide them upon request.
 
-::: {style="float: right; position: relative; top: 0px; padding: 3px;"}
-[![Logo generated with hexSticker package.[^1]](HPBBM2023.png){width="228"}](r_sticker.R)
-:::
 
-[^1]: See the code in r_sticker.R in the repo.
 
+[^1]: See the code in the script r_sticker.R in the repo.
+
+[^2]: See the code in the script r_sticker.R in the repo.
 
 All this material is open access and it is shared under [CC BY-NC](https://creativecommons.org/licenses/by-nc/2.0/) license.
 
