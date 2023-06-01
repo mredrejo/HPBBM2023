@@ -84,11 +84,11 @@ Let's see if you understood. Consider the following tree of directories.
 
 ![](images/tree.png){width="279"}
 
-How would you change de *wd* to the folder `HPBBM2023/data` and read the file *small_matrix.csv*?
+How would you change de *wd* to the folder `HPBBM2023/data`?
 
 ```{r wd, echo = FALSE, results = 'asis'}
 opts_p <- c(
-   "setwd(\"/data\")",
+   "setwd(\"HPBBM2023/data\")",
    answer = "setwd(\"/home/modesto/teaching/2023_2024/HPBBM2023/data\")",
    "setwd(\"/Users/modesto/teaching/2023_2024/HPBBM2023/data\")")
 

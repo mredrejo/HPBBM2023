@@ -74,7 +74,7 @@
     "href": "r3.html#quick-exercise-i",
     "title": "R3: Read and write data in R",
     "section": "2.1 Quick exercise (I)",
-    "text": "2.1 Quick exercise (I)\nLet’s see if you understood. Consider the following tree of directories.\n\nHow would you change de wd to the folder HPBBM2023/data and read the file small_matrix.csv?\nSelect the right answer\n\n setwd(“/data”) setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”) setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)"
+    "text": "2.1 Quick exercise (I)\nLet’s see if you understood. Consider the following tree of directories.\n\nHow would you change de wd to the folder HPBBM2023/data?\nSelect the right answer\n\n setwd(“HPBBM2023/data”) setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”) setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)"
   },
   {
     "objectID": "r3.html#quick-exercise-ii",
