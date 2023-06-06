@@ -8,6 +8,8 @@ categories:
   - Funtions
   - Arguments
   - Checkpoints
+  - Warning
+  - Error
 format: 
   html:
     page-layout: full
@@ -43,14 +45,17 @@ A full list of CRAN packages can be found [here](https://cran.r-project.org/web/
 ## Installing and use R packages
 
 As an example, we are going to install and use `xlsx`, a handy package to import/export tables in MS Excel format. You may also check related packages, such as `readxl` or `pzfx`.
-
-```{r, error=TRUE}
+```{r, echo=TRUE, eval=FALSE}
 #install the package
-#you may require other packages,add dependencies=TRUE if this example doesn't work
-install.packages("xlsx")
-
-#load
+#CRAN is the repository by default but it can be optionally indicated
+install.packages("xlsx", repos = "https://cran.rstudio.com/")
+```
+You must load the package before using it.
+```{r, error=TRUE}
+#two ways of loading the packages
+#1
 library(xlsx) 
+#2
 require(xlsx)
 
 #help
@@ -68,7 +73,7 @@ detach("package:xlsx", unload=TRUE) #unload the package
 
 Optionally, if you want to unload a package from memory, you can use `detach()`. This can be useful for long scripts.
 
-In the above code we have used `require()` and `library()` functions to call for package loading. Those are very similar functions, often interchangeable. The main difference is that if you use `require()`*,* you will get a warning (see below for *warning* use), but not an error. Thus, your code will continue to run if possible.
+In the above code we have used `require()` and `library()` functions to call for package loading. These are very similar functions that are often interchangeable. The main difference is that when you use `require()` and it cannot be executed, you will get a warning (see below for how to use *warning*), but not an error. Therefore, your code will always continue to execute if possible.
 
 
 ```{r, error=TRUE}
