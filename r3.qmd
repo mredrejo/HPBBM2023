@@ -84,7 +84,7 @@ Let's see if you understood. Consider the following tree of directories.
 
 ![](images/tree.png){width="279"}
 
-How would you change de *wd* to the folder `HPBBM2023/data`?
+How would you change de *wd* to the folder `HPBBM2023/data`? You also can try with your own computer and your directory tree.
 
 ```{r wd, echo = FALSE, results = 'asis'}
 opts_p <- c(
@@ -146,7 +146,7 @@ sm_bis
 
 ## [Quick exercise (II)]{style="color:darkseagreen"}
 
-We are using the same directory tree. Your *wd* is `HPBBM2022/data` and you need to save a data.frame named `table1` as `table1.csv` in the folder `HPBBM2022/data` using `;` as separator. How would you do it *without changing* the working directory?
+We are using the same directory tree. Your *wd* is `HPBBM2022/data` and you need to save a data.frame named `table1` as `table1.csv` in the folder `HPBBM2022/data` using `;` as separator. How would you do it *without changing* the working directory? Try it also with your own computer.
 
 ```{r  echo = FALSE, results = 'asis'}
 opts_p <- c(
@@ -158,8 +158,6 @@ opts_p <- c(
 
 cat("**Select the right answer**",longmcq(opts_p))
 ```
-
-------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
 
@@ -326,8 +324,10 @@ cat("**Select the right answer**",longmcq(opts_p))
 ```
 
 ::: {#save}
-Finally, do save the new dataset in your folder for future examples.
+
 :::
+
+Finally, do save the new dataset in your folder for future examples.
 
 ```{r}
 write.csv(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
@@ -335,7 +335,6 @@ write.csv(coli_genomes,"data/coli_genomes_renamed.csv", row.names=FALSE)
 
 ------------------------------------------------------------------------
 
-------------------------------------------------------------------------
 
 # References
 

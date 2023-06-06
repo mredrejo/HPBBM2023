@@ -133,7 +133,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./r3.html" rel="" target="">
  <span class="dropdown-text">R3: Read and write data in R</span></a>
   </li>  
-        <li class="dropdown-header">r4.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./r4.html" rel="" target="">
+ <span class="dropdown-text">R4: Functions in R</span></a>
+  </li>  
         <li class="dropdown-header">r5.qmd</li>
         <li class="dropdown-header">r6.qmd</li>
         <li class="dropdown-header">r7.qmd</li>
@@ -215,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 1, 2023</p>
+      <p class="date-modified">June 6, 2023</p>
     </div>
   </div>
     
@@ -270,10 +273,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.1" class="anchored" data-anchor-id="quick-exercise-i"><span class="header-section-number">2.1</span> <span style="color:darkseagreen">Quick exercise (I)</span></h2>
 <p>Let’s see if you understood. Consider the following tree of directories.</p>
 <p><img src="images/tree.png" class="img-fluid" width="279"></p>
-<p>How would you change de <em>wd</em> to the folder <code>HPBBM2023/data</code>?</p>
+<p>How would you change de <em>wd</em> to the folder <code>HPBBM2023/data</code>? You also can try with your own computer and your directory tree.</p>
 <strong>Select the right answer</strong>
-<div id="radio_OSVUQIKKZT" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OSVUQIKKZT" value=""> <span>setwd(“HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_OSVUQIKKZT" value="answer"> <span>setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_OSVUQIKKZT" value=""> <span>setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label>
+<div id="radio_HXXGOHOSJO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HXXGOHOSJO" value=""> <span>setwd(“HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_HXXGOHOSJO" value="answer"> <span>setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_HXXGOHOSJO" value=""> <span>setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label>
 </div>
 <hr>
 <hr>
@@ -363,12 +366,11 @@ V3   19   80   13   16</code></pre>
 <hr>
 <section id="quick-exercise-ii" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">3.1</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
-<p>We are using the same directory tree. Your <em>wd</em> is <code>HPBBM2022/data</code> and you need to save a data.frame named <code>table1</code> as <code>table1.csv</code> in the folder <code>HPBBM2022/data</code> using <code>;</code> as separator. How would you do it <em>without changing</em> the working directory?</p>
+<p>We are using the same directory tree. Your <em>wd</em> is <code>HPBBM2022/data</code> and you need to save a data.frame named <code>table1</code> as <code>table1.csv</code> in the folder <code>HPBBM2022/data</code> using <code>;</code> as separator. How would you do it <em>without changing</em> the working directory? Try it also with your own computer.</p>
 <strong>Select the right answer</strong>
-<div id="radio_GERWMEWCGU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GERWMEWCGU" value="answer"> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_GERWMEWCGU" value=""> <span>write.table(table1, “../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_GERWMEWCGU" value=""> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”</span></label>
+<div id="radio_JZSUROKXNH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JZSUROKXNH" value="answer"> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_JZSUROKXNH" value=""> <span>write.table(table1, “../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_JZSUROKXNH" value=""> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”</span></label>
 </div>
-<hr>
 <hr>
 </section>
 </section>
@@ -872,16 +874,16 @@ Levels: Avian Human Porcine</code></pre>
 <p>Which of the following functions can you use to save the dataframe using <code>,</code> as field separator? <select class="webex-select"><option value="blank"></option><option value="">write.tabla</option><option value="">write.csv2</option><option value="answer">write.csv</option><option value="">save</option></select></p>
 <p>How would you do it?</p>
 <strong>Select the right answer</strong>
-<div id="radio_ZTBNPUCZWX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZTBNPUCZWX" value="answer"> <span>write.table(coli_genomes, “data/coli_genomes_renamed.csv”, sep=“,” )</span></label><label><input type="radio" autocomplete="off" name="radio_ZTBNPUCZWX" value=""> <span>write.csv2(coli_genomes, “data/coli_genomes_renamed.csv” )</span></label><label><input type="radio" autocomplete="off" name="radio_ZTBNPUCZWX" value=""> <span>write.csv(coli_genomes, “../coli_genomes_renamed.csv”) </span></label><label><input type="radio" autocomplete="off" name="radio_ZTBNPUCZWX" value="answer"> <span>write.csv(coli_genomes, “data/coli_genomes_renamed.csv”)</span></label>
+<div id="radio_YZUMHTHHGB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YZUMHTHHGB" value="answer"> <span>write.table(coli_genomes, “data/coli_genomes_renamed.csv”, sep=“,” )</span></label><label><input type="radio" autocomplete="off" name="radio_YZUMHTHHGB" value=""> <span>write.csv2(coli_genomes, “data/coli_genomes_renamed.csv” )</span></label><label><input type="radio" autocomplete="off" name="radio_YZUMHTHHGB" value=""> <span>write.csv(coli_genomes, “../coli_genomes_renamed.csv”) </span></label><label><input type="radio" autocomplete="off" name="radio_YZUMHTHHGB" value="answer"> <span>write.csv(coli_genomes, “data/coli_genomes_renamed.csv”)</span></label>
 </div>
 <div id="save">
-<p>Finally, do save the new dataset in your folder for future examples.</p>
+
 </div>
+<p>Finally, do save the new dataset in your folder for future examples.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(coli_genomes, <span class="st">"data/coli_genomes_renamed.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<hr>
 <hr>
 </section>
 </section>
