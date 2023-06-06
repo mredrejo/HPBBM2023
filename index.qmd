@@ -10,6 +10,7 @@ categories:
   - R
   - RStudio
   - Data analysis
+  - R for Biochemists
 format: 
   html:
     page-layout: full
