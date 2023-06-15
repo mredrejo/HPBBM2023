@@ -224,7 +224,7 @@ str(test1)
 
 
 
-```{r, fig.width=12, fig.height=6}
+```{r, fig.width=6, fig.height=6}
 plot(coli_genomes$contigs1kb ~ coli_genomes$Contigs, xlab="Contigs", ylab="Contigs > 1kb")
 abline(lm(coli_genomes$contigs1kb ~ coli_genomes$Contigs), col="red")
 #now add the text in a defined position
@@ -238,10 +238,12 @@ text(40000,200,paste("Pearson r2=",round(test2$estimate,2)))
 
 In a step further you can check multiple correlations in a single plot.
 
-```{r}
+```{r,fig.width=12, fig.height=12}
 #oh wait! why only one-vs-one?
 plot(coli_genomes[,c("VF","Plasmids","kmer","Contigs","N50","longest.contig..bp.","Assembly_length","contigs1kb","average_contig")], main = "Multiple Correlation plot")
 ```
+
+Now, you have a quick info about possible variable correlations.
 
 ## Plot detailed customization
 
