@@ -190,16 +190,23 @@ plot(coli_genomes$contigs1kb ~ coli_genomes$average_contig, xlab="Average contig
 
 What do you think? Now that we have seen the linear relationship pictorially in the scatter plot, we should plot the linear regression line and analyze the correlation.
 
-::: callout-tip
-### Linear model and correlation in R
+::: callout-important
+### REMINDER - Linear model and correlation in R
 
-Linear regression analysis is used to predict the value of a variable based on the value of another variable. In R, you can calculate the linear regression equation with the function `lm()`. The `lm()` function takes in two main arguments, *Formula* and *2.* Data\*. The data is typically a data.frame and the formula is a object of class formula (with a diacritical mark like that over the Spanish letter ñ, `~`). But the most common convention is to write out the formula directly in place of the argument as written below. Then, you must also remember that correlation coefficient can be calculated with the function `cor()`.
+Linear regression analysis is used to predict the value of a variable based on the value of another variable. In R, you can calculate the linear regression equation with the function `lm()`. The `lm()` function takes in two main arguments, *(1) Formula* and *(2) Data*. The data is typically a data.frame and the formula is a object of class formula (with a diacritical mark like that over the Spanish letter ñ, `~`). But the most common convention is to write out the formula directly in place of the argument as written below. 
+
+Then, you must also remember that correlation coefficient can be calculated with the function `cor()`.
 :::
-
+Let's obtain and plot the linear model:
 ```{r, fig.width=12, fig.height=6}
 #linear model
 modelito <- lm(coli_genomes$contigs1kb ~ coli_genomes$Contigs)
 summary(modelito)  #is the linear model significant???
+```
+::: callout-tip
+Remember that the results of `lm()`, `cor.test()`, and all other tests, are R objects (usually lists) than can be used to retrieve the results or plot the values.
+:::
+```{r, fig.width=12, fig.height=6}
 #set par (we need to set up the par in every code chunk)
 par(mfrow = c(1, 2))
 #correlation plots with line
@@ -213,7 +220,11 @@ abline(lm(coli_genomes$contigs1kb ~ coli_genomes$average_contig), col="red")
 (test1 <- cor.test(coli_genomes$contigs1kb, coli_genomes$Contigs))
 (test2 <- cor.test(coli_genomes$contigs1kb, coli_genomes$average_contig))
 str(test1)
+```
 
+
+
+```{r, fig.width=12, fig.height=6}
 plot(coli_genomes$contigs1kb ~ coli_genomes$Contigs, xlab="Contigs", ylab="Contigs > 1kb")
 abline(lm(coli_genomes$contigs1kb ~ coli_genomes$Contigs), col="red")
 #now add the text in a defined position

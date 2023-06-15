@@ -307,13 +307,13 @@ Important
 <h2 data-number="1.3" class="anchored" data-anchor-id="quick-exercise-i"><span class="header-section-number">1.3</span> <span style="color:darkseagreen">Quick exercise (I)</span></h2>
 <p>We have a vector in a <em>RData</em> file called <a href="&quot;data/primes.RData&quot;">primes.RData</a> that we would like to plot.</p>
 <strong>How would you load the vector?</strong>
-<div id="radio_RFOBDKRAPN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RFOBDKRAPN" value=""> <span>load(data/primes.RData)</span></label><label><input type="radio" autocomplete="off" name="radio_RFOBDKRAPN" value="answer"> <span>load(“data/primes.RData”)</span></label><label><input type="radio" autocomplete="off" name="radio_RFOBDKRAPN" value=""> <span>open(“data/primes.RData”)</span></label>
+<div id="radio_BHEPIMHJHN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BHEPIMHJHN" value=""> <span>load(data/primes.RData)</span></label><label><input type="radio" autocomplete="off" name="radio_BHEPIMHJHN" value="answer"> <span>load(“data/primes.RData”)</span></label><label><input type="radio" autocomplete="off" name="radio_BHEPIMHJHN" value=""> <span>open(“data/primes.RData”)</span></label>
 </div>
 <p>Now we want to plot the vector. You may try different plots, but think which plot help you to answer the following question</p>
 <strong>In which quartile of the vector values there are more elements?</strong>
-<div id="radio_PXJSGUULXP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_PXJSGUULXP" value=""> <span>plot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_PXJSGUULXP" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label><label><input type="radio" autocomplete="off" name="radio_PXJSGUULXP" value="answer"> <span>boxplot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_PXJSGUULXP" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label>
+<div id="radio_AYKZNBOYZE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AYKZNBOYZE" value=""> <span>plot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_AYKZNBOYZE" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label><label><input type="radio" autocomplete="off" name="radio_AYKZNBOYZE" value="answer"> <span>boxplot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_AYKZNBOYZE" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label>
 </div>
 <p>Yes, a boxplot is the best choice here.</p>
 <div class="cell" data-webex.hide="See the right plot">
@@ -425,19 +425,21 @@ Tip
 </div>
 </div>
 <p>What do you think? Now that we have seen the linear relationship pictorially in the scatter plot, we should plot the linear regression line and analyze the correlation.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Linear model and correlation in R
+REMINDER - Linear model and correlation in R
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Linear regression analysis is used to predict the value of a variable based on the value of another variable. In R, you can calculate the linear regression equation with the function <code>lm()</code>. The <code>lm()</code> function takes in two main arguments, <em>Formula</em> and <em>2.</em> Data*. The data is typically a data.frame and the formula is a object of class formula (with a diacritical mark like that over the Spanish letter ñ, <code>~</code>). But the most common convention is to write out the formula directly in place of the argument as written below. Then, you must also remember that correlation coefficient can be calculated with the function <code>cor()</code>.</p>
+<p>Linear regression analysis is used to predict the value of a variable based on the value of another variable. In R, you can calculate the linear regression equation with the function <code>lm()</code>. The <code>lm()</code> function takes in two main arguments, <em>(1) Formula</em> and <em>(2) Data</em>. The data is typically a data.frame and the formula is a object of class formula (with a diacritical mark like that over the Spanish letter ñ, <code>~</code>). But the most common convention is to write out the formula directly in place of the argument as written below.</p>
+<p>Then, you must also remember that correlation coefficient can be calculated with the function <code>cor()</code>.</p>
 </div>
 </div>
+<p>Let’s obtain and plot the linear model:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#linear model</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>modelito <span class="ot">&lt;-</span> <span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs)</span>
@@ -462,6 +464,21 @@ Residual standard error: 22.55 on 20 degrees of freedom
 Multiple R-squared:  0.7453,    Adjusted R-squared:  0.7326 
 F-statistic: 58.54 on 1 and 20 DF,  p-value: 2.306e-07</code></pre>
 </div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember that the results of <code>lm()</code>, <code>cor.test()</code>, and all other tests, are R objects (usually lists) than can be used to retrieve the results or plot the values.</p>
+</div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set par (we need to set up the par in every code chunk)</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#correlation plots with line</span></span>
@@ -471,7 +488,7 @@ F-statistic: 58.54 on 1 and 20 DF,  p-value: 2.306e-07</code></pre>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig, <span class="at">xlab=</span><span class="st">"Average contig"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig), <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="1152"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="1152"></p>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we will check with a cor.test and add some text to the plot</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>(test1 <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(coli_genomes<span class="sc">$</span>contigs1kb, coli_genomes<span class="sc">$</span>Contigs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -521,24 +538,28 @@ sample estimates:
   ..- attr(*, "conf.level")= num 0.95
  - attr(*, "class")= chr "htest"</code></pre>
 </div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs), <span class="at">col=</span><span class="st">"red"</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#now add the text in a defined position</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">200</span>,<span class="dv">200</span>,<span class="fu">paste</span>(<span class="st">"Pearson r2="</span>,<span class="fu">round</span>(test1<span class="sc">$</span>estimate,<span class="dv">2</span>)))</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig, <span class="at">xlab=</span><span class="st">"Average contig"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig), <span class="at">col=</span><span class="st">"red"</span>)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">40000</span>,<span class="dv">200</span>,<span class="fu">paste</span>(<span class="st">"Pearson r2="</span>,<span class="fu">round</span>(test2<span class="sc">$</span>estimate,<span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">200</span>,<span class="dv">200</span>,<span class="fu">paste</span>(<span class="st">"Pearson r2="</span>,<span class="fu">round</span>(test1<span class="sc">$</span>estimate,<span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="1152"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="1152"></p>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig, <span class="at">xlab=</span><span class="st">"Average contig"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig), <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">40000</span>,<span class="dv">200</span>,<span class="fu">paste</span>(<span class="st">"Pearson r2="</span>,<span class="fu">round</span>(test2<span class="sc">$</span>estimate,<span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="1152"></p>
 </div>
 </div>
 <p>In a step further you can check multiple correlations in a single plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#oh wait! why only one-vs-one?</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes[,<span class="fu">c</span>(<span class="st">"VF"</span>,<span class="st">"Plasmids"</span>,<span class="st">"kmer"</span>,<span class="st">"Contigs"</span>,<span class="st">"N50"</span>,<span class="st">"longest.contig..bp."</span>,<span class="st">"Assembly_length"</span>,<span class="st">"contigs1kb"</span>,<span class="st">"average_contig"</span>)], <span class="at">main =</span> <span class="st">"Multiple Correlation plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#oh wait! why only one-vs-one?</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes[,<span class="fu">c</span>(<span class="st">"VF"</span>,<span class="st">"Plasmids"</span>,<span class="st">"kmer"</span>,<span class="st">"Contigs"</span>,<span class="st">"N50"</span>,<span class="st">"longest.contig..bp."</span>,<span class="st">"Assembly_length"</span>,<span class="st">"contigs1kb"</span>,<span class="st">"average_contig"</span>)], <span class="at">main =</span> <span class="st">"Multiple Correlation plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -550,9 +571,9 @@ sample estimates:
 <h2 data-number="1.7" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">1.7</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>For this exercise we are going to use a dataset called <a href="data/Zebrafish_data.csv"><em>zebrafish_data.csv</em></a>. This file contains the results of an experiment in which a collaborator scored the number of metastatic cancer cells upon the expression of different transcripts of the EFNA3 gene. Each transcript is cloned into a pLoC plasmid, and we have negative (empty plasmid) and positive controls (wt EFNA3 transcript), as well as four transcript mutants. Let’s import and check the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read data</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ZFdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Zebrafish_data.csv"</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ZFdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read data</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ZFdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Zebrafish_data.csv"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ZFdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   41 obs. of  6 variables:
  $ pLoC : int  36 32 10 26 15 23 17 14 44 12 ...
@@ -564,75 +585,75 @@ sample estimates:
 </div>
 </div>
 <strong>How would you construct barplots of the data from the six experimental conditions?</strong>
-<div id="radio_EEPNDMDXVY" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_EEPNDMDXVY" value=""> <span>hist(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_EEPNDMDXVY" value=""> <span>barplot(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_EEPNDMDXVY" value="answer"> <span>barplot(ZFdata$pLoC), and the same for each construct</span></label><label><input type="radio" autocomplete="off" name="radio_EEPNDMDXVY" value=""> <span>hist(ZFdata$pLoC), and the same for each construct</span></label>
+<div id="radio_RJNBRYNWES" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RJNBRYNWES" value=""> <span>hist(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_RJNBRYNWES" value=""> <span>barplot(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_RJNBRYNWES" value="answer"> <span>barplot(ZFdata$pLoC), and the same for each construct</span></label><label><input type="radio" autocomplete="off" name="radio_RJNBRYNWES" value=""> <span>hist(ZFdata$pLoC), and the same for each construct</span></label>
 </div>
 <p>Let’s see some examples:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#some plots</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#some plots</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in barplot.default(ZFdata): 'height' must be a vector or a matrix</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>pLoC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>pLoC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="1152"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="1152"></p>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co">#arrange the three plots in a row </span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#we include a plot title with "main"</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="st">"blue"</span>,<span class="at">main=</span><span class="st">"NC1s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co">#arrange the three plots in a row </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#we include a plot title with "main"</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="st">"blue"</span>,<span class="at">main=</span><span class="st">"NC1s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="1152"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="1152"></p>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)) <span class="co">#arrange the six plots in two rows</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note the "method" option</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"stack"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"overplot"</span>, <span class="at">col=</span><span class="st">"red"</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method =</span> <span class="st">"stack"</span>,<span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">method =</span> <span class="st">"stack"</span>,<span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)) <span class="co">#arrange the six plots in two rows</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note the "method" option</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"stack"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"overplot"</span>, <span class="at">col=</span><span class="st">"red"</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method =</span> <span class="st">"stack"</span>,<span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">method =</span> <span class="st">"stack"</span>,<span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="1152"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid" width="1152"></p>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now histograms</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co">#arrange the three plots in a row </span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="st">"red"</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now histograms</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co">#arrange the three plots in a row </span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="st">"red"</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="1152"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-12-4.png" class="img-fluid" width="1152"></p>
 </div>
 </div>
 <p>Now try to answer some questions about your data and obtained plots:</p>
 <strong>1. Which construct has the strongest impact on the dissemination of metastatic cells?</strong>
-<div id="radio_UNOVAPAJTR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>The empty plasmid pLoC</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>WT EFNA3</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>NC1</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>NC1s</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>NC2</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>NC2s</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value="answer"> <span>I cannot say</span></label>
+<div id="radio_VLCSLHOHLE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VLCSLHOHLE" value=""> <span>The empty plasmid pLoC</span></label><label><input type="radio" autocomplete="off" name="radio_VLCSLHOHLE" value=""> <span>WT EFNA3</span></label><label><input type="radio" autocomplete="off" name="radio_VLCSLHOHLE" value=""> <span>NC1</span></label><label><input type="radio" autocomplete="off" name="radio_VLCSLHOHLE" value=""> <span>NC1s</span></label><label><input type="radio" autocomplete="off" name="radio_VLCSLHOHLE" value=""> <span>NC2</span></label><label><input type="radio" autocomplete="off" name="radio_VLCSLHOHLE" value=""> <span>NC2s</span></label><label><input type="radio" autocomplete="off" name="radio_VLCSLHOHLE" value="answer"> <span>I cannot say</span></label>
 </div>
 <strong>2. Which plot represent best these data?</strong>
-<div id="radio_AQGUMWLNQV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value=""> <span>Histogram</span></label><label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value=""> <span>Barplot</span></label><label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value=""> <span>Boxplot</span></label><label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value=""> <span>Stripchart</span></label><label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value="answer"> <span>I am not sure</span></label>
+<div id="radio_TVRRMTXEYB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TVRRMTXEYB" value=""> <span>Histogram</span></label><label><input type="radio" autocomplete="off" name="radio_TVRRMTXEYB" value=""> <span>Barplot</span></label><label><input type="radio" autocomplete="off" name="radio_TVRRMTXEYB" value=""> <span>Boxplot</span></label><label><input type="radio" autocomplete="off" name="radio_TVRRMTXEYB" value=""> <span>Stripchart</span></label><label><input type="radio" autocomplete="off" name="radio_TVRRMTXEYB" value="answer"> <span>I am not sure</span></label>
 </div>
 <strong>3. Does a boxplot represent the same <em>information</em> than a histogram?</strong>
-<div id="radio_LLQECDNICE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LLQECDNICE" value=""> <span>No, not at all</span></label><label><input type="radio" autocomplete="off" name="radio_LLQECDNICE" value=""> <span>Yes, they are the same</span></label><label><input type="radio" autocomplete="off" name="radio_LLQECDNICE" value=""> <span>Yes, but a boxplot will show best the differences between my samples</span></label><label><input type="radio" autocomplete="off" name="radio_LLQECDNICE" value="answer"> <span>Yes, but a histogram will show best the differences between my samples</span></label>
+<div id="radio_AOTPHWXNQW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AOTPHWXNQW" value=""> <span>No, not at all</span></label><label><input type="radio" autocomplete="off" name="radio_AOTPHWXNQW" value=""> <span>Yes, they are the same</span></label><label><input type="radio" autocomplete="off" name="radio_AOTPHWXNQW" value=""> <span>Yes, but a boxplot will show best the differences between my samples</span></label><label><input type="radio" autocomplete="off" name="radio_AOTPHWXNQW" value="answer"> <span>Yes, but a histogram will show best the differences between my samples</span></label>
 </div>
 <strong>4. Does a barplot represent the same information than a boxplot?</strong>
-<div id="radio_DAAYEKFOZB" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DAAYEKFOZB" value=""> <span>No, a barplot represents data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_DAAYEKFOZB" value="answer"> <span>No, boxplots and histograms represent data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_DAAYEKFOZB" value=""> <span>Yes, they alike</span></label>
+<div id="radio_SYRXVHUBZQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SYRXVHUBZQ" value=""> <span>No, a barplot represents data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_SYRXVHUBZQ" value="answer"> <span>No, boxplots and histograms represent data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_SYRXVHUBZQ" value=""> <span>Yes, they alike</span></label>
 </div>
 <p>Now, we are going to represent the same data again, introducing some more customization</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Can you reproduce the above plots?</p>
@@ -641,20 +662,20 @@ sample estimates:
 <button>
 Answer
 </button>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#new par settings</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">cex.lab =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plotting</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"pLoc"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"NC1s"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>,  <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#new par settings</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">cex.lab =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plotting</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"pLoc"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"NC1s"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>,  <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><em>Do you think, you can answer better the questions now?</em></p>
@@ -665,22 +686,22 @@ Answer
 <h2 data-number="1.8" class="anchored" data-anchor-id="plot-grouped-data"><span class="header-section-number">1.8</span> Plot grouped data</h2>
 <p>Further, to compare three conditions, we needed to make three independent plots. However, in the table, there are actually six conditions, and it is easy to imagine a table with more conditions. How could you plot that? The main question is, different conditions means different variables? In other words:</p>
 <strong>How many variables are there in the Zebrafish dataset?</strong>
-<div id="radio_CAFIJTNUPN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CAFIJTNUPN" value=""> <span>3 variables, WT, empty plasmid and 4 mutants</span></label><label><input type="radio" autocomplete="off" name="radio_CAFIJTNUPN" value=""> <span>6, one for each expressed transcript</span></label><label><input type="radio" autocomplete="off" name="radio_CAFIJTNUPN" value="answer"> <span>2 variables, the (1) plasmid/expressed transcript and (2) the number of metastatic cells</span></label>
+<div id="radio_FTLPDCCCAN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_FTLPDCCCAN" value=""> <span>3 variables, WT, empty plasmid and 4 mutants</span></label><label><input type="radio" autocomplete="off" name="radio_FTLPDCCCAN" value=""> <span>6, one for each expressed transcript</span></label><label><input type="radio" autocomplete="off" name="radio_FTLPDCCCAN" value="answer"> <span>2 variables, the (1) plasmid/expressed transcript and (2) the number of metastatic cells</span></label>
 </div>
 <p>In data analysis (check Lesson <a href="r6.html">R6</a>), particularly when you want to compare many variables in different groups, it is more handy to create a <em>stacked</em> table or <em>datamatrix</em>. Stacked table are also often referred to as <em>narrow</em> tables. In contrast, the tables with different conditions (of a same variable) in different columns are named <em>wide</em> table or <em>unstacked</em>. The code below shows how to <em>stack</em> and plot your data by groups using the function <code>stack()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ZF_stacked <span class="ot">&lt;-</span> <span class="fu">stack</span>(ZFdata)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#you can also define a colors vector that can be reused</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>colorines<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">1</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)) </span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZF_stacked<span class="sc">$</span>values <span class="sc">~</span> ZF_stacked<span class="sc">$</span>ind,  <span class="at">col=</span>colorines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ZF_stacked <span class="ot">&lt;-</span> <span class="fu">stack</span>(ZFdata)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#you can also define a colors vector that can be reused</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>colorines<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">1</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)) </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZF_stacked<span class="sc">$</span>values <span class="sc">~</span> ZF_stacked<span class="sc">$</span>ind,  <span class="at">col=</span>colorines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZF_stacked<span class="sc">$</span>values <span class="sc">~</span> ZF_stacked<span class="sc">$</span>ind, <span class="at">vertical =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">col=</span>colorines, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">ylab=</span><span class="st">"Number of cells"</span>, <span class="at">xlab=</span><span class="st">"Plasmid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZF_stacked<span class="sc">$</span>values <span class="sc">~</span> ZF_stacked<span class="sc">$</span>ind, <span class="at">vertical =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">col=</span>colorines, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">ylab=</span><span class="st">"Number of cells"</span>, <span class="at">xlab=</span><span class="st">"Plasmid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -688,43 +709,43 @@ Answer
 <h2 data-number="1.9" class="anchored" data-anchor-id="plot-customization"><span class="header-section-number">1.9</span> Plot customization</h2>
 <p>There are many options to customize your plots, including font type and size, point shape, line type… You can see more info on the <a href="#refs">References</a> section below. Let’s see some examples using code I borrow from <a href="https://r-coder.com/plot-r/" class="uri">https://r-coder.com/plot-r/</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#point shape with "pch"</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sapply</span>(<span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">5</span>), <span class="cf">function</span>(i) <span class="fu">rep</span>(i, <span class="dv">5</span>)))</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">25</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="dv">5</span>), <span class="dv">5</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, t, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">cex =</span> <span class="dv">3</span>, <span class="at">yaxt =</span> <span class="st">"n"</span>, <span class="at">xaxt =</span> <span class="st">"n"</span>,</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ann =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">27</span>), <span class="at">lwd =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(r <span class="sc">-</span> <span class="fl">1.5</span>, t, <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#line type with "lty"</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(M, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"l"</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#point shape with "pch"</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sapply</span>(<span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">5</span>), <span class="cf">function</span>(i) <span class="fu">rep</span>(i, <span class="dv">5</span>)))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">25</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="dv">5</span>), <span class="dv">5</span>)</span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Just to indicate the line types in the plot</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>j <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">sapply</span>(<span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">6</span>),</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">function</span>(i) {</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>                   j <span class="ot">&lt;&lt;-</span> j <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">text</span>(<span class="dv">2</span>, i, <span class="fu">paste</span>(<span class="st">"lty ="</span>, j))}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, t, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">cex =</span> <span class="dv">3</span>, <span class="at">yaxt =</span> <span class="st">"n"</span>, <span class="at">xaxt =</span> <span class="st">"n"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ann =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">27</span>), <span class="at">lwd =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(r <span class="sc">-</span> <span class="fl">1.5</span>, t, <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot box</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plots</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"o"</span>, <span class="at">main =</span> <span class="st">"Default"</span>)</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"7"</span>, <span class="at">main =</span> <span class="st">"bty = '7'"</span>)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"L"</span>, <span class="at">main =</span> <span class="st">"bty = 'L'"</span>)</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"U"</span>, <span class="at">main =</span> <span class="st">"bty = 'U'"</span>)</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"C"</span>, <span class="at">main =</span> <span class="st">"bty = 'C'"</span>)</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">main =</span> <span class="st">"bty = 'n'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#line type with "lty"</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(M, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"l"</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Just to indicate the line types in the plot</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>j <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">sapply</span>(<span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">6</span>),</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">function</span>(i) {</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>                   j <span class="ot">&lt;&lt;-</span> j <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">text</span>(<span class="dv">2</span>, i, <span class="fu">paste</span>(<span class="st">"lty ="</span>, j))}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot box</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plots</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"o"</span>, <span class="at">main =</span> <span class="st">"Default"</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"7"</span>, <span class="at">main =</span> <span class="st">"bty = '7'"</span>)</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"L"</span>, <span class="at">main =</span> <span class="st">"bty = 'L'"</span>)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"U"</span>, <span class="at">main =</span> <span class="st">"bty = 'U'"</span>)</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"C"</span>, <span class="at">main =</span> <span class="st">"bty = 'C'"</span>)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">main =</span> <span class="st">"bty = 'n'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="quick-exercise-iii" class="level2" data-number="1.10">
@@ -732,7 +753,7 @@ Answer
 <p>Now let’s think again in our <em>E. coli</em> genomes. How would you add more layers of information to the plot, like labels of specific points?</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell" data-webex.hide="Answer">
@@ -740,25 +761,25 @@ Answer
 <button>
 Answer
 </button>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#point label, but only some "selected" points</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#step1: create a vector with the selection</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>, <span class="dv">18</span>)</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co">#step2: make a plot</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co">#step 3: add the labels as a text layer</span></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co">#note that you can use the formula for the text coordinates</span></span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(coli_genomes<span class="sc">$</span>contigs1kb[selected] <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs[selected],</span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> coli_genomes<span class="sc">$</span>Strain[selected],</span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.6</span>, <span class="at">pos =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#point label, but only some "selected" points</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co">#step1: create a vector with the selection</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>, <span class="dv">18</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co">#step2: make a plot</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">#step 3: add the labels as a text layer</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">#note that you can use the formula for the text coordinates</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(coli_genomes<span class="sc">$</span>contigs1kb[selected] <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs[selected],</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> coli_genomes<span class="sc">$</span>Strain[selected],</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.6</span>, <span class="at">pos =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>You can look for more custom options because there are a lot. I also suggest looking at the <code>identify()</code> function, which allows the quick interactive identification and labeling of selected points.</p>
 <p>Now, we repeat the scatterplot above of <em>contigs1kb</em> vs.&nbsp;<em>Contigs,</em> but instead of labels, coloring the points by <em>Source</em> as in the plot below. Finally, use the function <code>legend()</code> to add a legend.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="r5_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="r5_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell" data-webex.hide="Hint">
@@ -766,8 +787,8 @@ Answer
 <button>
 Hint
 </button>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Think in a way to use the variable 'Source' and conditionally recode it as colors</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Then, a recursive way will help you to generate a vector to color all the elements in the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Think in a way to use the variable 'Source' and conditionally recode it as colors</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Then, a recursive way will help you to generate a vector to color all the elements in the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell" data-webex.hide="Answer">
@@ -775,24 +796,24 @@ Hint
 <button>
 Answer
 </button>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#recode the source as color</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#step 1: define an empty vector (not required here, but better to do it)</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>colorines <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">#step 2: use a loop to run over all the source vector</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(coli_genomes)){</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">#step 3: use switch() to recode the sources as colors</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">#note that Source is a factor but we need to treat it as a character here</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  colorines[i] <span class="ot">&lt;-</span> <span class="cf">switch</span>(<span class="fu">as.character</span>(coli_genomes<span class="sc">$</span>Source[i]),</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">Avian=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.4</span>),</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">Human=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.4</span>),</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">Porcine=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.4</span>))                   </span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">pch=</span><span class="dv">21</span>,<span class="at">bg=</span>colorines, <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="co">#legend</span></span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="co">#the function unique() is important here, can you figure out why?</span></span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">100</span>,<span class="dv">200</span>,<span class="at">legend=</span><span class="fu">unique</span>(coli_genomes<span class="sc">$</span>Source),<span class="at">fill=</span><span class="fu">unique</span>(colorines))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#recode the source as color</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#step 1: define an empty vector (not required here, but better to do it)</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>colorines <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#step 2: use a loop to run over all the source vector</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(coli_genomes)){</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#step 3: use switch() to recode the sources as colors</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#note that Source is a factor but we need to treat it as a character here</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  colorines[i] <span class="ot">&lt;-</span> <span class="cf">switch</span>(<span class="fu">as.character</span>(coli_genomes<span class="sc">$</span>Source[i]),</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">Avian=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.4</span>),</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">Human=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.4</span>),</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">Porcine=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.4</span>))                   </span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">pch=</span><span class="dv">21</span>,<span class="at">bg=</span>colorines, <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="co">#legend</span></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="co">#the function unique() is important here, can you figure out why?</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">100</span>,<span class="dv">200</span>,<span class="at">legend=</span><span class="fu">unique</span>(coli_genomes<span class="sc">$</span>Source),<span class="at">fill=</span><span class="fu">unique</span>(colorines))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -804,9 +825,9 @@ Answer
 <h4 class="anchored" data-anchor-id="ex1">1. Let’s suppose we have the expression data for two genes (GeneA and GeneB) in 50 patients, 30 with colon cancer and 20 with lung cancer.</h4>
 <p><strong>For the exercise, we are using random data, generated as follows:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(GeneA <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)) </span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>(GeneB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">20</span>)) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">50</span>))</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>(tumor <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Colon"</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">"Lung"</span>, <span class="dv">20</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>(GeneA <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)) </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>(GeneB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">20</span>)) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">50</span>))</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>(tumor <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Colon"</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">"Lung"</span>, <span class="dv">20</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>a. Before plotting the data, how would you test if there is difference in the expression level by the type of tumor?</strong></p>
 <p><strong>b. Plot boxplots and density curves of the expression of both genes by type of tumor. Do the plots agree with your answer to the question a?</strong></p>
@@ -842,7 +863,7 @@ Answer
 <section id="session-info" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Session Info</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.3.0 (2023-04-21)
 Platform: x86_64-apple-darwin20 (64-bit)
