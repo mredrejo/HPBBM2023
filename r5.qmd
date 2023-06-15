@@ -245,7 +245,7 @@ plot(coli_genomes[,c("VF","Plasmids","kmer","Contigs","N50","longest.contig..bp.
 
 Now, you have a quick info about possible variable correlations.
 
-## Plot detailed customization
+
 
 ------------------------------------------------------------------------
 
@@ -382,7 +382,9 @@ The stripchart and the boxplot strongly suggest that NC2s is probably the strong
 
 ## Plot grouped data
 
-Further, to compare three conditions, we needed to make three independent plots. However, in the table, there are actually six conditions, and it is easy to imagine a table with more conditions. How could you plot that? The main question is, different conditions means different variables? In other words:
+We will still use the data from the zebrafish experiment here
+
+In the previous plots, in order to compare three conditions, we needed to make three independent plots. However, in the table, there are six conditions, and it is not very difficult to imagine experiments that might result in a table with even more conditions. How could you plot that? The key question is, different conditions means different variables? In other words:
 
 ```{r wd8, echo = FALSE, results = 'asis'}
 opts_p <- c("3 variables, WT, empty plasmid and 4 mutants",
@@ -405,7 +407,7 @@ stripchart(ZF_stacked$values ~ ZF_stacked$ind, vertical = TRUE, method="jitter",
 
 ```
 
-## Plot customization {#plot-customization}
+## More plot customization {#plot-customization}
 
 There are many options to customize your plots, including font type and size, point shape, line type... You can see more info on the [References](#refs) section below. Let's see some examples using code I borrow from <https://r-coder.com/plot-r/>
 

@@ -171,11 +171,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#quick-exercise-i" id="toc-quick-exercise-i" class="nav-link" data-scroll-target="#quick-exercise-i"><span class="header-section-number">1.3</span> <span style="color:darkseagreen">Quick exercise (I)</span></a></li>
   <li><a href="#plot-your-data-and-save-the-plot" id="toc-plot-your-data-and-save-the-plot" class="nav-link" data-scroll-target="#plot-your-data-and-save-the-plot"><span class="header-section-number">1.4</span> Plot your data and save the plot</a></li>
   <li><a href="#adding-elements-to-your-plot" id="toc-adding-elements-to-your-plot" class="nav-link" data-scroll-target="#adding-elements-to-your-plot"><span class="header-section-number">1.5</span> Adding elements to your plot</a></li>
-  <li><a href="#plot-detailed-customization" id="toc-plot-detailed-customization" class="nav-link" data-scroll-target="#plot-detailed-customization"><span class="header-section-number">1.6</span> Plot detailed customization</a></li>
-  <li><a href="#quick-exercise-ii" id="toc-quick-exercise-ii" class="nav-link" data-scroll-target="#quick-exercise-ii"><span class="header-section-number">1.7</span> <span style="color:darkseagreen">Quick exercise (II)</span></a></li>
-  <li><a href="#plot-grouped-data" id="toc-plot-grouped-data" class="nav-link" data-scroll-target="#plot-grouped-data"><span class="header-section-number">1.8</span> Plot grouped data</a></li>
-  <li><a href="#plot-customization" id="toc-plot-customization" class="nav-link" data-scroll-target="#plot-customization"><span class="header-section-number">1.9</span> Plot customization</a></li>
-  <li><a href="#quick-exercise-iii" id="toc-quick-exercise-iii" class="nav-link" data-scroll-target="#quick-exercise-iii"><span class="header-section-number">1.10</span> <span style="color:darkseagreen">Quick exercise (III)</span></a></li>
+  <li><a href="#quick-exercise-ii" id="toc-quick-exercise-ii" class="nav-link" data-scroll-target="#quick-exercise-ii"><span class="header-section-number">1.6</span> <span style="color:darkseagreen">Quick exercise (II)</span></a></li>
+  <li><a href="#plot-grouped-data" id="toc-plot-grouped-data" class="nav-link" data-scroll-target="#plot-grouped-data"><span class="header-section-number">1.7</span> Plot grouped data</a></li>
+  <li><a href="#plot-customization" id="toc-plot-customization" class="nav-link" data-scroll-target="#plot-customization"><span class="header-section-number">1.8</span> More plot customization</a></li>
+  <li><a href="#quick-exercise-iii" id="toc-quick-exercise-iii" class="nav-link" data-scroll-target="#quick-exercise-iii"><span class="header-section-number">1.9</span> <span style="color:darkseagreen">Quick exercise (III)</span></a></li>
   </ul></li>
   <li><a href="#refs" id="toc-refs" class="nav-link" data-scroll-target="#refs"><span class="header-section-number">2</span> References</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3</span> <span style="color:green">Exercises</span></a></li>
@@ -307,13 +306,13 @@ Important
 <h2 data-number="1.3" class="anchored" data-anchor-id="quick-exercise-i"><span class="header-section-number">1.3</span> <span style="color:darkseagreen">Quick exercise (I)</span></h2>
 <p>We have a vector in a <em>RData</em> file called <a href="&quot;data/primes.RData&quot;">primes.RData</a> that we would like to plot.</p>
 <strong>How would you load the vector?</strong>
-<div id="radio_IUCDWMHCHC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_IUCDWMHCHC" value=""> <span>load(data/primes.RData)</span></label><label><input type="radio" autocomplete="off" name="radio_IUCDWMHCHC" value="answer"> <span>load(“data/primes.RData”)</span></label><label><input type="radio" autocomplete="off" name="radio_IUCDWMHCHC" value=""> <span>open(“data/primes.RData”)</span></label>
+<div id="radio_ENAVUAKFFL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ENAVUAKFFL" value=""> <span>load(data/primes.RData)</span></label><label><input type="radio" autocomplete="off" name="radio_ENAVUAKFFL" value="answer"> <span>load(“data/primes.RData”)</span></label><label><input type="radio" autocomplete="off" name="radio_ENAVUAKFFL" value=""> <span>open(“data/primes.RData”)</span></label>
 </div>
 <p>Now we want to plot the vector. You may try different plots, but think which plot help you to answer the following question</p>
 <strong>In which quartile of the vector values there are more elements?</strong>
-<div id="radio_GEJGPMHEVR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GEJGPMHEVR" value=""> <span>plot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_GEJGPMHEVR" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label><label><input type="radio" autocomplete="off" name="radio_GEJGPMHEVR" value="answer"> <span>boxplot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_GEJGPMHEVR" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label>
+<div id="radio_AZYSYXNOXC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AZYSYXNOXC" value=""> <span>plot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_AZYSYXNOXC" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label><label><input type="radio" autocomplete="off" name="radio_AZYSYXNOXC" value="answer"> <span>boxplot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_AZYSYXNOXC" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label>
 </div>
 <p>Yes, a boxplot is the best choice here.</p>
 <div class="cell" data-webex.hide="See the right plot">
@@ -563,13 +562,10 @@ sample estimates:
 </div>
 </div>
 <p>Now, you have a quick info about possible variable correlations.</p>
-</section>
-<section id="plot-detailed-customization" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="plot-detailed-customization"><span class="header-section-number">1.6</span> Plot detailed customization</h2>
 <hr>
 </section>
-<section id="quick-exercise-ii" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">1.7</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
+<section id="quick-exercise-ii" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">1.6</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>For this exercise we are going to use a dataset called <a href="data/Zebrafish_data.csv"><em>zebrafish_data.csv</em></a>. This file contains the results of an experiment in which a collaborator scored the number of metastatic cancer cells upon the expression of different transcripts of the EFNA3 gene. Each transcript is cloned into a pLoC plasmid, and we have negative (empty plasmid) and positive controls (wt EFNA3 transcript), as well as four transcript mutants. Let’s import and check the data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read data</span></span>
@@ -586,8 +582,8 @@ sample estimates:
 </div>
 </div>
 <strong>How would you construct barplots of the data from the six experimental conditions?</strong>
-<div id="radio_FJXGPKYYFR" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_FJXGPKYYFR" value=""> <span>hist(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_FJXGPKYYFR" value=""> <span>barplot(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_FJXGPKYYFR" value="answer"> <span>barplot(ZFdata$pLoC), and the same for each construct</span></label><label><input type="radio" autocomplete="off" name="radio_FJXGPKYYFR" value=""> <span>hist(ZFdata$pLoC), and the same for each construct</span></label>
+<div id="radio_MNHIXJXNMG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MNHIXJXNMG" value=""> <span>hist(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_MNHIXJXNMG" value=""> <span>barplot(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_MNHIXJXNMG" value="answer"> <span>barplot(ZFdata$pLoC), and the same for each construct</span></label><label><input type="radio" autocomplete="off" name="radio_MNHIXJXNMG" value=""> <span>hist(ZFdata$pLoC), and the same for each construct</span></label>
 </div>
 <p>Let’s see some examples:</p>
 <div class="cell">
@@ -630,20 +626,20 @@ sample estimates:
 </div>
 <p>Now try to answer some questions about your data and obtained plots:</p>
 <strong>1. Which construct has the strongest impact on the dissemination of metastatic cells?</strong>
-<div id="radio_QERIXLKOFA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QERIXLKOFA" value=""> <span>The empty plasmid pLoC</span></label><label><input type="radio" autocomplete="off" name="radio_QERIXLKOFA" value=""> <span>WT EFNA3</span></label><label><input type="radio" autocomplete="off" name="radio_QERIXLKOFA" value=""> <span>NC1</span></label><label><input type="radio" autocomplete="off" name="radio_QERIXLKOFA" value=""> <span>NC1s</span></label><label><input type="radio" autocomplete="off" name="radio_QERIXLKOFA" value=""> <span>NC2</span></label><label><input type="radio" autocomplete="off" name="radio_QERIXLKOFA" value=""> <span>NC2s</span></label><label><input type="radio" autocomplete="off" name="radio_QERIXLKOFA" value="answer"> <span>I cannot say</span></label>
+<div id="radio_EQCMZNQMRP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EQCMZNQMRP" value=""> <span>The empty plasmid pLoC</span></label><label><input type="radio" autocomplete="off" name="radio_EQCMZNQMRP" value=""> <span>WT EFNA3</span></label><label><input type="radio" autocomplete="off" name="radio_EQCMZNQMRP" value=""> <span>NC1</span></label><label><input type="radio" autocomplete="off" name="radio_EQCMZNQMRP" value=""> <span>NC1s</span></label><label><input type="radio" autocomplete="off" name="radio_EQCMZNQMRP" value=""> <span>NC2</span></label><label><input type="radio" autocomplete="off" name="radio_EQCMZNQMRP" value=""> <span>NC2s</span></label><label><input type="radio" autocomplete="off" name="radio_EQCMZNQMRP" value="answer"> <span>I cannot say</span></label>
 </div>
 <strong>2. Which plot represent best these data?</strong>
-<div id="radio_ADMKFTRDOX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ADMKFTRDOX" value=""> <span>Histogram</span></label><label><input type="radio" autocomplete="off" name="radio_ADMKFTRDOX" value=""> <span>Barplot</span></label><label><input type="radio" autocomplete="off" name="radio_ADMKFTRDOX" value=""> <span>Boxplot</span></label><label><input type="radio" autocomplete="off" name="radio_ADMKFTRDOX" value=""> <span>Stripchart</span></label><label><input type="radio" autocomplete="off" name="radio_ADMKFTRDOX" value="answer"> <span>I am not sure</span></label>
+<div id="radio_DZCOVNNGWN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DZCOVNNGWN" value=""> <span>Histogram</span></label><label><input type="radio" autocomplete="off" name="radio_DZCOVNNGWN" value=""> <span>Barplot</span></label><label><input type="radio" autocomplete="off" name="radio_DZCOVNNGWN" value=""> <span>Boxplot</span></label><label><input type="radio" autocomplete="off" name="radio_DZCOVNNGWN" value=""> <span>Stripchart</span></label><label><input type="radio" autocomplete="off" name="radio_DZCOVNNGWN" value="answer"> <span>I am not sure</span></label>
 </div>
 <strong>3. Does a boxplot represent the same <em>information</em> than a histogram?</strong>
-<div id="radio_NYDYIMSBUM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NYDYIMSBUM" value=""> <span>No, not at all</span></label><label><input type="radio" autocomplete="off" name="radio_NYDYIMSBUM" value=""> <span>Yes, they are the same</span></label><label><input type="radio" autocomplete="off" name="radio_NYDYIMSBUM" value=""> <span>Yes, but a boxplot will show best the differences between my samples</span></label><label><input type="radio" autocomplete="off" name="radio_NYDYIMSBUM" value="answer"> <span>Yes, but a histogram will show best the differences between my samples</span></label>
+<div id="radio_MRTMQXRRIX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MRTMQXRRIX" value=""> <span>No, not at all</span></label><label><input type="radio" autocomplete="off" name="radio_MRTMQXRRIX" value=""> <span>Yes, they are the same</span></label><label><input type="radio" autocomplete="off" name="radio_MRTMQXRRIX" value=""> <span>Yes, but a boxplot will show best the differences between my samples</span></label><label><input type="radio" autocomplete="off" name="radio_MRTMQXRRIX" value="answer"> <span>Yes, but a histogram will show best the differences between my samples</span></label>
 </div>
 <strong>4. Does a barplot represent the same information than a boxplot?</strong>
-<div id="radio_RSAWDNQTOM" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RSAWDNQTOM" value=""> <span>No, a barplot represents data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_RSAWDNQTOM" value="answer"> <span>No, boxplots and histograms represent data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_RSAWDNQTOM" value=""> <span>Yes, they alike</span></label>
+<div id="radio_YVWZEKIWIQ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_YVWZEKIWIQ" value=""> <span>No, a barplot represents data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_YVWZEKIWIQ" value="answer"> <span>No, boxplots and histograms represent data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_YVWZEKIWIQ" value=""> <span>Yes, they alike</span></label>
 </div>
 <p>Now, we are going to represent the same data again, introducing some more customization</p>
 <div class="cell">
@@ -683,12 +679,13 @@ Answer
 <p>Beyond some basic examples of plotting in R, the take-home message of this example is that the type of plot and the plot parameters (in this case the scale) can be essential for correct interpretation of the data and if they are not properly adjusted the plot can be strongly misleading.</p>
 <p>The stripchart and the boxplot strongly suggest that NC2s is probably the strongest transcript, but that is not shown in the barplot. These plots clearly show that barplots are intended for single values (categorical data) and can mislead your conclusions.</p>
 </section>
-<section id="plot-grouped-data" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="plot-grouped-data"><span class="header-section-number">1.8</span> Plot grouped data</h2>
-<p>Further, to compare three conditions, we needed to make three independent plots. However, in the table, there are actually six conditions, and it is easy to imagine a table with more conditions. How could you plot that? The main question is, different conditions means different variables? In other words:</p>
+<section id="plot-grouped-data" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="plot-grouped-data"><span class="header-section-number">1.7</span> Plot grouped data</h2>
+<p>We will still use the data from the zebrafish experiment here</p>
+<p>In the previous plots, in order to compare three conditions, we needed to make three independent plots. However, in the table, there are six conditions, and it is not very difficult to imagine experiments that might result in a table with even more conditions. How could you plot that? The key question is, different conditions means different variables? In other words:</p>
 <strong>How many variables are there in the Zebrafish dataset?</strong>
-<div id="radio_TVDMGZPALG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TVDMGZPALG" value=""> <span>3 variables, WT, empty plasmid and 4 mutants</span></label><label><input type="radio" autocomplete="off" name="radio_TVDMGZPALG" value=""> <span>6, one for each expressed transcript</span></label><label><input type="radio" autocomplete="off" name="radio_TVDMGZPALG" value="answer"> <span>2 variables, the (1) plasmid/expressed transcript and (2) the number of metastatic cells</span></label>
+<div id="radio_TFGVQOHHSG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_TFGVQOHHSG" value=""> <span>3 variables, WT, empty plasmid and 4 mutants</span></label><label><input type="radio" autocomplete="off" name="radio_TFGVQOHHSG" value=""> <span>6, one for each expressed transcript</span></label><label><input type="radio" autocomplete="off" name="radio_TFGVQOHHSG" value="answer"> <span>2 variables, the (1) plasmid/expressed transcript and (2) the number of metastatic cells</span></label>
 </div>
 <p>In data analysis (check Lesson <a href="r6.html">R6</a>), particularly when you want to compare many variables in different groups, it is more handy to create a <em>stacked</em> table or <em>datamatrix</em>. Stacked table are also often referred to as <em>narrow</em> tables. In contrast, the tables with different conditions (of a same variable) in different columns are named <em>wide</em> table or <em>unstacked</em>. The code below shows how to <em>stack</em> and plot your data by groups using the function <code>stack()</code>.</p>
 <div class="cell">
@@ -706,8 +703,8 @@ Answer
 </div>
 </div>
 </section>
-<section id="plot-customization" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="plot-customization"><span class="header-section-number">1.9</span> Plot customization</h2>
+<section id="plot-customization" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="plot-customization"><span class="header-section-number">1.8</span> More plot customization</h2>
 <p>There are many options to customize your plots, including font type and size, point shape, line type… You can see more info on the <a href="#refs">References</a> section below. Let’s see some examples using code I borrow from <a href="https://r-coder.com/plot-r/" class="uri">https://r-coder.com/plot-r/</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#point shape with "pch"</span></span>
@@ -749,8 +746,8 @@ Answer
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="quick-exercise-iii" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="quick-exercise-iii"><span class="header-section-number">1.10</span> <span style="color:darkseagreen">Quick exercise (III)</span></h2>
+<section id="quick-exercise-iii" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="quick-exercise-iii"><span class="header-section-number">1.9</span> <span style="color:darkseagreen">Quick exercise (III)</span></h2>
 <p>Now let’s think again in our <em>E. coli</em> genomes. How would you add more layers of information to the plot, like labels of specific points?</p>
 <div class="cell">
 <div class="cell-output-display">
