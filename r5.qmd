@@ -29,15 +29,26 @@ link-external-newwindow: true
 
 # Plot your data in R
 
-## Selecting the right plot
+## Why do we make plots?
 
-Data visualizations are a vital component of a data analysis, as they have the capability of summarizing large amounts of data efficiently in a graphical format and bring out new insights that can be difficult to understand from raw data. There are many chart types available, each with its own strengths and use cases. One of the trickiest parts of the analysis process is choosing the right way to represent your data using one of these visualizations. A wrong plot can lead to confusion or data misinterpretation (see some examples of bad graphs [here](https://www.analyticsvidhya.com/blog/2021/02/data-visualization-bad-representation-of-data/)).
+Data visualizations are a vital component of a data analysis, as they have the capability of summarizing large amounts of data efficiently in a graphical format and bring out new insights that can be difficult to understand from raw data. Moreover, from the perspective of the researcher or data analyst, plotting the datasets will help to familiarize with the data and plan the next steps in your analysis. Also, an early plot can help you to identify statistics pitfalls.
+
+::: {#Anscombe}
+:::
+
+![**Anscombe's quartet**. Each of the four datasets consists of 11 data points (orange points) and have nearly identical statistical properties, including means, sample variances, Pearson's sample correlation (r), and linear regression line (blue lines). Modified from Anscombe FJ. Graphs in statistical analysis. Am Stat 1973;27:17--21](images/plots.png){width="400"}
+
+This well-known quartet highlights the importance of graphing data prior to analysis, and why statistical reviewers often ask for such graphs to be made available. Check out also the Dinosaurus example in the [reference 2 below](#refs).
+
+## Which plot should I do with my data?
+
+There are many chart types available, each with its own strengths and use cases. One of the trickiest parts of the analysis process is choosing the right way to represent your data using one of these visualizations. A wrong plot can lead to confusion or data misinterpretation (see some examples of bad graphs [here](https://www.analyticsvidhya.com/blog/2021/02/data-visualization-bad-representation-of-data/)).
 
 From the perspective of classical data analysis, the first consideration to select the right plot is the nature of your variables. Some plots are recommended for numerical data (quantitative variables) and other for categorical data (qualitative variables). Then, you should considering the role for your data visualization, i.e, question you want to address or the message you want to transmit. That will depend on how many variables, as well as their distribution, grouping or correlation. There are some best practice guidelines, but at the end of the day, you need to consider what is best for your data. What do you want to show? What graph will best communicate your message? Is it a comparison between groups? Is it the frequency distribution of 1 variable?
 
-As a guidance, you can use the below [cheatsheet, taken from Nathan Yau's blog Flowingdata](https://flowingdata.com/2009/01/15/flow-chart-shows-you-what-chart-to-use/):
+As a guidance, you can use the below *Chartchooser*, by Andrew Abela.
 
-![](images/chart-chart1.jpg)
+![**The *ExtremePresentation* method for choosing a plot or chart.**](images/chart-chart1.jpg){width="1000"}
 
 You can see a description of some of the most common plot types, with many examples on books and dedicated R websites. I suggest to take a look to some of the suggested [References](#References) below, or some **quick examples**, like those [here](https://intro2r.com/simple-base-r-plots.html) or [here](https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html). Rather than going through a wide list of plots, we are going to use some examples to learn some basic plotting and see the effect of plot selection in order to understand your data and use them to answer questions.
 
@@ -53,7 +64,7 @@ The function **`plot()`** is actually multifunctional and it can be used to gene
 
 In the table and the examples below you can see how to use `plot()` for different plot types.
 
-![Use of `plot()` function. Source: <https://r-coder.com/plot-r/>](images/paste-D2FB731B.png)
+![Use of `plot()` function. Source: <https://r-coder.com/plot-r/>](images/paste-D2FB731B.png){width="500"}
 
 For the following examples, we are going to review also some R functions to make up (mock or simulated) data restricted to certain distributions. For instance, using functions like `rnorm()` or `dnorm()` for generation of normal data or normal density curves. The same can be obtained for *Poisson* distribution with `dpois()` and `rpois()`.
 
@@ -174,7 +185,13 @@ Alternatively, you can save the plot using the **Plot** menu or the **Plots pane
 
 As you may know, the R function `cor()` calculate the correlation coefficient between two or more vectors and `cor.test()` allow us to quickly perform a correlation test between two variables to know if the correlation is statistically significant. However, a quick plot can be also very useful.
 
-In our example dataframe, we have some features of a list of *E. coli* isolates and the basic stats of the genome sequencing. Regarding this data, do you think that the number of contigs \> 1kb in the genome assemblies (*contigs1kb*) correlates with the total number of contigs (*Contigs*), or the average contig length (*average_contig*)? Let's check the data using simple plots with the `plot()` function. Since we are going to make two plots, we will layout them together using a `par` option. ::: callout-tip \## Plot parameters set up with `par` Note that `par` can be used to set many graphical parameters. These options are stored in a list R object, that you can get using `par()` (with no arguments). :::
+In our example dataframe, we have some features of a list of *E. coli* isolates and the basic stats of the genome sequencing. Regarding this data, do you think that the number of contigs \> 1kb in the genome assemblies (*contigs1kb*) correlates with the total number of contigs (*Contigs*), or the average contig length (*average_contig*)? Let's check the data using simple plots with the `plot()` function. Since we are going to make two plots, we will layout them together using a `par` option.
+
+::: callout-tip
+## Plot parameters set up with `par`
+
+Note that `par` can be used to set many graphical parameters. These options are stored in a list R object, that you can get using `par()` (with no arguments).
+:::
 
 ```{r, fig.width=12, fig.height=6}
 #first we can save original settings (optional)
@@ -193,19 +210,23 @@ What do you think? Now that we have seen the linear relationship pictorially in 
 ::: callout-important
 ### REMINDER - Linear model and correlation in R
 
-Linear regression analysis is used to predict the value of a variable based on the value of another variable. In R, you can calculate the linear regression equation with the function `lm()`. The `lm()` function takes in two main arguments, *(1) Formula* and *(2) Data*. The data is typically a data.frame and the formula is a object of class formula (with a diacritical mark like that over the Spanish letter ñ, `~`). But the most common convention is to write out the formula directly in place of the argument as written below. 
+Linear regression analysis is used to predict the value of a variable based on the value of another variable. In R, you can calculate the linear regression equation with the function `lm()`. The `lm()` function takes in two main arguments, *(1) Formula* and *(2) Data*. The data is typically a data.frame and the formula is a object of class formula (with a diacritical mark like that over the Spanish letter ñ, `~`). But the most common convention is to write out the formula directly in place of the argument as written below.
 
-Then, you must also remember that correlation coefficient can be calculated with the function `cor()`.
+Then, to fully check the correlation (and avoid situations like in the Anscombe's quartet [above](#Anscombe), you must also remember that correlation coefficient can be calculated with the function `cor()`.
 :::
+
 Let's obtain and plot the linear model:
+
 ```{r, fig.width=12, fig.height=6}
 #linear model
 modelito <- lm(coli_genomes$contigs1kb ~ coli_genomes$Contigs)
 summary(modelito)  #is the linear model significant???
 ```
+
 ::: callout-tip
 Remember that the results of `lm()`, `cor.test()`, and all other tests, are R objects (usually lists) than can be used to retrieve the results or plot the values.
 :::
+
 ```{r, fig.width=12, fig.height=6}
 #set par (we need to set up the par in every code chunk)
 par(mfrow = c(1, 2))
@@ -221,8 +242,6 @@ abline(lm(coli_genomes$contigs1kb ~ coli_genomes$average_contig), col="red")
 (test2 <- cor.test(coli_genomes$contigs1kb, coli_genomes$average_contig))
 str(test1)
 ```
-
-
 
 ```{r, fig.width=6, fig.height=6}
 plot(coli_genomes$contigs1kb ~ coli_genomes$Contigs, xlab="Contigs", ylab="Contigs > 1kb")
@@ -244,8 +263,6 @@ plot(coli_genomes[,c("VF","Plasmids","kmer","Contigs","N50","longest.contig..bp.
 ```
 
 Now, you have a quick info about possible variable correlations.
-
-
 
 ------------------------------------------------------------------------
 
@@ -373,7 +390,6 @@ boxplot(ZFdata$EFNA3, col=rgb(0,1,0,0.5), ylim = c(0,120), xlab = "Number of Met
 boxplot(ZFdata$NC1s, col=rgb(0,0,1,0.5), ylim = c(0,120), xlab = "Number of Metastatic cells", main="N1cs")
 ```
 
-
 *Do you think, you can answer better the questions now?*
 
 Beyond some basic examples of plotting in R, the take-home message of this example is that the type of plot and the plot parameters (in this case the scale) can be essential for correct interpretation of the data and if they are not properly adjusted the plot can be strongly misleading.
@@ -476,7 +492,6 @@ text(coli_genomes$contigs1kb[selected] ~ coli_genomes$Contigs[selected],
 
 You can look for more custom options because there are a lot. I also suggest looking at the `identify()` function, which allows the quick interactive identification and labeling of selected points.
 
-
 Now, we repeat the scatterplot above of *contigs1kb* vs. *Contigs,* but instead of labels, coloring the points by *Source* as in the plot below. Finally, use the function `legend()` to add a legend.
 
 ```{r echo=FALSE, warning=FALSE}
@@ -527,19 +542,19 @@ plot(coli_genomes$contigs1kb ~ coli_genomes$Contigs, pch=21,bg=colorines, xlab="
 legend(100,200,legend=unique(coli_genomes$Source),fill=unique(colorines))
 ```
 
-
-
 # References {#refs}
 
--   *R in action.* Robert I. Kabacoff. March 2022 ISBN 9781617296055
+1.  *R in action.* Robert I. Kabacoff. March 2022 ISBN 9781617296055
 
--   R Graphics Cookbook: <https://r-graphics.org/> (Chapter 2).
+2.  Who needs dataviz anyway: [https://rpubs.com/tylerotto/DinosaurusDozen](https://rpubs.com/tylerotto/DinosaurusDozenhttps://rpubs.com/tylerotto/DinosaurusDozen)
 
--   Graphics with Base R: <https://intro2r.com/graphics_base_r.html>
+3.  R Graphics Cookbook: <https://r-graphics.org/> (Chapter 2).
 
--   [Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm (Weissberger et al. Plos Biology 2015).](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002128)
+4.  Graphics with Base R: <https://intro2r.com/graphics_base_r.html>
 
--   I also advise checking articles and posts that you can find with Google, such as:
+5.  [Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm (Weissberger et al. Plos Biology 2015).](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002128)
+
+6.  I also advise checking articles and posts that you can find with Google, such as:
 
     -   How to choose the right chart for your data: <https://dexibit.com/how-to-choose-the-right-chart-to-visualize-your-data/>
 
