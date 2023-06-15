@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-06-14">
+
+<title>HPBBM2023 - R5: Base plots in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="include/webex.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./HPBBM2023.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">HPBBM2023</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-contents" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Course Contents</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-course-contents">    
+        <li>
+    <a class="dropdown-item" href="./r3.html" rel="" target="">
+ <span class="dropdown-text">R3: Read and write data in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r4.html" rel="" target="">
+ <span class="dropdown-text">R4: Functions in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r5.html" rel="" target="">
+ <span class="dropdown-text">R5: Base plots in R</span></a>
+  </li>  
+        <li class="dropdown-header">r6.qmd</li>
+        <li class="dropdown-header">r7.qmd</li>
+        <li class="dropdown-header">r8.qmd</li>
+        <li class="dropdown-header">r9.qmd</li>
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/mredrejo/HPBBM2023" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2023/tree/main/data" title="Download Data" class="quarto-navigation-tool px-1" aria-label="Download Data"><i class="bi bi-cloud-download"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#plot-your-data-in-r" id="toc-plot-your-data-in-r" class="nav-link active" data-scroll-target="#plot-your-data-in-r"><span class="header-section-number">1</span> Plot your data in R</a>
+  <ul class="collapse">
+  <li><a href="#selecting-the-right-plot" id="toc-selecting-the-right-plot" class="nav-link" data-scroll-target="#selecting-the-right-plot"><span class="header-section-number">1.1</span> Selecting the right plot</a></li>
+  <li><a href="#quick-plotting-in-r" id="toc-quick-plotting-in-r" class="nav-link" data-scroll-target="#quick-plotting-in-r"><span class="header-section-number">1.2</span> Quick Plotting in R</a></li>
+  <li><a href="#quick-exercise-i" id="toc-quick-exercise-i" class="nav-link" data-scroll-target="#quick-exercise-i"><span class="header-section-number">1.3</span> <span style="color:darkseagreen">Quick exercise (I)</span></a></li>
+  <li><a href="#plot-your-data-and-save-the-plot" id="toc-plot-your-data-and-save-the-plot" class="nav-link" data-scroll-target="#plot-your-data-and-save-the-plot"><span class="header-section-number">1.4</span> Plot your data and save the plot</a></li>
+  <li><a href="#adding-elements-to-your-plot" id="toc-adding-elements-to-your-plot" class="nav-link" data-scroll-target="#adding-elements-to-your-plot"><span class="header-section-number">1.5</span> Adding elements to your plot</a></li>
+  <li><a href="#plot-detailed-customization" id="toc-plot-detailed-customization" class="nav-link" data-scroll-target="#plot-detailed-customization"><span class="header-section-number">1.6</span> Plot detailed customization</a></li>
+  <li><a href="#quick-exercise-ii" id="toc-quick-exercise-ii" class="nav-link" data-scroll-target="#quick-exercise-ii"><span class="header-section-number">1.7</span> <span style="color:darkseagreen">Quick exercise (II)</span></a></li>
+  <li><a href="#plot-grouped-data" id="toc-plot-grouped-data" class="nav-link" data-scroll-target="#plot-grouped-data"><span class="header-section-number">1.8</span> Plot grouped data</a></li>
+  <li><a href="#plot-customization" id="toc-plot-customization" class="nav-link" data-scroll-target="#plot-customization"><span class="header-section-number">1.9</span> Plot customization</a></li>
+  <li><a href="#quick-exercise-iii" id="toc-quick-exercise-iii" class="nav-link" data-scroll-target="#quick-exercise-iii"><span class="header-section-number">1.10</span> <span style="color:darkseagreen">Quick exercise (III)</span></a></li>
+  </ul></li>
+  <li><a href="#refs" id="toc-refs" class="nav-link" data-scroll-target="#refs"><span class="header-section-number">2</span> References</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">3</span> <span style="color:green">Exercises</span></a></li>
+  <li><a href="#extra-exercises-on-r-base-plots" id="toc-extra-exercises-on-r-base-plots" class="nav-link" data-scroll-target="#extra-exercises-on-r-base-plots"><span class="header-section-number">4</span> <span style="color:green">Extra exercises on R base plots</span></a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">5</span> Session Info</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">R5: Base plots in R</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Data visualization</div>
+    <div class="quarto-category">Plots</div>
+    <div class="quarto-category">Correlation</div>
+    <div class="quarto-category">Quantitive data</div>
+    <div class="quarto-category">Categorical data</div>
+    <div class="quarto-category">Boxplot</div>
+    <div class="quarto-category">Scatterplot</div>
+    <div class="quarto-category">Stripchart</div>
+    <div class="quarto-category">Barplot</div>
+    <div class="quarto-category">Histogram</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 14, 2023</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 15, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="plot-your-data-in-r" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Plot your data in R</h1>
+<section id="selecting-the-right-plot" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="selecting-the-right-plot"><span class="header-section-number">1.1</span> Selecting the right plot</h2>
+<p>Data visualizations are a vital component of a data analysis, as they have the capability of summarizing large amounts of data efficiently in a graphical format and bring out new insights that can be difficult to understand from raw data. There are many chart types available, each with its own strengths and use cases. One of the trickiest parts of the analysis process is choosing the right way to represent your data using one of these visualizations. A wrong plot can lead to confusion or data misinterpretation (see some examples of bad graphs <a href="https://www.analyticsvidhya.com/blog/2021/02/data-visualization-bad-representation-of-data/">here</a>).</p>
+<p>From the perspective of classical data analysis, the first consideration to select the right plot is the nature of your variables. Some plots are recommended for numerical data (quantitative variables) and other for categorical data (qualitative variables). Then, you should considering the role for your data visualization, i.e, question you want to address or the message you want to transmit. That will depend on how many variables, as well as their distribution, grouping or correlation. There are some best practice guidelines, but at the end of the day, you need to consider what is best for your data. What do you want to show? What graph will best communicate your message? Is it a comparison between groups? Is it the frequency distribution of 1 variable?</p>
+<p>As a guidance, you can use the below <a href="https://flowingdata.com/2009/01/15/flow-chart-shows-you-what-chart-to-use/">cheatsheet, taken from Nathan Yau’s blog Flowingdata</a>:</p>
+<p><img src="images/chart-chart1.jpg" class="img-fluid"></p>
+<p>You can see a description of some of the most common plot types, with many examples on books and dedicated R websites. I suggest to take a look to some of the suggested <a href="#References">References</a> below, or some <strong>quick examples</strong>, like those <a href="https://intro2r.com/simple-base-r-plots.html">here</a> or <a href="https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html">here</a>. Rather than going through a wide list of plots, we are going to use some examples to learn some basic plotting and see the effect of plot selection in order to understand your data and use them to answer questions.</p>
+</section>
+<section id="quick-plotting-in-r" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="quick-plotting-in-r"><span class="header-section-number">1.2</span> Quick Plotting in R</h2>
+<p>R has a number of built-in tools for diverse graph types such as histograms, scatterplots, stripcharts, bar charts, boxplots, and more. Indeed, there are many functions in R to produce plots ranging from the very basic to the highly complex. We will show a few examples and use the plots as an excuse to add some new tricks for data analysis.</p>
+<p>In Lesson <a href="r8.html">R8</a> we will use the <code>ggplot2</code> package for efficient generation and customization of complex and <em>cool</em> plots. However, you will see that it’s sometimes useful to use the plotting functions in base R. These are installed by default with R and do not require any additional packages to be installed. They’re quick to type, straightforward to use in simple cases, and run very quickly. Then, if you want to do anything beyond very simple plots, though, it’s generally better to switch to <code>ggplot2</code>. In fact, once you already know how to use R’s base graphics, having these examples side by side will help you transition to using <code>ggplot2</code> for when you want to make more sophisticated graphics.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The function <strong><code>plot()</code></strong> is actually multifunctional and it can be used to generate different types of plots.</p>
+</div>
+</div>
+<p>In the table and the examples below you can see how to use <code>plot()</code> for different plot types.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/paste-D2FB731B.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Use of <code>plot()</code> function. Source: <a href="https://r-coder.com/plot-r/" class="uri">https://r-coder.com/plot-r/</a></figcaption>
+</figure>
+</div>
+<p>For the following examples, we are going to review also some R functions to make up (mock or simulated) data restricted to certain distributions. For instance, using functions like <code>rnorm()</code> or <code>dnorm()</code> for generation of normal data or normal density curves. The same can be obtained for <em>Poisson</em> distribution with <code>dpois()</code> and <code>rpois()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#generate some sample data with normal distribution</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">500</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">500</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x,<span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">dnorm</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>,<span class="at">mean=</span><span class="dv">50</span>,<span class="at">sd=</span><span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can also change some of the plot parameters to change the plot appearance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#customized Example</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">pch =</span> <span class="dv">21</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">bg =</span> <span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),   <span class="co"># Fill color</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"red"</span>, <span class="co"># Border color</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="dv">3</span>,      <span class="co"># Symbol size</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">3</span>)      <span class="co"># Border width</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Note that <strong>colors</strong> can be specified as a name or code (RGB or HEX). In the case of RGB code, we provide the three values in the range [0,1] for red, green, and blue. We can also introduce an optional fourth value that correspond to the alpha, also from 0 (transparent) to 1 (opaque). See <a href="#plot-customization">below</a> for more details about changing points and line shape and colors.</p>
+<hr>
+</section>
+<section id="quick-exercise-i" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="quick-exercise-i"><span class="header-section-number">1.3</span> <span style="color:darkseagreen">Quick exercise (I)</span></h2>
+<p>We have a vector in a <em>RData</em> file called <a href="&quot;data/primes.RData&quot;">primes.RData</a> that we would like to plot.</p>
+<strong>How would you load the vector?</strong>
+<div id="radio_RFOBDKRAPN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RFOBDKRAPN" value=""> <span>load(data/primes.RData)</span></label><label><input type="radio" autocomplete="off" name="radio_RFOBDKRAPN" value="answer"> <span>load(“data/primes.RData”)</span></label><label><input type="radio" autocomplete="off" name="radio_RFOBDKRAPN" value=""> <span>open(“data/primes.RData”)</span></label>
+</div>
+<p>Now we want to plot the vector. You may try different plots, but think which plot help you to answer the following question</p>
+<strong>In which quartile of the vector values there are more elements?</strong>
+<div id="radio_PXJSGUULXP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_PXJSGUULXP" value=""> <span>plot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_PXJSGUULXP" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label><label><input type="radio" autocomplete="off" name="radio_PXJSGUULXP" value="answer"> <span>boxplot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_PXJSGUULXP" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label>
+</div>
+<p>Yes, a boxplot is the best choice here.</p>
+<div class="cell" data-webex.hide="See the right plot">
+<div class="webex-solution">
+<button>
+See the right plot
+</button>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/primes.RData"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(new_vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>Here’s how to interpret this boxplot:</p>
+<ul>
+<li>The bottom whisker displays the minimum value.</li>
+<li>The bottom line of the box displays the first quartile value.</li>
+<li>The black bar in the middle of the box displays the second quartile value.</li>
+<li>The top line of the box displays the third quartile value (also known as the <strong>median</strong>).</li>
+<li>The top whisker displays the maximum value.</li>
+</ul>
+<p>We can also easily calculate the quartiles of a given dataset in R by using the <code>quantile()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/primes.RData"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(new_vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  0%  25%  50%  75% 100% 
+   2   17   41   67   97 </code></pre>
+</div>
+</div>
+<p>Compare the output with the boxplot and interpret the numbers.</p>
+</section>
+<section id="plot-your-data-and-save-the-plot" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="plot-your-data-and-save-the-plot"><span class="header-section-number">1.4</span> Plot your data and save the plot</h2>
+<p>As an example, we are going to read again the file <a href="data/coli_genomes_renamed.csv"><em>coli_genomes_renamed.csv</em></a> that we used in the previous lesson and export it ready for MS Excel.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have not worked with the R3 lesson yet, you can take a quick look at how we can <a href="r3.html#open-and-explore-a-dataframe">open</a> and <a href="r3.html#save">save</a> a table in R.</p>
+</div>
+</div>
+<p>Now let’s play with different plots of our data and try to save one.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#open the data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>coli_genomes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">'data/coli_genomes_renamed.csv'</span>, <span class="at">strip.white =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#attach it to save time and code writing (optional!)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(coli_genomes)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#one variable</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#histogram</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#a factor</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Source)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-5-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#two variables</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Contigs, kmer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-5-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#factor + numeric variable and saving the plot</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="at">file=</span><span class="st">"plot1.png"</span>)  <span class="co">#give it a file name</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Source,Contigs)  <span class="co">#construct the plot</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()  <span class="co">#save</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>quartz_off_screen 
+                2 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(coli_genomes) <span class="co">#detach</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As shown in the example, in order to save a plot, we must follow three steps:</p>
+<ol type="1">
+<li><p>Open the file indicating the format: <code>png()</code>, <code>jpg()</code>, <code>svg()</code>, <code>postscript()</code>, <code>bmp()</code>, <code>win.metafile()</code>, or <code>pdf()</code>.</p></li>
+<li><p>Plot the data.</p></li>
+<li><p>Close the file: <code>dev.off()</code>.</p></li>
+</ol>
+<p>Alternatively, you can save the plot using the <strong>Plot</strong> menu or the <strong>Plots panel</strong>: <em>Export</em> –&gt; <em>Save as Image</em> or <em>Save as PDF.</em></p>
+</section>
+<section id="adding-elements-to-your-plot" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="adding-elements-to-your-plot"><span class="header-section-number">1.5</span> Adding elements to your plot</h2>
+<p>As you may know, the R function <code>cor()</code> calculate the correlation coefficient between two or more vectors and <code>cor.test()</code> allow us to quickly perform a correlation test between two variables to know if the correlation is statistically significant. However, a quick plot can be also very useful.</p>
+<p>In our example dataframe, we have some features of a list of <em>E. coli</em> isolates and the basic stats of the genome sequencing. Regarding this data, do you think that the number of contigs &gt; 1kb in the genome assemblies (<em>contigs1kb</em>) correlates with the total number of contigs (<em>Contigs</em>), or the average contig length (<em>average_contig</em>)? Let’s check the data using simple plots with the <code>plot()</code> function. Since we are going to make two plots, we will layout them together using a <code>par</code> option. ::: callout-tip ## Plot parameters set up with <code>par</code> Note that <code>par</code> can be used to set many graphical parameters. These options are stored in a list R object, that you can get using <code>par()</code> (with no arguments). :::</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#first we can save original settings (optional)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>() </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co">#graph area in two columns</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#correlation plots</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig, <span class="at">xlab=</span><span class="st">"Average contig"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+<p>What do you think? Now that we have seen the linear relationship pictorially in the scatter plot, we should plot the linear regression line and analyze the correlation.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Linear model and correlation in R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Linear regression analysis is used to predict the value of a variable based on the value of another variable. In R, you can calculate the linear regression equation with the function <code>lm()</code>. The <code>lm()</code> function takes in two main arguments, <em>Formula</em> and <em>2.</em> Data*. The data is typically a data.frame and the formula is a object of class formula (with a diacritical mark like that over the Spanish letter ñ, <code>~</code>). But the most common convention is to write out the formula directly in place of the argument as written below. Then, you must also remember that correlation coefficient can be calculated with the function <code>cor()</code>.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#linear model</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>modelito <span class="ot">&lt;-</span> <span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelito)  <span class="co">#is the linear model significant???</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = coli_genomes$contigs1kb ~ coli_genomes$Contigs)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-53.475  -8.646  -3.300  14.840  55.947 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)          -6.36290   12.90558  -0.493    0.627    
+coli_genomes$Contigs  0.50755    0.06634   7.651 2.31e-07 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 22.55 on 20 degrees of freedom
+Multiple R-squared:  0.7453,    Adjusted R-squared:  0.7326 
+F-statistic: 58.54 on 1 and 20 DF,  p-value: 2.306e-07</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set par (we need to set up the par in every code chunk)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#correlation plots with line</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(modelito, <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># we can include the lm() in the plot, without calculating it before</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig, <span class="at">xlab=</span><span class="st">"Average contig"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig), <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="1152"></p>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now we will check with a cor.test and add some text to the plot</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>(test1 <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(coli_genomes<span class="sc">$</span>contigs1kb, coli_genomes<span class="sc">$</span>Contigs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  coli_genomes$contigs1kb and coli_genomes$Contigs
+t = 7.651, df = 20, p-value = 2.306e-07
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.6945248 0.9420476
+sample estimates:
+     cor 
+0.863334 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(test2 <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(coli_genomes<span class="sc">$</span>contigs1kb, coli_genomes<span class="sc">$</span>average_contig))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  coli_genomes$contigs1kb and coli_genomes$average_contig
+t = -7.8453, df = 20, p-value = 1.574e-07
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9444427 -0.7055990
+sample estimates:
+       cor 
+-0.8687624 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(test1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 9
+ $ statistic  : Named num 7.65
+  ..- attr(*, "names")= chr "t"
+ $ parameter  : Named int 20
+  ..- attr(*, "names")= chr "df"
+ $ p.value    : num 2.31e-07
+ $ estimate   : Named num 0.863
+  ..- attr(*, "names")= chr "cor"
+ $ null.value : Named num 0
+  ..- attr(*, "names")= chr "correlation"
+ $ alternative: chr "two.sided"
+ $ method     : chr "Pearson's product-moment correlation"
+ $ data.name  : chr "coli_genomes$contigs1kb and coli_genomes$Contigs"
+ $ conf.int   : num [1:2] 0.695 0.942
+  ..- attr(*, "conf.level")= num 0.95
+ - attr(*, "class")= chr "htest"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs), <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#now add the text in a defined position</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">200</span>,<span class="dv">200</span>,<span class="fu">paste</span>(<span class="st">"Pearson r2="</span>,<span class="fu">round</span>(test1<span class="sc">$</span>estimate,<span class="dv">2</span>)))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig, <span class="at">xlab=</span><span class="st">"Average contig"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>average_contig), <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">40000</span>,<span class="dv">200</span>,<span class="fu">paste</span>(<span class="st">"Pearson r2="</span>,<span class="fu">round</span>(test2<span class="sc">$</span>estimate,<span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+<p>In a step further you can check multiple correlations in a single plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#oh wait! why only one-vs-one?</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes[,<span class="fu">c</span>(<span class="st">"VF"</span>,<span class="st">"Plasmids"</span>,<span class="st">"kmer"</span>,<span class="st">"Contigs"</span>,<span class="st">"N50"</span>,<span class="st">"longest.contig..bp."</span>,<span class="st">"Assembly_length"</span>,<span class="st">"contigs1kb"</span>,<span class="st">"average_contig"</span>)], <span class="at">main =</span> <span class="st">"Multiple Correlation plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plot-detailed-customization" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="plot-detailed-customization"><span class="header-section-number">1.6</span> Plot detailed customization</h2>
+<hr>
+</section>
+<section id="quick-exercise-ii" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">1.7</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
+<p>For this exercise we are going to use a dataset called <a href="data/Zebrafish_data.csv"><em>zebrafish_data.csv</em></a>. This file contains the results of an experiment in which a collaborator scored the number of metastatic cancer cells upon the expression of different transcripts of the EFNA3 gene. Each transcript is cloned into a pLoC plasmid, and we have negative (empty plasmid) and positive controls (wt EFNA3 transcript), as well as four transcript mutants. Let’s import and check the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read data</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ZFdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Zebrafish_data.csv"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ZFdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   41 obs. of  6 variables:
+ $ pLoC : int  36 32 10 26 15 23 17 14 44 12 ...
+ $ EFNA3: int  35 33 17 25 89 36 40 36 35 37 ...
+ $ NC1  : int  58 26 26 18 20 24 10 31 28 26 ...
+ $ NC1s : int  11 11 19 12 12 20 7 104 116 11 ...
+ $ NC2  : int  53 37 56 48 27 29 22 79 22 18 ...
+ $ NC2s : int  40 43 19 18 33 29 29 25 28 47 ...</code></pre>
+</div>
+</div>
+<strong>How would you construct barplots of the data from the six experimental conditions?</strong>
+<div id="radio_EEPNDMDXVY" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_EEPNDMDXVY" value=""> <span>hist(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_EEPNDMDXVY" value=""> <span>barplot(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_EEPNDMDXVY" value="answer"> <span>barplot(ZFdata$pLoC), and the same for each construct</span></label><label><input type="radio" autocomplete="off" name="radio_EEPNDMDXVY" value=""> <span>hist(ZFdata$pLoC), and the same for each construct</span></label>
+</div>
+<p>Let’s see some examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#some plots</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in barplot.default(ZFdata): 'height' must be a vector or a matrix</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>pLoC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="1152"></p>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co">#arrange the three plots in a row </span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#we include a plot title with "main"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="st">"blue"</span>,<span class="at">main=</span><span class="st">"NC1s"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="1152"></p>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)) <span class="co">#arrange the six plots in two rows</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#note the "method" option</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"stack"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"overplot"</span>, <span class="at">col=</span><span class="st">"red"</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method =</span> <span class="st">"stack"</span>,<span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">method =</span> <span class="st">"stack"</span>,<span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="1152"></p>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now histograms</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)) <span class="co">#arrange the three plots in a row </span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="st">"red"</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="st">"green"</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="st">"blue"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+<p>Now try to answer some questions about your data and obtained plots:</p>
+<strong>1. Which construct has the strongest impact on the dissemination of metastatic cells?</strong>
+<div id="radio_UNOVAPAJTR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>The empty plasmid pLoC</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>WT EFNA3</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>NC1</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>NC1s</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>NC2</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value=""> <span>NC2s</span></label><label><input type="radio" autocomplete="off" name="radio_UNOVAPAJTR" value="answer"> <span>I cannot say</span></label>
+</div>
+<strong>2. Which plot represent best these data?</strong>
+<div id="radio_AQGUMWLNQV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value=""> <span>Histogram</span></label><label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value=""> <span>Barplot</span></label><label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value=""> <span>Boxplot</span></label><label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value=""> <span>Stripchart</span></label><label><input type="radio" autocomplete="off" name="radio_AQGUMWLNQV" value="answer"> <span>I am not sure</span></label>
+</div>
+<strong>3. Does a boxplot represent the same <em>information</em> than a histogram?</strong>
+<div id="radio_LLQECDNICE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LLQECDNICE" value=""> <span>No, not at all</span></label><label><input type="radio" autocomplete="off" name="radio_LLQECDNICE" value=""> <span>Yes, they are the same</span></label><label><input type="radio" autocomplete="off" name="radio_LLQECDNICE" value=""> <span>Yes, but a boxplot will show best the differences between my samples</span></label><label><input type="radio" autocomplete="off" name="radio_LLQECDNICE" value="answer"> <span>Yes, but a histogram will show best the differences between my samples</span></label>
+</div>
+<strong>4. Does a barplot represent the same information than a boxplot?</strong>
+<div id="radio_DAAYEKFOZB" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DAAYEKFOZB" value=""> <span>No, a barplot represents data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_DAAYEKFOZB" value="answer"> <span>No, boxplots and histograms represent data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_DAAYEKFOZB" value=""> <span>Yes, they alike</span></label>
+</div>
+<p>Now, we are going to represent the same data again, introducing some more customization</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Can you reproduce the above plots?</p>
+<div class="cell" data-webex.hide="Answer">
+<div class="webex-solution">
+<button>
+Answer
+</button>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#new par settings</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">cex.lab =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">#plotting</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"pLoc"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>),  <span class="at">main=</span><span class="st">"NC1s"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>,  <span class="at">main=</span><span class="st">"pLoc"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">vertical=</span><span class="cn">TRUE</span>, <span class="at">main=</span><span class="st">"EFNA3"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>pLoC, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>, <span class="at">main=</span><span class="st">"pLoc"</span>)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>EFNA3, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>,  <span class="at">main=</span><span class="st">"EFNA3"</span>)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZFdata<span class="sc">$</span>NC1s, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="at">xlab =</span> <span class="st">"Number of Metastatic cells"</span>, <span class="at">main=</span><span class="st">"N1cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><em>Do you think, you can answer better the questions now?</em></p>
+<p>Beyond some basic examples of plotting in R, the take-home message of this example is that the type of plot and the plot parameters (in this case the scale) can be essential for correct interpretation of the data and if they are not properly adjusted the plot can be strongly misleading.</p>
+<p>The stripchart and the boxplot strongly suggest that NC2s is probably the strongest transcript, but that is not shown in the barplot. These plots clearly show that barplots are intended for single values (categorical data) and can mislead your conclusions.</p>
+</section>
+<section id="plot-grouped-data" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="plot-grouped-data"><span class="header-section-number">1.8</span> Plot grouped data</h2>
+<p>Further, to compare three conditions, we needed to make three independent plots. However, in the table, there are actually six conditions, and it is easy to imagine a table with more conditions. How could you plot that? The main question is, different conditions means different variables? In other words:</p>
+<strong>How many variables are there in the Zebrafish dataset?</strong>
+<div id="radio_CAFIJTNUPN" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CAFIJTNUPN" value=""> <span>3 variables, WT, empty plasmid and 4 mutants</span></label><label><input type="radio" autocomplete="off" name="radio_CAFIJTNUPN" value=""> <span>6, one for each expressed transcript</span></label><label><input type="radio" autocomplete="off" name="radio_CAFIJTNUPN" value="answer"> <span>2 variables, the (1) plasmid/expressed transcript and (2) the number of metastatic cells</span></label>
+</div>
+<p>In data analysis (check Lesson <a href="r6.html">R6</a>), particularly when you want to compare many variables in different groups, it is more handy to create a <em>stacked</em> table or <em>datamatrix</em>. Stacked table are also often referred to as <em>narrow</em> tables. In contrast, the tables with different conditions (of a same variable) in different columns are named <em>wide</em> table or <em>unstacked</em>. The code below shows how to <em>stack</em> and plot your data by groups using the function <code>stack()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ZF_stacked <span class="ot">&lt;-</span> <span class="fu">stack</span>(ZFdata)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#you can also define a colors vector that can be reused</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>colorines<span class="ot">=</span><span class="fu">c</span>(<span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">1</span>,<span class="fl">0.5</span>,<span class="dv">0</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>,<span class="fl">0.5</span>),<span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)) </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ZF_stacked<span class="sc">$</span>values <span class="sc">~</span> ZF_stacked<span class="sc">$</span>ind,  <span class="at">col=</span>colorines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ZF_stacked<span class="sc">$</span>values <span class="sc">~</span> ZF_stacked<span class="sc">$</span>ind, <span class="at">vertical =</span> <span class="cn">TRUE</span>, <span class="at">method=</span><span class="st">"jitter"</span>, <span class="at">col=</span>colorines, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">ylab=</span><span class="st">"Number of cells"</span>, <span class="at">xlab=</span><span class="st">"Plasmid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="plot-customization" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="plot-customization"><span class="header-section-number">1.9</span> Plot customization</h2>
+<p>There are many options to customize your plots, including font type and size, point shape, line type… You can see more info on the <a href="#refs">References</a> section below. Let’s see some examples using code I borrow from <a href="https://r-coder.com/plot-r/" class="uri">https://r-coder.com/plot-r/</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#point shape with "pch"</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sapply</span>(<span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">25</span>, <span class="dv">5</span>), <span class="cf">function</span>(i) <span class="fu">rep</span>(i, <span class="dv">5</span>)))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">25</span>, <span class="dv">5</span>, <span class="sc">-</span><span class="dv">5</span>), <span class="dv">5</span>)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r, t, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="at">cex =</span> <span class="dv">3</span>, <span class="at">yaxt =</span> <span class="st">"n"</span>, <span class="at">xaxt =</span> <span class="st">"n"</span>,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ann =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">27</span>), <span class="at">lwd =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(r <span class="sc">-</span> <span class="fl">1.5</span>, t, <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#line type with "lty"</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, <span class="at">ncol =</span> <span class="dv">6</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(M, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"l"</span>), <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Just to indicate the line types in the plot</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>j <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">sapply</span>(<span class="fu">seq</span>(<span class="dv">4</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">6</span>),</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">function</span>(i) {</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>                   j <span class="ot">&lt;&lt;-</span> j <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">text</span>(<span class="dv">2</span>, i, <span class="fu">paste</span>(<span class="st">"lty ="</span>, j))}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot box</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plots</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"o"</span>, <span class="at">main =</span> <span class="st">"Default"</span>)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"7"</span>, <span class="at">main =</span> <span class="st">"bty = '7'"</span>)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"L"</span>, <span class="at">main =</span> <span class="st">"bty = 'L'"</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"U"</span>, <span class="at">main =</span> <span class="st">"bty = 'U'"</span>)</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"C"</span>, <span class="at">main =</span> <span class="st">"bty = 'C'"</span>)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">main =</span> <span class="st">"bty = 'n'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="quick-exercise-iii" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="quick-exercise-iii"><span class="header-section-number">1.10</span> <span style="color:darkseagreen">Quick exercise (III)</span></h2>
+<p>Now let’s think again in our <em>E. coli</em> genomes. How would you add more layers of information to the plot, like labels of specific points?</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell" data-webex.hide="Answer">
+<div class="webex-solution">
+<button>
+Answer
+</button>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#point label, but only some "selected" points</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#step1: create a vector with the selection</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">17</span>, <span class="dv">18</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co">#step2: make a plot</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">pch=</span><span class="dv">19</span>,<span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>), <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co">#step 3: add the labels as a text layer</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co">#note that you can use the formula for the text coordinates</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(coli_genomes<span class="sc">$</span>contigs1kb[selected] <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs[selected],</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> coli_genomes<span class="sc">$</span>Strain[selected],</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.6</span>, <span class="at">pos =</span> <span class="dv">4</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>You can look for more custom options because there are a lot. I also suggest looking at the <code>identify()</code> function, which allows the quick interactive identification and labeling of selected points.</p>
+<p>Now, we repeat the scatterplot above of <em>contigs1kb</em> vs.&nbsp;<em>Contigs,</em> but instead of labels, coloring the points by <em>Source</em> as in the plot below. Finally, use the function <code>legend()</code> to add a legend.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="r5_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell" data-webex.hide="Hint">
+<div class="webex-solution">
+<button>
+Hint
+</button>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Think in a way to use the variable 'Source' and conditionally recode it as colors</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Then, a recursive way will help you to generate a vector to color all the elements in the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell" data-webex.hide="Answer">
+<div class="webex-solution">
+<button>
+Answer
+</button>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#recode the source as color</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#step 1: define an empty vector (not required here, but better to do it)</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>colorines <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">#step 2: use a loop to run over all the source vector</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(coli_genomes)){</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">#step 3: use switch() to recode the sources as colors</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">#note that Source is a factor but we need to treat it as a character here</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>  colorines[i] <span class="ot">&lt;-</span> <span class="cf">switch</span>(<span class="fu">as.character</span>(coli_genomes<span class="sc">$</span>Source[i]),</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">Avian=</span><span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.4</span>),</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">Human=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.4</span>),</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">Porcine=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.4</span>))                   </span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coli_genomes<span class="sc">$</span>contigs1kb <span class="sc">~</span> coli_genomes<span class="sc">$</span>Contigs, <span class="at">pch=</span><span class="dv">21</span>,<span class="at">bg=</span>colorines, <span class="at">xlab=</span><span class="st">"Contigs"</span>, <span class="at">ylab=</span><span class="st">"Contigs &gt; 1kb"</span>)</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="co">#legend</span></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="co">#the function unique() is important here, can you figure out why?</span></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">100</span>,<span class="dv">200</span>,<span class="at">legend=</span><span class="fu">unique</span>(coli_genomes<span class="sc">$</span>Source),<span class="at">fill=</span><span class="fu">unique</span>(colorines))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+
+<section id="exercises" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> <span style="color:green">Exercises</span></h1>
+<section id="ex1" class="level4">
+<h4 class="anchored" data-anchor-id="ex1">1. Let’s suppose we have the expression data for two genes (GeneA and GeneB) in 50 patients, 30 with colon cancer and 20 with lung cancer.</h4>
+<p><strong>For the exercise, we are using random data, generated as follows:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>(GeneA <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)) </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>(GeneB <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">20</span>)) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">50</span>))</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>(tumor <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Colon"</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="st">"Lung"</span>, <span class="dv">20</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>a. Before plotting the data, how would you test if there is difference in the expression level by the type of tumor?</strong></p>
+<p><strong>b. Plot boxplots and density curves of the expression of both genes by type of tumor. Do the plots agree with your answer to the question a?</strong></p>
+<p><u><strong>Tips.</strong></u> <strong>Check out the functions <code>density()</code> and <code>lines()</code> in order to plot the density curves and <code>polygon()</code> if you want to have filled the area below the curves. Also, note that when plotting multiple lines, you must set the axis limits with the <code>xlim</code> and <code>ylim</code> arguments when plotting the first curve.</strong></p>
+</section>
+<section id="protein-amino-acids-composition." class="level4">
+<h4 class="anchored" data-anchor-id="protein-amino-acids-composition.">2. Protein amino acids composition.</h4>
+<p><strong>The file <a href="data/aapc.csv"><em>aapc.csv</em></a> is a plain text file that contains information amino acid composition in all the sequences deposited in the UniProtKB/Swiss-Prot protein data base. Use that file to reproduce the following barplot.</strong></p>
+<p><img src="images/paste-91E959E7.png" class="img-fluid" width="499"></p>
+</section>
+<section id="a-classic-in-biochemistry-lab-protein-quantification-with-special-thanks-to-carmen-mayoral.-you-have-probably-done-that-with-excel-or-graphpad-but-after-this-exercise-im-sure-youll-consider-a-definitive-upgrade-in-your-protocols." class="level4">
+<h4 class="anchored" data-anchor-id="a-classic-in-biochemistry-lab-protein-quantification-with-special-thanks-to-carmen-mayoral.-you-have-probably-done-that-with-excel-or-graphpad-but-after-this-exercise-im-sure-youll-consider-a-definitive-upgrade-in-your-protocols.">3. A classic in biochemistry lab: Protein quantification (with special thanks to Carmen Mayoral). You have probably done that with Excel or GraphPad, but after this exercise I’m sure you’ll consider a definitive upgrade in your protocols.</h4>
+<p><strong>In our lab, we often purify recombinant DNA polymerases. We have recently purify a <em>WT</em> and <em>mutant</em> proteins, and we want to quantify the amount of pure proteins using a SDS-PAGE. To do so, we loaded decreasing volumes of the protein preparation (serial dilutions, but expresed as volume of the original sample in µL) along with known amounts (ng) of bovine seroalbumin (BSA) as a pattern, as in the image below. Bands were densitometer using <a href="https://openwetware.org/wiki/Protein_Quantification_Using_ImageJ">ImageJ</a> opensource software (arbitrary units). The data are in three tables containing the BSA pattern (triplicates in <a href="data/bsa_pattern.csv">bsa_pattern.csv</a>), the results for the wt protein (<a href="data/curve_wt.csv">curve_wt.csv</a>) and for the mutant (<a href="data/curve_mut.csv">curve_mut.csv</a>).</strong></p>
+<p><img src="images/paste-188BFD52.png" class="img-fluid"></p>
+<ol type="1">
+<li><p><strong>Plot the correlation between BSA amounts and the bands density. Color the points by the replicate and include the linear model line, as well as the Pearson R<sup>2</sup>.</strong></p></li>
+<li><p><strong>Use the linear model to obtain the concentration (µM) of <em>wt</em> and <em>mutant</em> protein preparations. You can use the equation or check out the function <code>approx()</code> to directly interpolate the values. Consider the same molecular weight of 99 kDa for both proteins.</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="extra-exercises-on-r-base-plots" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> <span style="color:green">Extra exercises on R base plots</span></h1>
+<ul>
+<li><p>R Bloggers exercises: <a href="https://www.r-bloggers.com/2016/09/advanced-base-graphics-exercises/" class="uri">https://www.r-bloggers.com/2016/09/advanced-base-graphics-exercises/</a></p></li>
+<li><p>More solved exercises (with a Bioinformatics flavor!!):</p>
+<ul>
+<li><p>Text: <a href="https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/Core%20R%20Plotting%20Exercises.pdf" class="uri">https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/Core%20R%20Plotting%20Exercises.pdf</a></p></li>
+<li><p>Data: <a href="https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/Core%20R%20Plotting%20Data.zip" class="uri">https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/Core%20R%20Plotting%20Data.zip</a></p></li>
+<li><p>Answers: <a href="https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/core_r_plotting_exericse_answers.nb.html" class="uri">https://www.bioinformatics.babraham.ac.uk/training/Core_R_Plotting/core_r_plotting_exericse_answers.nb.html</a></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="session-info" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Session Info</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.0 (2023-04-21)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Ventura 13.3.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Madrid
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] webexercises_1.1.0
+
+loaded via a namespace (and not attached):
+ [1] htmlwidgets_1.6.2 compiler_4.3.0    fastmap_1.1.1     cli_3.6.1        
+ [5] htmltools_0.5.5   tools_4.3.0       rstudioapi_0.14   yaml_2.3.7       
+ [9] rmarkdown_2.21    knitr_1.43        jsonlite_1.8.4    digest_0.6.31    
+[13] xfun_0.39         rlang_1.1.1       evaluate_0.21    </code></pre>
+</div>
+</div>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><section id="refs" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> References</h1>
+<ul>
+<li><p><em>R in action.</em> Robert I. Kabacoff. March 2022 ISBN 9781617296055</p></li>
+<li><p>R Graphics Cookbook: <a href="https://r-graphics.org/" class="uri">https://r-graphics.org/</a> (Chapter 2).</p></li>
+<li><p>Graphics with Base R: <a href="https://intro2r.com/graphics_base_r.html" class="uri">https://intro2r.com/graphics_base_r.html</a></p></li>
+<li><p><a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1002128">Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm (Weissberger et al.&nbsp;Plos Biology 2015).</a></p></li>
+<li><p>I also advise checking articles and posts that you can find with Google, such as:</p>
+<ul>
+<li><p>How to choose the right chart for your data: <a href="https://dexibit.com/how-to-choose-the-right-chart-to-visualize-your-data/" class="uri">https://dexibit.com/how-to-choose-the-right-chart-to-visualize-your-data/</a></p></li>
+<li><p>How to choose the Right Chart for Data Visualization: <a href="https://www.analyticsvidhya.com/blog/2021/09/how-to-choose-the-right-chart-for-data-visualization/" class="uri">https://www.analyticsvidhya.com/blog/2021/09/how-to-choose-the-right-chart-for-data-visualization/</a></p></li>
+<li><p>Basic plots in R: <a href="https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html" class="uri">https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html</a></p></li>
+<li><p>R Base Plotting: <a href="https://rstudio-pubs-static.s3.amazonaws.com/84527_6b8334fd3d9348579681b24d156e7e9d.html" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/84527_6b8334fd3d9348579681b24d156e7e9d.html</a></p></li>
+<li><p>Base plotting in R: <a href="https://towardsdatascience.com/base-plotting-in-r-eb365da06b22" class="uri">https://towardsdatascience.com/base-plotting-in-r-eb365da06b22</a></p></li>
+</ul></li>
+</ul>
+</section></section></div></main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Modesto Redrejo Rodríguez, 2023</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://creativecommons.org/licenses/by-nc/2.0/">
+      <i class="bi bi-badge-cc-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/mredrejo">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

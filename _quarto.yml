@@ -26,8 +26,8 @@ website:
       - r5.qmd
       - r6.qmd
       - r7.qmd
-      - r7.qmd
-      - r7.qmd
+      - r8.qmd
+      - r9.qmd
   page-footer:
     left: "Modesto Redrejo Rodríguez, 2023"
     right:

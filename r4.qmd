@@ -81,11 +81,16 @@ library(uam)
 require(uam)
 ```
 
-As an example, we are going to read again the file *coli_genomes_renamed.csv* that we saved in the previous lesson ([here](r3.html#save)) and save it ready for MS Excel.
+As an example, we are going to read again the file *[coli_genomes_renamed.csv](data/coli_genomes_renamed.csv)* that we used in the previous lesson and export it ready for MS Excel.
+
+::: callout-tip
+If you have not worked with the R3 lesson yet, you can take a quick look at how we can [open](r3.html#open-and-explore-a-dataframe) and [save](r3.html#save) a table in R.
+:::
+
 
 ```{r}
 #open it again
-coli_genomes <- read.csv2(file = 'data/coli_genomes_renamed.csv')
+coli_genomes <- read.csv(file = 'data/coli_genomes_renamed.csv')
 #save
 library(xlsx)
 write.xlsx(coli_genomes,"data/coli_genomes.xlsx")

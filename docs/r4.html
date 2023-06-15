@@ -137,11 +137,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./r4.html" rel="" target="">
  <span class="dropdown-text">R4: Functions in R</span></a>
   </li>  
-        <li class="dropdown-header">r5.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./r5.html" rel="" target="">
+ <span class="dropdown-text">R5: Base plots in R</span></a>
+  </li>  
         <li class="dropdown-header">r6.qmd</li>
         <li class="dropdown-header">r7.qmd</li>
-        <li class="dropdown-header">r7.qmd</li>
-        <li class="dropdown-header">r7.qmd</li>
+        <li class="dropdown-header">r8.qmd</li>
+        <li class="dropdown-header">r9.qmd</li>
     </ul>
   </li>
 </ul>
@@ -220,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 6, 2023</p>
+      <p class="date-modified">June 14, 2023</p>
     </div>
   </div>
     
@@ -277,10 +280,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 logical.return = TRUE, : there is no package called 'uam'</code></pre>
 </div>
 </div>
-<p>As an example, we are going to read again the file <em>coli_genomes_renamed.csv</em> that we saved in the previous lesson (<a href="r3.html#save">here</a>) and save it ready for MS Excel.</p>
+<p>As an example, we are going to read again the file <em><a href="data/coli_genomes_renamed.csv">coli_genomes_renamed.csv</a></em> that we used in the previous lesson and export it ready for MS Excel.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have not worked with the R3 lesson yet, you can take a quick look at how we can <a href="r3.html#open-and-explore-a-dataframe">open</a> and <a href="r3.html#save">save</a> a table in R.</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># open it again</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>coli_genomes <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="at">file =</span> <span class="st">"data/coli_genomes_renamed.csv"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>coli_genomes <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"data/coli_genomes_renamed.csv"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># save</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xlsx)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx</span>(coli_genomes, <span class="st">"data/coli_genomes.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -320,7 +336,7 @@ logical.return = TRUE, : there is no package called 'uam'</code></pre>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>DNA<span class="sc">$</span>titles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "A-DNA"                 "Circular DNA"          "DNA"                  
- [4] "DNA (disambiguation)"  "DNA (duo)"             "DNA extraction"       
+ [4] "DNA (disambiguation)"  "DNA Oyj"               "DNA extraction"       
  [7] "DNA gyrase"            "DNA ligase"            "DNA methylation"      
 [10] "DNA polymerase"        "DNA profiling"         "DNA repair"           
 [13] "DNA replication"       "DNA sequencing"        "DNA virus"            
@@ -521,8 +537,8 @@ is positive, statistically significant, and very large (r = 0.93, 95% CI [0.91,
 <h2 data-number="2.3" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">2.3</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>Write an inline function that transforms concentrations units: molar (M) into micromolar (µM). Test it with your own R session.</p>
 <strong>Select the right answer</strong>
-<div id="radio_MRKMOKGXWI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_MRKMOKGXWI" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_MRKMOKGXWI" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_MRKMOKGXWI" value=""> <span>f &lt;- function(x) x 1000</span></label>
+<div id="radio_BJELYMGKJT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BJELYMGKJT" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_BJELYMGKJT" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_BJELYMGKJT" value=""> <span>f &lt;- function(x) x 1000</span></label>
 </div>
 <hr>
 </section>
@@ -822,7 +838,7 @@ Answer 1
 </div>
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">age</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 225.8 months old"</code></pre>
+<pre><code>[1] "You are about 226.1 months old"</code></pre>
 </div>
 </div>
 </div>
@@ -847,7 +863,7 @@ Answer 2
 <span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "If you were born on 2004-11-17, you are about 225.8 months old."</code></pre>
+<pre><code>[1] "If you were born on 2004-11-17, you are about 226.1 months old."</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">

@@ -126,6 +126,7 @@ heatmap(as.matrix(sm))
 You can write any data object(s) as binary data file or as text files. Compare the different files saved in the code below.
 
 ```{r}
+vector <- c(1:5)
 vector2 <- c(3, 5:13)
 write(vector2,file="data/vector2.txt")
 write.table(sm,"data/sm.csv")
@@ -135,12 +136,23 @@ save(vector, vector2,file="data/vector2.Rdata")
 save.image(file='data/myEnvironment.RData')
 ```
 
-Data files in RData format can be open from the *Environment* tab or with the `load()` function
+
+Data files in RData format can be open from the *Environment* tab or with the `load()` function. To check that it was correctly loaded, we can remove it before loading with the `rm()` function.
 
 ```{r}
-sm_bis <- load("data/vector2.Rdata")
-sm_bis
+#remove from the Global Environment in our RStudio session
+rm(vector)
+rm(vector2)
+#load again
+load("data/vector2.Rdata")
+vector
+vector2
 ```
+
+::: callout-caution
+Note that if you save your data with `save()`, it cannot be restored under different name. The original object names are automatically used.
+If you want to save the object and restore with a different name you need to use the functions `saveRDS()` and `readRDS()`
+:::
 
 ------------------------------------------------------------------------
 
@@ -165,9 +177,10 @@ cat("**Select the right answer**",longmcq(opts_p))
 
 Now we are going to import and explore an example dataset, containing metadata from an Illumina sequencing project of pathogenic *E. coli* strains (Flament-Simon et al. 2020, <https://doi.org/10.1038/s41598-020-69356-6>). However, for didactic purposes, the original data have been simplified and manipulated and the attached datasets do not fully correspond to the actual data.
 
-## Explore a dataframe
 
+## Open and explore a dataframe
 As you can see in the R help, the function `read.table()` has several default options as FALSE, like `header=FALSE`. When you have a spreadsheet export file, i.e. having a table where the fields are divided by commas in place of spaces, you can use `read.csv()` in place of `read.table()`. For Spaniards, there is also `read.csv2()`, which uses a comma for the decimal point and a semicolon for the separator. The latter functions are wrappers of `read.table()` with custom default options. Likewise, there are `write.csv()` and `write.csv2()`, which are wrappers of `write.table()`.
+Look carefully at the following examples of different ways to open a table (with some common mistakes) and explore them quickly.
 
 ```{r error=TRUE}
 #Note differences between read.table(), read.csv() and read.csv2()
@@ -220,7 +233,7 @@ coli_genomes$Phylogroup<-as.factor(coli_genomes$Phylogroup)
 str(coli_genomes) #dataframe estructure updated
 ```
 
-How many levels are there in *Source*?? It is not uncommon to see some mistake in our data, usually made when the data were recorded, for example a space may have been inserted before a data value. By default this white space will be kept in the R environment, such that 'Human' will be recognized as a different value than 'Human'. In order to avoid this type of error, we can use the *strip.white* argument.
+How many levels are there in *Source*?? It is not uncommon to see some mistake in our data, usually made when the data were recorded, for example a space may have been inserted before a data value. By default this white space will be kept in the R environment, such that 'Human' will be recognized as a different value than 'Human'. In order to avoid this type of error, we can use the **`strip.white`** argument.
 
 ```{r}
 unique(coli_genomes$Source)
@@ -231,6 +244,17 @@ coli_genomes$Phylogroup<-as.factor(coli_genomes$Phylogroup)
 
 unique(coli_genomes$Source)
 ```
+
+At this point, you may consider that writing the name of the dataframe every time that you want to work with it can be repetitive. In fact, we don't need to do it.
+```{r}
+attach(coli_genomes) #attach
+table(Source)
+detach(coli_genomes)
+```
+
+Note that attach can be used for any R object, including dataframes, lists, vectors, packages... Once attached, R will consider those objects as databases, located in new, temporal environments. 
+
+## Renaming, changing and adding variables
 
 We can also rename some variables to use more easy names.
 
@@ -246,7 +270,7 @@ names(coli_genomes)
 
 ```
 
-## Change and add variables
+
 
 We are going to simplify our dataframe by dropping variables:
 
