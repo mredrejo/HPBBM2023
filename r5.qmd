@@ -31,7 +31,7 @@ link-external-newwindow: true
 
 ## Why do we make plots?
 
-Data visualizations are a vital component of a data analysis, as they have the capability of summarizing large amounts of data efficiently in a graphical format and bring out new insights that can be difficult to understand from raw data. Moreover, from the perspective of the researcher or data analyst, plotting the datasets will help to familiarize with the data and plan the next steps in your analysis. Also, an early plot can help you to identify statistics pitfalls.
+Data visualization is a very important part of a data analysis because they can efficiently summarize large amounts of data in a graphical format and reveal new insights that are difficult to understand from the raw data. From a researcher's or data analyst's perspective, plotting datasets also helps you become familiar with the data and plan next steps in your analysis. It also allows you to identify statistical pitfalls with an initial plot.
 
 ::: {#Anscombe}
 :::
@@ -42,11 +42,11 @@ This well-known quartet highlights the importance of graphing data prior to anal
 
 ## Which plot should I do with my data?
 
-There are many chart types available, each with its own strengths and use cases. One of the trickiest parts of the analysis process is choosing the right way to represent your data using one of these visualizations. A wrong plot can lead to confusion or data misinterpretation (see some examples of bad graphs [here](https://www.analyticsvidhya.com/blog/2021/02/data-visualization-bad-representation-of-data/)).
+There are many different types of graphs, each with their own strengths and use cases. One of the trickiest parts of the analysis process is choosing the right way to represent your data with one of these visualizations. The wrong chart can lead to confusion or misinterpretation of the data (see some examples of bad charts [here](https://www.analyticsvidhya.com/blog/2021/02/data-visualization-bad-representation-of-data/)).
 
-From the perspective of classical data analysis, the first consideration to select the right plot is the nature of your variables. Some plots are recommended for numerical data (quantitative variables) and other for categorical data (qualitative variables). Then, you should considering the role for your data visualization, i.e, question you want to address or the message you want to transmit. That will depend on how many variables, as well as their distribution, grouping or correlation. There are some best practice guidelines, but at the end of the day, you need to consider what is best for your data. What do you want to show? What graph will best communicate your message? Is it a comparison between groups? Is it the frequency distribution of 1 variable?
+From a classical data analysis perspective, the first consideration in choosing the right plot is the nature of your variables. Some charts are recommended for numerical data (quantitative variables) and others for categorical data (qualitative variables). Then you should consider what role you want your data visualization to play, i.e., what question you want to answer or what message you want to convey. This depends on the number of variables as well as their distribution, grouping or correlation. There are some best practice guidelines, but ultimately you need to consider what is best for your data. What do you want to show? What chart best conveys your message? Is it a comparison between groups? Is it a frequency distribution of 1 variable?
 
-As a guidance, you can use the below *Chartchooser*, by Andrew Abela.
+for a guidance, you can use the *Chartchooser* below, by Andrew Abela.
 
 ![**The *ExtremePresentation* method for choosing a plot or chart.**](images/chart-chart1.jpg){width="1000"}
 
@@ -56,7 +56,7 @@ You can see a description of some of the most common plot types, with many examp
 
 R has a number of built-in tools for diverse graph types such as histograms, scatterplots, stripcharts, bar charts, boxplots, and more. Indeed, there are many functions in R to produce plots ranging from the very basic to the highly complex. We will show a few examples and use the plots as an excuse to add some new tricks for data analysis.
 
-In Lesson [R8](r8.html) we will use the `ggplot2` package for efficient generation and customization of complex and *cool* plots. However, you will see that it's sometimes useful to use the plotting functions in base R. These are installed by default with R and do not require any additional packages to be installed. They're quick to type, straightforward to use in simple cases, and run very quickly. Then, if you want to do anything beyond very simple plots, though, it's generally better to switch to `ggplot2`. In fact, once you already know how to use R's base graphics, having these examples side by side will help you transition to using `ggplot2` for when you want to make more sophisticated graphics.
+In Lesson [R8](r8.html) we will use the `ggplot2` package for efficient and advanced plot generation and customization. However, you will see that it's sometimes useful to use the plotting functions in base R. These are installed by default with R and do not require any additional packages to be installed. They're quick to type, straightforward to use in simple cases, and run very quickly. Then, if you want to do anything beyond very simple plots, though, it's generally better to switch to `ggplot2`. In fact, once you already know how to use R's base graphics, having these examples side by side will help you transition to using `ggplot2` for when you want to make more sophisticated graphics.
 
 ::: callout-important
 The function **`plot()`** is actually multifunctional and it can be used to generate different types of plots.

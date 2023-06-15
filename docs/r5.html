@@ -236,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 data-number="1"><span class="header-section-number">1</span> Plot your data in R</h1>
 <section id="why-do-we-make-plots" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="why-do-we-make-plots"><span class="header-section-number">1.1</span> Why do we make plots?</h2>
-<p>Data visualizations are a vital component of a data analysis, as they have the capability of summarizing large amounts of data efficiently in a graphical format and bring out new insights that can be difficult to understand from raw data. Moreover, from the perspective of the researcher or data analyst, plotting the datasets will help to familiarize with the data and plan the next steps in your analysis. Also, an early plot can help you to identify statistics pitfalls.</p>
+<p>Data visualization is a very important part of a data analysis because they can efficiently summarize large amounts of data in a graphical format and reveal new insights that are difficult to understand from the raw data. From a researcher’s or data analyst’s perspective, plotting datasets also helps you become familiar with the data and plan next steps in your analysis. It also allows you to identify statistical pitfalls with an initial plot.</p>
 <div id="Anscombe">
 
 </div>
@@ -250,9 +250,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="which-plot-should-i-do-with-my-data" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="which-plot-should-i-do-with-my-data"><span class="header-section-number">1.2</span> Which plot should I do with my data?</h2>
-<p>There are many chart types available, each with its own strengths and use cases. One of the trickiest parts of the analysis process is choosing the right way to represent your data using one of these visualizations. A wrong plot can lead to confusion or data misinterpretation (see some examples of bad graphs <a href="https://www.analyticsvidhya.com/blog/2021/02/data-visualization-bad-representation-of-data/">here</a>).</p>
-<p>From the perspective of classical data analysis, the first consideration to select the right plot is the nature of your variables. Some plots are recommended for numerical data (quantitative variables) and other for categorical data (qualitative variables). Then, you should considering the role for your data visualization, i.e, question you want to address or the message you want to transmit. That will depend on how many variables, as well as their distribution, grouping or correlation. There are some best practice guidelines, but at the end of the day, you need to consider what is best for your data. What do you want to show? What graph will best communicate your message? Is it a comparison between groups? Is it the frequency distribution of 1 variable?</p>
-<p>As a guidance, you can use the below <em>Chartchooser</em>, by Andrew Abela.</p>
+<p>There are many different types of graphs, each with their own strengths and use cases. One of the trickiest parts of the analysis process is choosing the right way to represent your data with one of these visualizations. The wrong chart can lead to confusion or misinterpretation of the data (see some examples of bad charts <a href="https://www.analyticsvidhya.com/blog/2021/02/data-visualization-bad-representation-of-data/">here</a>).</p>
+<p>From a classical data analysis perspective, the first consideration in choosing the right plot is the nature of your variables. Some charts are recommended for numerical data (quantitative variables) and others for categorical data (qualitative variables). Then you should consider what role you want your data visualization to play, i.e., what question you want to answer or what message you want to convey. This depends on the number of variables as well as their distribution, grouping or correlation. There are some best practice guidelines, but ultimately you need to consider what is best for your data. What do you want to show? What chart best conveys your message? Is it a comparison between groups? Is it a frequency distribution of 1 variable?</p>
+<p>for a guidance, you can use the <em>Chartchooser</em> below, by Andrew Abela.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/chart-chart1.jpg" class="img-fluid figure-img" width="1000"></p>
@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quick-plotting-in-r" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="quick-plotting-in-r"><span class="header-section-number">1.3</span> Quick Plotting in R</h2>
 <p>R has a number of built-in tools for diverse graph types such as histograms, scatterplots, stripcharts, bar charts, boxplots, and more. Indeed, there are many functions in R to produce plots ranging from the very basic to the highly complex. We will show a few examples and use the plots as an excuse to add some new tricks for data analysis.</p>
-<p>In Lesson <a href="r8.html">R8</a> we will use the <code>ggplot2</code> package for efficient generation and customization of complex and <em>cool</em> plots. However, you will see that it’s sometimes useful to use the plotting functions in base R. These are installed by default with R and do not require any additional packages to be installed. They’re quick to type, straightforward to use in simple cases, and run very quickly. Then, if you want to do anything beyond very simple plots, though, it’s generally better to switch to <code>ggplot2</code>. In fact, once you already know how to use R’s base graphics, having these examples side by side will help you transition to using <code>ggplot2</code> for when you want to make more sophisticated graphics.</p>
+<p>In Lesson <a href="r8.html">R8</a> we will use the <code>ggplot2</code> package for efficient and advanced plot generation and customization. However, you will see that it’s sometimes useful to use the plotting functions in base R. These are installed by default with R and do not require any additional packages to be installed. They’re quick to type, straightforward to use in simple cases, and run very quickly. Then, if you want to do anything beyond very simple plots, though, it’s generally better to switch to <code>ggplot2</code>. In fact, once you already know how to use R’s base graphics, having these examples side by side will help you transition to using <code>ggplot2</code> for when you want to make more sophisticated graphics.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -339,13 +339,13 @@ Cross-lesson tip
 </div>
 </div>
 <strong>How would you load the vector?</strong>
-<div id="radio_VMEVHEZLAU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VMEVHEZLAU" value=""> <span>load(data/primes.RData)</span></label><label><input type="radio" autocomplete="off" name="radio_VMEVHEZLAU" value="answer"> <span>load(“data/primes.RData”)</span></label><label><input type="radio" autocomplete="off" name="radio_VMEVHEZLAU" value=""> <span>open(“data/primes.RData”)</span></label>
+<div id="radio_BWEAAMAZLF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BWEAAMAZLF" value=""> <span>load(data/primes.RData)</span></label><label><input type="radio" autocomplete="off" name="radio_BWEAAMAZLF" value="answer"> <span>load(“data/primes.RData”)</span></label><label><input type="radio" autocomplete="off" name="radio_BWEAAMAZLF" value=""> <span>open(“data/primes.RData”)</span></label>
 </div>
 <p>Now we want to plot the vector. You may try different plots, but think which plot help you to answer the following question</p>
 <strong>In which quartile of the vector values there are more elements?</strong>
-<div id="radio_KSLZIMUYDK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_KSLZIMUYDK" value=""> <span>plot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_KSLZIMUYDK" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label><label><input type="radio" autocomplete="off" name="radio_KSLZIMUYDK" value="answer"> <span>boxplot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_KSLZIMUYDK" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label>
+<div id="radio_MNLWTDUHPJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_MNLWTDUHPJ" value=""> <span>plot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_MNLWTDUHPJ" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label><label><input type="radio" autocomplete="off" name="radio_MNLWTDUHPJ" value="answer"> <span>boxplot(new_vec)</span></label><label><input type="radio" autocomplete="off" name="radio_MNLWTDUHPJ" value=""> <span>hist(new_vec, breaks=c(0,25,50,75,100))</span></label>
 </div>
 <p>Yes, a boxplot is the best choice here.</p>
 <div class="cell" data-webex.hide="See the right plot">
@@ -628,8 +628,8 @@ sample estimates:
 </div>
 </div>
 <strong>How would you construct barplots of the data from the six experimental conditions?</strong>
-<div id="radio_YIWQJYGYJK" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YIWQJYGYJK" value=""> <span>hist(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_YIWQJYGYJK" value=""> <span>barplot(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_YIWQJYGYJK" value="answer"> <span>barplot(ZFdata$pLoC), and the same for each construct</span></label><label><input type="radio" autocomplete="off" name="radio_YIWQJYGYJK" value=""> <span>hist(ZFdata$pLoC), and the same for each construct</span></label>
+<div id="radio_OGRRYOPVWO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OGRRYOPVWO" value=""> <span>hist(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_OGRRYOPVWO" value=""> <span>barplot(ZFdata)</span></label><label><input type="radio" autocomplete="off" name="radio_OGRRYOPVWO" value="answer"> <span>barplot(ZFdata$pLoC), and the same for each construct</span></label><label><input type="radio" autocomplete="off" name="radio_OGRRYOPVWO" value=""> <span>hist(ZFdata$pLoC), and the same for each construct</span></label>
 </div>
 <p>Let’s see some examples:</p>
 <div class="cell">
@@ -672,20 +672,20 @@ sample estimates:
 </div>
 <p>Now try to answer some questions about your data and obtained plots:</p>
 <strong>1. Which construct has the strongest impact on the dissemination of metastatic cells?</strong>
-<div id="radio_VAMBXFBZKJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VAMBXFBZKJ" value=""> <span>The empty plasmid pLoC</span></label><label><input type="radio" autocomplete="off" name="radio_VAMBXFBZKJ" value=""> <span>WT EFNA3</span></label><label><input type="radio" autocomplete="off" name="radio_VAMBXFBZKJ" value=""> <span>NC1</span></label><label><input type="radio" autocomplete="off" name="radio_VAMBXFBZKJ" value=""> <span>NC1s</span></label><label><input type="radio" autocomplete="off" name="radio_VAMBXFBZKJ" value=""> <span>NC2</span></label><label><input type="radio" autocomplete="off" name="radio_VAMBXFBZKJ" value=""> <span>NC2s</span></label><label><input type="radio" autocomplete="off" name="radio_VAMBXFBZKJ" value="answer"> <span>I cannot say</span></label>
+<div id="radio_CEJXEKQPTX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CEJXEKQPTX" value=""> <span>The empty plasmid pLoC</span></label><label><input type="radio" autocomplete="off" name="radio_CEJXEKQPTX" value=""> <span>WT EFNA3</span></label><label><input type="radio" autocomplete="off" name="radio_CEJXEKQPTX" value=""> <span>NC1</span></label><label><input type="radio" autocomplete="off" name="radio_CEJXEKQPTX" value=""> <span>NC1s</span></label><label><input type="radio" autocomplete="off" name="radio_CEJXEKQPTX" value=""> <span>NC2</span></label><label><input type="radio" autocomplete="off" name="radio_CEJXEKQPTX" value=""> <span>NC2s</span></label><label><input type="radio" autocomplete="off" name="radio_CEJXEKQPTX" value="answer"> <span>I cannot say</span></label>
 </div>
 <strong>2. Which plot represent best these data?</strong>
-<div id="radio_WKHLXZBUVQ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_WKHLXZBUVQ" value=""> <span>Histogram</span></label><label><input type="radio" autocomplete="off" name="radio_WKHLXZBUVQ" value=""> <span>Barplot</span></label><label><input type="radio" autocomplete="off" name="radio_WKHLXZBUVQ" value=""> <span>Boxplot</span></label><label><input type="radio" autocomplete="off" name="radio_WKHLXZBUVQ" value=""> <span>Stripchart</span></label><label><input type="radio" autocomplete="off" name="radio_WKHLXZBUVQ" value="answer"> <span>I am not sure</span></label>
+<div id="radio_JFIKCRQZTW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_JFIKCRQZTW" value=""> <span>Histogram</span></label><label><input type="radio" autocomplete="off" name="radio_JFIKCRQZTW" value=""> <span>Barplot</span></label><label><input type="radio" autocomplete="off" name="radio_JFIKCRQZTW" value=""> <span>Boxplot</span></label><label><input type="radio" autocomplete="off" name="radio_JFIKCRQZTW" value=""> <span>Stripchart</span></label><label><input type="radio" autocomplete="off" name="radio_JFIKCRQZTW" value="answer"> <span>I am not sure</span></label>
 </div>
 <strong>3. Does a boxplot represent the same <em>information</em> than a histogram?</strong>
-<div id="radio_VYEYZIDODI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_VYEYZIDODI" value=""> <span>No, not at all</span></label><label><input type="radio" autocomplete="off" name="radio_VYEYZIDODI" value=""> <span>Yes, they are the same</span></label><label><input type="radio" autocomplete="off" name="radio_VYEYZIDODI" value=""> <span>Yes, but a boxplot will show best the differences between my samples</span></label><label><input type="radio" autocomplete="off" name="radio_VYEYZIDODI" value="answer"> <span>Yes, but a histogram will show best the differences between my samples</span></label>
+<div id="radio_RIZFKIJSAD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RIZFKIJSAD" value=""> <span>No, not at all</span></label><label><input type="radio" autocomplete="off" name="radio_RIZFKIJSAD" value=""> <span>Yes, they are the same</span></label><label><input type="radio" autocomplete="off" name="radio_RIZFKIJSAD" value=""> <span>Yes, but a boxplot will show best the differences between my samples</span></label><label><input type="radio" autocomplete="off" name="radio_RIZFKIJSAD" value="answer"> <span>Yes, but a histogram will show best the differences between my samples</span></label>
 </div>
 <strong>4. Does a barplot represent the same information than a boxplot?</strong>
-<div id="radio_ZMFQEIOYFC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ZMFQEIOYFC" value=""> <span>No, a barplot represents data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_ZMFQEIOYFC" value="answer"> <span>No, boxplots and histograms represent data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_ZMFQEIOYFC" value=""> <span>Yes, they alike</span></label>
+<div id="radio_ZBVYQWCRSD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZBVYQWCRSD" value=""> <span>No, a barplot represents data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_ZBVYQWCRSD" value="answer"> <span>No, boxplots and histograms represent data frequencies/distribution</span></label><label><input type="radio" autocomplete="off" name="radio_ZBVYQWCRSD" value=""> <span>Yes, they alike</span></label>
 </div>
 <p>Now, we are going to represent the same data again, introducing some more customization</p>
 <div class="cell">
@@ -730,8 +730,8 @@ Answer
 <p>We will still use the data from the zebrafish experiment here</p>
 <p>In the previous plots, in order to compare three conditions, we needed to make three independent plots. However, in the table, there are six conditions, and it is not very difficult to imagine experiments that might result in a table with even more conditions. How could you plot that? The key question is, different conditions means different variables? In other words:</p>
 <strong>How many variables are there in the Zebrafish dataset?</strong>
-<div id="radio_YRJUAPRARA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_YRJUAPRARA" value=""> <span>3 variables, WT, empty plasmid and 4 mutants</span></label><label><input type="radio" autocomplete="off" name="radio_YRJUAPRARA" value=""> <span>6, one for each expressed transcript</span></label><label><input type="radio" autocomplete="off" name="radio_YRJUAPRARA" value="answer"> <span>2 variables, the (1) plasmid/expressed transcript and (2) the number of metastatic cells</span></label>
+<div id="radio_HOHBFMLVOT" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HOHBFMLVOT" value=""> <span>3 variables, WT, empty plasmid and 4 mutants</span></label><label><input type="radio" autocomplete="off" name="radio_HOHBFMLVOT" value=""> <span>6, one for each expressed transcript</span></label><label><input type="radio" autocomplete="off" name="radio_HOHBFMLVOT" value="answer"> <span>2 variables, the (1) plasmid/expressed transcript and (2) the number of metastatic cells</span></label>
 </div>
 <p>In data analysis (check Lesson <a href="r6.html">R6</a>), particularly when you want to compare many variables in different groups, it is more handy to create a <em>stacked</em> table or <em>datamatrix</em>. Stacked table are also often referred to as <em>narrow</em> tables. In contrast, the tables with different conditions (of a same variable) in different columns are named <em>wide</em> table or <em>unstacked</em>. The code below shows how to <em>stack</em> and plot your data by groups using the function <code>stack()</code>.</p>
 <div class="cell">
