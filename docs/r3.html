@@ -143,8 +143,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li class="dropdown-header">r6.qmd</li>
         <li class="dropdown-header">r7.qmd</li>
-        <li class="dropdown-header">r7.qmd</li>
-        <li class="dropdown-header">r7.qmd</li>
+        <li class="dropdown-header">r8.qmd</li>
+        <li class="dropdown-header">r9.qmd</li>
     </ul>
   </li>
 </ul>
@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 14, 2023</p>
+      <p class="date-modified">June 15, 2023</p>
     </div>
   </div>
     
@@ -278,8 +278,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/tree.png" class="img-fluid" width="279"></p>
 <p>How would you change de <em>wd</em> to the folder <code>HPBBM2023/data</code>? You also can try with your own computer and your directory tree.</p>
 <strong>Select the right answer</strong>
-<div id="radio_JAAKJUSGXL" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JAAKJUSGXL" value=""> <span>setwd(“HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_JAAKJUSGXL" value="answer"> <span>setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_JAAKJUSGXL" value=""> <span>setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label>
+<div id="radio_VESPCBRJQS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VESPCBRJQS" value=""> <span>setwd(“HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_VESPCBRJQS" value="answer"> <span>setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_VESPCBRJQS" value=""> <span>setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label>
 </div>
 <hr>
 <hr>
@@ -348,6 +348,9 @@ V3   19   80   13   16</code></pre>
 </div>
 </div>
 <p>You can write any data object(s) as binary data file or as text files. Compare the different files saved in the code below.</p>
+<div id="save1">
+
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>vector2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">13</span>)</span>
@@ -358,6 +361,9 @@ V3   19   80   13   16</code></pre>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(vector, vector2, <span class="at">file =</span> <span class="st">"data/vector2.Rdata"</span>)</span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">"data/myEnvironment.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="load">
+
 </div>
 <p>Data files in RData format can be open from the <em>Environment</em> tab or with the <code>load()</code> function. To check that it was correctly loaded, we can remove it before loading with the <code>rm()</code> function.</p>
 <div class="cell">
@@ -393,8 +399,8 @@ Caution
 <h2 data-number="3.1" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">3.1</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>We are using the same directory tree. Your <em>wd</em> is <code>HPBBM2022/data</code> and you need to save a data.frame named <code>table1</code> as <code>table1.csv</code> in the folder <code>HPBBM2022/data</code> using <code>;</code> as separator. How would you do it <em>without changing</em> the working directory? Try it also with your own computer.</p>
 <strong>Select the right answer</strong>
-<div id="radio_SXPWQOHRRX" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SXPWQOHRRX" value="answer"> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_SXPWQOHRRX" value=""> <span>write.table(table1, “../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_SXPWQOHRRX" value=""> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”</span></label>
+<div id="radio_NNPCCRWUEX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_NNPCCRWUEX" value="answer"> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_NNPCCRWUEX" value=""> <span>write.table(table1, “../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_NNPCCRWUEX" value=""> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”</span></label>
 </div>
 <hr>
 </section>
@@ -911,8 +917,8 @@ Levels: Avian Human Porcine</code></pre>
 <p>Which of the following functions can you use to save the dataframe using <code>,</code> as field separator? <select class="webex-select"><option value="blank"></option><option value="">write.tabla</option><option value="">write.csv2</option><option value="answer">write.csv</option><option value="">save</option></select></p>
 <p>How would you do it?</p>
 <strong>Select the right answer</strong>
-<div id="radio_GXCIXGYXQP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GXCIXGYXQP" value="answer"> <span>write.table(coli_genomes, “data/coli_genomes_renamed.csv”, sep=“,” )</span></label><label><input type="radio" autocomplete="off" name="radio_GXCIXGYXQP" value=""> <span>write.csv2(coli_genomes, “data/coli_genomes_renamed.csv” )</span></label><label><input type="radio" autocomplete="off" name="radio_GXCIXGYXQP" value=""> <span>write.csv(coli_genomes, “../coli_genomes_renamed.csv”) </span></label><label><input type="radio" autocomplete="off" name="radio_GXCIXGYXQP" value="answer"> <span>write.csv(coli_genomes, “data/coli_genomes_renamed.csv”)</span></label>
+<div id="radio_STRYRWGQMV" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_STRYRWGQMV" value="answer"> <span>write.table(coli_genomes, “data/coli_genomes_renamed.csv”, sep=“,” )</span></label><label><input type="radio" autocomplete="off" name="radio_STRYRWGQMV" value=""> <span>write.csv2(coli_genomes, “data/coli_genomes_renamed.csv” )</span></label><label><input type="radio" autocomplete="off" name="radio_STRYRWGQMV" value=""> <span>write.csv(coli_genomes, “../coli_genomes_renamed.csv”) </span></label><label><input type="radio" autocomplete="off" name="radio_STRYRWGQMV" value="answer"> <span>write.csv(coli_genomes, “data/coli_genomes_renamed.csv”)</span></label>
 </div>
 <div id="save">
 

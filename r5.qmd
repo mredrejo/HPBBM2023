@@ -97,6 +97,11 @@ Note that **colors** can be specified as a name or code (RGB or HEX). In the cas
 
 We have a vector in a *RData* file called [primes.RData](%22data/primes.RData%22) that we would like to plot.
 
+::: callout-tip
+# Cross-lesson tip
+If you have not worked with the R3 lesson yet, you can take a quick look at how we can [save](r3.html#save1) and [load](r3.html#load) objects into a RData file.
+:::
+
 ```{r wd, echo = FALSE, results = 'asis'}
 opts_p <- c(
    "load(data/primes.RData)",
@@ -146,6 +151,7 @@ Compare the output with the boxplot and interpret the numbers.
 As an example, we are going to read again the file [*coli_genomes_renamed.csv*](data/coli_genomes_renamed.csv) that we used in the previous lesson and export it ready for MS Excel.
 
 ::: callout-tip
+# Cross-lesson tip
 If you have not worked with the R3 lesson yet, you can take a quick look at how we can [open](r3.html#open-and-explore-a-dataframe) and [save](r3.html#save) a table in R.
 :::
 

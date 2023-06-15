@@ -125,6 +125,11 @@ heatmap(as.matrix(sm))
 
 You can write any data object(s) as binary data file or as text files. Compare the different files saved in the code below.
 
+
+::: {#save1}
+
+:::
+
 ```{r}
 vector <- c(1:5)
 vector2 <- c(3, 5:13)
@@ -136,6 +141,9 @@ save(vector, vector2,file="data/vector2.Rdata")
 save.image(file='data/myEnvironment.RData')
 ```
 
+::: {#load}
+
+:::
 
 Data files in RData format can be open from the *Environment* tab or with the `load()` function. To check that it was correctly loaded, we can remove it before loading with the `rm()` function.
 

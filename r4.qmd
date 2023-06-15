@@ -84,6 +84,7 @@ require(uam)
 As an example, we are going to read again the file *[coli_genomes_renamed.csv](data/coli_genomes_renamed.csv)* that we used in the previous lesson and export it ready for MS Excel.
 
 ::: callout-tip
+# Cross-lesson tip
 If you have not worked with the R3 lesson yet, you can take a quick look at how we can [open](r3.html#open-and-explore-a-dataframe) and [save](r3.html#save) a table in R.
 :::
 
