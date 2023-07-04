@@ -1,0 +1,123 @@
+---
+title: "R1: Variables, Operators and data structures"
+date: "July 4, 2023"
+date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+categories: 
+  - Variables
+  - Operators and precedence
+  - Expressions
+  - Data Structures
+  - Vectors
+  - Factors
+format: 
+  html:
+    page-layout: full
+
+toc: true
+toc-location: left
+toc-depth: 2
+number-sections: true
+code-overflow: wrap
+link-external-icon: true
+link-external-newwindow: true 
+---
+
+```{r wrap-hook, echo=FALSE}
+library(knitr)
+library(formatR)
+library(webexercises)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+#in RMD files, the default wd for R code chunks is the directory that contains the Rmd document. 
+#We change it here to share the working directory with all the Rmd files of the course
+knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
+
+```
+
+# [Variables, data objects and data types]{style="color:darkblue"}
+
+In programming, a **variable** is a symbolic name or *identifier* that represents a storage location in memory. Thus, variables provide a means too access (and manipulate) data stored in the computer's memory from within the program. In practice a variable acts as a container for storing data or values.
+
+**Data Objects.** In R, data objects[^1] are the fundamental entities that hold data or information. They are the variables or entities that you create and manipulate in your R code. Data objects can include vectors, matrices, data frames, lists, etc. Essentially, anything that can store data or represent information in R is considered a data object. data Objects are of course stored in the computer's memory, hence they are referenced and manipulated using *variables*.
+
+[^1]: Everything in R is an object (constants, data structures, functions, graphs, etc.). Objects have a **mode** that describes how the object is stored and a **class** that describes how the object is handled by functions. The mode corresponds to what is called a class in other languages. Additionally, objects belong to a **type**, which basically coincides with the mode.
+
+**Data Types.** Data types in R refer to the specific classification or categorization of the values that can be stored in data objects. R has several *basic data* types, also known as *atomic data types*[^2]. These data types represent different kinds of data, such as logical (boolean), numeric (double and integer), complex, character, and raw. Each data type has its own set of operations and behaviors associated with it. For example, logical data types can take values of TRUE, FALSE, and NA (representing missing values), while numeric data types can store numerical values.
+
+[^2]: Note that in R, atomic types are always stored as vectors, even when there is a single element.
+
+In R, variables can hold different data types without the need to declare them in advance. Values are assigned to variables using the assignment operator `<-`. The symbol `=` can also be used, but it is not standard syntax and not recommended.
+
+Variable names may contain dots and underscores but cannot begin with a number (or underscore).
+
+In R, the **class** of a variable refers to the specific type or category of the object that the variable represents. It provides information about how the object is handled by R's internal functions and methods. Classes in R are typically associated with specific data structures or types. For example, a variable can have a class such as "numeric" if it represents a numeric data type, "character" if it represents a character string, "data.frame" if it represents a data frame, and so on. The class of a variable is important because it influences how R treats the object and determines which functions or methods can be applied to it. Different classes have different behaviors and may have specific functions or methods associated with them.
+
+Finally, in R, *NA*, *NaN*, and *NULL* are special **values** used to represent specific situations or indicate missing or undefined data:
+
+-   **NA**: NA stands for "Not Available" or "Missing Value". It is used to represent missing or undefined values in R. The value NA belong to different data types, such as logical, numeric, character, etc. For example, if a value is missing in a numeric vector, it can be represented as NA. NA values are often ignored or excluded from computations or operations unless explicitly handled.
+
+-   *NaN*: NaN stands for "Not a Number". It is a special value used to represent undefined or unrepresentable results of arithmetic operations that do not yield a numeric value. NaN is typically encountered when performing calculations that involve undefined operations, such as dividing zero by zero or taking the square root of a negative number.
+
+-   *NULL*: NULL is a special object in R that represents the absence of a value or an empty object. It is often used to indicate the absence of a valid object or as a placeholder. NULL is different from NA, as it represents the absence of any value or object altogether.
+
+```{r}
+#| echo: true
+#| eval: false
+
+A_Number<-53
+A_Number
+A_Text<-"R rocks!"
+A_Text
+A_Logical<-TRUE #one of the possible values of a boolean data type
+A_Logical
+A_Logical<-true
+A_NA<-NA
+A_NA
+A_NA<-na
+```
+
+To summarize, variables are used refer to specific data objects that are the containers or entities that hold data. The data types specify the kind of values that can be stored within data objects. Data types determine how the data is interpreted and how operations are performed on the data objects.
+
+# [Basic built-in functions]{style="color:darkblue"}
+
+A function in R is a block of code that is written to perform a specific task or operation. The base R system includes many functions that are readily available for use without requiring any additional packages or installations. These *built-in* functions are part of the R language itself and provide core functionality for performing various operations and tasks.
+
+Built-in functions in R cover a wide range of areas, including data manipulation, statistical analysis, mathematical calculations, plotting, file input/output, and more. They are designed to be efficient, reliable, and consistent across different R installations.
+
+In an introductory R course, it is essential to familiarize oneself with the built-in functions available in the language, understand their required arguments, and learn when to utilize them effectively. Here are a few examples ob basic functions used to manipulate data objects:
+
+| Function            | Description                    |
+|---------------------|--------------------------------|
+| `class(obj)`        | return class of `obj`          |
+| `help(obj)`         | explains about `obj`           |
+| `ls(obj)`           | list `obj` in environment      |
+| `rm(obj)`           | removes `obj`                  |
+| `nchar(arg)`        | number of characters in `arg`  |
+| `as.character(arg)` | converts `arg` to character    |
+
+
+Functions usually require arguments, which are the values or variables that are passed to a function when it is called or invoked. They provide input to the function and influence its behavior or output. In R, there are two commonly used ways to specify function arguments: by position and by keyword. 1. *Arguments by Position.* In this method, arguments are provided to a function in a specific order. The function expects the values in the same order as they are defined in the function's definition. 2. *Arguments by Keyword.* This approach involves explicitly mentioning the *argument names* followed by their corresponding values when calling a function. The order of the arguments doesn't matter as long as their names are specified correctly. Notice that the pair of names and values are made using the assign operator `=`.
+
+```{r}
+# Previous chunk of code must be run prior this one
+ls()
+class(A_Number)
+log(A_Number)
+help("log")
+log(A_Number,base=2)
+log(A_Number,2)
+log(2,A_Number)
+log(base=2,x=A_Number)
+as.character(A_Number)
+Not_A_Number<-as.character(A_Number)
+ls()
+log(Not_A_Number)
+rm(Not_A_Number)
+ls()
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+
+```
