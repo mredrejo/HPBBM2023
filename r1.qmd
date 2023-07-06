@@ -20,6 +20,8 @@ number-sections: true
 code-overflow: wrap
 link-external-icon: true
 link-external-newwindow: true 
+bibliography: Biblio.bib
+link-citations: true
 ---
 
 ```{r wrap-hook, echo=FALSE}
@@ -172,52 +174,55 @@ xor(b>"A",a!=5)
 
 # [Data Structures]{style="color:darkblue"}
 
-In R, a data structure refers to the way data is organized and stored in memory. It determines how the data can be accessed, manipulated, and processed. Data structures in R provide a way to store and organize data objects. Data objects, on the other hand, are specific instances of data that are stored within the data structures. They are the actual values or elements that are held by the data structures.
-There are five types of basic data structures:
-- **homogeneous**: All elements must be of the same type.
-  - **Vectors**: One-dimensional collection of numeric, character, or logical data.
-  - **Matrices**: Two-dimensional collection of numeric, character, or logical data.
-  - **Arrays**: n-dimensional collection of numeric, character, or logical data. A matrix is just a specific type of array where n=2. Arrays and matrices are just vectors with the attribute `dim`. Applying this attribute sets a number of dimensions that the vector is divided into and allows retrieval of the elements and its representation in a specific way.
-  
-- **heterogeneous**: Elements can be of different types.
-  - **Lists**: An ordered collection of objects (called components) that can be of the same or different types.
-  - **Data frames**: Just a type of list that is represented as a matrix and has some restrictions:
-    - The components must be vectors (numeric, character, or logical), factors, numeric matrices, lists, or other data frames.
-    - Matrices, lists, and data frames provide as many variables to the new data frame as they have columns, elements, or variables, respectively.
-    - Numeric vectors, logicals, and factors are included as is, and by default, character vectors are coerced to be factors, whose levels are the unique values appearing in the vector.
-    - Vector structures appearing as variables of the data frame must all have the same length, and matrix structures must all have the same row size.
+In R, a data structure refers to the way data is organized and stored in memory. It determines how the data can be accessed, manipulated, and processed. Data structures in R provide a way to store and organize data objects. Data objects, on the other hand, are specific instances of data that are stored within the data structures. They are the actual values or elements that are held by the data structures. There are five types of basic data structures: - **homogeneous**: All elements must be of the same type. - **Vectors**: One-dimensional collection of numeric, character, or logical data. - **Matrices**: Two-dimensional collection of numeric, character, or logical data. - **Arrays**: n-dimensional collection of numeric, character, or logical data. A matrix is just a specific type of array where n=2. Arrays and matrices are just vectors with the attribute `dim`. Applying this attribute sets a number of dimensions that the vector is divided into and allows retrieval of the elements and its representation in a specific way.
 
-[^1^]: To be precise, of the same *mode* 
+-   **heterogeneous**: Elements can be of different types.
+    -   **Lists**: An ordered collection of objects (called components) that can be of the same or different types.
+    -   **Data frames**: Just a type of list that is represented as a matrix and has some restrictions:
+        -   The components must be vectors (numeric, character, or logical), factors, numeric matrices, lists, or other data frames.
+        -   Matrices, lists, and data frames provide as many variables to the new data frame as they have columns, elements, or variables, respectively.
+        -   Numeric vectors, logicals, and factors are included as is, and by default, character vectors are coerced to be factors, whose levels are the unique values appearing in the vector.
+        -   Vector structures appearing as variables of the data frame must all have the same length, and matrix structures must all have the same row size.
 
 ## [Vectors]{style="color:blue"}
-A \textbf{\textit{vector}} is a (one dimensional) collection of elements, \textbf{all of the same type}.
-    Vectors play an essential role in R, so much that R can be considered a \textit{vectorized} language. That means that operations are applied to each element of the vector automatically, without the need to loop through the elements of the vector as it would be necessary in almost any other language such a python. 
-    The most common way to generate a vector is using the combine or concatenate function `c()` providing the list of elements separated by commas. We can accessing individual elements of the vector using brackets and the index of the elements.**Note that is 1-based meaning that the first index is 1 instead of 0**. Note that a number (or any atomic type) occurring by itself in an assignment expression is taken as a vector of length one. 
-    
+
+A **vector** is a (one dimensional) collection of elements, all of the *same type*. Vectors play an essential role in R, so much that R can be considered a **vectorized** language. That means that operations are applied to each element of the vector automatically, without the need to loop through the elements of the vector as it would be necessary in almost any other language such a python. The most common way to generate a vector is using the combine or concatenate function `c()` providing the list of elements separated by commas. We can accessing individual elements of the vector using brackets and the index of the elements.
+
+::: callout-warning
+Vectors are indexed starting from 1 instead of 0, following a 1-based indexing convention. This means that the first element of a vector is accessed using the index 1, not 0 as in some other programming languages suchas python.
+:::
+
 ```{r}
-v1<-c(1,11:13)
+v1<-c(1,11:13)#the concatenate function creates a vector out of the values
 class(v1)
 is.numeric(v1)
-v4<-as.character(v1)
+v4<-as.character(v1)#change the data type of the elements in v1
 v4
 v5<-c(1,3,27)
+v5[1]#elements are retrieved by using square brackets and the index of the element
+v5[0]#Warning! first element is index 1
+
+#we can "add" labels (names) to the elements of a vector
 names(v5)
 names(v5)<-c("PHY","BIO","BQ")
 v5
 names(v5)
-v5["BIO"]
+v5["BIO"]# then, we can retrieve elements by their label
 sum(v5)
 v6<-c("PHY","BIO","BQ")
+#cheching the presence of an element in a vector
 "BQ" %in% v6
 "BQ" %in% v5
 "BQ" %in% names(v5)
-"PHY" %in% "BIOPHYSICS"
+"PHY" %in% "BIOPHYSICS"#Warning: it does NOT checks for substrings in strings
 names(v5)=="BIO"
-which(names(v5)=="BIO")
+which(names(v5)=="BIO")#returns the index(es) of the elements matching the comparison
 ```
 
-## [Generation of vectors of periodic sequences]{style="color:lightblue"}
+### [Generation of vectors of periodic sequences]{style="color:lightblue"}
+
 R has a number of facilities for generating commonly used sequences of numbers or characters. The most common are the colon operator `:`, function `seq()` and function `rep()`. See the next examples:
+
 ```{r}
 2:7
 7:2
@@ -235,7 +240,121 @@ order(z)
 z[order(z)]
 range(z)
 ```
+
 Note that function `order()` returns of the element in the current vector sorted according to the value of the element. In the example above the smallest number is -1 that occupies position 7 (index 7) in the vector. Thus, the first element in the output of function `order()` is 7. The second smaller is number 1, that occupies position the second position in the original vector(index 2), thus the second element in the output of the function is 2 and so on.
+
+## [Factors]{style="color:blue"}
+
+Factors are used to record **categorical** (a.k.a nominal) variables. The function `factor()` takes a vector and identifies all the different values present in it, then each value is assumed to be a different category or **level**. The levels represent the distinct categories or groups that the variable can take on.
+
+```{r}
+#| label: factors-code
+#the following vectors represent the initial and final weight of 15 individuals
+W.initial<-c(55,65,70,93,71,50,61,80,81,60,43,77,78,65,100)#initial weight
+W.final<-c(52,66,71,92,61,51,55,81,70,52,44,78,77,60,90)#final weight
+#the following character vector represent the treatment received by each individual
+Txt<-c("D3","D2","D3","D3","D1","D3","D2","D2","D2","D1","D3","D2","D2","D1","D1")#Treatment
+Txt
+class(Txt)
+Txt<-as.factor(Txt)#Transforms character vector Txt into a factor
+Txt
+table(Txt)
+Weight.gain<-W.final-W.initial#calculates weight gain
+Weight.gain
+which(Txt=="D1")#index of the individuals who received treatment D1
+Weight.gain[which(Txt=="D2")]#Weigh gain of individuals who received treatment D1
+mean(Weight.gain[which(Txt=="D3")])# mean Weigh gain of individuals who received treatment D3
+by(data = Weight.gain,INDICES = Txt,FUN = mean)#calculates weight gain mean for each treatment group
+```
+
+## [Matrices and arrays]{style="color:blue"}
+
+A matrix is a two-dimensional data structure that consists of rows and columns. It is used to store data elements of the *same data type* arranged in a rectangular grid-like structure. To retrieve a single element, specify the row and column indices within square brackets. An array is a multi-dimensional data structure that extends the concept of matrices to more than two dimensions. It can store elements of the *same data type* in a grid-like structure with multiple dimensions.
+
+```{r}
+MyVector<-1:9
+MyVector
+MyMatrix<-matrix(MyVector,ncol=3)#geneates a 3 colunm matrix with elements from MyVector 
+MyMatrix
+dim(Matrix)#number of rows and columns
+#accessing individual elements:
+MyMatrix[2,]
+MyMatrix[,3]
+MyMatrix[3,2]
+#accessing several elements:
+MyMatrix[2:3,1:2]
+#basic aritmetic operations:
+MyMatrix*2
+MyMatrix+5
+t(MyMatrix)#flips a matrix over its main diagonal (transposition)
+MyVector2<-1:12
+MyArray<-array(MyVector2,dim = c(2,2,3))#geneates a 2x2x3 array with elements from MyVector2 :
+#accessing individual elements
+MyArray[,,2]
+```
+
+## [Data frames]{style="color:blue"}
+
+Data frames are two-dimensional tabular data structures where each column is a vector. Unlike matrices, data frames allow columns of different data types within the same structure. This flexibility allows you to handle mixed or heterogeneous data, such as storing numeric measurements, categorical variables, dates, and more within a single data frame. Data frames are created with the `data.frame()` function and the elements can be retrieved with the square bracket notation specifying the row and column indexes, as we saw for matrices. In addition, column vectors can be retrieved using the `$` operator (list-subset operator).
+
+```{r}
+# see @factors-code above
+W.initial<-c(55,65,70,93,71,50,61,80,81,60,43,77,78,65,100)
+W.final<-c(52,66,71,92,61,51,55,81,70,52,44,78,77,60,90)
+Txt<-c("D3","D2","D3","D3","D1","D3","D2","D2","D2","D1","D3","D2","D2","D1","D1")
+DietDrugs<-data.frame(W.initial,W.final,Txt)#creates a data frame with 3 columns
+DietDrugs
+dim(DietDrugs)
+#Accessing elements:
+DietDrugs[,2]
+DietDrugs[1,]
+DietDrugs[3,1]
+DietDrugs$Txt
+DietDrugs$Txt[3]
+DietDrugs[which(DietDrugs$Txt=="D1"),]
+#view the top or bottom rows of a data frame:
+head(DietDrugs)
+tail(DietDrugs)
+#add row names
+Patients<-paste("Patient",1:15,sep="")
+rownames(DietDrugs)<-Patients
+# add new columns (method #1):
+DietDrugs$W.gain<-DietDrugs$W.final-DietDrugs$W.initial
+DietDrugs
+# add new columns (method #2):
+W.foldchange<-round(DietDrugs$W.final/DietDrugs$W.initial,2)
+DietDrugs<-cbind(DietDrugs,W.foldchange)
+DietDrugs
+```
+
+## [Data frames]{style="color:blue"}
+A list is a data structure consisting of an ordered collection of (potentially different) objects. They are constructed using the function `list()`. The elements (a.k.a *components*) in a list are numbered and can be accessed using a double bracket notation and the index of the component. Oftentimes, the elements in a list are also named. In this case, the components can be accessed using the double square bracket and the name of the item instead of its index. Additionally names components can be retrieved using the `$` operator (list-subset operator).
+```{r}
+# A list of students recording different features
+#notice that each element can be a different type of object or data structure
+Students<-list(Names=c("Ana","Juan","Mar"),
+                Age=c(20,20,21),
+                Sex=factor(c("F","M","F")),
+                Courses=list(c("HPBBM","BD","BIBMS"),
+                             c("HPBBM","MEB","BIBMS"),
+                             c("BD","BQS")),
+                Grades=list(c(7,9,8),c(5,5,6),c(10,9)))
+Students
+str(Students)#shows the structure of the data object
+#Accessing elements:
+Students[[1]]
+Students$Names
+Students$Sex
+Students[[4]]
+Students[[4]][[2]]
+Students[[4]][[2]][1]
+```
+
+
+# References
+
+::: {#refs}
+:::
 
 # Session Info
 
