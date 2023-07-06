@@ -327,7 +327,7 @@ DietDrugs<-cbind(DietDrugs,W.foldchange)
 DietDrugs
 ```
 
-## [Data frames]{style="color:blue"}
+## [Lists]{style="color:blue"}
 A list is a data structure consisting of an ordered collection of (potentially different) objects. They are constructed using the function `list()`. The elements (a.k.a *components*) in a list are numbered and can be accessed using a double bracket notation and the index of the component. Oftentimes, the elements in a list are also named. In this case, the components can be accessed using the double square bracket and the name of the item instead of its index. Additionally names components can be retrieved using the `$` operator (list-subset operator).
 ```{r}
 # A list of students recording different features
