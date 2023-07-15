@@ -43,17 +43,18 @@ editor: visual
 
 This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular, a.k.a. **HPBBM**) course of **fall 2023** in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). Source files are available at the [{{< bi github >}} repo](https://github.com/mredrejo/HPBBM2023), containing the source files and the data used in the examples and exercises. The icon [{{< bi cloud-download >}}](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data) on the top-right corner in all the site pages will allow you to download the repo **data** folder (link generated with [DownGit](https://yehonal.github.io/DownGit/#/home)). Note that this folder can be updated during the course. For reference, materials from **2022** course edition are available in the [HPBBM2022 site](https://mredrejo.github.io/HPBBM2022/).
 
-Course Syllabus can be checked at [UAM site](https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs) and a PDF version is available [here](HPBBM_syllabus2023.pdf). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lessons (Lessons R1 & R2) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/). In this site, the lessons pages have been generated as *Quarto* to obtain source files (*.qmd*) that contain formatted text and chunks of R code that are executed upon rendering (see [lesson R7](r7.html) for more info about Markdown and Quarto in RStudio). 
+Course Syllabus can be checked at [UAM site](https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs) and a PDF version is available [here](HPBBM_syllabus2023.pdf). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lessons (Lessons R1 & R2) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/). In this site, the lessons pages have been generated as *Quarto* to obtain source files (*.qmd*) that contain formatted text and chunks of R code that are executed upon rendering (see [lesson R7](r7.html) for more info about Markdown and Quarto in RStudio).
 
 ::: callout-tip
 # How to use this site
+
 These materials were designed to be an interactive resource. Think about the code and test it with your computer.
 :::
 
 ::: callout-caution
 # Update R and RStudio
-All the Lessons contain a final *R Session info* where you can see the used versions for R and all packages. 
-Anyway, espacially if you installed R in your computer for the first time some years ago, I kindly request to **update** R and RStudio before going forward.
+
+All the Lessons contain a final *R Session info* where you can see the used versions for R and all packages. Anyway, espacially if you installed R in your computer for the first time some years ago, I kindly request to **update** R and RStudio before going forward.
 :::
 
 Lessons also contain embedded interactive [short exercises]{style="color:darkseagreen"} (generated with [`learnr`](https://rstudio.github.io/learnr/) y/o [`webexercises`](https://psyteachr.github.io/webexercises/articles/webexercises.html) packages). Try them before checking the proposed solution. Also, we included a final section of [*Review exercises*]{style="color:darkgreen"}, some of them from freely available online solved exercises and others that we created. The answers to the latter are not available online, but I'll be glad to provide them upon request.

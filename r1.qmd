@@ -189,7 +189,7 @@ In R, a data structure refers to the way data is organized and stored in memory.
 A **vector** is a (one dimensional) collection of elements, all of the *same type*. Vectors play an essential role in R, so much that R can be considered a **vectorized** language. That means that operations are applied to each element of the vector automatically, without the need to loop through the elements of the vector as it would be necessary in almost any other language such a python. The most common way to generate a vector is using the combine or concatenate function `c()` providing the list of elements separated by commas. We can accessing individual elements of the vector using brackets and the index of the elements.
 
 ::: callout-warning
-Vectors are indexed starting from 1 instead of 0, following a 1-based indexing convention. This means that the first element of a vector is accessed using the index 1, not 0 as in some other programming languages suchas python.
+Vectors are indexed starting from 1 instead of 0, following a 1-based indexing convention. This means that the first element of a vector is accessed using the index 1, not 0 as in some other programming languages such as python.
 :::
 
 ```{r}
@@ -328,7 +328,9 @@ DietDrugs
 ```
 
 ## [Lists]{style="color:blue"}
+
 A list is a data structure consisting of an ordered collection of (potentially different) objects. They are constructed using the function `list()`. The elements (a.k.a *components*) in a list are numbered and can be accessed using a double bracket notation and the index of the component. Oftentimes, the elements in a list are also named. In this case, the components can be accessed using the double square bracket and the name of the item instead of its index. Additionally names components can be retrieved using the `$` operator (list-subset operator).
+
 ```{r}
 # A list of students recording different features
 #notice that each element can be a different type of object or data structure
@@ -349,7 +351,6 @@ Students[[4]]
 Students[[4]][[2]]
 Students[[4]][[2]][1]
 ```
-
 
 # References
 
