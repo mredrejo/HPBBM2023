@@ -4,8 +4,14 @@ author:
   - name: Modesto
     affiliation: Department of Biochemistry, UAM
     affiliation_url: https://www.uam.es/
+    email: modesto.redrejo@uam.es
+  - name: Luis
+    affiliation: Department of Biochemistry, UAM
+    affiliation_url: https://www.uam.es/
+    email: modesto.redrejo@uam.es
+    
 date: "May 30, 2023"
-date-modified: "June 6, 2023"
+date-modified: "Jluy 6, 2023"
 categories: 
   - R
   - RStudio
@@ -82,6 +88,10 @@ Each lesson contains its own specific references, but I wanted to highlight here
 -   [Learn R by example](https://www.learnbyexample.org/r/)
 
 ## [Contents]{style="color:darkblue"}
+
+### [Lesson R1: Variables, data objects and data types in R](r1.html)
+
+### [Lesson R2: Flow Control in R](r2.html)
 
 ### [Lesson R3: Data input and output in R](r3.html)
 

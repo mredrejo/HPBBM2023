@@ -6,11 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Modesto">
-<meta name="author" content="Luis">
-<meta name="dcterms.date" content="2023-05-30">
+<meta name="dcterms.date" content="2023-07-14">
 
-<title>HPBBM2023</title>
+<title>HPBBM2023 - R2: Flow Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,7 +21,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -41,7 +92,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/bootstrap-icons-1.9.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -89,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -136,9 +186,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#wellcome-disclaimer" id="toc-wellcome-disclaimer" class="nav-link active" data-scroll-target="#wellcome-disclaimer"><span style="color:darkblue">Wellcome &amp; Disclaimer</span></a></li>
-  <li><a href="#bibliography-and-resources" id="toc-bibliography-and-resources" class="nav-link" data-scroll-target="#bibliography-and-resources"><span style="color:darkblue">Bibliography and Resources</span></a></li>
-  <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents"><span style="color:darkblue">Contents</span></a></li>
+  <li><a href="#flow-control" id="toc-flow-control" class="nav-link active" data-scroll-target="#flow-control"><span class="header-section-number">1</span> <span style="color:darkblue">Flow control</span></a></li>
+  <li><a href="#conditional-structures" id="toc-conditional-structures" class="nav-link" data-scroll-target="#conditional-structures"><span class="header-section-number">2</span> <span style="color:darkblue">Conditional structures</span></a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">3</span> References</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">4</span> Session Info</a></li>
   </ul>
 </nav>
 </nav>
@@ -151,52 +202,29 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HPBBM2023</h1>
+<h1 class="title">R2: Flow Control</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">R</div>
-    <div class="quarto-category">RStudio</div>
-    <div class="quarto-category">Data analysis</div>
-    <div class="quarto-category">R for Biochemists</div>
+    <div class="quarto-category">Conditionals</div>
+    <div class="quarto-category">Loops</div>
   </div>
   </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Authors</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Modesto </p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Department of Biochemistry, UAM
-          </p>
-      </div>
-      <div class="quarto-title-meta-contents">
-    <p class="author">Luis </p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Department of Biochemistry, UAM
-          </p>
-      </div>
-    </div>
 
 <div class="quarto-title-meta">
 
-      
+    
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 30, 2023</p>
+      <p class="date">July 14, 2023</p>
     </div>
   </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">Invalid Date</p>
+      <p class="date-modified">July 15, 2023</p>
     </div>
   </div>
     
@@ -205,117 +233,184 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<blockquote class="blockquote">
-<p>There are only two kinds of programming languages: the ones people complain about and the ones nobody uses. —<em>Bjarne Stroustrup</em></p>
-</blockquote>
-<section id="wellcome-disclaimer" class="level2">
-<h2 class="anchored" data-anchor-id="wellcome-disclaimer"><span style="color:darkblue">Wellcome &amp; Disclaimer</span></h2>
-<div class="callout callout-style-default callout-warning callout-titled">
+<section id="flow-control" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> <span style="color:darkblue">Flow control</span></h1>
+<p>Sequential execution of programming commands is insufficient for solving anything beyond trivial tasks. In most cases, solving a problem programmatically involves executing specific statements only under certain conditions and/or repeating a statement or set of statements multiple times. This ability to control when and how many times a statement or set of statements is executed is referred to as <strong>Flow control.</strong> In R, flow control is achieved using two specific structures in our code: - <strong>Conditional structures:</strong> These structures allow the execution of a statement or set of statements based on a condition. - <strong>Loop structures:</strong> These structures allow the execution of a statement or set of statements for a fixed number of times or until a condition is met. In both cases, the block of code containing the statements to be conditionally or repeatedly executed is delimited by curly brackets.</p>
+</section>
+<section id="conditional-structures" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> <span style="color:darkblue">Conditional structures</span></h1>
+<p>As indicated above, conditional structures are used to execute a block of code (contained within curly brackets) based on the result of a condition, that is when the result of applying a comparison operator results in the Boolean <code>TRUE</code>. The conditional block of code is preceded by the statement <code>ìf(condition)</code> where condition is usually an expression using a <strong>relational operator</strong> (see <strong>?@sec-operators</strong>). The following code ask the user to enter a number and then prints <em>negative</em> if the number less than zero. Then, it will print <em>End</em> to indicate that the program is has finished.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a number:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Enter a number:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">as.integer</span>(x)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"negative"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in if (y &lt; 0) {: missing value where TRUE/FALSE needed</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"End"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "End"</code></pre>
+</div>
+</div>
+<p>Please, notice that the statements after the if structure are <strong>always executed</strong> regardless the condition. Oftentimes we would like to execute a block of code if the condition is met <strong>and</strong> <em>another</em> block when the condition is <code>FALSE</code>. To do that we use the <strong>if-else</strong> structure just adding the <code>else</code> statement (an its block of code) right after the block of code under <code>if</code>. The following code will print <em>negative</em> if the number less than zero and <em>positive</em> otherwise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a number:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Enter a number:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">as.integer</span>(x)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"negative"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"positive"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in if (y &lt; 0) {: missing value where TRUE/FALSE needed</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"End"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "End"</code></pre>
+</div>
+</div>
+<p>Please, notice that the following code is <strong>INCORRECT</strong> and does not work as intended because the statements after the <code>if</code> structure are always executed regardless the conditional.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"This script is WRONG!! </span><span class="sc">\n</span><span class="st"> does not work as intended"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "This script is WRONG!! \n does not work as intended"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a number:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Enter a number:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">as.integer</span>(x)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"negative"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in if (y &lt; 0) {: missing value where TRUE/FALSE needed</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"positive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "positive"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"End"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "End"</code></pre>
+</div>
+</div>
+<p>##<span style="color:blue">Nested conditionals</span> Sometimes we need more than a single bifurcation in our code. For example, in the case above we may want to print <em>negative</em> when the number is less than zero,<em>positive</em> when it is more than zero and just <em>zero</em> when it is equal to zero. To do that can can just include (<strong>nest</strong>) an <em>if-else</em> structure within another <em>if-else</em> structure:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a number:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Enter a number:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">as.integer</span>(x)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"negative"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (y <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="st">"positive"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>(<span class="st">"zero"</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in if (y &lt; 0) {: missing value where TRUE/FALSE needed</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"End"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "End"</code></pre>
+</div>
+</div>
+<p>This is not restricted to three alternative blocks of code; in fact, we can nest as many <em>if-else</em> structures as necessary. However, the code becomes cumbersome with more that two or three blocks of code. For this reason, in situations where many blocks of code are to be conditionally executed it is much more convenient to use the <code>else if (condition)</code> statement. In this case, the conditional structure begins with and <code>if(condition)</code>statement and continues with as many <code>else if (condition)</code> statements as required. Finally, the structure may end with an <code>else</code> although it is not strictly required.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a number:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Enter a number:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">as.integer</span>(x)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (y <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"negative"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (y <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"positive"</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"zero"</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in if (y &lt; 0) {: missing value where TRUE/FALSE needed</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"End"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "End"</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Under construction
+Pay Attention
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>The conditionals are evaluated sequentially in the order the appear un the code and once any of them results in <code>TRUE</code>the remaining are skipped (not evaluated) and the code resumes execution after the whole conditional structure.</p>
+</div>
+</div>
+</section>
+<section id="references" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> References</h1>
+<div id="refs" role="list">
 
 </div>
-</div>
-<div style="float: right; position: relative; top: 0px; padding: 3px;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="HPBBM2023.png" class="img-fluid figure-img" width="228"></p>
-<figcaption class="figure-caption">Logo generated with hexSticker package.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></figcaption>
-</figure>
-</div>
-</div>
-<p>This site contains the materials for the <em>Coding tools for Biochemistry &amp; Molecular Biology</em> (Herramientas de Programación para Bioquímica y Biología Molecular, a.k.a. <strong>HPBBM</strong>) course of <strong>fall 2023</strong> in the Bachelor’s Degree in Biochemistry @<a href="www.uam.es">UAM</a> (Universidad Autónoma de Madrid, Spain). Source files are available at the <a href="https://github.com/mredrejo/HPBBM2023"><i class="bi-github " style="" role="img" aria-hidden="true"></i> repo</a>, containing the source files and the data used in the examples and exercises. The icon <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data"><i class="bi-cloud-download " style="" role="img" aria-hidden="true"></i></a> on the top-right corner in all the site pages will allow you to download the repo <strong>data</strong> folder (link generated with <a href="https://yehonal.github.io/DownGit/#/home">DownGit</a>). Note that this folder can be updated during the course. For reference, materials from <strong>2022</strong> course edition are available in the <a href="https://mredrejo.github.io/HPBBM2022/">HPBBM2022 site</a>.</p>
-<p>Course Syllabus can be checked at <a href="https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs">UAM site</a> and a PDF version is available <a href="HPBBM_syllabus2023.pdf">here</a>. The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lessons (Lessons R1 &amp; R2) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the <a href="https://moodle.uam.es/">UAM Moodle site</a>. In this site, the lessons pages have been generated as <em>Quarto</em> to obtain source files (<em>.qmd</em>) that contain formatted text and chunks of R code that are executed upon rendering (see <a href="r7.html">lesson R7</a> for more info about Markdown and Quarto in RStudio).</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-How to use this site
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>These materials were designed to be an interactive resource. Think about the code and test it with your computer.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Update R and RStudio
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>All the Lessons contain a final <em>R Session info</em> where you can see the used versions for R and all packages. Anyway, espacially if you installed R in your computer for the first time some years ago, I kindly request to <strong>update</strong> R and RStudio before going forward.</p>
-</div>
-</div>
-<p>Lessons also contain embedded interactive <span style="color:darkseagreen">short exercises</span> (generated with <a href="https://rstudio.github.io/learnr/"><code>learnr</code></a> y/o <a href="https://psyteachr.github.io/webexercises/articles/webexercises.html"><code>webexercises</code></a> packages). Try them before checking the proposed solution. Also, we included a final section of <span style="color:darkgreen"><em>Review exercises</em></span>, some of them from freely available online solved exercises and others that we created. The answers to the latter are not available online, but I’ll be glad to provide them upon request.</p>
-<p>All this material is open access and it is shared under <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC BY-NC</a> license.</p>
-<p>This is a draft version of this site, but it is intended to be expanded and corrected throughout the next weeks and new versions will be available the following years. Any feedback, help, or suggestions will be very warmly welcome.</p>
-<p>Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I, and the future students, will appreciate it if you let me know about anything that could be corrected or just improved. You can reach me by <a href="mailto::modesto.redrejo@uam.es">email</a>.</p>
 </section>
-<section id="bibliography-and-resources" class="level2">
-<h2 class="anchored" data-anchor-id="bibliography-and-resources"><span style="color:darkblue">Bibliography and Resources</span></h2>
-<p>Each lesson contains its own specific references, but I wanted to highlight here some curated general open access and open source resources to introduce yourself into R and R Studio.</p>
-<ul>
-<li><p>Grolemund, G. <a href="https://rstudio-education.github.io/"><em>Hands-on Programming in R</em></a><em>.</em></p></li>
-<li><p>Peng, R. D. R <a href="https://bookdown.org/rdpeng/rprogdatascience/"><em>Programming for Data Science.</em></a></p></li>
-<li><p>Coulatti, R. I. <a href="https://github.com/ColauttiLab/RCrashCourse_Book"><em>R Crash Course for Biologist</em>.</a></p></li>
-<li><p>Chang, W. R. <a href="https://r-graphics.org/">R Graphics Cookbook.</a></p></li>
-<li><p>Doyle, M., Chung, J. &amp; Perreau V. <a href="https://melbournebioinformatics.github.io/r-intro-biologists/intro_r_biologists.html">Introduction to R for Biologists.</a></p></li>
-<li><p><a href="https://www.learnbyexample.org/r/">Learn R by example</a></p></li>
-</ul>
-</section>
-<section id="contents" class="level2">
-<h2 class="anchored" data-anchor-id="contents"><span style="color:darkblue">Contents</span></h2>
-<section id="lesson-r1-variables-data-objects-and-data-types-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r1-variables-data-objects-and-data-types-in-r"><a href="r1.html">Lesson R1: Variables, data objects and data types in R</a></h3>
-</section>
-<section id="lesson-r2-flow-control-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r2-flow-control-in-r"><a href="r2.html">Lesson R2: Flow Control in R</a></h3>
-</section>
-<section id="lesson-r3-data-input-and-output-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r3-data-input-and-output-in-r"><a href="r3.html">Lesson R3: Data input and output in R</a></h3>
-</section>
-<section id="lesson-r4-write-your-own-functions" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r4-write-your-own-functions"><a href="r4.html">Lesson R4: Write your own functions</a></h3>
-</section>
-<section id="lesson-r5-plots" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r5-plots"><a href="">Lesson R5: Plots</a></h3>
-</section>
-<section id="lesson-r6-data-management" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r6-data-management"><a href="">Lesson R6: Data management</a></h3>
-</section>
-<section id="lesson-r7-r-projects-and-r-markdown-for-reproducible-data-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r7-r-projects-and-r-markdown-for-reproducible-data-analysis"><a href="">Lesson R7: R-projects and R-markdown for reproducible data analysis</a></h3>
-</section>
-<section id="lesson-r8-advanced-data-plotting-with-ggplot" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r8-advanced-data-plotting-with-ggplot"><a href="">Lesson R8: Advanced data plotting with <code>ggplot</code></a></h3>
-</section>
-<section id="lesson-r9-applications-for-molecular-biology" class="level3">
-<h3 class="anchored" data-anchor-id="lesson-r9-applications-for-molecular-biology"><a href="">Lesson R9: Applications for Molecular Biology</a></h3>
+<section id="session-info" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Session Info</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.1 (2023-06-16)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 22.04.2 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=es_ES.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=es_ES.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=es_ES.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=es_ES.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: Europe/Madrid
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] formatR_1.14       knitr_1.43         webexercises_1.1.0
+
+loaded via a namespace (and not attached):
+ [1] htmlwidgets_1.6.2 compiler_4.3.1    fastmap_1.1.1     cli_3.6.1        
+ [5] htmltools_0.5.5   tools_4.3.1       rstudioapi_0.14   yaml_2.3.7       
+ [9] rmarkdown_2.22    jsonlite_1.8.5    digest_0.6.31     xfun_0.39        
+[13] rlang_1.1.1       evaluate_0.21    </code></pre>
+</div>
+</div>
 
 
 </section>
-</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>See the code in the script <em>r_sticker.R</em> in the repo.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script>
 
 /* update total correct if #webex-total_correct exists */

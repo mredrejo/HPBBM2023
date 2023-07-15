@@ -1,0 +1,242 @@
+---
+title: "R2: Flow Control"
+date: "July 14, 2023"
+date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+categories: 
+  - Conditionals
+  - Loops
+format: 
+  html:
+    page-layout: full
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    number-sections: true
+    code-overflow: wrap
+    link-external-icon: true
+    link-external-newwindow: true 
+    bibliography: Biblio.bib
+    link-citations: true
+---
+
+```{r wrap-hook, echo=FALSE}
+library(knitr)
+library(formatR)
+library(webexercises)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+#in RMD files, the default wd for R code chunks is the directory that contains the Rmd document. 
+#We change it here to share the working directory with all the Rmd files of the course
+#knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
+knitr::opts_knit$set(root.dir ="/home/luis/Documents/Teaching/HPBBM/HPBBM_R_GitHub/HPBBM2023/")
+
+```
+
+# [Flow control]{style="color:darkblue"}
+
+Sequential execution of programming commands is insufficient for solving anything beyond trivial tasks. In most cases, solving a problem programmatically involves executing specific statements only under certain conditions and/or repeating a statement or set of statements multiple times. This ability to control when and how many times a statement or set of statements is executed is referred to as **Flow control.** In R, flow control is achieved using two specific structures in our code: - **Conditional structures:** These structures allow the execution of a statement or set of statements based on a condition. - **Loop structures:** These structures allow the execution of a statement or set of statements for a fixed number of times or until a condition is met. In both cases, the block of code containing the statements to be conditionally or repeatedly executed is delimited by curly brackets.
+
+# [Conditional structures]{style="color:darkblue"}
+
+As indicated above, conditional structures are used to execute a block of code (contained within curly brackets) based on the result of a condition, that is when the result of applying a comparison operator results in the Boolean `TRUE`. The conditional block of code is preceded by the statement `ìf(condition)` where condition is usually an expression using a **relational operator** (see @sec-operators). The following code ask the user to enter a number and then prints *negative* if the number less than zero. Then, it will print *End* to indicate that the program is has finished.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+  print("negative")
+}
+print("End")
+```
+
+Please, notice that the statements after the if structure are **always executed** regardless the condition. Oftentimes we would like to execute a block of code if the condition is met **and** *another* block when the condition is `FALSE`. To do that we use the **if-else** structure just adding the `else` statement (an its block of code) right after the block of code under `if`. The following code will print *negative* if the number less than zero and *positive* otherwise.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+  print("negative")
+} else {
+  print("positive")
+}
+print("End")
+```
+
+Please, notice that the following code is **INCORRECT** and does not work as intended because the statements after the `if` structure are always executed regardless the conditional.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+print("This script is WRONG!! \n does not work as intended")
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+  print("negative")
+}
+print("positive")
+print("End")
+```
+
+\##[Nested conditionals]{style="color:blue"} Sometimes we need more than a single bifurcation in our code. For example, in the case above we may want to print *negative* when the number is less than zero,*positive* when it is more than zero and just *zero* when it is equal to zero. To do that can can just include (**nest**) an *if-else* structure within another *if-else* structure:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+  print("negative")
+} else {
+  if(y>0){
+    print("positive")
+  } else {
+    print("zero")
+  }
+}
+print("End")
+```
+
+This is not restricted to three alternative blocks of code; in fact, we can nest as many *if-else* structures as necessary. However, the code becomes cumbersome with more that two or three blocks of code. For this reason, in situations where many blocks of code are to be conditionally executed it is much more convenient to use the `else if (condition)` statement. In this case, the conditional structure begins with and `if(condition)`statement and continues with as many `else if (condition)` statements as required. Finally, the structure may end with an `else` although it is not strictly required.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+    print("negative")
+} else if (y>0){
+     print("positive")
+} else {
+     print("zero")
+}
+print("End")
+```
+
+::: callout-important
+## Pay Attention
+
+The conditionals are evaluated sequentially in the order the appear un the code and once any of them results in `TRUE`the remaining are skipped (not evaluated) and the code resumes execution after the whole conditional structure.
+:::
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Age in years:")
+y=as.integer(x)
+if(y<0){
+    print("Not born yet!")
+} else if (y<1){
+     print("Infant")
+} else if (y<3){
+     print("Toddler")
+}else if (y<5){
+     print("Preschooler")
+}else if (y<9){
+     print("Child")
+}else if (y<13){
+     print("Preteen")
+}else if (y<18){
+     print("Teenager")
+}else if (y<25){
+     print("Young Adult")
+}else if (y<70){
+     print("Adult")
+}else if (y<100){
+     print("Ederly/Senior")
+}else {
+     print("Ancient!")
+}
+```
+
+Note that, when coding many different conditionals the `else if` statement is much more convenient that nesting *if-else* structures. Also note that that **conditionals are evaluated sequentially**.
+For example, the following code is a variation of the previous one just changing the order of one of the conditionals and, as you can see it will not work as intended:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+print("This script is WRONG!! \n does not work as intended")
+x=readline("Age in years:")
+y=as.integer(x)
+if(y<0){
+    print("Not born yet!")
+} else if (y<100){
+     print("Ederly/Senior")
+} else if (y<3){
+     print("Toddler")
+}else if (y<5){
+     print("Preschooler")
+}else if (y<9){
+     print("Child")
+}else if (y<13){
+     print("Preteen")
+}else if (y<18){
+     print("Teenager")
+}else if (y<25){
+     print("Young Adult")
+}else if (y<70){
+     print("Adult")
+}else if (y<1){
+     print("Infant")
+} else {
+     print("Ancient!")
+}
+```
+
+Notice that, in any type of conditional structure, you can combine multiple **relational operators** and, in the following particular example, it makes the case the order of the conditionals irrelevant:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Age in years:")
+y=as.integer(x)
+if(y<0){
+    print("Not born yet!")
+} else if (y>=70 & y<100){
+     print("Ederly/Senior")
+}else if (y>=1 & y<3){
+     print("Toddler")
+}else if (y>=3 & y<5){
+     print("Preschooler")
+}else if (y>=5 & y<9){
+     print("Child")
+}else if (y>=9 & y<13){
+     print("Preteen")
+}else if (y>=13 & y<18){
+     print("Teenager")
+}else if (y>=18 & y<25){
+     print("Young Adult")
+}else if (y>=25 & y<65){
+     print("Adult")
+}else if (y>=0 & y<1){
+     print("Infant")
+} else {
+     print("Ancient!")
+}
+
+```
+
+
+
+# References
+
+::: {#refs}
+:::
+
+# Session Info
+
+```{r}
+sessionInfo()
+
+```
