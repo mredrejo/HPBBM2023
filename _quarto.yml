@@ -12,15 +12,17 @@ website:
     logo: HPBBM2023.png
     tools:
     - icon: github
-      href: https://github.com/mredrejo/HPBBM2023
+      href: https://github.com/lpeso/HPBBM2023
     - icon: cloud-download
-      href: https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2023/tree/main/data
+      href: https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/lpeso/HPBBM2023/tree/main/data
       text: Download Data
     right:
     - href: index.qmd
       text: Home
     - text: Course Contents
       menu:
+      - r1.qmd
+      - r2.qmd
       - r3.qmd
       - r4.qmd
       - r5.qmd

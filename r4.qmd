@@ -30,7 +30,8 @@ library(webexercises)
 opts_chunk$set(tidy.opts=list(width.cutoff=75),tidy=TRUE)
 #in RMD files, the default wd for R code chunks is the directory that contains the Rmd document. 
 #We change it here to share the working directory with all the Rmd files of the course
-knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
+#knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
+knitr::opts_knit$set(root.dir ="/home/luis/Documents/Teaching/HPBBM/HPBBM_R_GitHub/HPBBM2023/")
 
 ```
 
@@ -54,21 +55,21 @@ You must load the package before using it.
 ```{r, error=TRUE}
 #two ways of loading the packages
 #1
-library(xlsx) 
+#library(xlsx) 
 #2
-require(xlsx)
+#require(xlsx)
 
 #help
-help(xlsx)
-??xlsx
+#help(xlsx)
+#??xlsx
 
 #trick to install package only if not installed 
-if(!require(xlsx)){
-    install.packages("xlsx")
-    library(xlsx)
-}
+#if(!require(xlsx)){
+#    install.packages("xlsx")
+#    library(xlsx)
+#}
 
-detach("package:xlsx", unload=TRUE) #unload the package
+#detach("package:xlsx", unload=TRUE) #unload the package
 ```
 
 Optionally, if you want to unload a package from memory, you can use `detach()`. This can be useful for long scripts.
@@ -93,8 +94,8 @@ If you have not worked with the R3 lesson yet, you can take a quick look at how 
 #open it again
 coli_genomes <- read.csv(file = 'data/coli_genomes_renamed.csv')
 #save
-library(xlsx)
-write.xlsx(coli_genomes,"data/coli_genomes.xlsx")
+#library(xlsx)
+#write.xlsx(coli_genomes,"data/coli_genomes.xlsx")
 ```
 
 Many packages in CRAN also contain a reference manual and some of them also a *vignette*. A vignette is practical guide to each package. You can see all the installed vignettes with [`browseVignettes()`](https://rdrr.io/r/utils/browseVignettes.html) or just `vignette()` for the primary vignette. You can find a bunch of tutorials and tricks about how to use popular packages, but the *vignette* is an official and complete reference that is always helpful.
