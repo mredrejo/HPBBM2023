@@ -305,8 +305,9 @@ Please note that the `switch` statement matches the provided expression with the
 Loop structures are programming constructs that allow you to repeat a set of statements or code multiple times. Loop structures are useful when you want to perform a specific action repeatedly, iterate over a sequence of values, or iterate until a certain condition is met. As in the case of conditionals, the block of code to be repeated is delimited (contained within) a pair of curly brackets. There are three types of loop structures in R: `for`, `while` and `repeat`.
 
 ## [`for` loops]{style="color:blue"}
-The for loop is used when you know the exact number of iterations required. It iterates over a sequence, such as a vector or a range of numbers, executing a block of code for each iteration. 
-For example, the code below calculates the square of each of the values in a matrix
+
+The for loop is used when you know the exact number of iterations required. It iterates over a sequence, such as a vector or a range of numbers, executing a block of code for each iteration. For example, the code below calculates the square of each of the values in a matrix
+
 ```{r}
 #| echo: true
 #| eval: true
@@ -328,6 +329,7 @@ print(MyMat3)
 ```
 
 Note that, thanks to the vectorization of data structures in R, this task can be accomplished in a single operation
+
 ```{r}
 #| echo: true
 #| eval: true
@@ -335,6 +337,79 @@ Note that, thanks to the vectorization of data structures in R, this task can be
 MyMat2 <- MyMat**2
 print(MyMat2)
 ```
+
+## [`while` loops]{style="color:blue"}
+
+"While" loops are utilized to repeatedly execute a block of code (enclosed within curly brackets) as long as a specific condition remains true. The structure of a "while" loop includes a condition followed by a code block. The code block is executed iteratively until the condition evaluates to false. The computations within the code block may modify the state of the parameter being evaluated in the condition, leading to the program exiting the loop after a certain number of repetitions. The following code make use of while loops to generate a vector containing all 64 codons:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+Nucl<-LETTERS[c(1,3,7,20)]
+Codons<-c()
+p1<-1
+while (p1<5){
+  p2<-1
+  while (p2<5){
+    p3<-1
+    while (p3<5){
+      Codons <- c(Codons,paste0(Nucl[p1],Nucl[p2],Nucl[p3]))
+      p3 <- p3+1
+    }
+    p2 <- p2+1
+  }
+  p1 <- p1+1
+}
+print(Codons)
+```
+
+## [Control flow statements]{style="color:blue"}
+
+Sometimes, it may be necessary for a program to skip executing a block of code (or part of it) and move to the next iteration. In other cases, the program may need to exit the loop prematurely if a certain condition is met. To achieve these actions, we can use the next and break statements, respectively. Both control statements are typically invoked within a conditional context.
+For instance, when computing the Shannon Entropy ($H(X)=\sum_i P(x_i) log(Pi)$) of a variable's state distribution, it is common to skip terms with a frequency of zero to avoid encountering the undefined value of $log(0)$.
+Consider the following code, which takes a vector representing the observed absolute frequencies of nucleotides at a specific genomic position and calculates the Shannon Entropy for that position:
+```{r}
+
+```
+In this code, the next statement is used to skip the calculation of terms with a frequency of zero. This prevents the program from encountering the undefined $\log(0)$ value. The loop continues to the next iteration and calculates the entropy based on non-zero frequencies.
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+Nucleotide_frequencies<-c(25,0,5,0)#example of absolute frequencies of A, C, G and T
+Total_Freq<-sum(Nucleotide_frequencies)
+Entropy<-0
+for(Freq in Nucleotide_frequencies){
+  if (Freq==0){
+    next#skips the remaining of the block and goes to next iteration
+  }
+  Prob<-Freq/Total_Freq
+  Entropy<-Entropy+(Prob*log2(Prob))
+}
+Entropy<-(-1)*Entropy
+print(Entropy)
+```
+
+By utilizing the next statement, we ensure that the Shannon Entropy computation proceeds correctly without encountering any issues related to zero frequencies.
+
+## [`repeat` loops]{style="color:blue"}
+
+An additional statement in R that allows you to execute a block of code a specific number of times is called repeat. Similar to while loops, the block of code within the repeat statement is repeated until a certain condition is met. However, unlike while loops, the condition itself is not specified within the repeat statement. Instead, the condition is part of the code block, and the loop is terminated using the break statement when the condition is satisfied.
+For example, the following code prints the Fibonacci terms smaller than 250:
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+Fib <- c(1,1)
+repeat{
+  tmp <- Fib[length(Fib)-1]+Fib[length(Fib)]
+  if(tmp>250){break}
+  Fib <- c(Fib,tmp)
+}
+print(Fib)
+```
+
 
 # References
 
