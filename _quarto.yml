@@ -22,6 +22,7 @@ website:
     - text: Course Contents
       menu:
       - r1.qmd
+      - r2.qmd
       - r3.qmd
       - r4.qmd
       - r5.qmd
