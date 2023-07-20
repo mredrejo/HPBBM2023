@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Modesto">
+<meta name="author" content="Luis">
 <meta name="dcterms.date" content="2023-05-30">
 
 <title>HPBBM2023</title>
@@ -98,6 +99,14 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-course-contents">    
         <li>
+    <a class="dropdown-item" href="./r1.html" rel="" target="">
+ <span class="dropdown-text">R1: Variables, Operators and data structures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r2.html" rel="" target="">
+ <span class="dropdown-text">R2: Flow Control</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./r3.html" rel="" target="">
  <span class="dropdown-text">R3: Read and write data in R</span></a>
   </li>  
@@ -158,11 +167,19 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Authors</div>
   <div class="quarto-title-meta-heading">Affiliation</div>
   
     <div class="quarto-title-meta-contents">
     <p class="author">Modesto </p>
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Biochemistry, UAM
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    <p class="author">Luis </p>
   </div>
     <div class="quarto-title-meta-contents">
         <p class="affiliation">
@@ -184,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 6, 2023</p>
+      <p class="date-modified">July 20, 2023</p>
     </div>
   </div>
     
@@ -220,7 +237,7 @@ Under construction
 </div>
 </div>
 <p>This site contains the materials for the <em>Coding tools for Biochemistry &amp; Molecular Biology</em> (Herramientas de Programación para Bioquímica y Biología Molecular, a.k.a. <strong>HPBBM</strong>) course of <strong>fall 2023</strong> in the Bachelor’s Degree in Biochemistry @<a href="www.uam.es">UAM</a> (Universidad Autónoma de Madrid, Spain). Source files are available at the <a href="https://github.com/mredrejo/HPBBM2023"><i class="bi-github " style="" role="img" aria-hidden="true"></i> repo</a>, containing the source files and the data used in the examples and exercises. The icon <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data"><i class="bi-cloud-download " style="" role="img" aria-hidden="true"></i></a> on the top-right corner in all the site pages will allow you to download the repo <strong>data</strong> folder (link generated with <a href="https://yehonal.github.io/DownGit/#/home">DownGit</a>). Note that this folder can be updated during the course. For reference, materials from <strong>2022</strong> course edition are available in the <a href="https://mredrejo.github.io/HPBBM2022/">HPBBM2022 site</a>.</p>
-<p>Course Syllabus can be checked at <a href="https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs">UAM site</a> and a PDF version is available <a href="HPBBM_syllabus2023.pdf">here</a>. The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lessons (Lessons R1 &amp; R2) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the <a href="https://moodle.uam.es/">UAM Moodle site</a>. In this site, the lessons pages have been generated as <em>Quarto</em> to obtain source files (<em>.qmd</em>) that contain formatted text and chunks of R code that are executed upon rendering (see <a href="r7.html">lesson R7</a> for more info about Markdown and Quarto in RStudio).</p>
+<p>Course Syllabus can be checked at <a href="https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs">UAM site</a> and a PDF version is available <a href="HPBBM_syllabus2023.pdf">here</a>. The course contains a first block of lessons on Python programming (Lessons 1-7) that is not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the <a href="https://moodle.uam.es/">UAM Moodle site</a>. In this site, the lessons pages have been generated as <em>Quarto</em> to obtain source files (<em>.qmd</em>) that contain formatted text and chunks of R code that are executed upon rendering (see <a href="r7.html">lesson R7</a> for more info about Markdown and Quarto in RStudio).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -250,11 +267,11 @@ Update R and RStudio
 <p>Lessons also contain embedded interactive <span style="color:darkseagreen">short exercises</span> (generated with <a href="https://rstudio.github.io/learnr/"><code>learnr</code></a> y/o <a href="https://psyteachr.github.io/webexercises/articles/webexercises.html"><code>webexercises</code></a> packages). Try them before checking the proposed solution. Also, we included a final section of <span style="color:darkgreen"><em>Review exercises</em></span>, some of them from freely available online solved exercises and others that we created. The answers to the latter are not available online, but I’ll be glad to provide them upon request.</p>
 <p>All this material is open access and it is shared under <a href="https://creativecommons.org/licenses/by-nc/2.0/">CC BY-NC</a> license.</p>
 <p>This is a draft version of this site, but it is intended to be expanded and corrected throughout the next weeks and new versions will be available the following years. Any feedback, help, or suggestions will be very warmly welcome.</p>
-<p>Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I, and the future students, will appreciate it if you let me know about anything that could be corrected or just improved. You can reach me by <a href="mailto::modesto.redrejo@uam.es">email</a>.</p>
+<p>Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I, and the future students, will appreciate it if you let me know about anything that could be corrected or just improved. You can reach us by <a href="mailto::modesto.redrejo@uam.es">email</a>.</p>
 </section>
 <section id="bibliography-and-resources" class="level2">
 <h2 class="anchored" data-anchor-id="bibliography-and-resources"><span style="color:darkblue">Bibliography and Resources</span></h2>
-<p>Each lesson contains its own specific references, but I wanted to highlight here some curated general open access and open source resources to introduce yourself into R and R Studio.</p>
+<p>Each lesson contains its own specific references, but we wanted to highlight here some curated general open access and open source resources to introduce yourself into R and R Studio.</p>
 <ul>
 <li><p>Grolemund, G. <a href="https://rstudio-education.github.io/"><em>Hands-on Programming in R</em></a><em>.</em></p></li>
 <li><p>Peng, R. D. R <a href="https://bookdown.org/rdpeng/rprogdatascience/"><em>Programming for Data Science.</em></a></p></li>
@@ -266,6 +283,12 @@ Update R and RStudio
 </section>
 <section id="contents" class="level2">
 <h2 class="anchored" data-anchor-id="contents"><span style="color:darkblue">Contents</span></h2>
+<section id="lesson-r1-variables-operators-and-data-structures-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-r1-variables-operators-and-data-structures-in-r"><a href="r1.html">Lesson R1: Variables, Operators and data structures in R</a></h3>
+</section>
+<section id="lesson-r2-flow-control" class="level3">
+<h3 class="anchored" data-anchor-id="lesson-r2-flow-control"><a href="r2.html">Lesson R2: Flow Control</a></h3>
+</section>
 <section id="lesson-r3-data-input-and-output-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="lesson-r3-data-input-and-output-in-r"><a href="r3.html">Lesson R3: Data input and output in R</a></h3>
 </section>
@@ -756,7 +779,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Modesto Redrejo Rodríguez, 2023</div>   
+    <div class="nav-footer-left">Modesto Redrejo Rodríguez &amp; Luis del Peso, 2023</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

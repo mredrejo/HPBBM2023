@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Modesto">
 <meta name="dcterms.date" content="2023-06-06">
 
 <title>HPBBM2023 - R4: Functions in R</title>
@@ -130,6 +131,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-course-contents">    
         <li>
+    <a class="dropdown-item" href="./r1.html" rel="" target="">
+ <span class="dropdown-text">R1: Variables, Operators and data structures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r2.html" rel="" target="">
+ <span class="dropdown-text">R2: Flow Control</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./r3.html" rel="" target="">
  <span class="dropdown-text">R3: Read and write data in R</span></a>
   </li>  
@@ -212,6 +221,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Modesto </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -223,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 15, 2023</p>
+      <p class="date-modified">July 20, 2023</p>
     </div>
   </div>
     
@@ -234,8 +249,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="r-packages" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> R packages</h1>
-<p>As you already know, R is a ‘<a href="https://en.wikipedia.org/wiki/GNU">GNU Software</a>’ with a <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License">GPL</a> license. As a a freely available language it has a great community of users from diverse background and interests. This community have developed a myriad of applications for R, called <strong><em>R Packages</em></strong>. Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data. The idea behind R packages is that the chances are that someone has already solved a problem that you’re working on, and you can benefit from their work by downloading their package.</p>
-<p>Packages can be installed from one of the public R repositories. In this course we will mainly use two R repos, <a href="https://cran.r-project.org/"><strong>CRAN</strong></a> and <a href="https://www.bioconductor.org/"><strong>Bioconductor</strong></a>. The name CRAN stands for “The Comprehensive R Archive Network”, and it contains a huge variety of packages free to use. On the other hand, as we will see later on in the <a href="r9.html">Lesson R9</a>, Bioconductor is a repository of software devoted to bioinformatics or computational biology applications. As for June 2023, the CRAN package repository features 19,622 available packages whereas Bioconductor release 3.16 contains 2,183 packages.</p>
+<p>As you already know, R is a ‘<a href="https://en.wikipedia.org/wiki/GNU">GNU Software</a>’ with a <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License">GPL</a> license. As a a freely available language it has a great community of users from diverse background and interests. This community have developed a myriad of applications for R, called <strong><em>R Packages</em></strong>. The idea behind R packages is that the chances are that someone has already solved a problem that you’re working on, and you can benefit from their work by downloading their package.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them (help), and some sample data to perform tests.</p>
+</div>
+</div>
+<p>Packages can be installed from one of the public R repositories. In this course we will mainly use two R repos, <a href="https://cran.r-project.org/"><strong>CRAN</strong></a> and <a href="https://www.bioconductor.org/"><strong>Bioconductor</strong></a>. CRAN stands for “the Comprehensive R Archive Network”, and it contains a huge variety of packages free to use. On the other hand, as we will see in more detail later on the <a href="r9.html">Lesson R9</a>, Bioconductor is a repository of software devoted to bioinformatics or computational biology applications. As for June 2023, the CRAN package repository features 19,622 available packages whereas Bioconductor release 3.16 contains 2,183 packages.</p>
 <p>A full list of CRAN packages can be found <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">here</a> and a list by topic <a href="https://cran.r-project.org/web/views/">here</a>.</p>
 <section id="installing-and-use-r-packages" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installing-and-use-r-packages"><span class="header-section-number">1.1</span> Installing and use R packages</h2>
@@ -247,25 +275,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You must load the package before using it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two ways of loading the packages 1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xlsx)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(xlsx)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># help</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(xlsx)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(<span class="st">`</span><span class="at">?</span><span class="st">`</span>(xlsx))</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># trick to install package only if not installed</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(xlsx)) {</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"xlsx"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(xlsx)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(<span class="st">"package:xlsx"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>)  <span class="co">#unload the package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two ways of loading the packages:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xlsx)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(xlsx)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># help</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(xlsx)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(<span class="st">`</span><span class="at">?</span><span class="st">`</span>(xlsx))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># you can use an if statement to install package only if not installed</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(xlsx)) {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(<span class="st">"xlsx"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(xlsx)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># unload the package (optionally)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(<span class="st">"package:xlsx"</span>, <span class="at">unload =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Optionally, if you want to unload a package from memory, you can use <code>detach()</code>. This can be useful for long scripts.</p>
-<p>In the above code we have used <code>require()</code> and <code>library()</code> functions to call for package loading. These are very similar functions that are often interchangeable. The main difference is that when you use <code>require()</code> and it cannot be executed, you will get a warning (see below for how to use <em>warning</em>), but not an error. Therefore, your code will always continue to execute if possible.</p>
+<p>In the above code we have used <code>require()</code> and <code>library()</code> functions to call for package loading. These are very similar functions that are often interchangeable. The main difference is that when you use <code>require()</code> and it cannot be executed, you will get a warning (see below for how to use <em>warning</em>), but not an error. Therefore, your code will always continue to execute if possible. In the following example, we tried to load an unknown package called <code>uam</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(uam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -280,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 logical.return = TRUE, : there is no package called 'uam'</code></pre>
 </div>
 </div>
-<p>As an example, we are going to read again the file <em><a href="data/coli_genomes_renamed.csv">coli_genomes_renamed.csv</a></em> that we used in the previous lesson and export it ready for MS Excel.</p>
+<p>In the next example, we are going to read the file <em><a href="data/coli_genomes_renamed.csv">coli_genomes_renamed.csv</a></em>, that we used in the lesson R3 and export it ready for MS Excel using the package <code>xlsx</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -336,9 +366,9 @@ Cross-lesson tip
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>DNA<span class="sc">$</span>titles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "A-DNA"                 "Circular DNA"          "DNA"                  
- [4] "DNA (disambiguation)"  "DNA (duo)"             "DNA extraction"       
- [7] "DNA gyrase"            "DNA ligase"            "DNA methylation"      
-[10] "DNA on DNA"            "DNA profiling"         "DNA repair"           
+ [4] "DNA (disambiguation)"  "DNA (duo)"             "DNA Oyj"              
+ [7] "DNA extraction"        "DNA methylation"       "DNA on DNA"           
+[10] "DNA polymerase"        "DNA profiling"         "DNA repair"           
 [13] "DNA replication"       "DNA sequencing"        "DNA virus"            
 [16] "DNA²"                  "DNA–DNA hybridization" "DnaA"                 
 [19] "Mitochondrial DNA"     "Recombinant DNA"      </code></pre>
@@ -537,8 +567,8 @@ is positive, statistically significant, and very large (r = 0.93, 95% CI [0.91,
 <h2 data-number="2.3" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">2.3</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>Write an inline function that transforms concentrations units: molar (M) into micromolar (µM). Test it with your own R session.</p>
 <strong>Select the right answer</strong>
-<div id="radio_AHDEMMCTRF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AHDEMMCTRF" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_AHDEMMCTRF" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_AHDEMMCTRF" value=""> <span>f &lt;- function(x) x 1000</span></label>
+<div id="radio_LRGEWEMTGS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LRGEWEMTGS" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_LRGEWEMTGS" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_LRGEWEMTGS" value=""> <span>f &lt;- function(x) x 1000</span></label>
 </div>
 <hr>
 </section>
@@ -630,7 +660,7 @@ $Perimeter
 <span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">"El precio es de"</span>, price, <span class="st">"euros."</span>)</span>
 <span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a><span class="fu">price_calculator</span>(<span class="dv">10</span>, <span class="st">"normal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a><span class="fu">price_calculator</span>(<span class="at">samples =</span> <span class="dv">10</span>, <span class="at">category =</span> <span class="st">"normal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "El precio es de 140 euros."</code></pre>
 </div>
@@ -838,7 +868,7 @@ Answer 1
 </div>
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">age</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 226.1 months old"</code></pre>
+<pre><code>[1] "You are about 227.3 months old"</code></pre>
 </div>
 </div>
 </div>
@@ -863,7 +893,7 @@ Answer 2
 <span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "If you were born on 2004-11-17, you are about 226.1 months old."</code></pre>
+<pre><code>[1] "If you were born on 2004-11-17, you are about 227.3 months old."</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -888,7 +918,7 @@ Answer 2
 <li><p><em>R programming for data science,</em> <a href="https://bookdown.org/rdpeng/rprogdatascience/" class="uri">https://bookdown.org/rdpeng/rprogdatascience/</a></p></li>
 <li><p>Creating functions in <em>Programming in R</em> Swcarpentry, <a href="http://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html" class="uri">http://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html</a></p></li>
 <li><p>Functions in R programming in <em>GeeksforGeeks</em>: <a href="https://www.geeksforgeeks.org/functions-in-r-programming/" class="uri">https://www.geeksforgeeks.org/functions-in-r-programming/</a></p></li>
-<li><p>Learn R by examples: <a href="https://www.learnbyexample.org/" class="uri">https://www.learnbyexample.org/</a></p></li>
+<li><p>Learn R by examples: <a href="https://www.learnbyexample.org/" class="uri">https://www.learnbyexample.org/</a> and <a href="https://www.learnbyexample.org/r-functions/" class="uri">https://www.learnbyexample.org/r-functions/</a></p></li>
 </ul>
 <hr>
 </section>
@@ -919,7 +949,7 @@ Answer 2
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.3.0 (2023-04-21)
 Platform: x86_64-apple-darwin20 (64-bit)
-Running under: macOS Ventura 13.3.1
+Running under: macOS Ventura 13.4.1
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
@@ -939,16 +969,17 @@ other attached packages:
 [5] knitr_1.43         webexercises_1.1.0
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.3      jsonlite_1.8.4    compiler_4.3.0    scales_1.2.1     
- [5] yaml_2.3.7        fastmap_1.1.1     R6_2.5.1          labeling_0.4.2   
- [9] htmlwidgets_1.6.2 tibble_3.2.1      insight_0.19.2    munsell_0.5.0    
-[13] pillar_1.9.0      rlang_1.1.1       utf8_1.2.3        getwiki_0.9.0    
-[17] xfun_0.39         parameters_0.21.1 datawizard_0.7.1  cli_3.6.1        
-[21] withr_2.5.0       magrittr_2.0.3    digest_0.6.31     grid_4.3.0       
-[25] rstudioapi_0.14   rJava_1.0-6       effectsize_0.8.3  lifecycle_1.0.3  
-[29] vctrs_0.6.2       evaluate_0.21     glue_1.6.2        farver_2.1.1     
-[33] xlsxjars_0.6.1    fansi_1.0.4       colorspace_2.1-0  bayestestR_0.13.1
-[37] rmarkdown_2.21    tools_4.3.0       pkgconfig_2.0.3   htmltools_0.5.5  </code></pre>
+ [1] gtable_0.3.3      jsonlite_1.8.4    dplyr_1.1.2       compiler_4.3.0   
+ [5] tidyselect_1.2.0  scales_1.2.1      yaml_2.3.7        fastmap_1.1.1    
+ [9] R6_2.5.1          labeling_0.4.2    generics_0.1.3    htmlwidgets_1.6.2
+[13] tibble_3.2.1      insight_0.19.2    munsell_0.5.0     pillar_1.9.0     
+[17] rlang_1.1.1       utf8_1.2.3        getwiki_0.9.0     xfun_0.39        
+[21] parameters_0.21.1 datawizard_0.7.1  cli_3.6.1         withr_2.5.0      
+[25] magrittr_2.0.3    digest_0.6.31     grid_4.3.0        rstudioapi_0.14  
+[29] rJava_1.0-6       effectsize_0.8.3  lifecycle_1.0.3   vctrs_0.6.2      
+[33] evaluate_0.21     glue_1.6.2        farver_2.1.1      xlsxjars_0.6.1   
+[37] fansi_1.0.4       colorspace_2.1-0  bayestestR_0.13.1 rmarkdown_2.21   
+[41] tools_4.3.0       pkgconfig_2.0.3   htmltools_0.5.5  </code></pre>
 </div>
 </div>
 
@@ -1414,7 +1445,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Modesto Redrejo Rodríguez, 2023</div>   
+    <div class="nav-footer-left">Modesto Redrejo Rodríguez &amp; Luis del Peso, 2023</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
