@@ -1,0 +1,421 @@
+---
+title: "R2: Flow Control"
+author: "Luis"
+date: "July 14, 2023"
+date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+categories: 
+  - Conditionals
+    + if-else
+    + nested conditionals
+    + ifelse
+    + switch
+  - Loops
+    + for loops
+    + while loops
+    + control statements
+    + repeat
+format: 
+  html:
+    page-layout: full
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    number-sections: true
+    code-overflow: wrap
+    link-external-icon: true
+    link-external-newwindow: true 
+    link-citations: true
+---
+
+```{r wrap-hook, echo=FALSE}
+library(knitr)
+library(formatR)
+library(webexercises)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+
+
+```
+
+# [Flow control]{style="color:darkblue"}
+
+Sequential execution of programming commands is insufficient for solving anything beyond trivial tasks. In most cases, solving a problem programmatically involves executing specific statements only under certain conditions and/or repeating a statement or set of statements multiple times. This ability to control when and how many times a statement or set of statements is executed is referred to as **Flow control.** In R, flow control is achieved using two specific structures in our code: - **Conditional structures:** These structures allow the execution of a statement or set of statements based on a condition. - **Loop structures:** These structures allow the execution of a statement or set of statements for a fixed number of times or until a condition is met. In both cases, the block of code containing the statements to be conditionally or repeatedly executed is delimited by curly brackets.
+
+# [Conditional structures]{style="color:darkblue"}
+
+As indicated above, conditional structures are used to execute a block of code (contained within curly brackets) based on the result of a condition, that is when the result of applying a comparison operator results in the Boolean `TRUE`. The conditional block of code is preceded by the statement `ìf(condition)` where condition is usually an expression using a **relational operator** (see @sec-operators). The following code ask the user to enter a number and then prints *negative* if the number less than zero. Then, it will print *End* to indicate that the program is has finished.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+  print("negative")
+}
+print("End")
+```
+
+Please, notice that the statements after the if structure are **always executed** regardless the condition. Oftentimes we would like to execute a block of code if the condition is met **and** *another* block when the condition is `FALSE`. To do that we use the **if-else** structure just adding the `else` statement (an its block of code) right after the block of code under `if`. The following code will print *negative* if the number less than zero and *positive* otherwise.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+  print("negative")
+} else {
+  print("positive")
+}
+print("End")
+```
+
+Please, notice that the following code is **INCORRECT** and does not work as intended because the statements after the `if` structure are always executed regardless the conditional.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+print("This script is WRONG!! \n does not work as intended")
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+  print("negative")
+}
+print("positive")
+print("End")
+```
+
+## [Nested conditionals]{style="color:blue"}
+
+Sometimes we need more than a single bifurcation in our code. For example, in the case above we may want to print *negative* when the number is less than zero,*positive* when it is more than zero and just *zero* when it is equal to zero. To do that can can just include (**nest**) an *if-else* structure within another *if-else* structure:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+  print("negative")
+} else {
+  if(y>0){
+    print("positive")
+  } else {
+    print("zero")
+  }
+}
+print("End")
+```
+
+## [Another way to code nested conditionals: `else if` statement]{style="color:blue"}
+
+Nesting is not restricted to three alternative blocks of code; in fact, we can nest as many *if-else* structures as necessary. However, the code becomes cumbersome with more that two or three blocks of code. For this reason, in situations where many blocks of code are to be conditionally executed it is much more convenient to use the `else if (condition)` statement. In this case, the conditional structure begins with and `if(condition)`statement and continues with as many `else if (condition)` statements as required. Finally, the structure may end with an `else` although it is not strictly required.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a number:")
+y=as.integer(x)
+if(y<0){
+    print("negative")
+} else if (y>0){
+     print("positive")
+} else {
+     print("zero")
+}
+print("End")
+```
+
+::: callout-important
+## Pay Attention
+
+The conditionals are evaluated sequentially in the order the appear un the code and once any of them results in `TRUE`the remaining are skipped (not evaluated) and the code resumes execution after the whole conditional structure.
+:::
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Age in years:")
+y=as.integer(x)
+if(y<0){
+    print("Not born yet!")
+} else if (y<1){
+     print("Infant")
+} else if (y<3){
+     print("Toddler")
+}else if (y<5){
+     print("Preschooler")
+}else if (y<9){
+     print("Child")
+}else if (y<13){
+     print("Preteen")
+}else if (y<18){
+     print("Teenager")
+}else if (y<25){
+     print("Young Adult")
+}else if (y<70){
+     print("Adult")
+}else if (y<100){
+     print("Ederly/Senior")
+}else {
+     print("Ancient!")
+}
+```
+
+Note that, when coding many different conditionals the `else if` statement is much more convenient that nesting *if-else* structures. Also note that that **conditionals are evaluated sequentially**. For example, the following code is a variation of the previous one just changing the order of one of the conditionals and, as you can see it will not work as intended:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+print("This script is WRONG!! \n does not work as intended")
+x=readline("Age in years:")
+y=as.integer(x)
+if(y<0){
+    print("Not born yet!")
+} else if (y<100){
+     print("Ederly/Senior")
+} else if (y<3){
+     print("Toddler")
+}else if (y<5){
+     print("Preschooler")
+}else if (y<9){
+     print("Child")
+}else if (y<13){
+     print("Preteen")
+}else if (y<18){
+     print("Teenager")
+}else if (y<25){
+     print("Young Adult")
+}else if (y<70){
+     print("Adult")
+}else if (y<1){
+     print("Infant")
+} else {
+     print("Ancient!")
+}
+```
+
+Notice that, in any type of conditional structure, you can combine multiple **relational operators** and, in the following particular example, it makes the case the order of the conditionals irrelevant:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Age in years:")
+y=as.integer(x)
+if(y<0){
+    print("Not born yet!")
+} else if (y>=70 & y<100){
+     print("Ederly/Senior")
+}else if (y>=1 & y<3){
+     print("Toddler")
+}else if (y>=3 & y<5){
+     print("Preschooler")
+}else if (y>=5 & y<9){
+     print("Child")
+}else if (y>=9 & y<13){
+     print("Preteen")
+}else if (y>=13 & y<18){
+     print("Teenager")
+}else if (y>=18 & y<25){
+     print("Young Adult")
+}else if (y>=25 & y<65){
+     print("Adult")
+}else if (y>=0 & y<1){
+     print("Infant")
+} else {
+     print("Ancient!")
+}
+
+```
+
+## [A vectorized version of the if-else structures: `ifelse` statement]{style="color:blue"}
+
+The `ifelse` function in R is a vectorized version of the if-else statement, allowing you to perform conditional operations on entire vectors or arrays at once. It takes three arguments: the condition to evaluate, the value to return if the condition is true, and the value to return if the condition is false.
+
+For example, in the examples above used to determine if a number was positive or negative, the code evaluated a single value at a time. The `ifelse` can evaluate multiple values simultaneously. That is, given a vector of numbers, the `ifelse` function can be used to return a vector indicating positive and negative values:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+MyNumbers<-c(1,-3,4,5,-23)
+ifelse(MyNumbers>0,"Positive","Negative")
+```
+
+If more than one condition needs to be evaluated, the code could be modified to include as many `ifelse` as needed. For example the code below classify numbers as positive, negative or zero:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+MyNumbers<-c(1,-3,0,5,-23)
+ifelse(MyNumbers>0,"Positive",
+       ifelse(MyNumbers<0,"Negative", "Zero"))
+```
+
+## [A final way to code conditionals: `switch` statement]{style="color:blue"}
+
+The code below asks the user to enter a DNA nucleotide using a single letter code (i.e the user enters A, C, G or T) and the program prints the full name of the base (i.e prints adenine, cytosine, guanine or thymine respectively) or NA if the user did not enter a nucleotide. Notice that the `else` clause handle any input other than the expected A, C,G or T; this is a typical use of the else statement.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a nucleotide:")
+x=toupper(x)#just in case
+if(x=="A"){
+    print("adenine")
+} else if (x=="C"){
+     print("cytosine")
+} else if (x=="G"){
+     print("guanine")
+} else if (x=="T"){
+  print("thymine")
+} else {
+  print(NA)
+}
+```
+
+This code can be also written using a less frequent but more compact conditional structure that uses the statement `switch` as shown in the code below
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+x=readline("Enter a nucleotide:")
+x=toupper(x)#just in case!
+switch(EXPR=x,A="adenine",C="cytosine",G="guanine",T="thymine",NA)
+
+```
+
+Please note that the `switch` statement matches the provided expression with the given cases **exactly**. It doesn't perform logical evaluations like if-else statements, which check for conditions that evaluate to TRUE or FALSE.
+
+# [Loop structures]{style="color:darkblue"}
+
+Loop structures are programming constructs that allow you to repeat a set of statements or code multiple times. Loop structures are useful when you want to perform a specific action repeatedly, iterate over a sequence of values, or iterate until a certain condition is met. As in the case of conditionals, the block of code to be repeated is delimited (contained within) a pair of curly brackets. There are three types of loop structures in R: `for`, `while` and `repeat`.
+
+## [`for` loops]{style="color:blue"}
+
+The for loop is used when you know the exact number of iterations required. It iterates over a sequence, such as a vector or a range of numbers, executing a block of code for each iteration. For example, the code below calculates the square of each of the values in a matrix
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+
+MyMat <- matrix(1:9,ncol=3)
+print(MyMat)
+
+
+MyMat3<-MyMat
+for (rr in 1:dim(MyMat3)[1]){
+	for (cc in 1:dim(MyMat3)[2]){
+		MyMat3[rr,cc] <- MyMat3[rr,cc]**2
+	}
+}
+
+print(MyMat3)
+
+```
+
+Note that, thanks to the vectorization of data structures in R, this task can be accomplished in a single operation
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+MyMat2 <- MyMat**2
+print(MyMat2)
+```
+
+## [`while` loops]{style="color:blue"}
+
+"While" loops are utilized to repeatedly execute a block of code (enclosed within curly brackets) as long as a specific condition remains true. The structure of a "while" loop includes a condition followed by a code block. The code block is executed iteratively until the condition evaluates to false. The computations within the code block may modify the state of the parameter being evaluated in the condition, leading to the program exiting the loop after a certain number of repetitions. The following code make use of while loops to generate a vector containing all 64 codons:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+Nucl<-LETTERS[c(1,3,7,20)]
+Codons<-c()
+p1<-1
+while (p1<5){
+  p2<-1
+  while (p2<5){
+    p3<-1
+    while (p3<5){
+      Codons <- c(Codons,paste0(Nucl[p1],Nucl[p2],Nucl[p3]))
+      p3 <- p3+1
+    }
+    p2 <- p2+1
+  }
+  p1 <- p1+1
+}
+print(Codons)
+```
+
+## [Control flow statements]{style="color:blue"}
+
+Sometimes, it may be necessary for a program to skip executing a block of code (or part of it) and move to the next iteration. In other cases, the program may need to exit the loop prematurely if a certain condition is met. To achieve these actions, we can use the next and break statements, respectively. Both control statements are typically invoked within a conditional context. For instance, when computing the Shannon Entropy ($H(X)=\sum_i P(x_i) log(Pi)$) of a variable's state distribution, it is common to skip terms with a frequency of zero to avoid encountering the undefined value of $log(0)$. Consider the following code, which takes a vector representing the observed absolute frequencies of nucleotides at a specific genomic position and calculates the Shannon Entropy for that position:
+
+```{r}
+
+```
+
+In this code, the next statement is used to skip the calculation of terms with a frequency of zero. This prevents the program from encountering the undefined $\log(0)$ value. The loop continues to the next iteration and calculates the entropy based on non-zero frequencies.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+Nucleotide_frequencies<-c(25,0,5,0)#example of absolute frequencies of A, C, G and T
+Total_Freq<-sum(Nucleotide_frequencies)
+Entropy<-0
+for(Freq in Nucleotide_frequencies){
+  if (Freq==0){
+    next#skips the remaining of the block and goes to next iteration
+  }
+  Prob<-Freq/Total_Freq
+  Entropy<-Entropy+(Prob*log2(Prob))
+}
+Entropy<-(-1)*Entropy
+print(Entropy)
+```
+
+By utilizing the next statement, we ensure that the Shannon Entropy computation proceeds correctly without encountering any issues related to zero frequencies.
+
+## [`repeat` loops]{style="color:blue"}
+
+An additional statement in R that allows you to execute a block of code a specific number of times is called repeat. Similar to while loops, the block of code within the repeat statement is repeated until a certain condition is met. However, unlike while loops, the condition itself is not specified within the repeat statement. Instead, the condition is part of the code block, and the loop is terminated using the break statement when the condition is satisfied. For example, the following code prints the Fibonacci terms smaller than 250:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+Fib <- c(1,1)
+repeat{
+  tmp <- Fib[length(Fib)-1]+Fib[length(Fib)]
+  if(tmp>250){break}
+  Fib <- c(Fib,tmp)
+}
+print(Fib)
+```
+
+# References
+
+::: {#refs}
+:::
+
+# Session Info
+
+```{r}
+sessionInfo()
+
+```

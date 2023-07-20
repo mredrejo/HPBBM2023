@@ -1,6 +1,7 @@
 ---
 title: "R4: Functions in R"
 date: "June 6, 2023"
+author: "Modesto"
 date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 
   - Packages
@@ -36,9 +37,14 @@ knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
 
 # R packages
 
-As you already know, R is a '[GNU Software](https://en.wikipedia.org/wiki/GNU)' with a [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) license. As a a freely available language it has a great community of users from diverse background and interests. This community have developed a myriad of applications for R, called ***R Packages***. Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data. The idea behind R packages is that the chances are that someone has already solved a problem that you're working on, and you can benefit from their work by downloading their package.
+As you already know, R is a '[GNU Software](https://en.wikipedia.org/wiki/GNU)' with a [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) license. As a a freely available language it has a great community of users from diverse background and interests. This community have developed a myriad of applications for R, called ***R Packages***. The idea behind R packages is that the chances are that someone has already solved a problem that you're working on, and you can benefit from their work by downloading their package.
 
-Packages can be installed from one of the public R repositories. In this course we will mainly use two R repos, [**CRAN**](https://cran.r-project.org/) and [**Bioconductor**](https://www.bioconductor.org/). The name CRAN stands for "The Comprehensive R Archive Network", and it contains a huge variety of packages free to use. On the other hand, as we will see later on in the [Lesson R9](r9.html), Bioconductor is a repository of software devoted to bioinformatics or computational biology applications. As for June 2023, the CRAN package repository features 19,622 available packages whereas Bioconductor release 3.16 contains 2,183 packages.
+::: callout-important
+Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them (help), and some sample data to perform tests.
+:::
+
+
+Packages can be installed from one of the public R repositories. In this course we will mainly use two R repos, [**CRAN**](https://cran.r-project.org/) and [**Bioconductor**](https://www.bioconductor.org/). CRAN stands for "the Comprehensive R Archive Network", and it contains a huge variety of packages free to use. On the other hand, as we will see in more detail later on the [Lesson R9](r9.html), Bioconductor is a repository of software devoted to bioinformatics or computational biology applications. As for June 2023, the CRAN package repository features 19,622 available packages whereas Bioconductor release 3.16 contains 2,183 packages.
 
 A full list of CRAN packages can be found [here](https://cran.r-project.org/web/packages/available_packages_by_name.html) and a list by topic [here](https://cran.r-project.org/web/views/).
 
@@ -52,7 +58,8 @@ install.packages("xlsx", repos = "https://cran.rstudio.com/")
 ```
 You must load the package before using it.
 ```{r, error=TRUE}
-#two ways of loading the packages
+#two ways of loading the packages:
+
 #1
 library(xlsx) 
 #2
@@ -62,18 +69,18 @@ require(xlsx)
 help(xlsx)
 ??xlsx
 
-#trick to install package only if not installed 
+#you can use an if statement to install package only if not installed 
 if(!require(xlsx)){
     install.packages("xlsx")
     library(xlsx)
 }
-
-detach("package:xlsx", unload=TRUE) #unload the package
+#unload the package (optionally)
+detach("package:xlsx", unload=TRUE) 
 ```
 
 Optionally, if you want to unload a package from memory, you can use `detach()`. This can be useful for long scripts.
 
-In the above code we have used `require()` and `library()` functions to call for package loading. These are very similar functions that are often interchangeable. The main difference is that when you use `require()` and it cannot be executed, you will get a warning (see below for how to use *warning*), but not an error. Therefore, your code will always continue to execute if possible.
+In the above code we have used `require()` and `library()` functions to call for package loading. These are very similar functions that are often interchangeable. The main difference is that when you use `require()` and it cannot be executed, you will get a warning (see below for how to use *warning*), but not an error. Therefore, your code will always continue to execute if possible. In the following example, we tried to load an unknown package called `uam`.
 
 
 ```{r, error=TRUE}
@@ -81,7 +88,7 @@ library(uam)
 require(uam)
 ```
 
-As an example, we are going to read again the file *[coli_genomes_renamed.csv](data/coli_genomes_renamed.csv)* that we used in the previous lesson and export it ready for MS Excel.
+In the next example, we are going to read the file *[coli_genomes_renamed.csv](data/coli_genomes_renamed.csv)*, that we used in the lesson R3 and export it ready for MS Excel using the package `xlsx`.
 
 ::: callout-tip
 # Cross-lesson tip
@@ -342,7 +349,7 @@ price_calculator <- function(samples, category){
   }
 paste("El precio es de",price, "euros.")
 }
-price_calculator(10,"normal")
+price_calculator(samples=10,category="normal")
 price_calculator(10,"urgent")
 price_calculator(10,"urgnt")
 ```
@@ -524,7 +531,7 @@ df()
 
 -   Functions in R programming in *GeeksforGeeks*: <https://www.geeksforgeeks.org/functions-in-r-programming/>
 
--   Learn R by examples: <https://www.learnbyexample.org/>
+-   Learn R by examples: <https://www.learnbyexample.org/> and <https://www.learnbyexample.org/r-functions/>
 
 ------------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
 ---
 title: "R3: Read and write data in R"
+author: "Modesto"
 date: "May 30, 2023"
 date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 

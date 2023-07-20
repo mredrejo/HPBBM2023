@@ -1,5 +1,6 @@
 ---
 title: "R5: Base plots in R"
+author: "Modesto"
 date: "June 14, 2023"
 date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 

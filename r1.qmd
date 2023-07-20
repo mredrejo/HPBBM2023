@@ -1,0 +1,385 @@
+---
+title: "R1: Variables, Operators and data structures"
+author: "Luis"
+date: "July 4, 2023"
+date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
+categories: 
+  - Variables
+  - Operators and precedence
+  - Expressions
+  - Data Structures
+  - Vectors
+  - Factors
+format: 
+  html:
+    page-layout: full
+
+toc: true
+toc-location: left
+toc-depth: 2
+number-sections: true
+code-overflow: wrap
+link-external-icon: true
+link-external-newwindow: true 
+link-citations: true
+---
+
+```{r wrap-hook, echo=FALSE}
+library(knitr)
+library(formatR)
+library(webexercises)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+
+```
+
+# [Variables, data objects and data types]{style="color:darkblue"}
+
+In programming, a **variable** is a symbolic name or *identifier* that represents a storage location in the computer's memory. Thus, variables provide a means to access (and manipulate) data stored in the computer's memory from within the program. In practice a variable acts as a container for storing data or values.
+
+**Data Objects.** In R, data objects[^1] are the fundamental entities that hold data or information. They are the variables or entities that you create and manipulate in your R code. Data objects can include vectors, matrices, data frames, lists, etc. Essentially, anything that can store data or represent information in R is considered a data object. data Objects are of course stored in the computer's memory, hence they are referenced and manipulated using *variables*.
+
+[^1]: Everything in R is an object (constants, data structures, functions, graphs, etc.). Objects have a **mode** that describes how the object is stored and a **class** that describes how the object is handled by functions. The mode corresponds to what is called a class in other languages. Additionally, objects belong to a **type**, which basically coincides with the mode.
+
+**Data Types.** Data types in R refer to the specific classification or categorization of the values that can be stored in data objects. R has several *basic data* types, also known as *atomic data types*[^2]. These data types represent different kinds of data, such as logical (boolean), numeric (double and integer), complex, character, and raw. Each data type has its own set of operations and behaviors associated with it. For example, logical data types can take values of TRUE, FALSE, and NA (representing missing values), while numeric data types can store numerical values.
+
+[^2]: Note that in R, atomic types are always stored as vectors, even when there is a single element.
+
+In R, variables can hold different data types without the need to declare them in advance. Values are assigned to variables using the assignment operator `<-`. The symbol `=` can also be used, but it is not standard syntax and not recommended.
+
+Variable names may contain dots and underscores but cannot begin with a number (or underscore).
+
+In R, the **class** of a variable refers to the specific type or category of the object that the variable represents. It provides information about how the object is handled by R's internal functions and methods. Classes in R are typically associated with specific data structures or types. For example, a variable can have a class such as "numeric" if it represents a numeric data type, "character" if it represents a character string, "data.frame" if it represents a data frame, and so on. The class of a variable is important because it influences how R treats the object and determines which functions or methods can be applied to it. Different classes have different behaviors and may have specific functions or methods associated with them.
+
+Finally, in R, *NA*, *NaN*, and *NULL* are special **values** used to represent specific situations or indicate missing or undefined data:
+
+-   **NA**: NA stands for "Not Available" or "Missing Value". It is used to represent missing or undefined values in R. The value NA belong to different data types, such as logical, numeric, character, etc. For example, if a value is missing in a numeric vector, it can be represented as NA. NA values are often ignored or excluded from computations or operations unless explicitly handled.
+
+-   *NaN*: NaN stands for "Not a Number". It is a special value used to represent undefined or unrepresentable results of arithmetic operations that do not yield a numeric value. NaN is typically encountered when performing calculations that involve undefined operations, such as dividing zero by zero or taking the square root of a negative number.
+
+-   *NULL*: NULL is a special object in R that represents the absence of a value or an empty object. It is often used to indicate the absence of a valid object or as a placeholder. NULL is different from NA, as it represents the absence of any value or object altogether.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+
+A_Number<-53
+A_Number
+A_Text<-"R rocks!"
+A_Text
+A_Logical<-TRUE #one of the possible values of a boolean data type
+A_Logical
+A_Logical<-true
+A_NA<-NA
+A_NA
+A_NA<-na
+```
+
+To summarize, variables are used refer to specific data objects that are the containers or entities that hold data. The data types specify the kind of values that can be stored within data objects. Data types determine how the data is interpreted and how operations are performed on the data objects.
+
+# [Basic built-in functions]{style="color:darkblue"}
+
+A function in R is a block of code that is written to perform a specific task or operation. The base R system includes many functions that are readily available for use without requiring any additional packages or installations. These *built-in* functions are part of the R language itself and provide core functionality for performing various operations and tasks.
+
+Built-in functions in R cover a wide range of areas, including data manipulation, statistical analysis, mathematical calculations, plotting, file input/output, and more. They are designed to be efficient, reliable, and consistent across different R installations.
+
+In an introductory R course, it is essential to familiarize oneself with the built-in functions available in the language, understand their required arguments, and learn when to utilize them effectively. Here are a few examples ob basic functions used to manipulate data objects:
+
+| Function            | Description                   |
+|---------------------|-------------------------------|
+| `class(obj)`        | return class of `obj`         |
+| `help(obj)`         | explains about `obj`          |
+| `ls(obj)`           | list `obj` in environment     |
+| `rm(obj)`           | removes `obj`                 |
+| `nchar(arg)`        | number of characters in `arg` |
+| `as.character(arg)` | converts `arg` to character   |
+
+Functions usually require arguments, which are the values or variables that are passed to a function when it is called or invoked. They provide input to the function and influence its behavior or output. In R, there are two commonly used ways to specify function arguments: by position and by keyword. 1. *Arguments by Position.* In this method, arguments are provided to a function in a specific order. The function expects the values in the same order as they are defined in the function's definition. 2. *Arguments by Keyword.* This approach involves explicitly mentioning the *argument names* followed by their corresponding values when calling a function. The order of the arguments doesn't matter as long as their names are specified correctly. Notice that the pair of names and values are made using the assign operator `=`.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+# Previous chunk of code must be run prior this one
+ls()
+class(A_Number)
+log(A_Number)
+help("log")
+log(A_Number,base=2)
+log(A_Number,2)
+log(2,A_Number)
+log(base=2,x=A_Number)
+as.character(A_Number)
+Not_A_Number<-as.character(A_Number)
+ls()
+log(Not_A_Number)
+rm(Not_A_Number)
+ls()
+```
+
+# [Operators]{style="color:darkblue"} {#sec-operators}
+
+Operators are symbols or characters that represent specific operations or actions to be performed on data or variables. We have already seen one very common operator: the assignment operator `<-`, which is used to assign values to variables. Operators can be classified into different groups according to the type of operation they perform:
+
+1.  **Arithmetic Operators** are used to perform mathematical calculations on numeric values
+
+| Operator       | Symbol      |
+|----------------|-------------|
+| Addition       | \+          |
+| Subtraction    | \-          |
+| Multiplication | \*          |
+| Division       | /           |
+| Power          | \^ and \*\* |
+| Modulo         | %%          |
+| Trunc. div.    | %/%         |
+
+2.  **Relational Operators** are used to compare values and return logical values (`TRUE` or `FALSE`).
+
+| Operator              | Symbol |
+|-----------------------|--------|
+| Equal to              | ==     |
+| Not equal to          | !=     |
+| Greater than          | \>     |
+| Less than             | \<     |
+| Equal or greater than | \>=    |
+| Equal or lower than   | \<=    |
+| Trunc. div.           | %/%    |
+
+3.  **Logical Operators** are used to combine or manipulate logical values.
+
+| Operator | Symbol |
+|----------|--------|
+| AND      | &      |
+| OR       | \|     |
+| XOR      | xor    |
+| Not      | !      |
+
+4.  **Membership** are used to check if an element belongs to a set or vector. The operator `%in%`checks if the element on the left of the operator is present in the vector no the right.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+5+2
+"viva"+"luis"
+a=5
+a/3
+a%%3
+b="B"
+b+"C"
+a==b
+b=="B"
+b>"A"
+b>"A" & a!=5
+xor(b>"A",a!=5)
+```
+
+# [Data Structures]{style="color:darkblue"}
+
+In R, a data structure refers to the way data is organized and stored in memory. It determines how the data can be accessed, manipulated, and processed. Data structures in R provide a way to store and organize data objects. Data objects, on the other hand, are specific instances of data that are stored within the data structures. They are the actual values or elements that are held by the data structures. There are five types of basic data structures: - **homogeneous**: All elements must be of the same type. - **Vectors**: One-dimensional collection of numeric, character, or logical data. - **Matrices**: Two-dimensional collection of numeric, character, or logical data. - **Arrays**: n-dimensional collection of numeric, character, or logical data. A matrix is just a specific type of array where n=2. Arrays and matrices are just vectors with the attribute `dim`. Applying this attribute sets a number of dimensions that the vector is divided into and allows retrieval of the elements and its representation in a specific way.
+
+-   **heterogeneous**: Elements can be of different types.
+    -   **Lists**: An ordered collection of objects (called components) that can be of the same or different types.
+    -   **Data frames**: Just a type of list that is represented as a matrix and has some restrictions:
+        -   The components must be vectors (numeric, character, or logical), factors, numeric matrices, lists, or other data frames.
+        -   Matrices, lists, and data frames provide as many variables to the new data frame as they have columns, elements, or variables, respectively.
+        -   Numeric vectors, logicals, and factors are included as is, and by default, character vectors are coerced to be factors, whose levels are the unique values appearing in the vector.
+        -   Vector structures appearing as variables of the data frame must all have the same length, and matrix structures must all have the same row size.
+
+## [Vectors]{style="color:blue"}
+
+A **vector** is a (one dimensional) collection of elements, all of the *same type*. Vectors play an essential role in R, so much that R can be considered a **vectorized** language. That means that operations are applied to each element of the vector automatically, without the need to loop through the elements of the vector as it would be necessary in almost any other language such a python. The most common way to generate a vector is using the combine or concatenate function `c()` providing the list of elements separated by commas. We can accessing individual elements of the vector using brackets and the index of the elements.
+
+::: callout-warning
+Vectors are indexed starting from 1 instead of 0, following a 1-based indexing convention. This means that the first element of a vector is accessed using the index 1, not 0 as in some other programming languages such as python.
+:::
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+v1<-c(1,11:13)#the concatenate function creates a vector out of the values
+class(v1)
+is.numeric(v1)
+v4<-as.character(v1)#change the data type of the elements in v1
+v4
+v5<-c(1,3,27)
+v5[1]#elements are retrieved by using square brackets and the index of the element
+v5[0]#Warning! first element is index 1
+
+#we can "add" labels (names) to the elements of a vector
+names(v5)
+names(v5)<-c("PHY","BIO","BQ")
+v5
+names(v5)
+v5["BIO"]# then, we can retrieve elements by their label
+sum(v5)
+v6<-c("PHY","BIO","BQ")
+#cheching the presence of an element in a vector
+"BQ" %in% v6
+"BQ" %in% v5
+"BQ" %in% names(v5)
+"PHY" %in% "BIOPHYSICS"#Warning: it does NOT checks for substrings in strings
+names(v5)=="BIO"
+which(names(v5)=="BIO")#returns the index(es) of the elements matching the comparison
+```
+
+### [Generation of vectors of periodic sequences]{style="color:lightblue"}
+
+R has a number of facilities for generating commonly used sequences of numbers or characters. The most common are the colon operator `:`, function `seq()` and function `rep()`. See the next examples:
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+2:7
+7:2
+letters[10:13]
+LETTERS[20:17]
+seq(2,7)
+seq(from=2,to=9,by=0.5)
+seq(from=-5, length=20,by=0.2)
+rep(c("A","B","C"),times=3)
+rep(c("A","B","C"),each=3)
+rep(c("A","B","C"),c(2,3,0))
+z<-c(2,1,3,4,9,6,-1)
+sort(z)
+order(z)
+z[order(z)]
+range(z)
+```
+
+Note that function `order()` returns of the element in the current vector sorted according to the value of the element. In the example above the smallest number is -1 that occupies position 7 (index 7) in the vector. Thus, the first element in the output of function `order()` is 7. The second smaller is number 1, that occupies position the second position in the original vector(index 2), thus the second element in the output of the function is 2 and so on.
+
+## [Factors]{style="color:blue"}
+
+Factors are used to record **categorical** (a.k.a nominal) variables. The function `factor()` takes a vector and identifies all the different values present in it, then each value is assumed to be a different category or **level**. The levels represent the distinct categories or groups that the variable can take on.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+#| label: factors-code
+#the following vectors represent the initial and final weight of 15 individuals
+W.initial<-c(55,65,70,93,71,50,61,80,81,60,43,77,78,65,100)#initial weight
+W.final<-c(52,66,71,92,61,51,55,81,70,52,44,78,77,60,90)#final weight
+#the following character vector represent the treatment received by each individual
+Txt<-c("D3","D2","D3","D3","D1","D3","D2","D2","D2","D1","D3","D2","D2","D1","D1")#Treatment
+Txt
+class(Txt)
+Txt<-as.factor(Txt)#Transforms character vector Txt into a factor
+Txt
+table(Txt)
+Weight.gain<-W.final-W.initial#calculates weight gain
+Weight.gain
+which(Txt=="D1")#index of the individuals who received treatment D1
+Weight.gain[which(Txt=="D2")]#Weigh gain of individuals who received treatment D1
+mean(Weight.gain[which(Txt=="D3")])# mean Weigh gain of individuals who received treatment D3
+by(data = Weight.gain,INDICES = Txt,FUN = mean)#calculates weight gain mean for each treatment group
+```
+
+## [Matrices and arrays]{style="color:blue"}
+
+A matrix is a two-dimensional data structure that consists of rows and columns. It is used to store data elements of the *same data type* arranged in a rectangular grid-like structure. To retrieve a single element, specify the row and column indices within square brackets. An array is a multi-dimensional data structure that extends the concept of matrices to more than two dimensions. It can store elements of the *same data type* in a grid-like structure with multiple dimensions.
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+MyVector<-1:9
+MyVector
+MyMatrix<-matrix(MyVector,ncol=3)#geneates a 3 colunm matrix with elements from MyVector 
+MyMatrix
+dim(Matrix)#number of rows and columns
+#accessing individual elements:
+MyMatrix[2,]
+MyMatrix[,3]
+MyMatrix[3,2]
+#accessing several elements:
+MyMatrix[2:3,1:2]
+#basic aritmetic operations:
+MyMatrix*2
+MyMatrix+5
+t(MyMatrix)#flips a matrix over its main diagonal (transposition)
+MyVector2<-1:12
+MyArray<-array(MyVector2,dim = c(2,2,3))#geneates a 2x2x3 array with elements from MyVector2 :
+#accessing individual elements
+MyArray[,,2]
+```
+
+## [Data frames]{style="color:blue"}
+
+Data frames are two-dimensional tabular data structures where each column is a vector. Unlike matrices, data frames allow columns of different data types within the same structure. This flexibility allows you to handle mixed or heterogeneous data, such as storing numeric measurements, categorical variables, dates, and more within a single data frame. Data frames are created with the `data.frame()` function and the elements can be retrieved with the square bracket notation specifying the row and column indexes, as we saw for matrices. In addition, column vectors can be retrieved using the `$` operator (list-subset operator).
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+# see @factors-code above
+W.initial<-c(55,65,70,93,71,50,61,80,81,60,43,77,78,65,100)
+W.final<-c(52,66,71,92,61,51,55,81,70,52,44,78,77,60,90)
+Txt<-c("D3","D2","D3","D3","D1","D3","D2","D2","D2","D1","D3","D2","D2","D1","D1")
+DietDrugs<-data.frame(W.initial,W.final,Txt)#creates a data frame with 3 columns
+DietDrugs
+dim(DietDrugs)
+#Accessing elements:
+DietDrugs[,2]
+DietDrugs[1,]
+DietDrugs[3,1]
+DietDrugs$Txt
+DietDrugs$Txt[3]
+DietDrugs[which(DietDrugs$Txt=="D1"),]
+#view the top or bottom rows of a data frame:
+head(DietDrugs)
+tail(DietDrugs)
+#add row names
+Patients<-paste("Patient",1:15,sep="")
+rownames(DietDrugs)<-Patients
+# add new columns (method #1):
+DietDrugs$W.gain<-DietDrugs$W.final-DietDrugs$W.initial
+DietDrugs
+# add new columns (method #2):
+W.foldchange<-round(DietDrugs$W.final/DietDrugs$W.initial,2)
+DietDrugs<-cbind(DietDrugs,W.foldchange)
+DietDrugs
+```
+
+## [Lists]{style="color:blue"}
+
+A list is a data structure consisting of an ordered collection of (potentially different) objects. They are constructed using the function `list()`. The elements (a.k.a *components*) in a list are numbered and can be accessed using a double bracket notation and the index of the component. Oftentimes, the elements in a list are also named. In this case, the components can be accessed using the double square bracket and the name of the item instead of its index. Additionally names components can be retrieved using the `$` operator (list-subset operator).
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+# A list of students recording different features
+#notice that each element can be a different type of object or data structure
+Students<-list(Names=c("Ana","Juan","Mar"),
+                Age=c(20,20,21),
+                Sex=factor(c("F","M","F")),
+                Courses=list(c("HPBBM","BD","BIBMS"),
+                             c("HPBBM","MEB","BIBMS"),
+                             c("BD","BQS")),
+                Grades=list(c(7,9,8),c(5,5,6),c(10,9)))
+Students
+str(Students)#shows the structure of the data object
+#Accessing elements:
+Students[[1]]
+Students$Names
+Students$Sex
+Students[[4]]
+Students[[4]][[2]]
+Students[[4]][[2]][1]
+```
+
+# References
+
+::: {#refs}
+:::
+
+# Session Info
+
+```{r}
+sessionInfo()
+
+```

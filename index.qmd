@@ -4,8 +4,12 @@ author:
   - name: Modesto
     affiliation: Department of Biochemistry, UAM
     affiliation_url: https://www.uam.es/
+  - name: Luis
+    affiliation: Department of Biochemistry, UAM
+    affiliation_url: https://www.uam.es/
+    email: luis.peso@uam.es
 date: "May 30, 2023"
-date-modified: "June 6, 2023"
+date-modified: "July 20, 2023"
 categories: 
   - R
   - RStudio
@@ -43,7 +47,7 @@ editor: visual
 
 This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular, a.k.a. **HPBBM**) course of **fall 2023** in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). Source files are available at the [{{< bi github >}} repo](https://github.com/mredrejo/HPBBM2023), containing the source files and the data used in the examples and exercises. The icon [{{< bi cloud-download >}}](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data) on the top-right corner in all the site pages will allow you to download the repo **data** folder (link generated with [DownGit](https://yehonal.github.io/DownGit/#/home)). Note that this folder can be updated during the course. For reference, materials from **2022** course edition are available in the [HPBBM2022 site](https://mredrejo.github.io/HPBBM2022/).
 
-Course Syllabus can be checked at [UAM site](https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs) and a PDF version is available [here](HPBBM_syllabus2023.pdf). The course contains a first block of lessons on Python programming (Lessons 1-7) and a Python-vs-R introductory lessons (Lessons R1 & R2) that are not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/). In this site, the lessons pages have been generated as *Quarto* to obtain source files (*.qmd*) that contain formatted text and chunks of R code that are executed upon rendering (see [lesson R7](r7.html) for more info about Markdown and Quarto in RStudio). 
+Course Syllabus can be checked at [UAM site](https://secretaria-virtual.uam.es/doa/consultaPublica/look%5Bconpub%5DMostrarPubGuiaDocAs) and a PDF version is available [here](HPBBM_syllabus2023.pdf). The course contains a first block of lessons on Python programming (Lessons 1-7) that is not included here. Detailed academic information about the course contents, dates, and assessment only can be found at the [UAM Moodle site](https://moodle.uam.es/). In this site, the lessons pages have been generated as *Quarto* to obtain source files (*.qmd*) that contain formatted text and chunks of R code that are executed upon rendering (see [lesson R7](r7.html) for more info about Markdown and Quarto in RStudio). 
 
 ::: callout-tip
 # How to use this site
@@ -62,11 +66,11 @@ All this material is open access and it is shared under [CC BY-NC](https://creat
 
 This is a draft version of this site, but it is intended to be expanded and corrected throughout the next weeks and new versions will be available the following years. Any feedback, help, or suggestions will be very warmly welcome.
 
-Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I, and the future students, will appreciate it if you let me know about anything that could be corrected or just improved. You can reach me by [email](mailto::modesto.redrejo@uam.es).
+Also, it is likely that you find some mistypes or even some big mistakes throughout these course materials. I, and the future students, will appreciate it if you let me know about anything that could be corrected or just improved. You can reach us by [email](mailto::modesto.redrejo@uam.es).
 
 ## [Bibliography and Resources]{style="color:darkblue"}
 
-Each lesson contains its own specific references, but I wanted to highlight here some curated general open access and open source resources to introduce yourself into R and R Studio.
+Each lesson contains its own specific references, but we wanted to highlight here some curated general open access and open source resources to introduce yourself into R and R Studio.
 
 -   Grolemund, G. [*Hands-on Programming in R*](https://rstudio-education.github.io/)*.*
 
@@ -81,6 +85,9 @@ Each lesson contains its own specific references, but I wanted to highlight here
 -   [Learn R by example](https://www.learnbyexample.org/r/)
 
 ## [Contents]{style="color:darkblue"}
+### [Lesson R1: Variables, Operators and data structures in R](r1.html)
+
+### [Lesson R2: Flow Control](r2.html)
 
 ### [Lesson R3: Data input and output in R](r3.html)
 
