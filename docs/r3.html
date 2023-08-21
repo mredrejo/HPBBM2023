@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Modesto">
 <meta name="dcterms.date" content="2023-05-30">
 
 <title>HPBBM2023 - R3: Read and write data in R</title>
@@ -150,9 +149,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./r5.html" rel="" target="">
  <span class="dropdown-text">R5: Base plots in R</span></a>
   </li>  
-        <li class="dropdown-header">r6.qmd</li>
-        <li class="dropdown-header">r7.qmd</li>
-        <li class="dropdown-header">r8.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./r6.html" rel="" target="">
+ <span class="dropdown-text">R6: Advanced data management</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r7.html" rel="" target="">
+ <span class="dropdown-text">R7: Project management for reproducible research in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r8.html" rel="" target="">
+ <span class="dropdown-text">R8: Plot your data in R - Episode II</span></a>
+  </li>  
         <li class="dropdown-header">r9.qmd</li>
     </ul>
   </li>
@@ -219,12 +227,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Modesto </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -236,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 20, 2023</p>
+      <p class="date-modified">August 21, 2023</p>
     </div>
   </div>
     
@@ -293,8 +295,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/tree.png" class="img-fluid" width="279"></p>
 <p>How would you change de <em>wd</em> to the folder <code>HPBBM2023/data</code>? You also can try with your own computer and your directory tree.</p>
 <strong>Select the right answer</strong>
-<div id="radio_HCDZLCNTIG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HCDZLCNTIG" value=""> <span>setwd(“HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_HCDZLCNTIG" value="answer"> <span>setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_HCDZLCNTIG" value=""> <span>setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label>
+<div id="radio_XAXONWNDHO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_XAXONWNDHO" value=""> <span>setwd(“HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_XAXONWNDHO" value="answer"> <span>setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_XAXONWNDHO" value=""> <span>setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label>
 </div>
 <hr>
 <hr>
@@ -414,8 +416,8 @@ Caution
 <h2 data-number="3.1" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">3.1</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>We are using the same directory tree. Your <em>wd</em> is <code>HPBBM2022/data</code> and you need to save a data.frame named <code>table1</code> as <code>table1.csv</code> in the folder <code>HPBBM2022/data</code> using <code>;</code> as separator. How would you do it <em>without changing</em> the working directory? Try it also with your own computer.</p>
 <strong>Select the right answer</strong>
-<div id="radio_JKVBIQAVDE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JKVBIQAVDE" value="answer"> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_JKVBIQAVDE" value=""> <span>write.table(table1, “../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_JKVBIQAVDE" value=""> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”</span></label>
+<div id="radio_SNVKZSTAYZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SNVKZSTAYZ" value="answer"> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_SNVKZSTAYZ" value=""> <span>write.table(table1, “../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_SNVKZSTAYZ" value=""> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”</span></label>
 </div>
 <hr>
 </section>
@@ -932,8 +934,8 @@ Levels: Avian Human Porcine</code></pre>
 <p>Which of the following functions can you use to save the dataframe using <code>,</code> as field separator? <select class="webex-select"><option value="blank"></option><option value="">write.tabla</option><option value="">write.csv2</option><option value="answer">write.csv</option><option value="">save</option></select></p>
 <p>How would you do it?</p>
 <strong>Select the right answer</strong>
-<div id="radio_RMUBUZBTPN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RMUBUZBTPN" value="answer"> <span>write.table(coli_genomes, “data/coli_genomes_renamed.csv”, sep=“,” )</span></label><label><input type="radio" autocomplete="off" name="radio_RMUBUZBTPN" value=""> <span>write.csv2(coli_genomes, “data/coli_genomes_renamed.csv” )</span></label><label><input type="radio" autocomplete="off" name="radio_RMUBUZBTPN" value=""> <span>write.csv(coli_genomes, “../coli_genomes_renamed.csv”) </span></label><label><input type="radio" autocomplete="off" name="radio_RMUBUZBTPN" value="answer"> <span>write.csv(coli_genomes, “data/coli_genomes_renamed.csv”)</span></label>
+<div id="radio_UZSGBTAMYG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_UZSGBTAMYG" value="answer"> <span>write.table(coli_genomes, “data/coli_genomes_renamed.csv”, sep=“,” )</span></label><label><input type="radio" autocomplete="off" name="radio_UZSGBTAMYG" value=""> <span>write.csv2(coli_genomes, “data/coli_genomes_renamed.csv” )</span></label><label><input type="radio" autocomplete="off" name="radio_UZSGBTAMYG" value=""> <span>write.csv(coli_genomes, “../coli_genomes_renamed.csv”) </span></label><label><input type="radio" autocomplete="off" name="radio_UZSGBTAMYG" value="answer"> <span>write.csv(coli_genomes, “data/coli_genomes_renamed.csv”)</span></label>
 </div>
 <div id="save">
 

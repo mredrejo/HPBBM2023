@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Modesto">
+<meta name="dcterms.date" content="2023-08-17">
+
+<title>HPBBM2023 - R7: Project management for reproducible research in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="include/webex.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./HPBBM2023.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">HPBBM2023</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-contents" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Course Contents</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-course-contents">    
+        <li>
+    <a class="dropdown-item" href="./r1.html" rel="" target="">
+ <span class="dropdown-text">R1: Variables, Operators and data structures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r2.html" rel="" target="">
+ <span class="dropdown-text">R2: Flow Control</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r3.html" rel="" target="">
+ <span class="dropdown-text">R3: Read and write data in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r4.html" rel="" target="">
+ <span class="dropdown-text">R4: Functions in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r5.html" rel="" target="">
+ <span class="dropdown-text">R5: Base plots in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r6.html" rel="" target="">
+ <span class="dropdown-text">R6: Advanced data management</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r7.html" rel="" target="">
+ <span class="dropdown-text">R7: Project management for reproducible research in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r8.html" rel="" target="">
+ <span class="dropdown-text">R8: Plot your data in R - Episode II</span></a>
+  </li>  
+        <li class="dropdown-header">r9.qmd</li>
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/mredrejo/HPBBM2023" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2023/tree/main/data" title="Download Data" class="quarto-navigation-tool px-1" aria-label="Download Data"><i class="bi bi-cloud-download"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#rstudio-projects" id="toc-rstudio-projects" class="nav-link active" data-scroll-target="#rstudio-projects"><span class="header-section-number">1</span> RStudio Projects</a></li>
+  <li><a href="#r-markdown-and-notebooks" id="toc-r-markdown-and-notebooks" class="nav-link" data-scroll-target="#r-markdown-and-notebooks"><span class="header-section-number">2</span> R Markdown and Notebooks</a>
+  <ul class="collapse">
+  <li><a href="#markdown-and-rmarkdown" id="toc-markdown-and-rmarkdown" class="nav-link" data-scroll-target="#markdown-and-rmarkdown"><span class="header-section-number">2.1</span> Markdown and RMarkdown</a>
+  <ul class="collapse">
+  <li><a href="#quick-exercise-create-your-first-r-markdown-document" id="toc-quick-exercise-create-your-first-r-markdown-document" class="nav-link" data-scroll-target="#quick-exercise-create-your-first-r-markdown-document"><span style="color:green">Quick exercise: Create your first R Markdown document</span></a></li>
+  </ul></li>
+  <li><a href="#r-notebooks" id="toc-r-notebooks" class="nav-link" data-scroll-target="#r-notebooks"><span class="header-section-number">2.2</span> R Notebooks</a></li>
+  </ul></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">3</span> Quarto</a></li>
+  <li><a href="#refs" id="toc-refs" class="nav-link" data-scroll-target="#refs"><span class="header-section-number">4</span> References</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">5</span> Session Info</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">R7: Project management for reproducible research in R</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R Markdown</div>
+    <div class="quarto-category">R Notebook</div>
+    <div class="quarto-category">R projects</div>
+    <div class="quarto-category">Reproducibility</div>
+    <div class="quarto-category">Git</div>
+    <div class="quarto-category">Version control</div>
+    <div class="quarto-category">Quarto</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Modesto </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 17, 2023</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">August 21, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="rstudio-projects" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> RStudio Projects</h1>
+<p>Working with relative paths can get a little bit confusing, especially if run large projects with different folders and subfolders for data and results. A good way to avoid confusion is to make an R project in R Studio.</p>
+<p><img src="images/proj.jpg" class="img-fluid"></p>
+<p>As you can see in the screenshot above you can easily start a new project in RStudio using the <em>File</em> menu. Then, just select a name and save it on your computer (it will be have the extension <em>Rproj</em>).</p>
+<p>Now here’s the cool part: When you open your project, you will see that the project folder will be your default relative path, which you can check with <code>getwd()</code>. Also, in the top-right corner of Rstudio you can see the project name and the containing folder.</p>
+<p>Working with projects come along with other extra features. For instance, every time you open the project, the <em>.Rdata</em> and the <em>.Rhistory</em> are loaded; thus previously edited source documents and RStudio settings (e.g.&nbsp;active tabs, splitter positions, etc.) are restored. This will make a difference if you manage different projects at the same time.</p>
+<p>There are more reasons to do this, which become more obvious as you progress as a coder and start working on collaborative projects. You can also create your project using a version control (Git or Subversion) repository. Version control helps software teams manage changes to source code over time. Version control software keeps track of every modification to the code in a special kind of database. If a mistake is made, developers can turn back the clock and compare earlier versions of the code to help fix the mistake while minimizing disruption to all team members. Version control systems have been around for a long time but continue to increase in popularity with data science workflows.</p>
+</section>
+<section id="r-markdown-and-notebooks" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> R Markdown and Notebooks</h1>
+<section id="markdown-and-rmarkdown" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="markdown-and-rmarkdown"><span class="header-section-number">2.1</span> Markdown and RMarkdown</h2>
+<p><a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> is an easy-to-write language for formatting text. It was created in 2004 as a new markup language and since then it has widely used for blogging, instant messaging, online forums and software documentations, among other tools. For instance, websites like Github or Reddit use variants of markdown to facilitate discussions. The typical read me intro file that you see in Github repositories is written in markdown. Several programming languages also implemented markdown as an standard for documentation pages or reports generation.</p>
+<p>RMarkdown is an R packages for the implementation of markdown for R and more commonly RStudio. It combines the core simple syntax of markdown with embedded code chunks that are run so their output can be included in the final document. The key about R Markdown documents is that they are fully <em>reproducible</em> (they can be automatically regenerated whenever underlying R code or data changes).</p>
+<p>Currently, RMarkdown documents can include chunks in different languages (see the screenshot below), so you can combine in the same document <em>bash</em> or <em>Python</em> scripts along with the R data analysis. Moreover, despite simplicity of its syntax it can include diverse formatting options, spanning enriched text to HTML or Latex contents as well.</p>
+<p><img src="images/paste-848AADDA.png" class="img-fluid"></p>
+<p>Also, they can be written using a <em>Visual</em> mode (above) that looks like any other word processor, but you can switch to <em>Source</em> anytime.</p>
+<p><img src="images/paste-01DC4185.png" class="img-fluid"></p>
+<p>I found two main advantages in using RMarkdown documents for my data analysis. Initially, I started to use it in order to generate formatted reports including all the information about the project in a paper-like format, from the background to the data analysis and the conclusions. Indeed, those “reports” can be as fancy as you wish, from html or latex-formatted pdf, to MS Word or even presentations. A second benefit of the use of markdown is that it facilitates your own work a lot, specially when you work in several different projects or you if you need to do some analysis after some time. Additionally, you can use Rmarkdown documents for web applications based in R using <a href="https://shiny.rstudio.com/">Shiny</a>.</p>
+<p>Moreover, there are a number of specialized sites to publish your Rmarkdown documents, such as <a href="https://rpubs.com/">Rpubs</a>, <a href="https://bookdown.org/home/about/">bookdown.org</a> or <a href="https://rstudio.com/products/connect/">RStudio connect</a>.</p>
+<p>You can insert a chunk by writing the header <code>```{r}</code> and foot <code>```</code> if you work in the <code>Source</code> mode or with green <strong>+C</strong> button in the <code>Visual</code> mode. See the example below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>{r, label<span class="ot">=</span><span class="st">'my-first-chunk'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Code in the chunks can be executed line-by-line using Ctrl+ENTER (Cmd+Enter in MacOS) or as a whole chunk using the play button on the top-right corner. Also, chunk output can be customized with some options (see <a href="#r9">Ref. 11</a>) that allow you to choose whether a particular chunk will be executed or not or include invisible chunks that will not be shown in the final knitted doc… Some examples are (note that boolean properties are True by default):</p>
+<ul>
+<li><p><code>include = FALSE</code> prevents code and results from appearing in the finished file. R Markdown still runs the code in the chunk, and the results can be used by other chunks.</p></li>
+<li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures.</p></li>
+<li><p><code>message = FALSE</code> prevents messages that are generated by code from appearing in the finished file.</p></li>
+<li><p><code>warning = FALSE</code> prevents warnings that are generated by code from appearing in the finished.</p></li>
+<li><p><code>fig.cap = "..."</code> adds a caption to graphical results.</p></li>
+<li><p><code>label = " "</code> set a name or label specific to that chunk</p></li>
+</ul>
+<p>Chunk options arguments can be set in the <code>{}</code> of a chunk header. Alternatively, you can write chunk options in the body of a code chunk after <code>#|</code>, e.g.,</p>
+<p><img src="images/chunk.png" class="img-fluid" width="336"></p>
+<section id="quick-exercise-create-your-first-r-markdown-document" class="level3">
+<h3 class="anchored" data-anchor-id="quick-exercise-create-your-first-r-markdown-document"><span style="color:green">Quick exercise: Create your first R Markdown document</span></h3>
+<p>As with any other language, it is much easier to learn the syntax if you do some examples. We can turn one of our exercises into a Markdown HTML document in just a few steps:</p>
+<p><img src="images/paste-D97F7F4E.png" class="img-fluid" width="450"></p>
+<ol type="1">
+<li><p>Start a new R Markdown document. Initially, you will be asked for a title, an author and a date. You can also specify the type of output document here. This data will be included in the header of your <em>rmd</em> document (orange square in the figure below), a configuration section in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format that can be edited at any time. This section contains all the doc information, including about the title, the use of a TOC (Table of Contents), authoring, section numbering, html themes…</p>
+<p><img src="images/source_visual.png" class="img-fluid"></p></li>
+<li><p>Once you have your new document, it includes some standard instructions for writing and creating coding chunks. You can switch back and forth between the <code>Source</code> and <code>Visual</code> formats to see the difference as in the pic above, and then replace the instructions with text like the exercise text.</p></li>
+<li><p><strong>Insert a script from the exercises in the previous lessons into a chunk and try it</strong>. You can also split the script into multiple chunks and sprinkle in some explanations.</p></li>
+<li><p>Add a final chunk with the <code>sessionInfo()</code> to facilitate reproducibility.</p></li>
+<li><p><strong>Knit it!</strong> You can try knitting into <em>html</em>, <em>pdf</em> or <em>word</em> document.</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Knitting PDFs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that knitting into <em>pdf</em> may require the installation of a LaTeX distribution or R package. There are several alternatives, like <code>tinytex</code>, <code>MacTeX</code> or <code>MikTeX</code>, among others (see <a href="#r9">references 9 and 10</a>).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="r-notebooks" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="r-notebooks"><span class="header-section-number">2.2</span> R Notebooks</h2>
+<p>Technically, <strong>R Markdown is a file format, whereas R Notebook is just a way to work with R Markdown files</strong>. R Notebooks do not have their own file format, they all use <em>Rmd</em>. All R Notebooks can be ‘knitted’ to R Markdown outputs, and all R Markdown documents can be interfaced as a Notebook. The R nb document is launched directly and no wizard (as in the case of .RMD) appears. Along with the notebook file, an additional html file that extension <em>*.nb.html</em> is generated. The notebook has the option for Preview. If any code is altered or edited, the new output is not shown. The output is shown in the code editor itself. Whatever the old output was it is only rendered. No new output is generated from the code change. In order to show the code output, we need to execute the chunk and then it will appear in the output. The YAML header has output as: output: <strong>html_notebook</strong></p>
+<p>Writing an R Notebook document is no different than writing an R Markdown document. The text and code chunk syntax does not differ from what you learned in the R Markdown tutorial. The primary difference is in the interativeness of an R Notebook. Primarily that when executing chunks in an R Markdown document, <strong>all the code is sent to the console at once</strong>, but in an R Notebook, <strong>only one line at a time is sent</strong>. This allows execution to stop if a line raises an error.</p>
+</section>
+</section>
+<section id="quarto" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Quarto</h1>
+<p>In 2022, RStudio launched Quarto, a novel markdown flavor, based in <a href="https://en.wikipedia.org/wiki/Pandoc">Pandoc</a>, a free-software document converter, that expanded the possibilities of RMarkdown with new format options and enriched templates. See some examples <a href="https://quarto.org/docs/gallery/">here</a>.</p>
+<p>Working with quarto is almost identical as writing a markdown document, but it is particularly designed to generate complex documents, like a whole website or books. With Quarto it is easier to handle complex projects, include references or work collaboratively. Each document is generated in a <em>.qmd</em> file and the site/book options are defined in a companion YAML document that includes the site/book structure, metadata and other configuration. You can check the <a href="https://quarto.org/docs/projects/quarto-projects.html#project-metadata">Quarto Reference</a> to learn how to configure your yml file. As an example, have a look to the quarto documents of and the <a href="https://github.com/mredrejo/HPBBM2023/blob/main/_quarto.yml">_quarto.yml</a> file for this site in the <a href="https://github.com/mredrejo/HPBBM2023">github repository</a>.</p>
+<p>Besides the references below, I suggest you to check these <a href="https://quarto.org/docs/gallery/">examples</a> and the this <a href="https://youtu.be/y5VcxMOnj3M">video about the use of Quarto</a> to create amazing websites, books and interactive sites.</p>
+</section>
+
+<section id="session-info" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Session Info</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.0 (2023-04-21)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Ventura 13.4.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Madrid
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] formatR_1.14       knitr_1.43         webexercises_1.1.0
+
+loaded via a namespace (and not attached):
+ [1] htmlwidgets_1.6.2 compiler_4.3.0    fastmap_1.1.1     cli_3.6.1        
+ [5] htmltools_0.5.5   tools_4.3.0       rstudioapi_0.14   yaml_2.3.7       
+ [9] rmarkdown_2.21    jsonlite_1.8.4    digest_0.6.31     xfun_0.39        
+[13] rlang_1.1.1       evaluate_0.21    </code></pre>
+</div>
+</div>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><section id="refs" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> References</h1>
+<ol type="1">
+<li><p><em>R Crash Course for Biologist.</em> Robert I. Coulatti. November 2022 (GitHub repository <a href="https://github.com/ColauttiLab/RCrashCourse_Book" class="uri">https://github.com/ColauttiLab/RCrashCourse_Book</a>).</p></li>
+<li><p>RStudio Projects: <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects" class="uri">https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects</a></p></li>
+<li><p>Version control in R (Spanish):</p>
+<ul>
+<li><p><a href="https://swcarpentry.github.io/git-novice-es/14-supplemental-rstudio/" class="uri">https://swcarpentry.github.io/git-novice-es/14-supplemental-rstudio/</a></p></li>
+<li><p><a href="https://rstudio-pubs-static.s3.amazonaws.com/500747_14d4ccd16023430d82d175bae0d2f5a6.html" class="uri">https://rstudio-pubs-static.s3.amazonaws.com/500747_14d4ccd16023430d82d175bae0d2f5a6.html</a></p></li>
+</ul></li>
+<li><p><strong>R Markdown Cheat Sheet</strong>: <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf</a></p></li>
+<li><p>Formatting HTML documents with RMarkdown: <a href="https://bookdown.org/yihui/rmarkdown/html-document.html" class="uri">https://bookdown.org/yihui/rmarkdown/html-document.html</a></p></li>
+<li><p>r-cubed: <strong>R</strong>eproducible <strong>R</strong>esearch in <strong>R</strong>: <a href="https://jose.theoj.org/papers/10.21105/jose.00122" class="uri">https://jose.theoj.org/papers/10.21105/jose.00122</a></p></li>
+<li><p>Create interactive documents with Quarto: <a href="https://appsilon.com/r-quarto-tutorial/" class="uri">https://appsilon.com/r-quarto-tutorial/</a></p></li>
+<li><p>Quarto Reference Guide: <a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p></li>
+<li><div id="r9">
+<p>Create PDF reports with R Markdown: <a href="https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9">https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9</a></p>
+</div></li>
+<li><p>R Markdown and Tinytex installation: <a href="https://bookdown.org/yihui/rmarkdown/installation.html" class="uri">https://bookdown.org/yihui/rmarkdown/installation.html</a></p></li>
+<li><p>R Markdown chunk options: <a href="https://rpubs.com/Lingling912/870659" class="uri">https://rpubs.com/Lingling912/870659</a></p></li>
+</ol>
+</section></section></div></main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Modesto Redrejo Rodríguez &amp; Luis del Peso, 2023</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://creativecommons.org/licenses/by-nc/2.0/">
+      <i class="bi bi-badge-cc-fill" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/mredrejo">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

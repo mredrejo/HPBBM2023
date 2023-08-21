@@ -150,10 +150,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./r5.html" rel="" target="">
  <span class="dropdown-text">R5: Base plots in R</span></a>
   </li>  
-        <li class="dropdown-header">r6.qmd</li>
-        <li class="dropdown-header">r7.qmd</li>
-        <li class="dropdown-header">r8.qmd</li>
-        <li class="dropdown-header">r9.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./r6.html" rel="" target="">
+ <span class="dropdown-text">R6: Advanced data management</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r7.html" rel="" target="">
+ <span class="dropdown-text">R7: Project management for reproducible research in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r8.html" rel="" target="">
+ <span class="dropdown-text">R8: Plot your data in R - Episode II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r9.html" rel="" target="">
+ <span class="dropdown-text">R9: R for Molecular Biology</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -238,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 20, 2023</p>
+      <p class="date-modified">August 21, 2023</p>
     </div>
   </div>
     
@@ -338,8 +350,8 @@ Cross-lesson tip
 <pre><code>starting httpd help server ... done</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">browseVignettes</span>(<span class="st">"seqinr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in find.package(package, lib.loc): there is no package called 'seqinr'</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>No vignettes found by browseVignettes("seqinr")</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">browseVignettes</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -368,8 +380,8 @@ Cross-lesson tip
 <pre><code> [1] "A-DNA"                 "Circular DNA"          "DNA"                  
  [4] "DNA (disambiguation)"  "DNA (duo)"             "DNA Oyj"              
  [7] "DNA extraction"        "DNA methylation"       "DNA on DNA"           
-[10] "DNA polymerase"        "DNA profiling"         "DNA repair"           
-[13] "DNA replication"       "DNA sequencing"        "DNA virus"            
+[10] "DNA profiling"         "DNA repair"            "DNA replication"      
+[13] "DNA sequencing"        "DNA vaccine"           "DNA virus"            
 [16] "DNA²"                  "DNA–DNA hybridization" "DnaA"                 
 [19] "Mitochondrial DNA"     "Recombinant DNA"      </code></pre>
 </div>
@@ -567,8 +579,8 @@ is positive, statistically significant, and very large (r = 0.93, 95% CI [0.91,
 <h2 data-number="2.3" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">2.3</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>Write an inline function that transforms concentrations units: molar (M) into micromolar (µM). Test it with your own R session.</p>
 <strong>Select the right answer</strong>
-<div id="radio_LRGEWEMTGS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LRGEWEMTGS" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_LRGEWEMTGS" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_LRGEWEMTGS" value=""> <span>f &lt;- function(x) x 1000</span></label>
+<div id="radio_HDMRRQOAAP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HDMRRQOAAP" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_HDMRRQOAAP" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_HDMRRQOAAP" value=""> <span>f &lt;- function(x) x 1000</span></label>
 </div>
 <hr>
 </section>
@@ -868,7 +880,7 @@ Answer 1
 </div>
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">age</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 227.3 months old"</code></pre>
+<pre><code>[1] "You are about 228.4 months old"</code></pre>
 </div>
 </div>
 </div>
@@ -893,7 +905,7 @@ Answer 2
 <span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "If you were born on 2004-11-17, you are about 227.3 months old."</code></pre>
+<pre><code>[1] "If you were born on 2004-11-17, you are about 228.4 months old."</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
