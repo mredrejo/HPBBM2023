@@ -89,24 +89,24 @@ opts_p <- c("sub(names_ase, 1,11)", "sub(names_ase, 2,11))",
 cat("**How would you extract the NCBI protein ID of the enzymes?**",longmcq(opts_p))
 ```
 
-```{r echo=FALSE, eval=TRUE}
+```{r echo=FALSE, eval=TRUE, output.lines=(1:20)}
 substr(names_ase, 2,11)
 ```
 
 ```{r wd2, echo = FALSE, results = 'asis'}
-opts_p <- c("sub(names_ase, 2,11)", answer = "(sub(\">\",\"\",names_ase))",
+opts_p <- c("sub(names_ase, 2,11)", answer = "sub(\">\",\"\",names_ase)",
     "substr(names_ase, 2,150)")
 
 cat("**How would you remove the `>' from the fasta headers?**",longmcq(opts_p))
 ```
 
-```{r echo=FALSE, eval=TRUE}
-head(sub(">","",names_ase))
+```{r echo=FALSE, eval=TRUE, output.lines=(1:20)}
+sub(">","",names_ase)
 ```
 
 ------------------------------------------------------------------------
 
-### What about `regexpr()`\`?
+### What about `regexpr()`?
 
 ```{r}
 # regexpr returns the indices of the string where the match begins and the length of the match
