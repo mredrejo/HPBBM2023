@@ -169,15 +169,17 @@ Besides the references below, I suggest you to check these [examples](https://qu
 
 7.  Create interactive documents with Quarto: <https://appsilon.com/r-quarto-tutorial/>
 
-8.  Quarto Reference Guide: <https://quarto.org/docs/guide/>
-
-9.  ::: {#r9}
+8.  ::: {#r9}
     Create PDF reports with R Markdown: [https://medium.com/\@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9](https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9)
     :::
 
-10. R Markdown and Tinytex installation: <https://bookdown.org/yihui/rmarkdown/installation.html>
+9.  R Markdown and Tinytex installation: <https://bookdown.org/yihui/rmarkdown/installation.html>
 
-11. R Markdown chunk options: <https://rpubs.com/Lingling912/870659>
+10. R Markdown chunk options: <https://rpubs.com/Lingling912/870659>
+
+11. Quarto Reference Guide: <https://quarto.org/docs/guide/>
+
+12. How to interactive websites with Quarto: <https://www.r-bloggers.com/2022/07/r-quarto-tutorial-how-to-create-interactive-markdown-documents/>
 
 # Session Info
 

@@ -359,6 +359,8 @@ ggplotly(plots2custom)
 
 7.  Color palettes in R: <https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/>
 
+8.  Awesome `ggplot2` addons and tricks: <https://github.com/erikgahner/awesome-ggplot2>
+
 # [Exercises]{style="color:green"}
 
 #### 1. The table [coli_curve.csv](../data/coli_curve.csv) contains the growth curves of three *E. coli* strains. Plot the curves as *scatterplot* and lines containing the 90% confidence interval for the three strains.
