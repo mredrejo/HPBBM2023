@@ -1,6 +1,5 @@
 ---
 title: "R1: Variables, Operators and data structures"
-author: "Luis"
 date: "July 4, 2023"
 date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 
@@ -21,6 +20,7 @@ number-sections: true
 code-overflow: wrap
 link-external-icon: true
 link-external-newwindow: true 
+bibliography: Biblio.bib
 link-citations: true
 ---
 
@@ -29,6 +29,10 @@ library(knitr)
 library(formatR)
 library(webexercises)
 opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+#in RMD files, the default wd for R code chunks is the directory that contains the Rmd document. 
+#We change it here to share the working directory with all the Rmd files of the course
+#knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
+knitr::opts_knit$set(root.dir ="/home/luis/Documents/Teaching/HPBBM/HPBBM_R_GitHub/HPBBM2023/")
 
 ```
 
