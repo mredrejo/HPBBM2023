@@ -84,6 +84,10 @@ Each lesson contains its own specific references, but we wanted to highlight her
 
 -   [Learn R by example](https://www.learnbyexample.org/r/)
 
+-   [R base cheatsheet](https://iqss.github.io/dss-workshops/R/Rintro/base-r-cheat-sheet.pdf)
+
+-   [R programming 101 @YouTube](https://www.youtube.com/@RProgramming101)
+
 ## [Contents]{style="color:darkblue"}
 ### [Lesson R1: Variables, Operators and data structures in R](r1.html)
 
@@ -93,12 +97,12 @@ Each lesson contains its own specific references, but we wanted to highlight her
 
 ### [Lesson R4: Write your own functions](r4.html)
 
-### [Lesson R5: Plots]()
+### [Lesson R5: Plots](r5.html)
 
-### [Lesson R6: Data management]()
+### [Lesson R6: Data management](r6.html)
 
-### [Lesson R7: R-projects and R-markdown for reproducible data analysis]()
+### [Lesson R7: R-projects and R-markdown for reproducible data analysis](r7.html)
 
-### [Lesson R8: Advanced data plotting with `ggplot`]()
+### [Lesson R8: Advanced data plotting with `ggplot`](r8.html)
 
-### [Lesson R9: Applications for Molecular Biology]()
+### [Lesson R9: Applications for Molecular Biology](r9.html)

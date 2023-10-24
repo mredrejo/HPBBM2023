@@ -23,8 +23,8 @@ format:
     code-overflow: wrap
     link-external-icon: true
     link-external-newwindow: true 
-    bibliography: Biblio.bib
-    link-citations: true
+
+
 ---
 
 ```{r wrap-hook, echo=FALSE}
@@ -35,7 +35,7 @@ opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
 #in RMD files, the default wd for R code chunks is the directory that contains the Rmd document. 
 #We change it here to share the working directory with all the Rmd files of the course
 #knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
-knitr::opts_knit$set(root.dir ="/home/luis/Documents/Teaching/HPBBM/HPBBM_R_GitHub/HPBBM2023/")
+#knitr::opts_knit$set(root.dir ="/home/luis/Documents/Teaching/HPBBM/HPBBM_R_GitHub/HPBBM2023/")
 
 ```
 

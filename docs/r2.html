@@ -2,13 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-07-14">
 
-<title>HPBBM2023 - R2: Flow Control</title>
+<title>HPBBM2023 – r2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,7 +107,8 @@ div.csl-indent {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
@@ -120,7 +120,7 @@ div.csl-indent {
 <link rel="stylesheet" href="include/webex.css">
 </head>
 
-<body class="floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -154,6 +154,10 @@ div.csl-indent {
  <span class="dropdown-text">R1: Variables, Operators and data structures</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./r2.html" rel="" target="">
+ <span class="dropdown-text">[Flow control]{style="color:darkblue"}</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./r3.html" rel="" target="">
  <span class="dropdown-text">R3: Read and write data in R</span></a>
   </li>  
@@ -165,95 +169,73 @@ div.csl-indent {
     <a class="dropdown-item" href="./r5.html" rel="" target="">
  <span class="dropdown-text">R5: Base plots in R</span></a>
   </li>  
-        <li class="dropdown-header">r6.qmd</li>
-        <li class="dropdown-header">r7.qmd</li>
-        <li class="dropdown-header">r8.qmd</li>
-        <li class="dropdown-header">r9.qmd</li>
+        <li>
+    <a class="dropdown-item" href="./r6.html" rel="" target="">
+ <span class="dropdown-text">R6: Advanced data management</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r7.html" rel="" target="">
+ <span class="dropdown-text">R7: Project management for reproducible research in R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r8.html" rel="" target="">
+ <span class="dropdown-text">R8: Plot your data in R - Episode II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./r9.html" rel="" target="">
+ <span class="dropdown-text">R9: R for Molecular Biology</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/lpeso/HPBBM2023" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
-    <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/lpeso/HPBBM2023/tree/main/data" title="Download Data" class="quarto-navigation-tool px-1" aria-label="Download Data"><i class="bi bi-cloud-download"></i></a>
+    <a href="https://github.com/mredrejo/HPBBM2023" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2023/tree/main/data" title="Download Data" class="quarto-navigation-tool px-1" aria-label="Download Data"><i class="bi bi-cloud-download"></i></a>
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#flow-control" id="toc-flow-control" class="nav-link active" data-scroll-target="#flow-control"><span style="color:darkblue">Flow control</span></a></li>
+  <li><a href="#conditional-structures" id="toc-conditional-structures" class="nav-link" data-scroll-target="#conditional-structures"><span style="color:darkblue">Conditional structures</span></a>
   <ul class="collapse">
-  <li><a href="#flow-control" id="toc-flow-control" class="nav-link active" data-scroll-target="#flow-control"><span class="header-section-number">1</span> <span style="color:darkblue">Flow control</span></a></li>
-  <li><a href="#conditional-structures" id="toc-conditional-structures" class="nav-link" data-scroll-target="#conditional-structures"><span class="header-section-number">2</span> <span style="color:darkblue">Conditional structures</span></a>
-  <ul class="collapse">
-  <li><a href="#nested-conditionals" id="toc-nested-conditionals" class="nav-link" data-scroll-target="#nested-conditionals"><span class="header-section-number">2.1</span> <span style="color:blue">Nested conditionals</span></a></li>
-  <li><a href="#another-way-to-code-nested-conditionals-else-if-statement" id="toc-another-way-to-code-nested-conditionals-else-if-statement" class="nav-link" data-scroll-target="#another-way-to-code-nested-conditionals-else-if-statement"><span class="header-section-number">2.2</span> <span style="color:blue">Another way to code nested conditionals: <code>else if</code> statement</span></a></li>
-  <li><a href="#a-vectorized-version-of-the-if-else-structures-ifelse-statement" id="toc-a-vectorized-version-of-the-if-else-structures-ifelse-statement" class="nav-link" data-scroll-target="#a-vectorized-version-of-the-if-else-structures-ifelse-statement"><span class="header-section-number">2.3</span> <span style="color:blue">A vectorized version of the if-else structures: <code>ifelse</code> statement</span></a></li>
-  <li><a href="#a-final-way-to-code-conditionals-switch-statement" id="toc-a-final-way-to-code-conditionals-switch-statement" class="nav-link" data-scroll-target="#a-final-way-to-code-conditionals-switch-statement"><span class="header-section-number">2.4</span> <span style="color:blue">A final way to code conditionals: <code>switch</code> statement</span></a></li>
+  <li><a href="#nested-conditionals" id="toc-nested-conditionals" class="nav-link" data-scroll-target="#nested-conditionals"><span style="color:blue">Nested conditionals</span></a></li>
+  <li><a href="#another-way-to-code-nested-conditionals-else-if-statement" id="toc-another-way-to-code-nested-conditionals-else-if-statement" class="nav-link" data-scroll-target="#another-way-to-code-nested-conditionals-else-if-statement"><span style="color:blue">Another way to code nested conditionals: <code>else if</code> statement</span></a></li>
+  <li><a href="#a-vectorized-version-of-the-if-else-structures-ifelse-statement" id="toc-a-vectorized-version-of-the-if-else-structures-ifelse-statement" class="nav-link" data-scroll-target="#a-vectorized-version-of-the-if-else-structures-ifelse-statement"><span style="color:blue">A vectorized version of the if-else structures: <code>ifelse</code> statement</span></a></li>
+  <li><a href="#a-final-way-to-code-conditionals-switch-statement" id="toc-a-final-way-to-code-conditionals-switch-statement" class="nav-link" data-scroll-target="#a-final-way-to-code-conditionals-switch-statement"><span style="color:blue">A final way to code conditionals: <code>switch</code> statement</span></a></li>
   </ul></li>
-  <li><a href="#loop-structures" id="toc-loop-structures" class="nav-link" data-scroll-target="#loop-structures"><span class="header-section-number">3</span> <span style="color:darkblue">Loop structures</span></a>
+  <li><a href="#loop-structures" id="toc-loop-structures" class="nav-link" data-scroll-target="#loop-structures"><span style="color:darkblue">Loop structures</span></a>
   <ul class="collapse">
-  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><span class="header-section-number">3.1</span> <span style="color:blue"><code>for</code> loops</span></a></li>
-  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops"><span class="header-section-number">3.2</span> <span style="color:blue"><code>while</code> loops</span></a></li>
-  <li><a href="#control-flow-statements" id="toc-control-flow-statements" class="nav-link" data-scroll-target="#control-flow-statements"><span class="header-section-number">3.3</span> <span style="color:blue">Control flow statements</span></a></li>
-  <li><a href="#repeat-loops" id="toc-repeat-loops" class="nav-link" data-scroll-target="#repeat-loops"><span class="header-section-number">3.4</span> <span style="color:blue"><code>repeat</code> loops</span></a></li>
+  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><span style="color:blue"><code>for</code> loops</span></a></li>
+  <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops"><span style="color:blue"><code>while</code> loops</span></a></li>
+  <li><a href="#control-flow-statements" id="toc-control-flow-statements" class="nav-link" data-scroll-target="#control-flow-statements"><span style="color:blue">Control flow statements</span></a></li>
+  <li><a href="#repeat-loops" id="toc-repeat-loops" class="nav-link" data-scroll-target="#repeat-loops"><span style="color:blue"><code>repeat</code> loops</span></a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">4</span> References</a></li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">5</span> Session Info</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info">Session Info</a></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">R2: Flow Control</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">Conditionals + if-else + nested conditionals + ifelse + switch</div>
-    <div class="quarto-category">Loops + for loops + while loops + control statements + repeat</div>
-  </div>
-  </div>
+<main class="content" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 14, 2023</p>
-    </div>
-  </div>
-  
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 18, 2023</p>
-    </div>
-  </div>
-    
-  </div>
-  
-
-</header>
-
-<section id="flow-control" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> <span style="color:darkblue">Flow control</span></h1>
+<section id="flow-control" class="level1">
+<h1><span style="color:darkblue">Flow control</span></h1>
 <p>Sequential execution of programming commands is insufficient for solving anything beyond trivial tasks. In most cases, solving a problem programmatically involves executing specific statements only under certain conditions and/or repeating a statement or set of statements multiple times. This ability to control when and how many times a statement or set of statements is executed is referred to as <strong>Flow control.</strong> In R, flow control is achieved using two specific structures in our code: - <strong>Conditional structures:</strong> These structures allow the execution of a statement or set of statements based on a condition. - <strong>Loop structures:</strong> These structures allow the execution of a statement or set of statements for a fixed number of times or until a condition is met. In both cases, the block of code containing the statements to be conditionally or repeatedly executed is delimited by curly brackets.</p>
 </section>
-<section id="conditional-structures" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> <span style="color:darkblue">Conditional structures</span></h1>
+<section id="conditional-structures" class="level1">
+<h1><span style="color:darkblue">Conditional structures</span></h1>
 <p>As indicated above, conditional structures are used to execute a block of code (contained within curly brackets) based on the result of a condition, that is when the result of applying a comparison operator results in the Boolean <code>TRUE</code>. The conditional block of code is preceded by the statement <code>ìf(condition)</code> where condition is usually an expression using a <strong>relational operator</strong> (see <strong>?@sec-operators</strong>). The following code ask the user to enter a number and then prints <em>negative</em> if the number less than zero. Then, it will print <em>End</em> to indicate that the program is has finished.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a number:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -318,8 +300,8 @@ div.csl-indent {
 <pre><code>[1] "End"</code></pre>
 </div>
 </div>
-<section id="nested-conditionals" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="nested-conditionals"><span class="header-section-number">2.1</span> <span style="color:blue">Nested conditionals</span></h2>
+<section id="nested-conditionals" class="level2">
+<h2 class="anchored" data-anchor-id="nested-conditionals"><span style="color:blue">Nested conditionals</span></h2>
 <p>Sometimes we need more than a single bifurcation in our code. For example, in the case above we may want to print <em>negative</em> when the number is less than zero,<em>positive</em> when it is more than zero and just <em>zero</em> when it is equal to zero. To do that can can just include (<strong>nest</strong>) an <em>if-else</em> structure within another <em>if-else</em> structure:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a number:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -345,8 +327,8 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="another-way-to-code-nested-conditionals-else-if-statement" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="another-way-to-code-nested-conditionals-else-if-statement"><span class="header-section-number">2.2</span> <span style="color:blue">Another way to code nested conditionals: <code>else if</code> statement</span></h2>
+<section id="another-way-to-code-nested-conditionals-else-if-statement" class="level2">
+<h2 class="anchored" data-anchor-id="another-way-to-code-nested-conditionals-else-if-statement"><span style="color:blue">Another way to code nested conditionals: <code>else if</code> statement</span></h2>
 <p>Nesting is not restricted to three alternative blocks of code; in fact, we can nest as many <em>if-else</em> structures as necessary. However, the code becomes cumbersome with more that two or three blocks of code. For this reason, in situations where many blocks of code are to be conditionally executed it is much more convenient to use the <code>else if (condition)</code> statement. In this case, the conditional structure begins with and <code>if(condition)</code>statement and continues with as many <code>else if (condition)</code> statements as required. Finally, the structure may end with an <code>else</code> although it is not strictly required.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a number:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -488,8 +470,8 @@ Pay Attention
 </div>
 </div>
 </section>
-<section id="a-vectorized-version-of-the-if-else-structures-ifelse-statement" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="a-vectorized-version-of-the-if-else-structures-ifelse-statement"><span class="header-section-number">2.3</span> <span style="color:blue">A vectorized version of the if-else structures: <code>ifelse</code> statement</span></h2>
+<section id="a-vectorized-version-of-the-if-else-structures-ifelse-statement" class="level2">
+<h2 class="anchored" data-anchor-id="a-vectorized-version-of-the-if-else-structures-ifelse-statement"><span style="color:blue">A vectorized version of the if-else structures: <code>ifelse</code> statement</span></h2>
 <p>The <code>ifelse</code> function in R is a vectorized version of the if-else statement, allowing you to perform conditional operations on entire vectors or arrays at once. It takes three arguments: the condition to evaluate, the value to return if the condition is true, and the value to return if the condition is false.</p>
 <p>For example, in the examples above used to determine if a number was positive or negative, the code evaluated a single value at a time. The <code>ifelse</code> can evaluate multiple values simultaneously. That is, given a vector of numbers, the <code>ifelse</code> function can be used to return a vector indicating positive and negative values:</p>
 <div class="cell">
@@ -509,8 +491,8 @@ Pay Attention
 </div>
 </div>
 </section>
-<section id="a-final-way-to-code-conditionals-switch-statement" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="a-final-way-to-code-conditionals-switch-statement"><span class="header-section-number">2.4</span> <span style="color:blue">A final way to code conditionals: <code>switch</code> statement</span></h2>
+<section id="a-final-way-to-code-conditionals-switch-statement" class="level2">
+<h2 class="anchored" data-anchor-id="a-final-way-to-code-conditionals-switch-statement"><span style="color:blue">A final way to code conditionals: <code>switch</code> statement</span></h2>
 <p>The code below asks the user to enter a DNA nucleotide using a single letter code (i.e the user enters A, C, G or T) and the program prints the full name of the base (i.e prints adenine, cytosine, guanine or thymine respectively) or NA if the user did not enter a nucleotide. Notice that the <code>else</code> clause handle any input other than the expected A, C,G or T; this is a typical use of the else statement.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">readline</span>(<span class="st">"Enter a nucleotide:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -549,11 +531,11 @@ Pay Attention
 <p>Please note that the <code>switch</code> statement matches the provided expression with the given cases <strong>exactly</strong>. It doesn’t perform logical evaluations like if-else statements, which check for conditions that evaluate to TRUE or FALSE.</p>
 </section>
 </section>
-<section id="loop-structures" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> <span style="color:darkblue">Loop structures</span></h1>
+<section id="loop-structures" class="level1">
+<h1><span style="color:darkblue">Loop structures</span></h1>
 <p>Loop structures are programming constructs that allow you to repeat a set of statements or code multiple times. Loop structures are useful when you want to perform a specific action repeatedly, iterate over a sequence of values, or iterate until a certain condition is met. As in the case of conditionals, the block of code to be repeated is delimited (contained within) a pair of curly brackets. There are three types of loop structures in R: <code>for</code>, <code>while</code> and <code>repeat</code>.</p>
-<section id="for-loops" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="for-loops"><span class="header-section-number">3.1</span> <span style="color:blue"><code>for</code> loops</span></h2>
+<section id="for-loops" class="level2">
+<h2 class="anchored" data-anchor-id="for-loops"><span style="color:blue"><code>for</code> loops</span></h2>
 <p>The for loop is used when you know the exact number of iterations required. It iterates over a sequence, such as a vector or a range of numbers, executing a block of code for each iteration. For example, the code below calculates the square of each of the values in a matrix</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>MyMat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
@@ -591,8 +573,8 @@ Pay Attention
 </div>
 </div>
 </section>
-<section id="while-loops" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="while-loops"><span class="header-section-number">3.2</span> <span style="color:blue"><code>while</code> loops</span></h2>
+<section id="while-loops" class="level2">
+<h2 class="anchored" data-anchor-id="while-loops"><span style="color:blue"><code>while</code> loops</span></h2>
 <p>“While” loops are utilized to repeatedly execute a block of code (enclosed within curly brackets) as long as a specific condition remains true. The structure of a “while” loop includes a condition followed by a code block. The code block is executed iteratively until the condition evaluates to false. The computations within the code block may modify the state of the parameter being evaluated in the condition, leading to the program exiting the loop after a certain number of repetitions. The following code make use of while loops to generate a vector containing all 64 codons:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>Nucl <span class="ot">&lt;-</span> LETTERS[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">20</span>)]</span>
@@ -621,8 +603,8 @@ Pay Attention
 </div>
 </div>
 </section>
-<section id="control-flow-statements" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="control-flow-statements"><span class="header-section-number">3.3</span> <span style="color:blue">Control flow statements</span></h2>
+<section id="control-flow-statements" class="level2">
+<h2 class="anchored" data-anchor-id="control-flow-statements"><span style="color:blue">Control flow statements</span></h2>
 <p>Sometimes, it may be necessary for a program to skip executing a block of code (or part of it) and move to the next iteration. In other cases, the program may need to exit the loop prematurely if a certain condition is met. To achieve these actions, we can use the next and break statements, respectively. Both control statements are typically invoked within a conditional context. For instance, when computing the Shannon Entropy (<span class="math inline">\(H(X)=\sum_i P(x_i) log(Pi)\)</span>) of a variable’s state distribution, it is common to skip terms with a frequency of zero to avoid encountering the undefined value of <span class="math inline">\(log(0)\)</span>. Consider the following code, which takes a vector representing the observed absolute frequencies of nucleotides at a specific genomic position and calculates the Shannon Entropy for that position:</p>
 <p>In this code, the next statement is used to skip the calculation of terms with a frequency of zero. This prevents the program from encountering the undefined <span class="math inline">\(\log(0)\)</span> value. The loop continues to the next iteration and calculates the entropy based on non-zero frequencies.</p>
 <div class="cell">
@@ -644,8 +626,8 @@ Pay Attention
 </div>
 <p>By utilizing the next statement, we ensure that the Shannon Entropy computation proceeds correctly without encountering any issues related to zero frequencies.</p>
 </section>
-<section id="repeat-loops" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="repeat-loops"><span class="header-section-number">3.4</span> <span style="color:blue"><code>repeat</code> loops</span></h2>
+<section id="repeat-loops" class="level2">
+<h2 class="anchored" data-anchor-id="repeat-loops"><span style="color:blue"><code>repeat</code> loops</span></h2>
 <p>An additional statement in R that allows you to execute a block of code a specific number of times is called repeat. Similar to while loops, the block of code within the repeat statement is repeated until a certain condition is met. However, unlike while loops, the condition itself is not specified within the repeat statement. Instead, the condition is part of the code block, and the loop is terminated using the break statement when the condition is satisfied. For example, the following code prints the Fibonacci terms smaller than 250:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>Fib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -663,35 +645,30 @@ Pay Attention
 </div>
 </section>
 </section>
-<section id="references" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> References</h1>
+<section id="references" class="level1">
+<h1>References</h1>
 <div id="refs" role="list">
 
 </div>
 </section>
-<section id="session-info" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Session Info</h1>
+<section id="session-info" class="level1">
+<h1>Session Info</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.3.1 (2023-06-16)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 22.04.2 LTS
+<pre><code>R version 4.3.0 (2023-04-21)
+Platform: x86_64-apple-darwin20 (64-bit)
+Running under: macOS Ventura 13.5.2
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0 
-LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.0
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=es_ES.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=es_ES.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=es_ES.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=es_ES.UTF-8 LC_IDENTIFICATION=C       
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 time zone: Europe/Madrid
-tzcode source: system (glibc)
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -700,9 +677,9 @@ other attached packages:
 [1] formatR_1.14       knitr_1.43         webexercises_1.1.0
 
 loaded via a namespace (and not attached):
- [1] htmlwidgets_1.6.2 compiler_4.3.1    fastmap_1.1.1     cli_3.6.1        
- [5] htmltools_0.5.5   tools_4.3.1       rstudioapi_0.14   yaml_2.3.7       
- [9] rmarkdown_2.22    jsonlite_1.8.5    digest_0.6.31     xfun_0.39        
+ [1] htmlwidgets_1.6.2 compiler_4.3.0    fastmap_1.1.1     cli_3.6.1        
+ [5] htmltools_0.5.5   tools_4.3.0       rstudioapi_0.14   yaml_2.3.7       
+ [9] rmarkdown_2.21    jsonlite_1.8.4    digest_0.6.31     xfun_0.39        
 [13] rlang_1.1.1       evaluate_0.21    </code></pre>
 </div>
 </div>
@@ -1169,7 +1146,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Modesto Redrejo Rodríguez, 2023</div>   
+    <div class="nav-footer-left">Modesto Redrejo Rodríguez &amp; Luis del Peso, 2023</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
