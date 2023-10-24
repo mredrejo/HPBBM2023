@@ -9,7 +9,7 @@ author:
     affiliation_url: https://www.uam.es/
     email: luis.peso@uam.es
 date: "May 30, 2023"
-date-modified: "August 21, 2023"
+date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 
   - R
   - RStudio
@@ -28,6 +28,9 @@ link-external-icon: true
 link-external-newwindow: true 
 editor: visual
 ---
+```{r}
+
+```
 
 > There are only two kinds of programming languages: the ones people complain about and the ones nobody uses. ---*Bjarne Stroustrup*
 
