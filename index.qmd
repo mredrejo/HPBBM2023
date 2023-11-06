@@ -54,7 +54,8 @@ Course Syllabus can be checked at [UAM site](https://secretaria-virtual.uam.es/d
 
 ::: callout-tip
 # How to use this site
-These materials have been designed as an interactive and self-learning resource. As you go through the lessons, think about the code beforehand and then test it with your computer. Then try out the exercises. 
+These materials have been designed as an interactive and self-learning resource. As you go through the lessons, think about the code beforehand and then test it with your computer. Then try out the exercises for yourself. 
+
 You can consult the references for additional examples or help and also ask the instructor in the on-site classes.
 :::
 
