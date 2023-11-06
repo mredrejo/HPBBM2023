@@ -68,6 +68,7 @@ The functions `getwd()` and `setwd()` allow you to check and change the *wd*. Tr
 getwd()
 setwd("/Users/modesto")
 getwd()
+#Obviously the path must call an existing directory (not typos allowed)
 setwd("/Users/modsto/Documents/GitHub/HPBBM2023") 
 setwd("/Users/modesto/Documents/GitHub/HPBBM2023")
 getwd()
@@ -108,16 +109,19 @@ In the following example lines we read a file called [*small_matrix.csv*](data/s
 
 ```{r error=TRUE}
 sm <- read.table("small_matrix.csv", sep=",") #what happens here?
-#right path
+#check the path
+getwd()
+#now we use the right path
 sm <- read.table("data/small_matrix.csv", sep=",") 
 sm
 #is this an object type matrix?
 is.matrix(sm)
 #can we operate with it as a matrix?
 t(sm)
+#we can force an object to operate as a matrix
 sm * 3
 diag(sm)
-#some operations cannot coerce a matrix
+#some operations cannot coerce a matrix but we can explicit it
 diag(as.matrix(sm))
 heatmap(sm)
 heatmap(as.matrix(sm))

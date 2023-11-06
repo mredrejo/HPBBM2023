@@ -1,5 +1,6 @@
 ---
 title: "R2: Flow Control"
+author: "Luis"
 date: "July 14, 2023"
 date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 
@@ -23,8 +24,6 @@ format:
     code-overflow: wrap
     link-external-icon: true
     link-external-newwindow: true 
-
-
 ---
 
 ```{r wrap-hook, echo=FALSE}
@@ -366,13 +365,14 @@ print(Codons)
 
 ## [Control flow statements]{style="color:blue"}
 
-Sometimes, it may be necessary for a program to skip executing a block of code (or part of it) and move to the next iteration. In other cases, the program may need to exit the loop prematurely if a certain condition is met. To achieve these actions, we can use the next and break statements, respectively. Both control statements are typically invoked within a conditional context.
-For instance, when computing the Shannon Entropy ($H(X)=\sum_i P(x_i) log(Pi)$) of a variable's state distribution, it is common to skip terms with a frequency of zero to avoid encountering the undefined value of $log(0)$.
-Consider the following code, which takes a vector representing the observed absolute frequencies of nucleotides at a specific genomic position and calculates the Shannon Entropy for that position:
+Sometimes, it may be necessary for a program to skip executing a block of code (or part of it) and move to the next iteration. In other cases, the program may need to exit the loop prematurely if a certain condition is met. To achieve these actions, we can use the next and break statements, respectively. Both control statements are typically invoked within a conditional context. For instance, when computing the Shannon Entropy ($H(X)=\sum_i P(x_i) log(Pi)$) of a variable's state distribution, it is common to skip terms with a frequency of zero to avoid encountering the undefined value of $log(0)$. Consider the following code, which takes a vector representing the observed absolute frequencies of nucleotides at a specific genomic position and calculates the Shannon Entropy for that position:
+
 ```{r}
 
 ```
+
 In this code, the next statement is used to skip the calculation of terms with a frequency of zero. This prevents the program from encountering the undefined $\log(0)$ value. The loop continues to the next iteration and calculates the entropy based on non-zero frequencies.
+
 ```{r}
 #| echo: true
 #| eval: true
@@ -395,8 +395,8 @@ By utilizing the next statement, we ensure that the Shannon Entropy computation 
 
 ## [`repeat` loops]{style="color:blue"}
 
-An additional statement in R that allows you to execute a block of code a specific number of times is called repeat. Similar to while loops, the block of code within the repeat statement is repeated until a certain condition is met. However, unlike while loops, the condition itself is not specified within the repeat statement. Instead, the condition is part of the code block, and the loop is terminated using the break statement when the condition is satisfied.
-For example, the following code prints the Fibonacci terms smaller than 250:
+An additional statement in R that allows you to execute a block of code a specific number of times is called repeat. Similar to while loops, the block of code within the repeat statement is repeated until a certain condition is met. However, unlike while loops, the condition itself is not specified within the repeat statement. Instead, the condition is part of the code block, and the loop is terminated using the break statement when the condition is satisfied. For example, the following code prints the Fibonacci terms smaller than 250:
+
 ```{r}
 #| echo: true
 #| eval: true
@@ -409,7 +409,6 @@ repeat{
 }
 print(Fib)
 ```
-
 
 # References
 

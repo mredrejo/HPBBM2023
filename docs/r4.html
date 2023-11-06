@@ -250,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 21, 2023</p>
+      <p class="date-modified">November 6, 2023</p>
     </div>
   </div>
     
@@ -276,7 +276,7 @@ Important
 </div>
 </div>
 <p>Packages can be installed from one of the public R repositories. In this course we will mainly use two R repos, <a href="https://cran.r-project.org/"><strong>CRAN</strong></a> and <a href="https://www.bioconductor.org/"><strong>Bioconductor</strong></a>. CRAN stands for “the Comprehensive R Archive Network”, and it contains a huge variety of packages free to use. On the other hand, as we will see in more detail later on the <a href="r9.html">Lesson R9</a>, Bioconductor is a repository of software devoted to bioinformatics or computational biology applications. As for June 2023, the CRAN package repository features 19,622 available packages whereas Bioconductor release 3.16 contains 2,183 packages.</p>
-<p>A full list of CRAN packages can be found <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">here</a> and a list by topic <a href="https://cran.r-project.org/web/views/">here</a>.</p>
+<p>A full list of CRAN packages can be found <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">here</a> and a list sorted by topic <a href="https://cran.r-project.org/web/views/">here</a>.</p>
 <section id="installing-and-use-r-packages" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installing-and-use-r-packages"><span class="header-section-number">1.1</span> Installing and use R packages</h2>
 <p>As an example, we are going to install and use <code>xlsx</code>, a handy package to import/export tables in MS Excel format. You may also check related packages, such as <code>readxl</code> or <code>pzfx</code>.</p>
@@ -322,7 +322,7 @@ Important
 logical.return = TRUE, : there is no package called 'uam'</code></pre>
 </div>
 </div>
-<p>In the next example, we are going to read the file <em><a href="data/coli_genomes_renamed.csv">coli_genomes_renamed.csv</a></em>, that we used in the lesson R3 and export it ready for MS Excel using the package <code>xlsx</code>.</p>
+<p>In the next example, we are going to read the file <a href="data/coli_genomes_renamed.csv"><em>coli_genomes_renamed.csv</em></a>, that we used in the lesson R3 and export it ready for MS Excel using the package <code>xlsx</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -372,16 +372,16 @@ Cross-lesson tip
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DNA)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   20 obs. of  2 variables:
- $ titles : chr  "A-DNA" "Circular DNA" "DNA" "DNA (disambiguation)" ...
- $ content: chr  "A-DNA is one of the possible double helical structures which DNA can adopt. A-DNA is thought to be one of three"| __truncated__ "Circular DNA is DNA that forms a closed loop and has no ends.  Examples include:Plasmids, mobile genetic elemen"| __truncated__ "Deoxyribonucleic acid ( (listen); DNA) is a polymer composed of two polynucleotide chains that coil around each"| __truncated__ "DNA (deoxyribonucleic acid) is a molecule encoding the genetic instructions for life.DNA may also refer to:" ...</code></pre>
+ $ titles : chr  "A-DNA" "Circular DNA" "Complementary DNA" "DNA" ...
+ $ content: chr  "A-DNA is one of the possible double helical structures which DNA can adopt. A-DNA is thought to be one of three"| __truncated__ "Circular DNA is DNA that forms a closed loop and has no ends.  Examples include:Plasmids, mobile genetic elemen"| __truncated__ "In genetics, complementary DNA (cDNA) is DNA synthesized from a single-stranded RNA (e.g., messenger RNA (mRNA)"| __truncated__ "Deoxyribonucleic acid ( ; DNA) is a polymer composed of two polynucleotide chains that coil around each other t"| __truncated__ ...</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>DNA<span class="sc">$</span>titles</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "A-DNA"                 "Circular DNA"          "DNA"                  
- [4] "DNA (disambiguation)"  "DNA (duo)"             "DNA Oyj"              
- [7] "DNA extraction"        "DNA methylation"       "DNA on DNA"           
-[10] "DNA profiling"         "DNA repair"            "DNA replication"      
-[13] "DNA sequencing"        "DNA vaccine"           "DNA virus"            
+<pre><code> [1] "A-DNA"                 "Circular DNA"          "Complementary DNA"    
+ [4] "DNA"                   "DNA (disambiguation)"  "DNA extraction"       
+ [7] "DNA gyrase"            "DNA ligase"            "DNA methylation"      
+[10] "DNA polymerase"        "DNA profiling"         "DNA repair"           
+[13] "DNA replication"       "DNA sequencing"        "DNA virus"            
 [16] "DNA²"                  "DNA–DNA hybridization" "DnaA"                 
 [19] "Mitochondrial DNA"     "Recombinant DNA"      </code></pre>
 </div>
@@ -579,8 +579,8 @@ is positive, statistically significant, and very large (r = 0.93, 95% CI [0.91,
 <h2 data-number="2.3" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">2.3</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>Write an inline function that transforms concentrations units: molar (M) into micromolar (µM). Test it with your own R session.</p>
 <strong>Select the right answer</strong>
-<div id="radio_HDMRRQOAAP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HDMRRQOAAP" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_HDMRRQOAAP" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_HDMRRQOAAP" value=""> <span>f &lt;- function(x) x 1000</span></label>
+<div id="radio_ROZAPAWIYD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ROZAPAWIYD" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_ROZAPAWIYD" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_ROZAPAWIYD" value=""> <span>f &lt;- function(x) x 1000</span></label>
 </div>
 <hr>
 </section>
@@ -880,7 +880,7 @@ Answer 1
 </div>
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">age</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 228.4 months old"</code></pre>
+<pre><code>[1] "You are about 230.9 months old"</code></pre>
 </div>
 </div>
 </div>
@@ -905,7 +905,7 @@ Answer 2
 <span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "If you were born on 2004-11-17, you are about 228.4 months old."</code></pre>
+<pre><code>[1] "If you were born on 2004-11-17, you are about 230.9 months old."</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -948,7 +948,7 @@ Answer 2
 <p><strong>Write a function that translate <em>any</em> nucleotide sequence into a protein sequence.</strong></p>
 <p>Hints:</p>
 <ol type="1">
-<li><p>You may need to check for the number of nucleotides (<em>i</em>) and the number of codons (<em>j</em>=<em>i</em>/3) in the sequence.</p></li>
+<li><p>You need to check for the number of nucleotides (<em>i</em>) and also the number of codons (<em>j</em> = <em>i</em> / 3) in the sequence.</p></li>
 <li><p>You may use the function <code>substr()</code> (check the help) to divide the sequence into codons. To do so, you may use a loop that split the nucleotides in groups of three.</p></li>
 <li><p>You would add a <code>warning()</code> call when 1-2 nucleotides at the end of the sequence are not used.</p></li>
 <li><p>Use the function <code>readLines()</code> to read the file <a href="data/lacz.fa">lacz.fa</a>, which contains the nucleotide sequence of <em>E. coli</em> lacZ gene in <a href="https://es.wikipedia.org/wiki/Formato_FASTA">fasta</a> format, and obtain the translated sequence.</p></li>
@@ -961,7 +961,7 @@ Answer 2
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.3.0 (2023-04-21)
 Platform: x86_64-apple-darwin20 (64-bit)
-Running under: macOS Ventura 13.4.1
+Running under: macOS Ventura 13.5.2
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
@@ -977,21 +977,21 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] report_0.5.7       ggplot2_3.4.2      xlsx_0.6.5         formatR_1.14      
-[5] knitr_1.43         webexercises_1.1.0
+[1] report_0.5.7       ggplot2_3.4.4      xlsx_0.6.5         formatR_1.14      
+[5] knitr_1.44         webexercises_1.1.0
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.3      jsonlite_1.8.4    dplyr_1.1.2       compiler_4.3.0   
+ [1] gtable_0.3.4      jsonlite_1.8.7    dplyr_1.1.3       compiler_4.3.0   
  [5] tidyselect_1.2.0  scales_1.2.1      yaml_2.3.7        fastmap_1.1.1    
- [9] R6_2.5.1          labeling_0.4.2    generics_0.1.3    htmlwidgets_1.6.2
-[13] tibble_3.2.1      insight_0.19.2    munsell_0.5.0     pillar_1.9.0     
-[17] rlang_1.1.1       utf8_1.2.3        getwiki_0.9.0     xfun_0.39        
-[21] parameters_0.21.1 datawizard_0.7.1  cli_3.6.1         withr_2.5.0      
-[25] magrittr_2.0.3    digest_0.6.31     grid_4.3.0        rstudioapi_0.14  
-[29] rJava_1.0-6       effectsize_0.8.3  lifecycle_1.0.3   vctrs_0.6.2      
-[33] evaluate_0.21     glue_1.6.2        farver_2.1.1      xlsxjars_0.6.1   
-[37] fansi_1.0.4       colorspace_2.1-0  bayestestR_0.13.1 rmarkdown_2.21   
-[41] tools_4.3.0       pkgconfig_2.0.3   htmltools_0.5.5  </code></pre>
+ [9] R6_2.5.1          labeling_0.4.3    generics_0.1.3    htmlwidgets_1.6.2
+[13] tibble_3.2.1      insight_0.19.6    munsell_0.5.0     pillar_1.9.0     
+[17] rlang_1.1.1       utf8_1.2.4        getwiki_0.9.0     xfun_0.40        
+[21] parameters_0.21.2 datawizard_0.9.0  cli_3.6.1         withr_2.5.1      
+[25] magrittr_2.0.3    digest_0.6.33     grid_4.3.0        rstudioapi_0.15.0
+[29] rJava_1.0-6       effectsize_0.8.6  lifecycle_1.0.3   vctrs_0.6.4      
+[33] evaluate_0.22     glue_1.6.2        farver_2.1.1      xlsxjars_0.6.1   
+[37] fansi_1.0.5       colorspace_2.1-0  bayestestR_0.13.1 rmarkdown_2.25   
+[41] tools_4.3.0       pkgconfig_2.0.3   htmltools_0.5.6.1</code></pre>
 </div>
 </div>
 

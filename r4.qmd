@@ -43,20 +43,22 @@ As you already know, R is a '[GNU Software](https://en.wikipedia.org/wiki/GNU)' 
 Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them (help), and some sample data to perform tests.
 :::
 
-
 Packages can be installed from one of the public R repositories. In this course we will mainly use two R repos, [**CRAN**](https://cran.r-project.org/) and [**Bioconductor**](https://www.bioconductor.org/). CRAN stands for "the Comprehensive R Archive Network", and it contains a huge variety of packages free to use. On the other hand, as we will see in more detail later on the [Lesson R9](r9.html), Bioconductor is a repository of software devoted to bioinformatics or computational biology applications. As for June 2023, the CRAN package repository features 19,622 available packages whereas Bioconductor release 3.16 contains 2,183 packages.
 
-A full list of CRAN packages can be found [here](https://cran.r-project.org/web/packages/available_packages_by_name.html) and a list by topic [here](https://cran.r-project.org/web/views/).
+A full list of CRAN packages can be found [here](https://cran.r-project.org/web/packages/available_packages_by_name.html) and a list sorted by topic [here](https://cran.r-project.org/web/views/).
 
 ## Installing and use R packages
 
 As an example, we are going to install and use `xlsx`, a handy package to import/export tables in MS Excel format. You may also check related packages, such as `readxl` or `pzfx`.
+
 ```{r, echo=TRUE, eval=FALSE}
 #install the package
 #CRAN is the repository by default but it can be optionally indicated
 install.packages("xlsx", repos = "https://cran.rstudio.com/")
 ```
+
 You must load the package before using it.
+
 ```{r, error=TRUE}
 #two ways of loading the packages:
 
@@ -82,19 +84,18 @@ Optionally, if you want to unload a package from memory, you can use `detach()`.
 
 In the above code we have used `require()` and `library()` functions to call for package loading. These are very similar functions that are often interchangeable. The main difference is that when you use `require()` and it cannot be executed, you will get a warning (see below for how to use *warning*), but not an error. Therefore, your code will always continue to execute if possible. In the following example, we tried to load an unknown package called `uam`.
 
-
 ```{r, error=TRUE}
 library(uam)
 require(uam)
 ```
 
-In the next example, we are going to read the file *[coli_genomes_renamed.csv](data/coli_genomes_renamed.csv)*, that we used in the lesson R3 and export it ready for MS Excel using the package `xlsx`.
+In the next example, we are going to read the file [*coli_genomes_renamed.csv*](data/coli_genomes_renamed.csv), that we used in the lesson R3 and export it ready for MS Excel using the package `xlsx`.
 
 ::: callout-tip
 # Cross-lesson tip
+
 If you have not worked with the R3 lesson yet, you can take a quick look at how we can [open](r3.html#open-and-explore-a-dataframe) and [save](r3.html#save) a table in R.
 :::
-
 
 ```{r}
 #open it again
@@ -118,7 +119,7 @@ Note that in some cases, as in the package *seqinr*, there is no official vignet
 
 As there are a lot of packages sometimes it takes some time to test different packages for the same analysis. Also, some packages become obsolete with a new R or RStudio version. Thus, is also a good habit to uninstall packages, with the function `remove.package()`.
 
-Sometimes, you can come into two different namesake functions from independent packages. Also, to reduce the memory load you may want to use a function without loading the package. In those cases, as in the examples below, there is a trick to call a specific function, the prefix `package::`. However, it should be noted that in some packages the syntax is complex and you need to call more than one function to actually use a major function. 
+Sometimes, you can come into two different namesake functions from independent packages. Also, to reduce the memory load you may want to use a function without loading the package. In those cases, as in the examples below, there is a trick to call a specific function, the prefix `package::`. However, it should be noted that in some packages the syntax is complex and you need to call more than one function to actually use a major function.
 
 ```{r error=TRUE}
 #package getwiki
@@ -128,9 +129,10 @@ DNA <- getwiki::search_wiki("DNA")
 str(DNA)
 DNA$titles
 ```
-::: {#ggplot}
 
+::: {#ggplot}
 :::
+
 In the four examples below, you will see that `ggplot()` function can be used if you call the package with the prefix `ggplot::`. However, to make a plot you need several functions and you need to either explicit the prefix for all the required functions (option #3) or load the package as in #4. Check the Lesson R7 for more info on *ggplotting*.
 
 ```{r error=TRUE}
@@ -150,12 +152,11 @@ ggplot(iris, aes(Petal.Length, Petal.Width, colour = Species)) +
     geom_point()
 ```
 
-Note that in the example we have plotted some data from the dataset named iris. Did you load that data?
-No need. R has some built-in datasets that can be used as examples for plots or analysis. You can check all of them using the function `data()`.
+Note that in the example we have plotted some data from the dataset named iris. Did you load that data? No need. R has some built-in datasets that can be used as examples for plots or analysis. You can check all of them using the function `data()`.
 
 ## [Quick exercise (I)]{style="color:darkseagreen"}
 
-1. Install the package `report` and check its *vignette* and the info at the package site: <https://easystats.github.io/report/>
+1.  Install the package `report` and check its *vignette* and the info at the package site: <https://easystats.github.io/report/>
 
 ```{r, echo = TRUE, error = TRUE, eval = TRUE, webex.hide = "See an answer"}
 install.packages("report")
@@ -166,12 +167,13 @@ vignette(report)
 #no vignette for report! Check also the CRAN site for further documentation.
 ```
 
-2. As we mentioned in the example with `ggplot` [above](#ggplot), R has some built-in datasets that can be used as examples. Another of those datasets is called *DNase* and it contains data of several experiments of DNase treatment. Explore data and use the `report` [package documentation](https://easystats.github.io/report/) and use it to test correlation between the DNase variables `conc` and `density`.
+2.  As we mentioned in the example with `ggplot` [above](#ggplot), R has some built-in datasets that can be used as examples. Another of those datasets is called *DNase* and it contains data of several experiments of DNase treatment. Explore data and use the `report` [package documentation](https://easystats.github.io/report/) and use it to test correlation between the DNase variables `conc` and `density`.
 
 ```{r, echo = TRUE, error = TRUE, eval = TRUE, webex.hide = "See an answer"}
 report(DNase)
 report(cor.test(DNase$conc, DNase$density))
 ```
+
 # Create user-written functions
 
 ## Why? How?
@@ -414,10 +416,9 @@ price_calculator3(5.2, "normal")
 
 When creating functions, you can include any R functionality, including reading and parsing external data files. Let's do a short exercise, within the context of molecular biology.
 
-**Can you write a function that convert R into a molecular biology dogma interpreter?** 
+**Can you write a function that convert R into a molecular biology dogma interpreter?**
 
-
-You can use the table [*genetic_code.csv*](data/genetic_code.csv), located in the `data` folder that contains the conversion between all the nucleic acid sequence codons and its encoded amino acid in IUPAC one letter code. 
+You can use the table [*genetic_code.csv*](data/genetic_code.csv), located in the `data` folder that contains the conversion between all the nucleic acid sequence codons and its encoded amino acid in IUPAC one letter code.
 
 Try it with some examples, including right and wrong codons, like "ATG", "TAA", "CAT", or "AXG".
 
@@ -484,6 +485,7 @@ In this second example, `aa` is not a numeric variable (=vector of 1 element), b
 
 #See some examples: https://www.geeksforgeeks.org/calculate-time-difference-between-dates-in-r-programming-difftime-function/
 ```
+
 ```{r, echo = TRUE, error=TRUE, eval = TRUE, webex.hide = "Answer 1"}
 #quickest way I found
 age <-  function(x){
@@ -498,6 +500,7 @@ age <-  function(x){
 age(18)
 age("2004-11-17")
 ```
+
 ```{r, echo = TRUE, error=TRUE, eval = TRUE, webex.hide = "Answer 2"}
 #alternative using interactive input & difftime()
 df <-  function(x){
@@ -520,7 +523,6 @@ df()
 
 ------------------------------------------------------------------------
 
-
 # References
 
 -   *R packages*, <https://r-pkgs.org/index.html>
@@ -539,8 +541,8 @@ df()
 
 Check the following links for more short exercises about functions in R.
 
-- <https://www.r-bloggers.com/2016/02/functions-exercises/>
-- <http://mathcenter.oxford.emory.edu/site/math117/probSetRFunctions/>
+-   <https://www.r-bloggers.com/2016/02/functions-exercises/>
+-   <http://mathcenter.oxford.emory.edu/site/math117/probSetRFunctions/>
 
 ------------------------------------------------------------------------
 
@@ -550,7 +552,7 @@ Check the following links for more short exercises about functions in R.
 
 Hints:
 
-1.  You may need to check for the number of nucleotides (*i*) and the number of codons (*j*=*i*/3) in the sequence.
+1.  You need to check for the number of nucleotides (*i*) and also the number of codons (*j* = *i* / 3) in the sequence.
 
 2.  You may use the function `substr()` (check the help) to divide the sequence into codons. To do so, you may use a loop that split the nucleotides in groups of three.
 

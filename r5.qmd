@@ -39,7 +39,7 @@ Data visualization is a very important part of a data analysis because they can 
 
 ![**Anscombe's quartet**. Each of the four datasets consists of 11 data points (orange points) and have nearly identical statistical properties, including means, sample variances, Pearson's sample correlation (r), and linear regression line (blue lines). Modified from Anscombe FJ. Graphs in statistical analysis. Am Stat 1973;27:17--21](images/plots.png){width="400"}
 
-This well-known quartet highlights the importance of graphing data prior to analysis, and why statistical reviewers often ask for such graphs to be made available. Check out also the Dinosaurus example in the [reference 2 below](#refs).
+The above Figure is a well-known quartet highlights the importance of graphing data prior to analysis, and why statistical reviewers often ask for such graphs to be made available. As you can see the Pearson r^2^ is very similar, but the data are actually very different. Check out also the Dinosaurus example in the [reference 2 below](#refs).
 
 ## Which plot should I do with my data?
 
@@ -47,9 +47,9 @@ There are many different types of graphs, each with their own strengths and use 
 
 From a classical data analysis perspective, the first consideration in choosing the right plot is the nature of your variables. Some charts are recommended for numerical data (quantitative variables) and others for categorical data (qualitative variables). Then you should consider what role you want your data visualization to play, i.e., what question you want to answer or what message you want to convey. This depends on the number of variables as well as their distribution, grouping or correlation. There are some best practice guidelines, but ultimately you need to consider what is best for your data. What do you want to show? What chart best conveys your message? Is it a comparison between groups? Is it a frequency distribution of 1 variable?
 
-for a guidance, you can use the *Chartchooser* below, by Andrew Abela.
-
 ![**The *ExtremePresentation* method for choosing a plot or chart.**](images/chart-chart1.jpg){width="1000"}
+
+For a guidance, you can use the *Chartchooser* above, by Andrew Abela, or the interactive website Visual Vocabulary [here](https://ft-interactive.github.io/visual-vocabulary/).
 
 You can see a description of some of the most common plot types, with many examples on books and dedicated R websites. I suggest to take a look to some of the suggested [References](#References) below, or some **quick examples**, like those [here](https://intro2r.com/simple-base-r-plots.html) or [here](https://hbctraining.github.io/Intro-to-R/lessons/basic_plots_in_r.html). Rather than going through a wide list of plots, we are going to use some examples to learn some basic plotting and see the effect of plot selection in order to understand your data and use them to answer questions.
 
@@ -100,6 +100,7 @@ We have a vector in a *RData* file called [primes.RData](%22data/primes.RData%22
 
 ::: callout-tip
 # Cross-lesson tip
+
 If you have not worked with the R3 lesson yet, you can take a quick look at how we can [save](r3.html#save1) and [load](r3.html#load) objects into a RData file.
 :::
 
@@ -153,6 +154,7 @@ As an example, we are going to read again the file [*coli_genomes_renamed.csv*](
 
 ::: callout-tip
 # Cross-lesson tip
+
 If you have not worked with the R3 lesson yet, you can take a quick look at how we can [open](r3.html#open-and-explore-a-dataframe) and [save](r3.html#save) a table in R.
 :::
 

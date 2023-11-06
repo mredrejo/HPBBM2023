@@ -1,5 +1,6 @@
 ---
 title: "R1: Variables, Operators and data structures"
+author: "Luis"
 date: "July 4, 2023"
 date-modified: "`r format(Sys.time(), '%Y-%m-%d (%H:%M h)')`"
 categories: 
@@ -20,7 +21,6 @@ number-sections: true
 code-overflow: wrap
 link-external-icon: true
 link-external-newwindow: true 
-
 ---
 
 ```{r wrap-hook, echo=FALSE}
