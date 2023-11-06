@@ -37,7 +37,7 @@ editor: visual
 ## [Wellcome & Disclaimer]{style="color:darkblue"}
 
 ::: callout-warning
-## Under construction
+## Under construction, note that it can be updated during the Course
 :::
 
 ::: {style="float: right; position: relative; top: 0px; padding: 3px;"}
@@ -46,7 +46,7 @@ editor: visual
 
 [^1]: See the code in the script *r_sticker.R* in the repo.
 
-[^2]: See the code in the script *r_sticker.R* in the repo.
+
 
 This site contains the materials for the *Coding tools for Biochemistry & Molecular Biology* (Herramientas de Programación para Bioquímica y Biología Molecular, a.k.a. **HPBBM**) course of **fall 2023** in the Bachelor's Degree in Biochemistry \@[UAM](www.uam.es) (Universidad Autónoma de Madrid, Spain). Source files are available at the [{{< bi github >}} repo](https://github.com/mredrejo/HPBBM2023), containing the source files and the data used in the examples and exercises. The icon [{{< bi cloud-download >}}](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2022/tree/main/data) on the top-right corner in all the site pages will allow you to download the repo **data** folder (link generated with [DownGit](https://yehonal.github.io/DownGit/#/home)). Note that this folder can be updated during the course. For reference, materials from **2022** course edition are available in the [HPBBM2022 site](https://mredrejo.github.io/HPBBM2022/).
 
@@ -54,7 +54,8 @@ Course Syllabus can be checked at [UAM site](https://secretaria-virtual.uam.es/d
 
 ::: callout-tip
 # How to use this site
-These materials were designed to be an interactive resource. Think about the code and test it with your computer.
+These materials have been designed as an interactive and self-learning resource. As you go through the lessons, think about the code beforehand and then test it with your computer. Then try out the exercises. 
+You can consult the references for additional examples or help and also ask the instructor in the on-site classes.
 :::
 
 ::: callout-caution
