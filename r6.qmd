@@ -473,9 +473,16 @@ Rather than describing in detail all the functions, in the following examples we
 
 ```{r, output.lines=(1:6)}
 #apply()
-apply(vaccines[,4:12], 1, mean, na.rm=TRUE)
+apply(vaccines[,4:12], MARGIN = 1, FUN = mean, na.rm=TRUE)
 apply(vaccines[,4:12], 2, mean, na.rm=TRUE) # 1 for row-wise operation, 2 for column-wise
 ```
+
+```{r}
+apply(vaccines, 2, is.numeric)
+apply(vaccines[,3:6], 2, is.numeric)
+```
+
+Note that you can use any function, although `apply()`is best suited for numeric calculations as it coerces your data to an array (via `as.matrix()`). Thus, when a dataframe cannot be transformed in a matrix your function may return fail. In the example above `is.numeric()` returns false for all columns within the apply when the dataframe contains character data, but if we use a subset that only contains numeric data the result makes sense. As you can see below, `sapply()` and `lapply()` are best suited for this kind of functions.
 
 ```{r error=TRUE,output.lines=(1:25)}
 #lapply() and sapply() are very useful
@@ -492,7 +499,8 @@ class(sapply(by(vaccines$Population,vaccines$ReportingCountry,mean), log10) )
 
 
 sapply(list(vaccines2$Population, vaccines2$FirstDose,vaccines2$SecondDose, vaccines2$NumberDosesReceived), median) # we can do it with several variables
-sapply(vaccines2,class) #calculations is a broad concept here
+sapply(vaccines2,class) #again, you can use any function, not only numeric calculations
+sapply(vaccines2, is.numeric) 
 ```
 
 ```{r error=TRUE,output.lines=(1:10)}

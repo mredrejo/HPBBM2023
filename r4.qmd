@@ -57,6 +57,14 @@ As an example, we are going to install and use `xlsx`, a handy package to import
 install.packages("xlsx", repos = "https://cran.rstudio.com/")
 ```
 
+::: callout-caution
+## Package requirements
+
+Some R packages may have additional requirements. This is something that is not very common and is outside of R or RStudio, as it depends on how the package was developed. Therefore, there is no general rule or recommendation here.
+
+After testing with students in class, I realized that the `xlsx` package requires the path of your Java executable. There are a [few ](https://www.r-statistics.com/2012/08/how-to-load-the-rjava-package-after-the-error-java_home-cannot-be-determined-from-the-registry/)[ways ](https://stackoverflow.com/a/43183004)you could fix it, but my suggestion would be to use a package that does not have depend on Java. Now that you know how to install and load packages, you can also try other packages for reading and writing XLS files, such as [openxlsx ](https://cran.r-project.org/web/packages/openxlsx/index.html)or [readxl](https://cran.r-project.org/web/packages/readxl/index.html).
+:::
+
 You must load the package before using it.
 
 ```{r, error=TRUE}
@@ -343,11 +351,11 @@ price_calculator <- function(samples, category){
   categories<-c(1,1.15,2)
   names(categories)=c("normal","priority","urgent")
   if(samples < 10 ){
-    price<-19 * samples * which(names(categories)==category)
+    price<-19 * samples * categories[which(names(categories)==category)]
   } else if (samples < 50 ){
-    price<-14 * samples * which(names(categories)==category)
+    price<-14 * samples * categories[which(names(categories)==category)]
   } else if (samples >= 50  ){
-    price<-10 * samples * which(names(categories)==category)
+    price<-10 * samples * categories[which(names(categories)==category)]
   }
 paste("El precio es de",price, "euros.")
 }
@@ -356,6 +364,14 @@ price_calculator(10,"urgent")
 price_calculator(10,"urgnt")
 ```
 
+::: callout-note
+## Use of Which and Switch
+
+Note that `which()` gives you a vector with the index or [indices]{.underline} of the vector, not the actual values. That's why we are using `categories[]` to obtain the desired subset; in this case, the [value]{.underline} of the vector element that accomplish the condition indicated with which.
+
+In the following example, we used a more straightforward approach. We just switched the strings ("normal", "priority" and "urgent") for the numeric values, using the function `switch()`. You can see more examples of the use of `switch()` in this [link](https://www.learnbyexample.org/r-switch-function/).
+:::
+
 It seems to work, but it is not detecting wrong data input. How could we introduce checkpoints for the introduced arguments?
 
 ```{r error=TRUE}
@@ -363,7 +379,7 @@ It seems to work, but it is not detecting wrong data input. How could we introdu
 price_calculator2 <- function(samples, category = "normal"|"priority"|"urgent"){
     category <-  switch (category,
       normal = 1,
-      priority = 1.5,
+      priority = 1.15,
       urgent = 2)
     if(samples < 10 ){
       price <- 19 * samples * category
@@ -388,7 +404,7 @@ We just noticed that the function calculated the price for 5.3 samples, which is
 price_calculator3 <- function(samples, category = "normal"|"priority"|"urgent"){
   category <-  switch (category,
                        normal = 1,
-                       priority = 1.5,
+                       priority = 1.15,
                        urgent = 2)
   if (abs(floor(samples)) != samples){ # check that number of samples is an integer number
     stop("Número de muestras incorrecto")
