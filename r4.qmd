@@ -77,7 +77,7 @@ require(xlsx)
 
 #help
 help(xlsx)
-??xlsx
+#you can also write in the console ??xlsx
 
 #you can use an if statement to install package only if not installed 
 if(!require(xlsx)){
