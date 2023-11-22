@@ -132,7 +132,7 @@ As with any other language, it is much easier to learn the syntax if you do some
 ::: callout-tip
 # Knitting PDFs
 
-Note that knitting into *pdf* may require the installation of a LaTeX distribution or R package. There are several alternatives, like `tinytex`, `MacTeX` or `MikTeX`, among others (see [references 9 and 10](#r9)).
+Note that knitting into *pdf* may require the installation of a LaTeX distribution or R package. There are several alternatives, like `tinytex`, `MacTeX` or `MikTeX`, among others (see [references 10 and 11](#r10)).
 :::
 
 ## R Notebooks
@@ -155,31 +155,33 @@ Besides the references below, I suggest you to check these [examples](https://qu
 
 2.  RStudio Projects: <https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects>
 
-3.  Version control in R (Spanish):
+3.  Higgins, P. D. R. [Reproducible Medical Research with R.](https://bookdown.org/pdr_higgins/rmrwr/)
+
+4.  Version control in R (Spanish):
 
     -   <https://swcarpentry.github.io/git-novice-es/14-supplemental-rstudio/>
 
     -   <https://rstudio-pubs-static.s3.amazonaws.com/500747_14d4ccd16023430d82d175bae0d2f5a6.html>
 
-4.  **R Markdown Cheat Sheet**: <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
+5.  **R Markdown Cheat Sheet**: <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
 
-5.  Formatting HTML documents with RMarkdown: <https://bookdown.org/yihui/rmarkdown/html-document.html>
+6.  Formatting HTML documents with RMarkdown: <https://bookdown.org/yihui/rmarkdown/html-document.html>
 
-6.  r-cubed: **R**eproducible **R**esearch in **R**: <https://jose.theoj.org/papers/10.21105/jose.00122>
+7.  r-cubed: **R**eproducible **R**esearch in **R**: <https://jose.theoj.org/papers/10.21105/jose.00122>
 
-7.  Create interactive documents with Quarto: <https://appsilon.com/r-quarto-tutorial/>
+8.  Create interactive documents with Quarto: <https://appsilon.com/r-quarto-tutorial/>
 
-8.  ::: {#r9}
-    Create PDF reports with R Markdown: [https://medium.com/\@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9](https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9)
+9.  Create PDF reports with R Markdown: [https://medium.com/\@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9](https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9)
+
+10. ::: {#r10}
+    R Markdown and Tinytex installation: <https://bookdown.org/yihui/rmarkdown/installation.html>
     :::
 
-9.  R Markdown and Tinytex installation: <https://bookdown.org/yihui/rmarkdown/installation.html>
+11. R Markdown chunk options: <https://rpubs.com/Lingling912/870659>
 
-10. R Markdown chunk options: <https://rpubs.com/Lingling912/870659>
+12. Quarto Reference Guide: <https://quarto.org/docs/guide/>
 
-11. Quarto Reference Guide: <https://quarto.org/docs/guide/>
-
-12. How to interactive websites with Quarto: <https://www.r-bloggers.com/2022/07/r-quarto-tutorial-how-to-create-interactive-markdown-documents/>
+13. How to interactive websites with Quarto: <https://www.r-bloggers.com/2022/07/r-quarto-tutorial-how-to-create-interactive-markdown-documents/>
 
 # Session Info
 

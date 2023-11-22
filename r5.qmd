@@ -119,9 +119,9 @@ Now we want to plot the vector. You may try different plots, but think which plo
 opts_p <- c( "plot(new_vec)",
    "hist(new_vec, breaks=c(0,25,50,75,100))",
    answer = "boxplot(new_vec)",
-   "hist(new_vec, breaks=c(0,25,50,75,100))")
+   "hist(new_vec, breaks=c(0,100,200,300,400))")
 
-cat("**In which quartile of the vector values there are more elements?**",longmcq(opts_p))
+cat("**How would you check the distribution of the data? In other words, how would you check if are there many values below or above the median?**",longmcq(opts_p))
 ```
 
 Yes, a boxplot is the best choice here.
@@ -135,8 +135,8 @@ Here's how to interpret this boxplot:
 
 -   The bottom whisker displays the minimum value.
 -   The bottom line of the box displays the first quartile value.
--   The black bar in the middle of the box displays the second quartile value.
--   The top line of the box displays the third quartile value (also known as the **median**).
+-   The black bar in the middle of the box displays the second quartile value (also known as the **median**).
+-   The top line of the box displays the third quartile value.
 -   The top whisker displays the maximum value.
 
 We can also easily calculate the quartiles of a given dataset in R by using the `quantile()` function.

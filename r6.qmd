@@ -293,9 +293,12 @@ Even with large datasets, we can use `table()` or `summary()` functions, to over
 
 ```{r error=TRUE}
 table(vaccines$Region)
+```
+```{r output.lines=(1:30)}
 head(table(vaccines$Region, vaccines$NumberDosesReceived)) 
+```
+```{r error=TRUE}
 summary(vaccines[which(vaccines$Region=="ES"),][,6]) #see the data from Spain
-
 table(vaccines)
 ```
 

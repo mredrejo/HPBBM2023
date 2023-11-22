@@ -68,7 +68,7 @@ The functions `getwd()` and `setwd()` allow you to check and change the *wd*. Tr
 getwd()
 setwd("/Users/modesto")
 getwd()
-#Obviously the path must call an existing directory (not typos allowed)
+#Obviously the path must call an existing directory (no typos allowed)
 setwd("/Users/modsto/Documents/GitHub/HPBBM2023") 
 setwd("/Users/modesto/Documents/GitHub/HPBBM2023")
 getwd()
@@ -90,8 +90,8 @@ How would you change de *wd* to the folder `HPBBM2023/data`? You also can try wi
 ```{r wd, echo = FALSE, results = 'asis'}
 opts_p <- c(
    "setwd(\"HPBBM2023/data\")",
-   answer = "setwd(\"/home/modesto/teaching/2023_2024/HPBBM2023/data\")",
-   "setwd(\"/Users/modesto/teaching/2023_2024/HPBBM2023/data\")")
+   answer = "setwd(\"/home/modesto/Documents/teaching/2023_2024/HPBBM2023/data\")",
+   "setwd(\"/Users/modesto/teaching/Documents/2023_2024/HPBBM2023/data\")")
 
 cat("**Select the right answer**",longmcq(opts_p))
 ```
@@ -105,7 +105,7 @@ cat("**Select the right answer**",longmcq(opts_p))
 
 The most common way to read your data in R is importing it as a table, using the function `read.table()`. Note that the resultant object will become a *Dataframe*, even when all the entries got to be numeric. A followup call towards `as.matrix()` will turn it into in a matrix.
 
-In the following example lines we read a file called [*small_matrix.csv*](data/small_matrix.csv), located in the `data`folder. If we attempt to make some matrix calculations, R will force the dataframe to a matrix when possible, but it will return an Error for many matrix-specific operations or functions unless, we transform the dataframe into a matrix.
+In the following example lines we read a file called [*small_matrix.csv*](data/small_matrix.csv), located in the `data` folder. If we attempt to make some matrix calculations, R will force the dataframe to a matrix when possible, but it will return an Error for many matrix-specific operations or functions unless, we transform the dataframe into a matrix.
 
 ```{r error=TRUE}
 sm <- read.table("small_matrix.csv", sep=",") #what happens here?
@@ -126,6 +126,11 @@ diag(as.matrix(sm))
 heatmap(sm)
 heatmap(as.matrix(sm))
 ```
+
+
+::: callout-tip
+Note that `read.table()` and its wrappers `read.csv()` or `read.csv2()` are mostly use for reading dataframes. If your want to read text files, like in the case of biological sequences, you can use other functions, like `readLines()`, described in the [Lesson 9](r9.html).
+:::
 
 You can write any data object(s) as binary data file or as text files. Compare the different files saved in the code below.
 
@@ -162,21 +167,21 @@ vector2
 ```
 
 ::: callout-caution
-Note that if you save your data with `save()`, it cannot be restored under different name. The original object names are automatically used.
-If you want to save the object and restore with a different name you need to use the functions `saveRDS()` and `readRDS()`
+Note that if you save your data with `save()`, it cannot be restored under a different name. The original object names are automatically used.
+If you want to save the object and restore it with a different name you need to use the functions `saveRDS()` and `readRDS()`
 :::
 
 ------------------------------------------------------------------------
 
 ## [Quick exercise (II)]{style="color:darkseagreen"}
 
-We are using the same directory tree. Your *wd* is `HPBBM2022/data` and you need to save a data.frame named `table1` as `table1.csv` in the folder `HPBBM2022/data` using `;` as separator. How would you do it *without changing* the working directory? Try it also with your own computer.
+We are using the same directory tree. Your *wd* is `HPBBM2022/data` and you need to save a data.frame named `table1` as `table1.csv` in the folder `HPBBM2023/data` using `;` as separator. How would you do it *without changing* the working directory? Try it also with your own computer.
 
 ```{r  echo = FALSE, results = 'asis'}
 opts_p <- c(
-   answer = "write.table(table1, \"../../../HPBBM2023/data/table1.csv\", sep=\";\" ",
-   "write.table(table1, \"../../HPBBM2023/data/table1.csv\", sep=\";\" ",
-   "write.table(table1, \"../../../HPBBM2023/data/table1.csv\""
+   answer = "write.table(table1, \"../../../HPBBM2023/data/table1.csv\", sep=\";\") ",
+   "write.table(table1, \"../../HPBBM2023/data/table1.csv\", sep=\";\") ",
+   "write.table(table1, \"../../../HPBBM2023/data/table1.csv\")"
 )
 
 
@@ -336,7 +341,7 @@ Now, we need to save the current version of `coli_genomes` in the data folder, u
 
 ```{r  echo = FALSE, results = 'asis'}
 
-opts <- c("write.tabla", 
+opts <- c("write.table", 
             "write.csv2", 
             answer = "write.csv", 
             "save")

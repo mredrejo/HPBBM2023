@@ -136,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./r2.html" rel="" target="">
- <span class="dropdown-text">[Flow control]{style="color:darkblue"}</span></a>
+ <span class="dropdown-text">R2: Flow Control</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./r3.html" rel="" target="">
@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 21, 2023</p>
+      <p class="date-modified">November 13, 2023</p>
     </div>
   </div>
     
@@ -309,7 +309,7 @@ Knitting PDFs
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note that knitting into <em>pdf</em> may require the installation of a LaTeX distribution or R package. There are several alternatives, like <code>tinytex</code>, <code>MacTeX</code> or <code>MikTeX</code>, among others (see <a href="#r9">references 9 and 10</a>).</p>
+<p>Note that knitting into <em>pdf</em> may require the installation of a LaTeX distribution or R package. There are several alternatives, like <code>tinytex</code>, <code>MacTeX</code> or <code>MikTeX</code>, among others (see <a href="#r10">references 10 and 11</a>).</p>
 </div>
 </div>
 </section>
@@ -334,7 +334,7 @@ Knitting PDFs
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.3.0 (2023-04-21)
 Platform: x86_64-apple-darwin20 (64-bit)
-Running under: macOS Ventura 13.4.1
+Running under: macOS Ventura 13.5.2
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
@@ -350,13 +350,13 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] formatR_1.14       knitr_1.43         webexercises_1.1.0
+[1] formatR_1.14       knitr_1.44         webexercises_1.1.0
 
 loaded via a namespace (and not attached):
  [1] htmlwidgets_1.6.2 compiler_4.3.0    fastmap_1.1.1     cli_3.6.1        
- [5] htmltools_0.5.5   tools_4.3.0       rstudioapi_0.14   yaml_2.3.7       
- [9] rmarkdown_2.21    jsonlite_1.8.4    digest_0.6.31     xfun_0.39        
-[13] rlang_1.1.1       evaluate_0.21    </code></pre>
+ [5] htmltools_0.5.6.1 tools_4.3.0       rstudioapi_0.15.0 yaml_2.3.7       
+ [9] rmarkdown_2.25    jsonlite_1.8.7    digest_0.6.33     xfun_0.40        
+[13] rlang_1.1.1       evaluate_0.22    </code></pre>
 </div>
 </div>
 
@@ -368,6 +368,7 @@ loaded via a namespace (and not attached):
 <ol type="1">
 <li><p><em>R Crash Course for Biologist.</em> Robert I. Coulatti. November 2022 (GitHub repository <a href="https://github.com/ColauttiLab/RCrashCourse_Book" class="uri">https://github.com/ColauttiLab/RCrashCourse_Book</a>).</p></li>
 <li><p>RStudio Projects: <a href="https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects" class="uri">https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects</a></p></li>
+<li><p>Higgins, P. D. R. <a href="https://bookdown.org/pdr_higgins/rmrwr/">Reproducible Medical Research with R.</a></p></li>
 <li><p>Version control in R (Spanish):</p>
 <ul>
 <li><p><a href="https://swcarpentry.github.io/git-novice-es/14-supplemental-rstudio/" class="uri">https://swcarpentry.github.io/git-novice-es/14-supplemental-rstudio/</a></p></li>
@@ -377,10 +378,10 @@ loaded via a namespace (and not attached):
 <li><p>Formatting HTML documents with RMarkdown: <a href="https://bookdown.org/yihui/rmarkdown/html-document.html" class="uri">https://bookdown.org/yihui/rmarkdown/html-document.html</a></p></li>
 <li><p>r-cubed: <strong>R</strong>eproducible <strong>R</strong>esearch in <strong>R</strong>: <a href="https://jose.theoj.org/papers/10.21105/jose.00122" class="uri">https://jose.theoj.org/papers/10.21105/jose.00122</a></p></li>
 <li><p>Create interactive documents with Quarto: <a href="https://appsilon.com/r-quarto-tutorial/" class="uri">https://appsilon.com/r-quarto-tutorial/</a></p></li>
-<li><div id="r9">
-<p>Create PDF reports with R Markdown: <a href="https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9">https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9</a></p>
+<li><p>Create PDF reports with R Markdown: <a href="https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9">https://medium.com/@sorenlind/create-pdf-reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9</a></p></li>
+<li><div id="r10">
+<p>R Markdown and Tinytex installation: <a href="https://bookdown.org/yihui/rmarkdown/installation.html" class="uri">https://bookdown.org/yihui/rmarkdown/installation.html</a></p>
 </div></li>
-<li><p>R Markdown and Tinytex installation: <a href="https://bookdown.org/yihui/rmarkdown/installation.html" class="uri">https://bookdown.org/yihui/rmarkdown/installation.html</a></p></li>
 <li><p>R Markdown chunk options: <a href="https://rpubs.com/Lingling912/870659" class="uri">https://rpubs.com/Lingling912/870659</a></p></li>
 <li><p>Quarto Reference Guide: <a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></p></li>
 <li><p>How to interactive websites with Quarto: <a href="https://www.r-bloggers.com/2022/07/r-quarto-tutorial-how-to-create-interactive-markdown-documents/" class="uri">https://www.r-bloggers.com/2022/07/r-quarto-tutorial-how-to-create-interactive-markdown-documents/</a></p></li>

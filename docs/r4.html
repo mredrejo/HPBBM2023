@@ -250,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 8, 2023</p>
+      <p class="date-modified">November 22, 2023</p>
     </div>
   </div>
     
@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="r-packages" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> R packages</h1>
-<p>As you already know, R is a ‘<a href="https://en.wikipedia.org/wiki/GNU">GNU Software</a>’ with a <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License">GPL</a> license. As a a freely available language it has a great community of users from diverse background and interests. This community have developed a myriad of applications for R, called <strong><em>R Packages</em></strong>. The idea behind R packages is that the chances are that someone has already solved a problem that you’re working on, and you can benefit from their work by downloading their package.</p>
+<p>As you already know, R is a ‘<a href="https://en.wikipedia.org/wiki/GNU">GNU Software</a>’ with a <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License">GPL</a> license. As a a freely available language it has a great community of users from diverse background and interests. This community has developed a myriad of applications for R, called <strong><em>R Packages</em></strong>. The idea behind R packages is that the chances are that someone has already solved a problem that you’re working on, and you can benefit from their work by downloading their package.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -281,9 +281,10 @@ Important
 <h2 data-number="1.1" class="anchored" data-anchor-id="installing-and-use-r-packages"><span class="header-section-number">1.1</span> Installing and use R packages</h2>
 <p>As an example, we are going to install and use <code>xlsx</code>, a handy package to import/export tables in MS Excel format. You may also check related packages, such as <code>readxl</code> or <code>pzfx</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the package CRAN is the repository by default but it can be</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># optionally indicated</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"xlsx"</span>, <span class="at">repos =</span> <span class="st">"https://cran.rstudio.com/"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"xlsx"</span>, <span class="at">repos =</span> <span class="st">"https://cran.rstudio.com/"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># CRAN is the repository by default but it can be optionally indicated</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -396,14 +397,14 @@ Cross-lesson tip
  [7] "DNA ligase"            "DNA methylation"       "DNA polymerase"       
 [10] "DNA profiling"         "DNA repair"            "DNA replication"      
 [13] "DNA sequencing"        "DNA virus"             "DNA²"                 
-[16] "DNA–DNA hybridization" "DnaA"                  "Mitochondrial DNA"    
-[19] "Recombinant DNA"       "Z-DNA"                </code></pre>
+[16] "DNA–DNA hybridization" "DnaA"                  "Environmental DNA"    
+[19] "Mitochondrial DNA"     "Recombinant DNA"      </code></pre>
 </div>
 </div>
 <div id="ggplot">
 
 </div>
-<p>In the four examples below, you will see that <code>ggplot()</code> function can be used if you call the package with the prefix <code>ggplot::</code>. However, to make a plot you need several functions and you need to either explicit the prefix for all the required functions (option #3) or load the package as in #4. Check the Lesson R7 for more info on <em>ggplotting</em>.</p>
+<p>In the four examples below, you will see that <code>ggplot()</code> function can be used if you call the package with the prefix <code>ggplot::</code>. However, to make a plot you need several functions and you need to either explicit the prefix for all the required functions (option #3) or load the package, as in #4. Check the <a href="r7.html">Lesson R7</a> for more info on <em>ggplotting</em>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># package ggplot2 1: no package load or calling with prefix</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Petal.Length, Petal.Width, <span class="at">colour =</span> Species)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -492,7 +493,7 @@ is positive, statistically significant, and very large (r = 0.93, 95% CI [0.91,
 <h1 data-number="2"><span class="header-section-number">2</span> Create user-written functions</h1>
 <section id="why-how" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="why-how"><span class="header-section-number">2.1</span> Why? How?</h2>
-<p>We have discussed throughout the last lectures how R can help you if you to save time when you need to analyze and plot the data from your experiment. However, many times, particularly in Bioinformatics, you won’t have the data from one single experiment but from many of them.</p>
+<p>We have discussed throughout the last lectures how R can help you saving time when you need to analyze and plot the data from your experiment. However, many times, particularly in Bioinformatics, you won’t have the data from one single experiment but from many of them.</p>
 <p>Creating you own function will be very useful for automation of repetitive analyses or to encapsulate a sequence of expressions that need to be executed numerous times, perhaps under slightly different conditions. Functions are also often written when code must be shared with others or the public.</p>
 <p>In R, functions are also considered as objects. That means that (1) they can be nested, so you can define a function inside another function and (2) you can use functions as arguments to other functions. We will see very useful examples of this latter feature in <a href="r6.html">Lesson R6</a>, using custom functions as arguments for <code>aggregate()</code>, <code>xtabs()</code>, <code>lapply()</code> or <code>sapply()</code>.</p>
 <p>The overall scheme of an R function is the following:</p>
@@ -593,8 +594,8 @@ is positive, statistically significant, and very large (r = 0.93, 95% CI [0.91,
 <h2 data-number="2.3" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">2.3</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
 <p>Write an inline function that transforms concentrations units: molar (M) into micromolar (µM). Test it with your own R session.</p>
 <strong>Select the right answer</strong>
-<div id="radio_GRHGTSCLZF" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GRHGTSCLZF" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_GRHGTSCLZF" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_GRHGTSCLZF" value=""> <span>f &lt;- function(x) x 1000</span></label>
+<div id="radio_DFITGQDMOZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DFITGQDMOZ" value=""> <span>f &lt;- function(x) 1000</span></label><label><input type="radio" autocomplete="off" name="radio_DFITGQDMOZ" value="answer"> <span>f &lt;- function(x) x * 1000</span></label><label><input type="radio" autocomplete="off" name="radio_DFITGQDMOZ" value=""> <span>f &lt;- function(x) x 1000</span></label>
 </div>
 <hr>
 </section>
@@ -908,7 +909,7 @@ Answer 1
 </div>
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">age</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "You are about 231 months old"</code></pre>
+<pre><code>[1] "You are about 231.5 months old"</code></pre>
 </div>
 </div>
 </div>
@@ -933,7 +934,7 @@ Answer 2
 <span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="st">"2004-11-17"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "If you were born on 2004-11-17, you are about 231 months old."</code></pre>
+<pre><code>[1] "If you were born on 2004-11-17, you are about 231.5 months old."</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span>(<span class="dv">18</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">

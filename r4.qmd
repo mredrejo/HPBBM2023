@@ -37,7 +37,7 @@ knitr::opts_knit$set(root.dir = "~/Documents/GitHub/HPBBM2023")
 
 # R packages
 
-As you already know, R is a '[GNU Software](https://en.wikipedia.org/wiki/GNU)' with a [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) license. As a a freely available language it has a great community of users from diverse background and interests. This community have developed a myriad of applications for R, called ***R Packages***. The idea behind R packages is that the chances are that someone has already solved a problem that you're working on, and you can benefit from their work by downloading their package.
+As you already know, R is a '[GNU Software](https://en.wikipedia.org/wiki/GNU)' with a [GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) license. As a a freely available language it has a great community of users from diverse background and interests. This community has developed a myriad of applications for R, called ***R Packages***. The idea behind R packages is that the chances are that someone has already solved a problem that you're working on, and you can benefit from their work by downloading their package.
 
 ::: callout-important
 Packages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them (help), and some sample data to perform tests.
@@ -53,8 +53,9 @@ As an example, we are going to install and use `xlsx`, a handy package to import
 
 ```{r, echo=TRUE, eval=FALSE}
 #install the package
-#CRAN is the repository by default but it can be optionally indicated
+
 install.packages("xlsx", repos = "https://cran.rstudio.com/")
+#CRAN is the repository by default but it can be optionally indicated
 ```
 
 ::: callout-caution
@@ -62,7 +63,7 @@ install.packages("xlsx", repos = "https://cran.rstudio.com/")
 
 Some R packages may have additional requirements. This is something that is not very common and is outside of R or RStudio, as it depends on how the package was developed. Therefore, there is no general rule or recommendation here.
 
-After testing with students in class, I realized that the `xlsx` package requires the path of your Java executable. There are a [few ](https://www.r-statistics.com/2012/08/how-to-load-the-rjava-package-after-the-error-java_home-cannot-be-determined-from-the-registry/)[ways ](https://stackoverflow.com/a/43183004)you could fix it, but my suggestion would be to use a package that does not have depend on Java. Now that you know how to install and load packages, you can also try other packages for reading and writing XLS files, such as [openxlsx ](https://cran.r-project.org/web/packages/openxlsx/index.html)or [readxl](https://cran.r-project.org/web/packages/readxl/index.html).
+After testing with students in class, I realized that the `xlsx` package requires the path of your Java executable. There are a [few](https://www.r-statistics.com/2012/08/how-to-load-the-rjava-package-after-the-error-java_home-cannot-be-determined-from-the-registry/)[ways](https://stackoverflow.com/a/43183004)you could fix it, but my suggestion would be to use a package that does not have depend on Java. Now that you know how to install and load packages, you can also try other packages for reading and writing XLS files, such as [openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html)or [readxl](https://cran.r-project.org/web/packages/readxl/index.html).
 :::
 
 You must load the package before using it.
@@ -141,7 +142,7 @@ DNA$titles
 ::: {#ggplot}
 :::
 
-In the four examples below, you will see that `ggplot()` function can be used if you call the package with the prefix `ggplot::`. However, to make a plot you need several functions and you need to either explicit the prefix for all the required functions (option #3) or load the package as in #4. Check the Lesson R7 for more info on *ggplotting*.
+In the four examples below, you will see that `ggplot()` function can be used if you call the package with the prefix `ggplot::`. However, to make a plot you need several functions and you need to either explicit the prefix for all the required functions (option #3) or load the package, as in #4. Check the [Lesson R7](r7.html) for more info on *ggplotting*.
 
 ```{r error=TRUE}
 #package ggplot2
@@ -186,7 +187,7 @@ report(cor.test(DNase$conc, DNase$density))
 
 ## Why? How?
 
-We have discussed throughout the last lectures how R can help you if you to save time when you need to analyze and plot the data from your experiment. However, many times, particularly in Bioinformatics, you won't have the data from one single experiment but from many of them.
+We have discussed throughout the last lectures how R can help you saving time when you need to analyze and plot the data from your experiment. However, many times, particularly in Bioinformatics, you won't have the data from one single experiment but from many of them.
 
 Creating you own function will be very useful for automation of repetitive analyses or to encapsulate a sequence of expressions that need to be executed numerous times, perhaps under slightly different conditions. Functions are also often written when code must be shared with others or the public.
 

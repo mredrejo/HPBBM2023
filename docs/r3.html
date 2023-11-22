@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 6, 2023</p>
+      <p class="date-modified">November 22, 2023</p>
     </div>
   </div>
     
@@ -280,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/Users/modesto"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obviously the path must call an existing directory (not</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obviously the path must call an existing directory (no</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># typos allowed)</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/Users/modsto/Documents/GitHub/HPBBM2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -300,8 +300,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/tree.png" class="img-fluid" width="279"></p>
 <p>How would you change de <em>wd</em> to the folder <code>HPBBM2023/data</code>? You also can try with your own computer and your directory tree.</p>
 <strong>Select the right answer</strong>
-<div id="radio_SEDNDPBNEC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SEDNDPBNEC" value=""> <span>setwd(“HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_SEDNDPBNEC" value="answer"> <span>setwd(“/home/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_SEDNDPBNEC" value=""> <span>setwd(“/Users/modesto/teaching/2023_2024/HPBBM2023/data”)</span></label>
+<div id="radio_AACWKUFWQD" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_AACWKUFWQD" value=""> <span>setwd(“HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_AACWKUFWQD" value="answer"> <span>setwd(“/home/modesto/Documents/teaching/2023_2024/HPBBM2023/data”)</span></label><label><input type="radio" autocomplete="off" name="radio_AACWKUFWQD" value=""> <span>setwd(“/Users/modesto/teaching/Documents/2023_2024/HPBBM2023/data”)</span></label>
 </div>
 <hr>
 <hr>
@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="readingwriting-data-in-r" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Reading/writing data in R</h1>
 <p>The most common way to read your data in R is importing it as a table, using the function <code>read.table()</code>. Note that the resultant object will become a <em>Dataframe</em>, even when all the entries got to be numeric. A followup call towards <code>as.matrix()</code> will turn it into in a matrix.</p>
-<p>In the following example lines we read a file called <a href="data/small_matrix.csv"><em>small_matrix.csv</em></a>, located in the <code>data</code>folder. If we attempt to make some matrix calculations, R will force the dataframe to a matrix when possible, but it will return an Error for many matrix-specific operations or functions unless, we transform the dataframe into a matrix.</p>
+<p>In the following example lines we read a file called <a href="data/small_matrix.csv"><em>small_matrix.csv</em></a>, located in the <code>data</code> folder. If we attempt to make some matrix calculations, R will force the dataframe to a matrix when possible, but it will return an Error for many matrix-specific operations or functions unless, we transform the dataframe into a matrix.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sm <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"small_matrix.csv"</span>, <span class="at">sep =</span> <span class="st">","</span>)  <span class="co">#what happens here?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -376,6 +376,19 @@ V3   19   80   13   16</code></pre>
 <p><img src="r3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that <code>read.table()</code> and its wrappers <code>read.csv()</code> or <code>read.csv2()</code> are mostly use for reading dataframes. If your want to read text files, like in the case of biological sequences, you can use other functions, like <code>readLines()</code>, described in the <a href="r9.html">Lesson 9</a>.</p>
+</div>
+</div>
 <p>You can write any data object(s) as binary data file or as text files. Compare the different files saved in the code below.</p>
 <div id="save1">
 
@@ -420,16 +433,16 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note that if you save your data with <code>save()</code>, it cannot be restored under different name. The original object names are automatically used. If you want to save the object and restore with a different name you need to use the functions <code>saveRDS()</code> and <code>readRDS()</code></p>
+<p>Note that if you save your data with <code>save()</code>, it cannot be restored under a different name. The original object names are automatically used. If you want to save the object and restore it with a different name you need to use the functions <code>saveRDS()</code> and <code>readRDS()</code></p>
 </div>
 </div>
 <hr>
 <section id="quick-exercise-ii" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="quick-exercise-ii"><span class="header-section-number">3.1</span> <span style="color:darkseagreen">Quick exercise (II)</span></h2>
-<p>We are using the same directory tree. Your <em>wd</em> is <code>HPBBM2022/data</code> and you need to save a data.frame named <code>table1</code> as <code>table1.csv</code> in the folder <code>HPBBM2022/data</code> using <code>;</code> as separator. How would you do it <em>without changing</em> the working directory? Try it also with your own computer.</p>
+<p>We are using the same directory tree. Your <em>wd</em> is <code>HPBBM2022/data</code> and you need to save a data.frame named <code>table1</code> as <code>table1.csv</code> in the folder <code>HPBBM2023/data</code> using <code>;</code> as separator. How would you do it <em>without changing</em> the working directory? Try it also with your own computer.</p>
 <strong>Select the right answer</strong>
-<div id="radio_AEKEQXPJFJ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AEKEQXPJFJ" value="answer"> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_AEKEQXPJFJ" value=""> <span>write.table(table1, “../../HPBBM2023/data/table1.csv”, sep=“;” </span></label><label><input type="radio" autocomplete="off" name="radio_AEKEQXPJFJ" value=""> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”</span></label>
+<div id="radio_SXSUJXMOJL" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SXSUJXMOJL" value="answer"> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”, sep=“;”) </span></label><label><input type="radio" autocomplete="off" name="radio_SXSUJXMOJL" value=""> <span>write.table(table1, “../../HPBBM2023/data/table1.csv”, sep=“;”) </span></label><label><input type="radio" autocomplete="off" name="radio_SXSUJXMOJL" value=""> <span>write.table(table1, “../../../HPBBM2023/data/table1.csv”)</span></label>
 </div>
 <hr>
 </section>
@@ -943,11 +956,11 @@ Levels: Avian Human Porcine</code></pre>
 <section id="quick-exercise-iii" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="quick-exercise-iii"><span class="header-section-number">4.4</span> <span style="color:darkseagreen">Quick exercise (III)</span></h2>
 <p>Now, we need to save the current version of <code>coli_genomes</code> in the data folder, using the <code>,</code> as field separator.</p>
-<p>Which of the following functions can you use to save the dataframe using <code>,</code> as field separator? <select class="webex-select"><option value="blank"></option><option value="">write.tabla</option><option value="">write.csv2</option><option value="answer">write.csv</option><option value="">save</option></select></p>
+<p>Which of the following functions can you use to save the dataframe using <code>,</code> as field separator? <select class="webex-select"><option value="blank"></option><option value="">write.table</option><option value="">write.csv2</option><option value="answer">write.csv</option><option value="">save</option></select></p>
 <p>How would you do it?</p>
 <strong>Select the right answer</strong>
-<div id="radio_NYPMWSLUZP" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_NYPMWSLUZP" value="answer"> <span>write.table(coli_genomes, “data/coli_genomes_renamed.csv”, sep=“,” )</span></label><label><input type="radio" autocomplete="off" name="radio_NYPMWSLUZP" value=""> <span>write.csv2(coli_genomes, “data/coli_genomes_renamed.csv” )</span></label><label><input type="radio" autocomplete="off" name="radio_NYPMWSLUZP" value=""> <span>write.csv(coli_genomes, “../coli_genomes_renamed.csv”) </span></label><label><input type="radio" autocomplete="off" name="radio_NYPMWSLUZP" value="answer"> <span>write.csv(coli_genomes, “data/coli_genomes_renamed.csv”)</span></label>
+<div id="radio_BSMTLXRTHF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_BSMTLXRTHF" value="answer"> <span>write.table(coli_genomes, “data/coli_genomes_renamed.csv”, sep=“,” )</span></label><label><input type="radio" autocomplete="off" name="radio_BSMTLXRTHF" value=""> <span>write.csv2(coli_genomes, “data/coli_genomes_renamed.csv” )</span></label><label><input type="radio" autocomplete="off" name="radio_BSMTLXRTHF" value=""> <span>write.csv(coli_genomes, “../coli_genomes_renamed.csv”) </span></label><label><input type="radio" autocomplete="off" name="radio_BSMTLXRTHF" value="answer"> <span>write.csv(coli_genomes, “data/coli_genomes_renamed.csv”)</span></label>
 </div>
 <div id="save">
 

@@ -93,6 +93,8 @@ Each lesson contains its own specific references, but we wanted to highlight her
 
 -   [R programming 101 @YouTube](https://www.youtube.com/@RProgramming101)
 
+-   Higgins, P. D. R. [Reproducible Medical Research with R.](https://bookdown.org/pdr_higgins/rmrwr/)
+
 ## [Contents]{style="color:darkblue"}
 ### [Lesson R1: Variables, Operators and data structures in R](r1.html)
 
