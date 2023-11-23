@@ -219,17 +219,17 @@ str(ZF_old)
 head(ZF_old)
 ```
 
-However, some times the dataset is more complex and there are other variables that change the table structure, as in the table [*Zebrafish_full.csv*](data/Zebrafish_full.csv)*.* In this case, you can stack only the desired variables and then reconstruct the table.
+However, some times the dataset is more complex and there are other variables that change the table structure, as in the table [*Zebrafish_full.csv*](data/Zebrafish_full.csv)*.* In this case, remember that stack is designed to transform tables of only two variables. Thus, you must stack only the desired two variables and then final construct the table by adding the rest of the information, for instance with `cbind()`, as in the example below.
 
 ```{r}
-ZF_full <- read.csv("data/Zebrafish_full.csv")
+ZF_full <- read.csv("data/Zebrafish_full.csv", row.names=1)
 head(ZF_full)
 #stack
 ZF_full_some_stack <- stack(ZF_full[,1:6])
 #reconstruct the table
-ZF_full_stack <- cbind(ZF_full[,1],ZF_full_some_stack)
+ZF_full_stack <- cbind(ZF_full_some_stack,ZF_full[,7])
 #short way
-ZF_full_stack2 <- cbind(ZF_full[,1],stack(ZF_full[,1:6]))
+ZF_full_stack2 <- cbind(stack(ZF_full[,1:6]),ZF_full[,7])
 all.equal(ZF_full_stack,ZF_full_stack2)
 ```
 
@@ -294,9 +294,11 @@ Even with large datasets, we can use `table()` or `summary()` functions, to over
 ```{r error=TRUE}
 table(vaccines$Region)
 ```
+
 ```{r output.lines=(1:30)}
 head(table(vaccines$Region, vaccines$NumberDosesReceived)) 
 ```
+
 ```{r error=TRUE}
 summary(vaccines[which(vaccines$Region=="ES"),][,6]) #see the data from Spain
 table(vaccines)
