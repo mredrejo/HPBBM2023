@@ -224,12 +224,19 @@ However, some times the dataset is more complex and there are other variables th
 ```{r}
 ZF_full <- read.csv("data/Zebrafish_full.csv", row.names=1)
 head(ZF_full)
-#stack
+#option 1:
+#step1: stack two main variables (sample & number of cells)
 ZF_full_some_stack <- stack(ZF_full[,1:6])
-#reconstruct the table
+head(ZF_full_some_stack,15)
+#step2: reconstruct the table adding the third variable
 ZF_full_stack <- cbind(ZF_full_some_stack,ZF_full[,7])
-#short way
+colnames(ZF_full_stack) <- c("Cells","Sample","Assay")
+head(ZF_full_stack,15)
+#option2: shorcut
 ZF_full_stack2 <- cbind(stack(ZF_full[,1:6]),ZF_full[,7])
+colnames(ZF_full_stack2) <- c("Cells","Sample","Assay")
+head(ZF_full_stack2,15)
+#the same result in both cases?
 all.equal(ZF_full_stack,ZF_full_stack2)
 ```
 
