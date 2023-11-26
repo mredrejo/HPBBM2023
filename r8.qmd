@@ -363,7 +363,7 @@ ggplotly(plots2custom)
 
 # [Exercises]{style="color:green"}
 
-#### 1. The table [coli_curve.csv](../data/coli_curve.csv) contains the growth curves of three *E. coli* strains. Plot the curves as *scatterplot* and lines containing the 90% confidence interval for the three strains.
+#### 1. The table [coli_curve.csv](data/coli_curve.csv) contains the growth curves of three *E. coli* strains. Plot the curves as *scatterplot* and lines containing the 90% confidence interval for the three strains.
 
 Tips.
 
@@ -371,7 +371,7 @@ Tips.
 
 -   Also, it would be better if you color the data by strains, but keep the information of each sample measure using, for instance, the point shape.
 
-#### 2. The table [*microbe_download.csv*](../data/microbe_download.csv) contains the data of worldwide human deceases associated with antimicrobial resistance, as indicated in the column *Counterfactual* (data from <https://vizhub.healthdata.org/microbe/>). Explore the data and use it to reproduce the following barplots.
+#### 2. The table [*microbe_download.csv*](data/microbe_download.csv) contains the data of worldwide human deceases associated with antimicrobial resistance, as indicated in the column *Counterfactual* (data from <https://vizhub.healthdata.org/microbe/>). Explore the data and use it to reproduce the following barplots.
 
 Tips.
 
