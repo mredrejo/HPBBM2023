@@ -182,9 +182,9 @@ boxplot(GeneB ~ tumor, col=c("#999999", "#E69F00"),ylim = c(-4, 5))
 Now let's try the same with *ggplot*:
 
 ```{r wd, echo = FALSE, results = 'asis'}
-opts_p <- c("ggplot(genes2, aes(x=Tumor, y=Expression,fill=Gene)) +  scale_fill_manual(values=c(\"#999999\", \"#E69F00\")) + geom_boxplot()", answer =  "ggplot(genes2, aes(x=Gene, y=Expression,fill=Gene)) +
+opts_p <- c("ggplot(genes2, aes(x=Tumor, y=Expression,fill=Gene)) +  scale_fill_manual(values=c(\"#999999\", \"#E69F00\")) + geom_boxplot()", answer =  "ggplot(genes2, aes(x=Tumor, y=Expression,fill=Tumor)) +
   scale_fill_manual(values=c(\"#999999\", \"#E69F00\")) +
-  geom_boxplot() + facet_wrap(.~ Tumor)",
+  geom_boxplot() + facet_wrap(.~ Gene)",
     "ggplot(genes2, aes(x=Gene, y=Expression,fill=Tumor)) +  scale_fill_manual(values=c(\"#999999\", \"#E69F00\")) + geom_boxplot()",
    "ggplot(genes2, aes(x=Gene, y=Expression,fill=Gene)) +
   scale_fill_manual(values=c(\"#999999\", \"#E69F00\")) +
