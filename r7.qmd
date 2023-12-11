@@ -111,6 +111,8 @@ Chunk options arguments can be set in the `{}` of a chunk header. Alternatively,
 
 ![](images/chunk.png){width="336"}
 
+Further customization options in R Markdown can be found in the references listed below. I especially recommend references 5 and 6 to start customizing your HTML Markdown documents, including different section headers, a table of contents (TOC), or even a personalized color scheme.
+
 ### [Quick exercise: Create your first R Markdown document]{style="color:green"}
 
 As with any other language, it is much easier to learn the syntax if you do some examples. We can turn one of our exercises into a Markdown HTML document in just a few steps:
@@ -165,7 +167,7 @@ Besides the references below, I suggest you to check these [examples](https://qu
 
 5.  **R Markdown Cheat Sheet**: <https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
 
-6.  Formatting HTML documents with RMarkdown: <https://bookdown.org/yihui/rmarkdown/html-document.html>
+6.  **Formatting HTML documents with RMarkdown:** <https://bookdown.org/yihui/rmarkdown/html-document.html>
 
 7.  r-cubed: **R**eproducible **R**esearch in **R**: <https://jose.theoj.org/papers/10.21105/jose.00122>
 
