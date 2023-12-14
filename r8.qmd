@@ -108,7 +108,7 @@ p <- vaccines |> ggplot()
 Now, we can add some data to generate a dot plot:
 
 ```{r}
-(p <- ggplot(vaccines, aes(x = YearWeekISO, y = log10(FirstDose), col=TargetGroup), stat=mean) )
+(p <- ggplot(vaccines, aes(x = YearWeekISO, y = log10(FirstDose), col=TargetGroup)) )
 ```
 
 What happened? Where are my points? We added the data and it allows to plot the axis, but we also need to add the type of plot, that is, the *geom*etry layer. We usually build the final plot adding (just with `+`) more layers to the previous plot object.

@@ -135,6 +135,8 @@ As with any other language, it is much easier to learn the syntax if you do some
 # Knitting PDFs
 
 Note that knitting into *pdf* may require the installation of a LaTeX distribution or R package. There are several alternatives, like `tinytex`, `MacTeX` or `MikTeX`, among others (see [references 10 and 11](#r10)).
+
+If you struggle to adjust the chunks text width to in the PDF document, you may install the package `formatR`, as explained in the following StackOverflow answer: [https://stackoverflow.com/questions/33481271/how-to-wrap-code-and-the-output-in-markdown-rmd](https://stackoverflow.com/questions/33481271/how-to-wrap-code-and-the-output-in-markdown-rmd)
 :::
 
 ## R Notebooks
