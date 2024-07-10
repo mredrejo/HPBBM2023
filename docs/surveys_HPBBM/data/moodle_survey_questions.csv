@@ -1,0 +1,40 @@
+Block;Question;Subquestion
+GENERAL;List the most negative aspects of the course. You can be as general or as specific as you want.;
+GENERAL;List the most positive aspects of the course. You can be as general or as specific as you want.;
+GENERAL;What would you change about the course? You can be as general or as specific as you want.;
+GENERAL;Rank the course in comparison with other courses in the Biochemistry/Biology curriculum (1=Far below average, 2=below average, 3=average, 4=above average, 5=Far above average);Interest
+GENERAL;Rank the course in comparison with other courses in the Biochemistry/Biology curriculum (1=Far below average, 2=below average, 3=average, 4=above average, 5=Far above average);Workload
+GENERAL;Rank the course in comparison with other courses in the Biochemistry/Biology curriculum (1=Far below average, 2=below average, 3=average, 4=above average, 5=Far above average);Difficulty
+GENERAL;Rank the course in comparison with the other optional courses (asignaturas optativas) you have taken in the Biochemistry/Biology curriculum (1=Far below average, 2=below average, 3=average, 4=above average, 5=Far above average);Interest
+GENERAL;Rank the course in comparison with the other optional courses (asignaturas optativas) you have taken in the Biochemistry/Biology curriculum (1=Far below average, 2=below average, 3=average, 4=above average, 5=Far above average);Workload
+GENERAL;Rank the course in comparison with the other optional courses (asignaturas optativas) you have taken in the Biochemistry/Biology curriculum (1=Far below average, 2=below average, 3=average, 4=above average, 5=Far above average);Difficulty
+GENERAL;Would you recommend this course to future Biochemistry/Biology students (1=No way, 2= I wouldn't be very enthusiastic about it, 3= I wouldn't encourage nor discourage them, 4= Yes, it's OK, 5= Yes, without hesitation);
+GENERAL;Do you think you are likely to use the computing skills learned in this class in your career? (1= Not at all, 5=Yes, definitely);
+COURSE CONTENTS;How interesting was each part of the course (1= Dull to 5= Very interesting and fun);Python
+COURSE CONTENTS;How interesting was each part of the course (1= Dull to 5= Very interesting and fun);R
+COURSE CONTENTS;How important/likely to be useful in the future was each part of the course (1. Worthless to 5. Very useful);Python
+COURSE CONTENTS;How important/likely to be useful in the future was each part of the course (1. Worthless to 5. Very useful);R
+COURSE CONTENTS;How hard/demanding was each part of the course (1. Piece of cake to 5. Almost impossible);Python
+COURSE CONTENTS;How hard/demanding was each part of the course (1. Piece of cake to 5. Almost impossible);R
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);Teacher explanations
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);Short programming exercises (python)
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);Programming problems
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);Grading other students' programming problems
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);"Teachers' comments to exercises and use of ""rubricas"""
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);R - PBL (1): R1, R2 & R6 lectures
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);R - PBL (2): Course Materials online
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);R - PBL (3): Experts Meetings
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);R - PBL (4): Group Meetings
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);R - PBL (5): Feedback from the project
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);R - PBL (6): Project Exercises
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);R - PBL (7): Demonstration session
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);R - PBL (8): Overall
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);Midterm exams
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);Moodle forums and questions/answers
+TEACHING METHODOLOGY;Grade each activity according to how useful you found it (1. Dispensable to 5. Essential);Moodle grade book
+ASSESSMENT METHODS;Indicate your degree of agreement with each statement (1: Strongly disagree to 5: Completely agree);In general, assessment methods are fair
+ASSESSMENT METHODS;Indicate your degree of agreement with each statement (1: Strongly disagree to 5: Completely agree);We are only asked about material that we have been explained
+ASSESSMENT METHODS;Indicate your degree of agreement with each statement (1: Strongly disagree to 5: Completely agree);The exams' programming problems are easier than the ones solved during the course
+ASSESSMENT METHODS;Indicate your degree of agreement with each statement (1: Strongly disagree to 5: Completely agree);The relative weight for each part is appropriate
+ASSESSMENT METHODS;Indicate your degree of agreement with each statement (1: Strongly disagree to 5: Completely agree);Grading of our comments on other students' work is a good idea
+OTHER COMMENTS;Feel free to add any other comments or suggestions;

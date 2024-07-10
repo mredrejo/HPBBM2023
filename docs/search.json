@@ -621,5 +621,12 @@
     "title": "R2: Flow Control",
     "section": "3.4 repeat loops",
     "text": "3.4 repeat loops\nAn additional statement in R that allows you to execute a block of code a specific number of times is called repeat. Similar to while loops, the block of code within the repeat statement is repeated until a certain condition is met. However, unlike while loops, the condition itself is not specified within the repeat statement. Instead, the condition is part of the code block, and the loop is terminated using the break statement when the condition is satisfied. For example, the following code prints the Fibonacci terms smaller than 250:\n\nFib &lt;- c(1, 1)\nrepeat {\n    tmp &lt;- Fib[length(Fib) - 1] + Fib[length(Fib)]\n    if (tmp &gt; 250) {\n        break\n    }\n    Fib &lt;- c(Fib, tmp)\n}\nprint(Fib)\n\n [1]   1   1   2   3   5   8  13  21  34  55  89 144 233"
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Hello, Tutorial!",
+    "section": "",
+    "text": "This code computes the answer to one plus one, change it so it computes two plus two:\n\n\n1 + 1"
   }
 ]
