@@ -1,0 +1,350 @@
+---
+title: "Project-based learning of R: HPBBM Innova output data analysis"
+author: 
+  - name: Modesto
+    affiliation: Department of Biochemistry, UAM
+    affiliation_url: https://www.uam.es/
+date: "April 26, 2024"
+date-modified: "`r Sys.Date()`"
+format:
+  html:
+    page-layout: full
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    number-sections: true
+    code-overflow: wrap
+    code-fold: true
+    code-summary: "Show the code"
+    link-external-icon: true
+    back-to-top-navigation: true
+---
+
+# Contents and Disclaimer {#top}
+
+This file contains the data from the "Programming tools for Biochemistry and Molecular Biology" course (Biochemistry Degree, [Universidad Autónoma de Madrid](https://www.uam.es)). It is a 6 ECTS optional course for 4rd year undergrad students. In this course, starting from zero, the students learn how to develop Python scripts and perform data analysis and representation in R. Starting in 2023, the R block of the course follow a *Project-based learning* methodology, taught by Prof. Luis del Peso, Modesto Redrejo Rodríguez, and with the help of teaching assistants Yosra Berrouayel and Víctor Mateo Cáceres. The students first go through the course material at home (available [here](https://mredrejo.github.io/HPBBM2023/)). This work was supported by a Teaching Innovation Grant from UAM (M_002.23_INN Aprendizaje basado en proyectos para la introducción de R en el laboratorio de bioquímica y biología molecular). The R block consists of 7 lessons and we use the Aronson Puzzle method to work in groups of 3 in the classroom in two rounds. This way each student becomes an expert for two lessons. Between the two rounds, we take a break with a "normal" lecture to recap and work on lesson [R6](https://mredrejo.github.io/HPBBM2023/r6.html). Finally, they prepare a reproducible analysis of biological data with RMarkdown, including qPCR, MSA, sequence quality data, etc
+
+The questionnaires were completed by the students in 2017-2023 directly on Moodle on the last day of the respective course. This is a preliminary summary of the data analysis from the period 2021-2023. The GitHub [repo](https://github.com/mredrejo/survey_HPBBM) contains the original files of all analyses.
+
+All these data are made available under the Creative Common License ([CC BY-NC-ND 3.0 ES](https://creativecommons.org/licenses/by-nc-nd/4.0/)).
+
+::: callout-warning
+## Preliminary
+
+This is only a preliminary analysis. Contact [modesto.redrejo\@uam.es](mailto:modesto.redrejo@uam.es) or [luis.peso\@uam.es](mailto:luis.peso@uam.es) for any feedback or queries.
+:::
+
+```{r results='hide', message=FALSE, warning=FALSE}
+#Load/install requires packages
+paquetes <- c("knitr","ggplot2","data.table","kableExtra","corrplot","likert","ggpubr","reshape2","plotly","dplyr", "readxl","ggridges","tidyverse")
+unavailable <- setdiff(paquetes, rownames(installed.packages()))
+invisible(install.packages(unavailable))
+invisible(lapply(paquetes, library, character.only = TRUE))
+
+#define color scheme
+colorines <- c("2021"="cadetblue3","2022"="cornflowerblue","2023"="coral2")
+
+#Figure and Table Caption Numbering, for HTML do it manually
+outputFormat   = opts_knit$get("rmarkdown.pandoc.to")
+capTabNo = 1; capFigNo = 1;
+
+#Function to add the Table Number
+capTab = function(x){
+  if(outputFormat == 'html_document'){
+    x = paste0("Table ",capTabNo,". ",x)
+    capTabNo <<- capTabNo + 1
+  }; x
+}
+
+#Function to add the Figure Number
+figuritas <- data.frame()
+capFig = function(x){
+  if(outputFormat == 'html'){
+    x = paste0("Figure ",capFigNo,". ",x)
+    capFigNo <<- capFigNo + 1
+  }; x
+ figuritas[(capFigNo-1),1] <<- x
+}
+```
+
+# Course results
+
+First of all, we are going to analyze the final results of the course, comparing the final marks of the students before the PBL implementation (2021 and 2022) and after (2023).
+
+```{r fig.cap=capFig("Distribution of course final marks in the last years. The course with the PBL approach is colored in coral red. The vertical line mark the data mode.")}
+marks21 <- read_xls("data/2021_18245_281_Actas.xls",sheet=1)
+marks21$year <- "2021"
+marks22 <- read_xls("data/2022_HPBBM_actas.xls",sheet=1)
+marks22$year <- "2022"
+marks23 <- read_xls("data/2023_18245_281 Calificaciones_actas.xls",sheet=1)
+marks23$year <- "2023"
+colnames(marks23)[4] <- "Nota"
+marks21[marks21 == "-"] <- NA
+marks22[marks22 == "-"] <- NA
+marks23[marks23 == "0"] <- NA
+marks21$Nota <- as.numeric(marks21$Nota)
+marks22$Nota <- as.numeric(marks22$Nota)
+marks <- rbind2(marks21[,c(3,6)],marks22[,c(3,5)])
+marks <- rbind(marks,marks23[,c(4,6)])
+#write.table(marks,"data/marks.csv",row.names=FALSE,col.names=FALSE,quote=FALSE,sep=",")
+marks$year <- factor(marks$year,levels=c(2023,2022,2021))
+ggplot(marks)+geom_density_ridges(aes(x=Nota, y=year,fill=year),alpha=0.8,quantile_lines = TRUE, quantiles = 2) + xlim(0,11) +theme_ridges() + scale_y_discrete(expand = expansion(mult = c(0.01, 1))) +xlab("Mark")+ylab("Year") + theme(legend.position="none") + scale_fill_manual(values=colorines)
+
+# Compute the analysis of variance
+res.aov <- aov(Nota ~ year, data = marks)
+# Summary of the analysis
+summary(res.aov)
+
+```
+
+As we can see in the plot, the marks seem overall similar. Moreover, the ANOVA p-value is clearly higher than the significance level, we can conclude that **there is no significant differences between the marks over the three years analyzed.**
+
+# Course survey
+
+For many years, the academic team in this course has asked students' opinions in a survey that they were asked to complete on the last day of the course. As shown in Table 1, the quiz consists of 39 questions, most of which should be answered on a Likert scale (1 to 5), as well as four free text questions.
+
+```{r}
+#load questions
+questions <- read.csv("data/moodle_survey_questions.csv", head=TRUE, sep=";")
+questions <- cbind(paste0("Q",row.names(questions)),questions)
+
+#add type variable
+questions$type <- "Likert"
+questions[c(1,2,3,39),5] <- "Free text"
+colnames(questions) <- c("No.","Block","Question","Topic","Type")
+#write.csv(questions,"questions_final.csv", row.names=FALSE)
+
+
+```
+
+## Moodle survey questions
+
+```{r warning=FALSE}
+#display the table
+kbl(questions[,1:4], align = "cccl", caption = "Table 1. Students' opinion quizz.",longtable = F, booktabs = T) %>%
+    kable_styling(bootstrap_options = "striped", full_width = F) %>%
+    column_spec(1, italic = T)
+#load survey data
+survey <- list()
+survey[[1]] <- read.csv("data/2021_Opinionencuesta_HPBBM.csv")
+survey[[2]] <- read.csv("data/2022_Opinionencuesta_HPBBM.csv")
+survey[[3]] <- read.csv("data/2023_Opinionencuesta_HPBBM.csv")
+years <- c(2021,2022,2023)
+#subset likert questions & clean and prepare data
+for (i in 1:length(survey)){
+  survey[[i]] <- survey[[i]][, c(13:(length(survey[[i]])-1))]
+  survey[[i]][,7] <- substr(survey[[i]][,7],1,1)
+  survey[[i]][,8] <- substr(survey[[i]][,8],1,1)
+  survey[[i]][survey[[i]] == "-999"] <- NA
+  survey[[i]] <- data.frame(apply(survey[[i]],2, as.numeric))
+  survey[[i]]$year <- years[i]
+}
+#use homogeneous column names
+colnames(survey[[1]])[1:10] <-  paste0("Q",4:13)
+colnames(survey[[1]])[c(12,13,15,16,18,19,20,24,21:23,25:28)] <- paste0("Q",c(14:18,20:22,31:35,37,38))
+colnames(survey[[2]])[1:19] <-  paste0("Q",4:22)
+colnames(survey[[2]])[20:27] <-  paste0("Q",31:38)
+colnames(survey[[3]])[1:35] <-  paste0("Q",4:38)
+#remove non common columns
+survey[[3]] <- survey[[3]][,-(36:50)]
+survey[[1]] <- survey[[1]][,-c(11,14,17)]
+#merge & reorder
+surveys <- merge(survey[[3]],survey[[2]],all=TRUE)
+surveys <- merge(surveys,survey[[1]],all=TRUE)
+surveys<-surveys[names(survey[[3]])]
+surveys$year <- factor(surveys$year, levels=c(2023,2022,2021))
+
+#change column names
+for (i in 1:(length(surveys))-1){
+  colnames(surveys)[i] <- questions$Topic[questions[,1]==colnames(surveys[i])]
+}
+ colnames(surveys)[7] <- "Would you recommend this course to future students?"
+ colnames(surveys)[8] <- "Do you think you are likely to use the computing skills learned in this course?"
+ colnames(surveys)[9:10] <- paste0("How interesting was each part of the course?"," - ",colnames(surveys)[9:10])
+ colnames(surveys)[11:12] <- paste0("How important/likely to be used in the future was each part of the course?"," - ",colnames(surveys)[11:12])
+ colnames(surveys)[13:14] <- paste0("How hard/demanding was each part of the course?"," - ",colnames(surveys)[13:14])
+
+```
+
+## Survey results
+
+Below we show the students' responses, again from the 2021-2023 courses, grouped by similar blocks.
+
+### General Questions
+
+```{r fig.height=6, fig.cap=capFig("General Questions 1. Rank the HPBBM course in comparison with other courses in the degree or other optitonal curses this year (.1).")}
+#general: Q4:Q9
+
+surveys[,c(1:6)] <- lapply(surveys[,c(1:6)], function(x) factor(x, levels=c(1:5),
+      labels = c("Far below average","Below average","Average","Above average","Far above average"))
+  )
+xlikgroup_general = likert(surveys[,c(1:6)], grouping = surveys$year)
+plot(xlikgroup_general, type = "bar", centered = T, ordered=FALSE)
+
+```
+
+```{r  fig.height=3, fig.cap=capFig("General Questions 2.")}
+#general: Q10:Q11
+
+surveys[,7:8] <- lapply(surveys[,7:8], function(x) factor(x, levels=c(1:5),
+      labels = c("No way","Not likely","Don't know","Likely","Yes, definitely"))
+  )
+xlikgroup_general = likert(surveys[,7:8], grouping = surveys$year)
+plot(xlikgroup_general, type = "bar", centered = T, ordered=FALSE)
+
+```
+
+Figures 2 & 3 clearly show that overall, students found the course interesting, although they considered it quite difficult and time-consuming. Interestingly, the PBL did not change this perception.
+
+### Course contents
+
+```{r fig.height=7, fig.cap=capFig("Course contents: time demand, difficulty, utility and interest.")}
+#course content: Q12:Q17
+
+
+
+surveys[,9:14] <- lapply(surveys[,9:14], function(x) factor(x, levels=c(1:5),
+      labels = c("Not much","Little","OK","High","Very high"))
+  )
+xlikgroup_general = likert(surveys[,9:14], grouping = surveys$year)
+plot(xlikgroup_general, type = "bar", centered = T, ordered=FALSE)
+
+```
+
+As for the comparison of the Python and R blocks (Figure 4), opinions on the R part seem to be stable despite the PBL, while the Python lessons were more challenging and difficult. This could be something specific to this year and has nothing to do with the PBL change.
+
+### Teaching methodology
+
+```{r  fig.height=9, fig.cap=capFig("Teaching methodology (1). Grade each activity according to how useful you found it.")}
+#teaching methodology: Q18:Q33
+
+
+surveys[,c(15:19,28:30)] <- lapply(surveys[,c(15:19,28:30)], function(x) factor(x, levels=c(1:5),
+      labels = c("Dispensable","Partially useful","So-so","Useful","Essential"))
+  )
+xlikgroup_general = likert(surveys[,c(15:19,28:30)], grouping = surveys$year)
+plot(xlikgroup_general, type = "bar", centered = T, ordered=FALSE)
+
+```
+
+Regarding the teaching methodology, again there are no great differentes in the analyzed years. The Midterm exams are the topic that devaluated more through the years. Also the peers evaluation seem to work less efficiently the last year.
+
+```{r  fig.height=3, fig.cap=capFig("Teaching methodology (2: Project Based Learning of R). Grade each activity according to how useful you found it.")}
+#teaching methodology: Q18:Q33
+
+
+surveys[,20:27] <- lapply(surveys[,20:27], function(x) factor(x, levels=c(1:5),
+      labels = c("Dispensable","Partially useful","So-so","Useful","Essential"))
+  )
+xlikgroup_general = likert(surveys[,20:27])
+xlikgroup_general$results$Item <- reverse.levels(as.factor(xlikgroup_general$results$Item))
+plot(xlikgroup_general, type = "bar", centered = T, ordered=FALSE)
+
+```
+
+The students' perception of PBL is also very important, yet we only have one year so far. Overall, they seem to be satisfied with this method. The less positive opinions related to the "expert meetings" of the Aronson puzzle and the final demonstration day. This largely coincides with the opinion we received during an informal discussion after the day.
+
+### Assessment methods
+
+```{r fig.height=6, fig.cap=capFig("Assessment Methods. Indicate your degree of agreement with each statement")}
+#Assessment: Q34:Q37
+
+
+surveys[,31:35] <- lapply(surveys[,31:35], function(x) factor(x, levels=c(1:5),
+      labels = c("Strongly disagree","Disagree","So-so","Agree","Completely agree"))
+  )
+xlikgroup_general = likert(surveys[,31:35], grouping = surveys$year)
+plot(xlikgroup_general, type = "bar", centered = T, ordered=FALSE)
+
+```
+
+Course evaluation is usually a sensitive topic that we discuss with students. Their opinions are in line with previous questions and indicate that the assessment by classmates did not work last year and that they found the exams quite hard.
+
+# Use of R in your Biochemistry research after the course
+
+To analyze the impact of the PBL approach, we also conducted a small survey to ask students whether or not they used R to analyze or present the results of their lab work during the bachelor thesis (in Spanish TFG). We conducted this survey in May 2023 ([link here](https://forms.office.com/e/VM0Z7h4K63)), before the modification of the R block to PBL method, and in 2024 ([link](https://forms.office.com/e/T33fcmXn8u)) using forms from UAM's licensed Office 365.
+
+Unfortunately, we only got 21 answers in 2023 and 18 in 2024.
+
+## R background
+
+```{r fig.height=3, fig.cap=capFig("Previous contact with R.")}
+after2023 <-  read_xlsx("data/Encuesta sobre el uso de métodos estadísticos y de análisis de datos durante el TFG(1-21).xlsx",sheet=1)
+after2024 <- read_xlsx("data/Encuesta sobre el uso de métodos estadísticos y de análisis de datos durante el TFG (2024)(1-18).xlsx",sheet=1)
+
+#Q1
+kk <-  read.csv2(text=after2023$`¿En qué asignaturas has utilizado R?`, stringsAsFactors = TRUE, header=FALSE)
+kk <- data.frame(answer=c(kk$V1,kk$V2,kk$V3))
+Q1_2023 <- data.frame(kk[-which(kk$answer==""),],"2023")
+names(Q1_2023) <- c("answer","year")
+kk <-  read.csv2(text=after2024$`¿En qué asignaturas has utilizado R?`, stringsAsFactors = TRUE, header=FALSE)
+kk <- na.omit(data.frame(answer=c(kk$V1,kk$V2,kk$V3)))
+Q1_2024 <- data.frame(kk[-which(kk$answer==""),],"2024")
+names(Q1_2024) <- c("answer","year")
+answers <- rbind(Q1_2023,Q1_2024)
+
+ggplot(data=answers)+geom_bar(aes(y=answer,group=fct_rev(year),fill=year)) + xlab("Answers") +ylab("") + theme_bw()+theme(text=element_text(size=12))
+```
+
+```{r fig.height=4, fig.cap=capFig("Current knowledge of R")}
+current <- data.frame(after2023[,9],"2023")
+kk <- data.frame(after2024[,9],"2024")
+names(current) <-names(kk) <-  c("answer","year")
+current <- rbind(current,kk)
+
+ggplot(data=current,aes(answer,fill=year,group=fct_rev(year)))+geom_bar() + 
+  xlab("Answers") +ylab("") + theme_bw()+theme(text=element_text(size=12))+
+  geom_text(aes(label=after_stat(paste0(round(prop*100,2),"%"))), stat="count", position = position_stack(vjust = 0.5))
+```
+
+## Data analysis and use of R during the TFG
+
+```{r fig.width=10, fig.cap=capFig("Frequency of data analysis during the TFG")}
+analisis <- read.csv2(text=after2023$`¿Has realizado análisis y representación de datos durante tu TFG?`,header=FALSE)
+analisis <- data.frame(answer=c(analisis$V1,analisis$V2), year="2023")
+kk <- read.csv2(text=after2024$`¿Has realizado análisis y representación de datos durante tu TFG?`,header=FALSE)
+kk <- data.frame(answer=c(kk$V1,kk$V2), year="2024")
+names(analisis) <-names(kk) <-  c("answer","year")
+analisis <- rbind(analisis,kk)
+analisis <- na.omit(analisis[-which(analisis$answer==""),])
+
+ggplot(data=analisis,aes(y=answer,fill=year,group=fct_rev(year)))+geom_bar() + 
+  xlab("Answers") +ylab("") + 
+  geom_text(aes(label=after_stat(paste0(round(prop*100,2),"%"))), stat="count", position = position_stack(vjust = 0.5))+
+  theme_bw()+theme(text=element_text(size=12))
+```
+
+```{r fig.width=10, fig.cap=capFig("Method/Software for data analysis")}
+method <- read.csv2(text=after2023$`¿Qué software has usado mayoritariamente?`,header=FALSE)
+method <- data.frame(answer=c(method$V1,method$V2,method$V3), year="2023")
+kk <- read.csv2(text=after2024$`¿Qué software has usado mayoritariamente?`,header=FALSE)
+kk <- data.frame(answer=c(kk$V1,kk$V2,kk$V3, kk$V4), year="2024")
+names(method) <-names(kk) <-  c("answer","year")
+method <- rbind(method,kk)
+method <- na.omit(method[-which(method$answer==""),])
+
+ggplot(data=method,aes(y=answer,fill=year,group=fct_rev(year)))+geom_bar() + 
+  xlab("Answers") +ylab("") + 
+  geom_text(aes(label=after_stat(paste0(round(prop*100,2),"%"))), stat="count", position = position_stack(vjust = 0.5))+
+  theme_bw()+theme(text=element_text(size=12))
+  
+```
+
+Although the dataset is small, we can see that, although the statistic analysis overall decrease (Figure 10, "*No, nunca*" is doubled), the use of R increases from 13 to 16% and SPSS reduced from 41% to 29%.
+
+<a href="#top" style="color:steelblue;" >Back to top</a> 
+
+
+<button class="accordion-button d-block text-right" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+
+*Click for Session Information*
+
+</button>
+
+<div id="collapseOne" class="accordion-collapse collapse">
+
+```{r}
+sessionInfo()
+```
+
+<div>
