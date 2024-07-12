@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 10, 2024</p>
+      <p class="date-modified">July 12, 2024</p>
     </div>
   </div>
     
@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="top" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Contents and Disclaimer</h1>
-<p>This file contains the data from the “Programming tools for Biochemistry and Molecular Biology” course (Biochemistry Degree, <a href="https://www.uam.es">Universidad Autónoma de Madrid</a>). It is a 6 ECTS optional course for 4rd year undergrad students. In this course, starting from zero, the students learn how to develop Python scripts and perform data analysis and representation in R. Starting in 2023, the R block of the course follow a <em>Project-based learning</em> methodology, taught by Prof.&nbsp;Luis del Peso, Modesto Redrejo Rodríguez, and with the help of teaching assistants Yosra Berrouayel and Víctor Mateo Cáceres. The students first go through the course material at home (available <a href="https://mredrejo.github.io/HPBBM2023/">here</a>). This work was supported by a Teaching Innovation Grant from UAM (<strong>M_002.23_INN</strong> Aprendizaje basado en proyectos para la introducción de R en el laboratorio de bioquímica y biología molecular).</p>
+<p>This file contains the data from the course “Programming tools for Biochemistry and Molecular Biology” (hereafter <strong>HPBBM</strong>, from its name in Spanish: Herramientas de Programación en Bioquímica y Biología Molecular). This is a 6 ECTS elective course for students in the 4th year of Biochemistry Degree, <a href="https://www.uam.es">Universidad Autónoma de Madrid</a>), also open to other degrees in science at UAM. In this course, starting from zero, the students learn how to develop Python scripts and perform data analysis and representation in R. Starting in 2023, the R block of the course follow a <em>Project-based learning</em> methodology, taught by Prof.&nbsp;Luis del Peso, Modesto Redrejo Rodríguez, and with the help of teaching assistants Yosra Berrouayel and Víctor Mateo Cáceres. The students first go through the course material at home (available <a href="https://mredrejo.github.io/HPBBM2023/">here</a>). This work was supported by a Teaching Innovation Grant from UAM (<strong>M_002.23_INN</strong> Aprendizaje basado en proyectos para la introducción de R en el laboratorio de bioquímica y biología molecular).</p>
 <p>The R block consists of 7 lessons and we use the Aronson Puzzle method to work in groups of 3 in the classroom in two rounds. This way each student becomes an expert for two lessons. Between the two rounds, we take a break with a “normal” lecture to recap and work on lesson <a href="https://mredrejo.github.io/HPBBM2023/r6.html">R6</a>. Finally, they prepare a reproducible analysis of biological data with RMarkdown, including qPCR, MSA, sequence quality data, etc</p>
 <p>The questionnaires were completed by the students in 2017-2023 directly on Moodle on the last day of the respective course. This is a preliminary summary of the data analysis from the period 2021-2023. The GitHub <a href="https://github.com/mredrejo/survey_HPBBM">repo</a> contains the original files of all analyses.</p>
 <p>All these data are made available under the Creative Common License (<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 3.0 ES</a>).</p>
@@ -232,40 +232,39 @@ Preliminary
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>marks22<span class="sc">$</span>Nota <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(marks22<span class="sc">$</span>Nota)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>marks <span class="ot">&lt;-</span> <span class="fu">rbind2</span>(marks21[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">6</span>)],marks22[,<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)])</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>marks <span class="ot">&lt;-</span> <span class="fu">rbind</span>(marks,marks23[,<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">6</span>)])</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(marks,"data/marks.csv",row.names=FALSE,col.names=FALSE,quote=FALSE,sep=",")</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>marks<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">factor</span>(marks<span class="sc">$</span>year,<span class="at">levels=</span><span class="fu">c</span>(<span class="dv">2023</span>,<span class="dv">2022</span>,<span class="dv">2021</span>))</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(marks)<span class="sc">+</span><span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">x=</span>Nota, <span class="at">y=</span>year,<span class="at">fill=</span>year),<span class="at">alpha=</span><span class="fl">0.8</span>,<span class="at">quantile_lines =</span> <span class="cn">TRUE</span>, <span class="at">quantiles =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">0</span>,<span class="dv">11</span>) <span class="sc">+</span><span class="fu">theme_ridges</span>() <span class="sc">+</span> <span class="fu">scale_y_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">1</span>))) <span class="sc">+</span><span class="fu">xlab</span>(<span class="st">"Mark"</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>colorines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>marks <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(marks)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#write.table(marks,"data/marks.csv",row.names=FALSE,col.names=FALSE,quote=FALSE,sep=",")</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>marks<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">factor</span>(marks<span class="sc">$</span>year,<span class="at">levels=</span><span class="fu">c</span>(<span class="dv">2023</span>,<span class="dv">2022</span>,<span class="dv">2021</span>))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(marks)<span class="sc">+</span><span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">x=</span>Nota, <span class="at">y=</span>year,<span class="at">fill=</span>year),<span class="at">alpha=</span><span class="fl">0.8</span>,<span class="at">quantile_lines =</span> <span class="cn">TRUE</span>, <span class="at">quantiles =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">0</span>,<span class="dv">11</span>) <span class="sc">+</span><span class="fu">theme_ridges</span>() <span class="sc">+</span> <span class="fu">scale_y_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">1</span>))) <span class="sc">+</span><span class="fu">xlab</span>(<span class="st">"Mark"</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"Year"</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>colorines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Picking joint bandwidth of 0.368</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 10 rows containing non-finite outside the scale range
-(`stat_density_ridges()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 1. Distribution of course final marks in the last years. The course with the PBL approach is colored in coral red. The vertical line mark the data mode.</figcaption>
+<figcaption>Figure 1. Distribution of course final marks in the last years. The 2023 course in which we implemented the PBL approach is colored in coral red. The vertical line mark the data mode.</figcaption>
 </figure>
 </div>
 </div>
+</div>
+<p>As we can see in the plot, the marks seem to be similar overall, although the two typical peaks centered at ~7.5 and ~9.5 seem to have come a little closer. However, there is only one year with the PBL, making it impossible to assess whether this effect is related to this change. Anyway, as shown below, the p-value of the ANOVA is well above the significance level, so we conclude that <strong>there are no significant differences between the brands in the three years analyzed in the current data.</strong></p>
+<div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the analysis of variance</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>res.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Nota <span class="sc">~</span> year, <span class="at">data =</span> marks)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the analysis</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res.aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the analysis of variance</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>res.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Nota <span class="sc">~</span> year, <span class="at">data =</span> marks)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the analysis</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res.aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)
 year         2   0.43  0.2143   0.232  0.794
-Residuals   90  83.30  0.9256               
-10 observations deleted due to missingness</code></pre>
+Residuals   90  83.30  0.9256               </code></pre>
 </div>
 </div>
-<p>As we can see in the plot, the marks seem to be similar overall, although the two typical peaks centered at ~7.5 and ~9.5 seem to have come a little closer. However, there is only one year with the PBL, making it impossible to assess whether this effect is related to this change. The p-value of the ANOVA is well above the significance level, so we conclude that <strong>there are no significant differences between the brands in the three years analyzed in the current data.</strong></p>
+<p><a href="#top" style="color:steelblue;">Back to top</a></p>
 </section>
 <section id="course-survey" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Course survey</h1>
@@ -273,15 +272,15 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load questions</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>questions <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/moodle_survey_questions.csv"</span>, <span class="at">head=</span><span class="cn">TRUE</span>, <span class="at">sep=</span><span class="st">";"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>questions <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="fu">row.names</span>(questions)),questions)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#add type variable</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>questions<span class="sc">$</span>type <span class="ot">&lt;-</span> <span class="st">"Likert"</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>questions[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">39</span>),<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">"Free text"</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(questions) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"No."</span>,<span class="st">"Block"</span>,<span class="st">"Question"</span>,<span class="st">"Topic"</span>,<span class="st">"Type"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#write.csv(questions,"questions_final.csv", row.names=FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load questions</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>questions <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/moodle_survey_questions.csv"</span>, <span class="at">head=</span><span class="cn">TRUE</span>, <span class="at">sep=</span><span class="st">";"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>questions <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="fu">row.names</span>(questions)),questions)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#add type variable</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>questions<span class="sc">$</span>type <span class="ot">&lt;-</span> <span class="st">"Likert"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>questions[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">39</span>),<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">"Free text"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(questions) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"No."</span>,<span class="st">"Block"</span>,<span class="st">"Question"</span>,<span class="st">"Topic"</span>,<span class="st">"Type"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#write.csv(questions,"questions_final.csv", row.names=FALSE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="moodle-survey-questions" class="level2" data-number="3.1">
@@ -289,10 +288,10 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#display the table</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(questions[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">align =</span> <span class="st">"cccl"</span>, <span class="at">caption =</span> <span class="st">"Table 1. Students' opinion quizz."</span>,<span class="at">longtable =</span> F, <span class="at">booktabs =</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">italic =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#display the table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(questions[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">align =</span> <span class="st">"cccl"</span>, <span class="at">caption =</span> <span class="st">"Table 1. Students' opinion quizz."</span>,<span class="at">longtable =</span> F, <span class="at">booktabs =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="st">"striped"</span>, <span class="at">full_width =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">italic =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -549,68 +548,82 @@ Residuals   90  83.30  0.9256
 </div>
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load survey data</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/2021_Opinionencuesta_HPBBM.csv"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/2022_Opinionencuesta_HPBBM.csv"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/2023_Opinionencuesta_HPBBM.csv"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2021</span>,<span class="dv">2022</span>,<span class="dv">2023</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#subset likert questions &amp; clean and prepare data</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(survey)){</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  survey[[i]] <span class="ot">&lt;-</span> survey[[i]][, <span class="fu">c</span>(<span class="dv">13</span><span class="sc">:</span>(<span class="fu">length</span>(survey[[i]])<span class="sc">-</span><span class="dv">1</span>))]</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  survey[[i]][,<span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="fu">substr</span>(survey[[i]][,<span class="dv">7</span>],<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  survey[[i]][,<span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="fu">substr</span>(survey[[i]][,<span class="dv">8</span>],<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  survey[[i]][survey[[i]] <span class="sc">==</span> <span class="st">"-999"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  survey[[i]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">apply</span>(survey[[i]],<span class="dv">2</span>, as.numeric))</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  survey[[i]]<span class="sc">$</span>year <span class="ot">&lt;-</span> years[i]</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#use homogeneous column names</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">1</span>]])[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">13</span>)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">1</span>]])[<span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">21</span><span class="sc">:</span><span class="dv">23</span>,<span class="dv">25</span><span class="sc">:</span><span class="dv">28</span>)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="fu">c</span>(<span class="dv">14</span><span class="sc">:</span><span class="dv">18</span>,<span class="dv">20</span><span class="sc">:</span><span class="dv">22</span>,<span class="dv">31</span><span class="sc">:</span><span class="dv">35</span>,<span class="dv">37</span>,<span class="dv">38</span>))</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">2</span>]])[<span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>] <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">22</span>)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">2</span>]])[<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>] <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="dv">31</span><span class="sc">:</span><span class="dv">38</span>)</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">3</span>]])[<span class="dv">1</span><span class="sc">:</span><span class="dv">35</span>] <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">38</span>)</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#remove non common columns</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> survey[[<span class="dv">3</span>]][,<span class="sc">-</span>(<span class="dv">36</span><span class="sc">:</span><span class="dv">50</span>)]</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> survey[[<span class="dv">1</span>]][,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">17</span>)]</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">#merge &amp; reorder</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">merge</span>(survey[[<span class="dv">3</span>]],survey[[<span class="dv">2</span>]],<span class="at">all=</span><span class="cn">TRUE</span>)</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">merge</span>(surveys,survey[[<span class="dv">1</span>]],<span class="at">all=</span><span class="cn">TRUE</span>)</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>surveys<span class="ot">&lt;-</span>surveys[<span class="fu">names</span>(survey[[<span class="dv">3</span>]])]</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>surveys<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">factor</span>(surveys<span class="sc">$</span>year, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">2023</span>,<span class="dv">2022</span>,<span class="dv">2021</span>))</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">#change column names</span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(surveys))<span class="sc">-</span><span class="dv">1</span>){</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(surveys)[i] <span class="ot">&lt;-</span> questions<span class="sc">$</span>Topic[questions[,<span class="dv">1</span>]<span class="sc">==</span><span class="fu">colnames</span>(surveys[i])]</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="st">"Would you recommend this course to future students?"</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="st">"Do you think you are likely to use the computing skills learned in this course?"</span></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">9</span><span class="sc">:</span><span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"How interesting was each part of the course?"</span>,<span class="st">" - "</span>,<span class="fu">colnames</span>(surveys)[<span class="dv">9</span><span class="sc">:</span><span class="dv">10</span>])</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"How important/likely to be used in the future was each part of the course?"</span>,<span class="st">" - "</span>,<span class="fu">colnames</span>(surveys)[<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>])</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">13</span><span class="sc">:</span><span class="dv">14</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"How hard/demanding was each part of the course?"</span>,<span class="st">" - "</span>,<span class="fu">colnames</span>(surveys)[<span class="dv">13</span><span class="sc">:</span><span class="dv">14</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load survey data</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/2021_Opinionencuesta_HPBBM.csv"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/2022_Opinionencuesta_HPBBM.csv"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/2023_Opinionencuesta_HPBBM.csv"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2021</span>,<span class="dv">2022</span>,<span class="dv">2023</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#subset likert questions &amp; clean and prepare data</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(survey)){</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  survey[[i]] <span class="ot">&lt;-</span> survey[[i]][, <span class="fu">c</span>(<span class="dv">13</span><span class="sc">:</span>(<span class="fu">length</span>(survey[[i]])<span class="sc">-</span><span class="dv">1</span>))]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  survey[[i]][,<span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="fu">substr</span>(survey[[i]][,<span class="dv">7</span>],<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  survey[[i]][,<span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="fu">substr</span>(survey[[i]][,<span class="dv">8</span>],<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  survey[[i]][survey[[i]] <span class="sc">==</span> <span class="st">"-999"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  survey[[i]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">apply</span>(survey[[i]],<span class="dv">2</span>, as.numeric))</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  survey[[i]]<span class="sc">$</span>year <span class="ot">&lt;-</span> years[i]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#use homogeneous column names</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">1</span>]])[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">13</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">1</span>]])[<span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">24</span>,<span class="dv">21</span><span class="sc">:</span><span class="dv">23</span>,<span class="dv">25</span><span class="sc">:</span><span class="dv">28</span>)] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="fu">c</span>(<span class="dv">14</span><span class="sc">:</span><span class="dv">18</span>,<span class="dv">20</span><span class="sc">:</span><span class="dv">22</span>,<span class="dv">31</span><span class="sc">:</span><span class="dv">35</span>,<span class="dv">37</span>,<span class="dv">38</span>))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">2</span>]])[<span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>] <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">22</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">2</span>]])[<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>] <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="dv">31</span><span class="sc">:</span><span class="dv">38</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(survey[[<span class="dv">3</span>]])[<span class="dv">1</span><span class="sc">:</span><span class="dv">35</span>] <span class="ot">&lt;-</span>  <span class="fu">paste0</span>(<span class="st">"Q"</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">38</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#remove non common columns</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> survey[[<span class="dv">3</span>]][,<span class="sc">-</span>(<span class="dv">36</span><span class="sc">:</span><span class="dv">50</span>)]</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>survey[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> survey[[<span class="dv">1</span>]][,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">17</span>)]</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#merge &amp; reorder</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">merge</span>(survey[[<span class="dv">3</span>]],survey[[<span class="dv">2</span>]],<span class="at">all=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">merge</span>(surveys,survey[[<span class="dv">1</span>]],<span class="at">all=</span><span class="cn">TRUE</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>surveys<span class="ot">&lt;-</span>surveys[<span class="fu">names</span>(survey[[<span class="dv">3</span>]])]</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>surveys<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">factor</span>(surveys<span class="sc">$</span>year, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">2023</span>,<span class="dv">2022</span>,<span class="dv">2021</span>))</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">#change column names</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(surveys))<span class="sc">-</span><span class="dv">1</span>){</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(surveys)[i] <span class="ot">&lt;-</span> questions<span class="sc">$</span>Topic[questions[,<span class="dv">1</span>]<span class="sc">==</span><span class="fu">colnames</span>(surveys[i])]</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="st">"Would you recommend this course to future students?"</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="st">"Do you think you are likely to use the computing skills learned in this course?"</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">9</span><span class="sc">:</span><span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"How interesting was each part of the course?"</span>,<span class="st">" - "</span>,<span class="fu">colnames</span>(surveys)[<span class="dv">9</span><span class="sc">:</span><span class="dv">10</span>])</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"How important/likely to be used in the future was each part of the course?"</span>,<span class="st">" - "</span>,<span class="fu">colnames</span>(surveys)[<span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a> <span class="fu">colnames</span>(surveys)[<span class="dv">13</span><span class="sc">:</span><span class="dv">14</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"How hard/demanding was each part of the course?"</span>,<span class="st">" - "</span>,<span class="fu">colnames</span>(surveys)[<span class="dv">13</span><span class="sc">:</span><span class="dv">14</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
 <section id="survey-results" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="survey-results"><span class="header-section-number">3.2</span> Survey results</h2>
 <p>Below we show the students’ responses, again from the 2021-2023 courses, grouped by similar blocks.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The bar plots are colored in the 5 Likert levels, as indicated in the legend and the numbers represent the percentage of answers, combining the two extreme answers of each side, so that all responses are grouped into three levels representing negative, neutral or positive responses (on the left, middle and right sides of the chart).</p>
+</div>
+</div>
 <section id="general-questions" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="general-questions"><span class="header-section-number">3.2.1</span> General Questions</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#general: Q4:Q9</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Far below average"</span>,<span class="st">"Below average"</span>,<span class="st">"Average"</span>,<span class="st">"Above average"</span>,<span class="st">"Far above average"</span>))</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#general: Q4:Q9</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#improve names</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(surveys)[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>] <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">names</span>(surveys)[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>],<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"- Compared with all Degree"</span>,<span class="st">"- Compared with other Elective Courses"</span>),<span class="at">each=</span><span class="dv">3</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Far below average"</span>,<span class="st">"Below average"</span>,<span class="st">"Average"</span>,<span class="st">"Above average"</span>,<span class="st">"Far above average"</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Figure 2. General Questions 1. Rank the HPBBM course in comparison with other courses in the degree or other optitonal curses this year (.1).</figcaption>
 </figure>
 </div>
@@ -619,18 +632,18 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#general: Q10:Q11</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No way"</span>,<span class="st">"Not likely"</span>,<span class="st">"Don't know"</span>,<span class="st">"Likely"</span>,<span class="st">"Yes, definitely"</span>))</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#general: Q10:Q11</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"No way"</span>,<span class="st">"Not likely"</span>,<span class="st">"Don't know"</span>,<span class="st">"Likely"</span>,<span class="st">"Yes, definitely"</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="dv">7</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Figure 3. General Questions 2.</figcaption>
 </figure>
 </div>
@@ -643,20 +656,20 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#course content: Q12:Q17</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="dv">9</span><span class="sc">:</span><span class="dv">14</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="dv">9</span><span class="sc">:</span><span class="dv">14</span>], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Not much"</span>,<span class="st">"Little"</span>,<span class="st">"OK"</span>,<span class="st">"High"</span>,<span class="st">"Very high"</span>))</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="dv">9</span><span class="sc">:</span><span class="dv">14</span>], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#course content: Q12:Q17</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="dv">9</span><span class="sc">:</span><span class="dv">14</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="dv">9</span><span class="sc">:</span><span class="dv">14</span>], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Not much"</span>,<span class="st">"Little"</span>,<span class="st">"OK"</span>,<span class="st">"High"</span>,<span class="st">"Very high"</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="dv">9</span><span class="sc">:</span><span class="dv">14</span>], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Figure 4. Course contents: time demand, difficulty, utility and interest.</figcaption>
 </figure>
 </div>
@@ -669,19 +682,19 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#teaching methodology: Q18:Q33</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">19</span>,<span class="dv">28</span><span class="sc">:</span><span class="dv">30</span>)] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">19</span>,<span class="dv">28</span><span class="sc">:</span><span class="dv">30</span>)], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Dispensable"</span>,<span class="st">"Partially useful"</span>,<span class="st">"So-so"</span>,<span class="st">"Useful"</span>,<span class="st">"Essential"</span>))</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">19</span>,<span class="dv">28</span><span class="sc">:</span><span class="dv">30</span>)], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#teaching methodology: Q18:Q33</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">19</span>,<span class="dv">28</span><span class="sc">:</span><span class="dv">30</span>)] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">19</span>,<span class="dv">28</span><span class="sc">:</span><span class="dv">30</span>)], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Dispensable"</span>,<span class="st">"Partially useful"</span>,<span class="st">"So-so"</span>,<span class="st">"Useful"</span>,<span class="st">"Essential"</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">19</span>,<span class="dv">28</span><span class="sc">:</span><span class="dv">30</span>)], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Figure 5. Teaching methodology (1). Grade each activity according to how useful you found it.</figcaption>
 </figure>
 </div>
@@ -691,20 +704,20 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#teaching methodology: Q18:Q33</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Dispensable"</span>,<span class="st">"Partially useful"</span>,<span class="st">"So-so"</span>,<span class="st">"Useful"</span>,<span class="st">"Essential"</span>))</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>])</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>xlikgroup_general<span class="sc">$</span>results<span class="sc">$</span>Item <span class="ot">&lt;-</span> <span class="fu">reverse.levels</span>(<span class="fu">as.factor</span>(xlikgroup_general<span class="sc">$</span>results<span class="sc">$</span>Item))</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#teaching methodology: Q18:Q33</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Dispensable"</span>,<span class="st">"Partially useful"</span>,<span class="st">"So-so"</span>,<span class="st">"Useful"</span>,<span class="st">"Essential"</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>])</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>xlikgroup_general<span class="sc">$</span>results<span class="sc">$</span>Item <span class="ot">&lt;-</span> <span class="fu">reverse.levels</span>(<span class="fu">as.factor</span>(xlikgroup_general<span class="sc">$</span>results<span class="sc">$</span>Item))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Figure 6. Teaching methodology (2: Project Based Learning of R). Grade each activity according to how useful you found it.</figcaption>
 </figure>
 </div>
@@ -717,57 +730,71 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Assessment: Q34:Q37</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="dv">31</span><span class="sc">:</span><span class="dv">35</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="dv">31</span><span class="sc">:</span><span class="dv">35</span>], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Strongly disagree"</span>,<span class="st">"Disagree"</span>,<span class="st">"So-so"</span>,<span class="st">"Agree"</span>,<span class="st">"Completely agree"</span>))</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="dv">31</span><span class="sc">:</span><span class="dv">35</span>], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Assessment: Q34:Q37</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>surveys[,<span class="dv">31</span><span class="sc">:</span><span class="dv">35</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(surveys[,<span class="dv">31</span><span class="sc">:</span><span class="dv">35</span>], <span class="cf">function</span>(x) <span class="fu">factor</span>(x, <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Strongly disagree"</span>,<span class="st">"Disagree"</span>,<span class="st">"So-so"</span>,<span class="st">"Agree"</span>,<span class="st">"Completely agree"</span>))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>xlikgroup_general <span class="ot">=</span> <span class="fu">likert</span>(surveys[,<span class="dv">31</span><span class="sc">:</span><span class="dv">35</span>], <span class="at">grouping =</span> surveys<span class="sc">$</span>year)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(xlikgroup_general, <span class="at">type =</span> <span class="st">"bar"</span>, <span class="at">centered =</span> T, <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Figure 7. Assessment Methods. Indicate your degree of agreement with each statement</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Course evaluation is usually a sensitive topic that we discuss with students. Their opinions are in line with previous questions and indicate that the assessment by classmates did not work last year and that they found the exams quite hard.</p>
+<p><a href="#top" style="color:steelblue;">Back to top</a></p>
 </section>
 </section>
 </section>
 <section id="use-of-r-in-your-biochemistry-research-after-the-course" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Use of R in your Biochemistry research after the course</h1>
 <p>To analyze the impact of the PBL approach, we also conducted a small survey to ask students whether or not they used R to analyze or present the results of their lab work during the bachelor thesis (in Spanish TFG). We conducted this survey in May 2023 (<a href="https://forms.office.com/e/VM0Z7h4K63">link here</a>), before the modification of the R block to PBL method, and in 2024 (<a href="https://forms.office.com/e/T33fcmXn8u">link</a>) using forms from UAM’s licensed Office 365.</p>
-<p>Unfortunately, we only got 21 answers in 2023 and 18 in 2024.</p>
+<p>The survey was handed to all the 4th-year Biochemistry students, and we analyzed the data considering whether or not the chose HPBBM. Unfortunately, we only got 21 answers in 2023 and 18 in 2024.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Check the Figure legends to see the questions, or follow the links above to see the full question text.</p>
+</div>
+</div>
 <section id="r-background" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="r-background"><span class="header-section-number">4.1</span> R background</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>after2023 <span class="ot">&lt;-</span>  <span class="fu">read_xlsx</span>(<span class="st">"data/Encuesta sobre el uso de métodos estadísticos y de análisis de datos durante el TFG(1-21).xlsx"</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>after2024 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/Encuesta sobre el uso de métodos estadísticos y de análisis de datos durante el TFG (2024)(1-18).xlsx"</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Q1</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span>  <span class="fu">read.csv2</span>(<span class="at">text=</span>after2023<span class="sc">$</span><span class="st">`</span><span class="at">¿En qué asignaturas has utilizado R?</span><span class="st">`</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>, <span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">answer=</span><span class="fu">c</span>(kk<span class="sc">$</span>V1,kk<span class="sc">$</span>V2,kk<span class="sc">$</span>V3))</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>Q1_2023 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kk[<span class="sc">-</span><span class="fu">which</span>(kk<span class="sc">$</span>answer<span class="sc">==</span><span class="st">""</span>),],<span class="st">"2023"</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Q1_2023) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span>  <span class="fu">read.csv2</span>(<span class="at">text=</span>after2024<span class="sc">$</span><span class="st">`</span><span class="at">¿En qué asignaturas has utilizado R?</span><span class="st">`</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>, <span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">data.frame</span>(<span class="at">answer=</span><span class="fu">c</span>(kk<span class="sc">$</span>V1,kk<span class="sc">$</span>V2,kk<span class="sc">$</span>V3)))</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>Q1_2024 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kk[<span class="sc">-</span><span class="fu">which</span>(kk<span class="sc">$</span>answer<span class="sc">==</span><span class="st">""</span>),],<span class="st">"2024"</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Q1_2024) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>answers <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Q1_2023,Q1_2024)</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>answers)<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y=</span>answer,<span class="at">group=</span><span class="fu">fct_rev</span>(year),<span class="at">fill=</span>year)) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Answers"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>after2023 <span class="ot">&lt;-</span>  <span class="fu">read_xlsx</span>(<span class="st">"data/Encuesta sobre el uso de métodos estadísticos y de análisis de datos durante el TFG(1-21).xlsx"</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>after2024 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/Encuesta sobre el uso de métodos estadísticos y de análisis de datos durante el TFG (2024)(1-18).xlsx"</span>,<span class="at">sheet=</span><span class="dv">1</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Q1</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span>  <span class="fu">read.csv2</span>(<span class="at">text=</span>after2023<span class="sc">$</span><span class="st">`</span><span class="at">¿En qué asignaturas has utilizado R?</span><span class="st">`</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>, <span class="at">header=</span><span class="cn">FALSE</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">answer=</span><span class="fu">c</span>(kk<span class="sc">$</span>V1,kk<span class="sc">$</span>V2,kk<span class="sc">$</span>V3))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>Q1_2023 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kk[<span class="sc">-</span><span class="fu">which</span>(kk<span class="sc">$</span>answer<span class="sc">==</span><span class="st">""</span>),],<span class="st">"2023"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Q1_2023) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span>  <span class="fu">read.csv2</span>(<span class="at">text=</span>after2024<span class="sc">$</span><span class="st">`</span><span class="at">¿En qué asignaturas has utilizado R?</span><span class="st">`</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>, <span class="at">header=</span><span class="cn">FALSE</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">data.frame</span>(<span class="at">answer=</span><span class="fu">c</span>(kk<span class="sc">$</span>V1,kk<span class="sc">$</span>V2,kk<span class="sc">$</span>V3)))</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>Q1_2024 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kk[<span class="sc">-</span><span class="fu">which</span>(kk<span class="sc">$</span>answer<span class="sc">==</span><span class="st">""</span>),],<span class="st">"2024"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Q1_2024) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>answers <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Q1_2023,Q1_2024)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>answers)<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y=</span>answer,<span class="at">group=</span><span class="fu">fct_rev</span>(year),<span class="at">fill=</span>year)) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Answers"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Figure 8. Previous contact with R.</figcaption>
 </figure>
 </div>
@@ -776,20 +803,20 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>current <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(after2023[,<span class="dv">9</span>],<span class="st">"2023"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(after2024[,<span class="dv">9</span>],<span class="st">"2024"</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(current) <span class="ot">&lt;-</span><span class="fu">names</span>(kk) <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>current <span class="ot">&lt;-</span> <span class="fu">rbind</span>(current,kk)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>current,<span class="fu">aes</span>(answer,<span class="at">fill=</span>year,<span class="at">group=</span><span class="fu">fct_rev</span>(year)))<span class="sc">+</span><span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Answers"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(<span class="fu">paste0</span>(<span class="fu">round</span>(prop<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>),<span class="st">"%"</span>))), <span class="at">stat=</span><span class="st">"count"</span>, <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>current <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(after2023[,<span class="dv">9</span>],<span class="st">"2023"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(after2024[,<span class="dv">9</span>],<span class="st">"2024"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(current) <span class="ot">&lt;-</span><span class="fu">names</span>(kk) <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>current <span class="ot">&lt;-</span> <span class="fu">rbind</span>(current,kk)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>current,<span class="fu">aes</span>(answer,<span class="at">fill=</span>year,<span class="at">group=</span><span class="fu">fct_rev</span>(year)))<span class="sc">+</span><span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Answers"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(<span class="fu">paste0</span>(<span class="fu">round</span>(prop<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>),<span class="st">"%"</span>))), <span class="at">stat=</span><span class="st">"count"</span>, <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 9. Current knowledge of R</figcaption>
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Figure 9. Current (self-evaluated) knowledge of R.</figcaption>
 </figure>
 </div>
 </div>
@@ -800,24 +827,33 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="at">text=</span>after2023<span class="sc">$</span><span class="st">`</span><span class="at">¿Has realizado análisis y representación de datos durante tu TFG?</span><span class="st">`</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">answer=</span><span class="fu">c</span>(analisis<span class="sc">$</span>V1,analisis<span class="sc">$</span>V2), <span class="at">year=</span><span class="st">"2023"</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="at">text=</span>after2024<span class="sc">$</span><span class="st">`</span><span class="at">¿Has realizado análisis y representación de datos durante tu TFG?</span><span class="st">`</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">answer=</span><span class="fu">c</span>(kk<span class="sc">$</span>V1,kk<span class="sc">$</span>V2), <span class="at">year=</span><span class="st">"2024"</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(analisis) <span class="ot">&lt;-</span><span class="fu">names</span>(kk) <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> <span class="fu">rbind</span>(analisis,kk)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(analisis[<span class="sc">-</span><span class="fu">which</span>(analisis<span class="sc">$</span>answer<span class="sc">==</span><span class="st">""</span>),])</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>analisis,<span class="fu">aes</span>(<span class="at">y=</span>answer,<span class="at">fill=</span>year,<span class="at">group=</span><span class="fu">fct_rev</span>(year)))<span class="sc">+</span><span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Answers"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(<span class="fu">paste0</span>(<span class="fu">round</span>(prop<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>),<span class="st">"%"</span>))), <span class="at">stat=</span><span class="st">"count"</span>, <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mark HPBBM students among all the students</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>after2023<span class="sc">$</span>HPBBM <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"HPBBM"</span>, after2023<span class="sc">$</span><span class="st">`</span><span class="at">¿En qué asignaturas has utilizado R?</span><span class="st">`</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>after2024<span class="sc">$</span>HPBBM <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">"HPBBM"</span>, after2024<span class="sc">$</span><span class="st">`</span><span class="at">¿En qué asignaturas has utilizado R?</span><span class="st">`</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#split answers</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> <span class="fu">cbind</span>(after2023<span class="sc">$</span>HPBBM, <span class="fu">read.csv2</span>(<span class="at">text=</span>after2023<span class="sc">$</span><span class="st">`</span><span class="at">¿Has realizado análisis y representación de datos durante tu TFG?</span><span class="st">`</span>,<span class="at">header=</span><span class="cn">FALSE</span>))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(analisis) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"HPBBM"</span>,<span class="st">"A1"</span>,<span class="st">"A2"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(analisis<span class="sc">$</span>HPBBM, <span class="at">answer=</span><span class="fu">c</span>(analisis<span class="sc">$</span>A1,analisis<span class="sc">$</span>A2), <span class="at">year=</span><span class="st">"2023"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">cbind</span>(after2024<span class="sc">$</span>HPBBM, <span class="fu">read.csv2</span>(<span class="at">text=</span>after2024<span class="sc">$</span><span class="st">`</span><span class="at">¿Has realizado análisis y representación de datos durante tu TFG?</span><span class="st">`</span>,<span class="at">header=</span><span class="cn">FALSE</span>))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(kk) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"HPBBM"</span>,<span class="st">"V1"</span>,<span class="st">"V2"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kk<span class="sc">$</span>HPBBM,<span class="at">answer=</span><span class="fu">c</span>(kk<span class="sc">$</span>V1,kk<span class="sc">$</span>V2), <span class="at">year=</span><span class="st">"2024"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(analisis) <span class="ot">&lt;-</span><span class="fu">names</span>(kk) <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">"HPBBM"</span>,<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> <span class="fu">rbind</span>(analisis,kk)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>analisis <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(analisis[<span class="sc">-</span><span class="fu">which</span>(analisis<span class="sc">$</span>answer<span class="sc">==</span><span class="st">""</span>),])</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>analisis,<span class="fu">aes</span>(<span class="at">y=</span>answer,<span class="at">fill=</span>year,<span class="at">group=</span><span class="fu">fct_rev</span>(year)))<span class="sc">+</span><span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Answers"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">group=</span><span class="fu">interaction</span>(<span class="fu">fct_rev</span>(year),HPBBM),<span class="at">label=</span><span class="fu">after_stat</span>(count)), <span class="at">stat=</span><span class="st">"count"</span>, <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>)) <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="sc">~</span>HPBBM,<span class="at">scales=</span><span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 10. Frequency of data analysis during the TFG</figcaption>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 10. Frequency of data analysis during the bachelor thesis (TFG) of biochemistry students who chose HPBBM (TRUE) and those who chose other courses (FALSE). The number of answers in each category is indicated.</figcaption>
 </figure>
 </div>
 </div>
@@ -825,29 +861,32 @@ Residuals   90  83.30  0.9256
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="at">text=</span>after2023<span class="sc">$</span><span class="st">`</span><span class="at">¿Qué software has usado mayoritariamente?</span><span class="st">`</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">answer=</span><span class="fu">c</span>(method<span class="sc">$</span>V1,method<span class="sc">$</span>V2,method<span class="sc">$</span>V3), <span class="at">year=</span><span class="st">"2023"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="at">text=</span>after2024<span class="sc">$</span><span class="st">`</span><span class="at">¿Qué software has usado mayoritariamente?</span><span class="st">`</span>,<span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">answer=</span><span class="fu">c</span>(kk<span class="sc">$</span>V1,kk<span class="sc">$</span>V2,kk<span class="sc">$</span>V3, kk<span class="sc">$</span>V4), <span class="at">year=</span><span class="st">"2024"</span>)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(method) <span class="ot">&lt;-</span><span class="fu">names</span>(kk) <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">rbind</span>(method,kk)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(method[<span class="sc">-</span><span class="fu">which</span>(method<span class="sc">$</span>answer<span class="sc">==</span><span class="st">""</span>),])</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>method,<span class="fu">aes</span>(<span class="at">y=</span>answer,<span class="at">fill=</span>year,<span class="at">group=</span><span class="fu">fct_rev</span>(year)))<span class="sc">+</span><span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Answers"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(<span class="fu">paste0</span>(<span class="fu">round</span>(prop<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>),<span class="st">"%"</span>))), <span class="at">stat=</span><span class="st">"count"</span>, <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">cbind</span>(after2023<span class="sc">$</span>HPBBM, <span class="fu">read.csv2</span>(<span class="at">text=</span>after2023<span class="sc">$</span><span class="st">`</span><span class="at">¿Qué software has usado mayoritariamente?</span><span class="st">`</span>,<span class="at">header=</span><span class="cn">FALSE</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(method) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"HPBBM"</span>,<span class="st">"A1"</span>,<span class="st">"A2"</span>,<span class="st">"A3"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(method<span class="sc">$</span>HPBBM, <span class="at">answer=</span><span class="fu">c</span>(method<span class="sc">$</span>A1,method<span class="sc">$</span>A2,method<span class="sc">$</span>A3), <span class="at">year=</span><span class="st">"2023"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">cbind</span>(after2024<span class="sc">$</span>HPBBM, <span class="fu">read.csv2</span>(<span class="at">text=</span>after2024<span class="sc">$</span><span class="st">`</span><span class="at">¿Qué software has usado mayoritariamente?</span><span class="st">`</span>,<span class="at">header=</span><span class="cn">FALSE</span>))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(kk) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"HPBBM"</span>,<span class="st">"V1"</span>,<span class="st">"V2"</span>,<span class="st">"V3"</span>,<span class="st">"V4"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>kk <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(kk<span class="sc">$</span>HPBBM,<span class="at">answer=</span><span class="fu">c</span>(kk<span class="sc">$</span>V1,kk<span class="sc">$</span>V2,kk<span class="sc">$</span>V3, kk<span class="sc">$</span>V4), <span class="at">year=</span><span class="st">"2024"</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(method) <span class="ot">&lt;-</span><span class="fu">names</span>(kk) <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">"HPBBM"</span>,<span class="st">"answer"</span>,<span class="st">"year"</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">rbind</span>(method,kk)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(method[<span class="sc">-</span><span class="fu">which</span>(method<span class="sc">$</span>answer<span class="sc">==</span><span class="st">""</span>),])</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>method,<span class="fu">aes</span>(<span class="at">y=</span>answer,<span class="at">fill=</span>year,<span class="at">group=</span><span class="fu">fct_rev</span>(year)))<span class="sc">+</span><span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Answers"</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>) <span class="sc">+</span> </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">group=</span><span class="fu">interaction</span>(<span class="fu">fct_rev</span>(year),HPBBM),<span class="at">label=</span><span class="fu">after_stat</span>(count)), <span class="at">stat=</span><span class="st">"count"</span>, <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>))<span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span><span class="fu">theme</span>(<span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>)) <span class="sc">+</span>  <span class="fu">facet_grid</span>(<span class="sc">~</span>HPBBM,<span class="at">scales=</span><span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 11. Method/Software for data analysis</figcaption>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 11. Method/software used for data analysis during the TFG of biochemistry students who chose HPBBM (TRUE) and those who chose other courses (FALSE). The number of answers in each category is indicated.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Although the dataset is small, we can see that, although the statistic analysis overall decrease (Figure 10, “<em>No, nunca</em>” is doubled), the use of R increases from 13 to 16% and SPSS reduced from 41% to 29%.</p>
+<p>Although the data set is small, we can see that although the overall statistical analysis is decreasing (Figure 10, “<em>No, nunca</em>”), the use of R among HPBBM students has increased by 25% (from 3 in 2023 to 5 last year).</p>
 </section>
 </section>
 <section id="discussion-with-the-students-after-the-course" class="level1" data-number="5">
@@ -862,7 +901,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>On the last day of the course, we not only asked the students to fill in the survey, but we also tried to discuss with them about the PBL method and its implementation in our course. Here are some of the key findings and conclusions that we transcribed from that discussion.</p>
+<p>On the last day of the course, we not only asked the students to fill out the survey, but also tried to discuss with them about the PBL method and its implementation in our course. Here are some of the key findings and conclusions that we transcribed from that discussion.</p>
 </div>
 </div>
 <section id="strong-points" class="level2" data-number="5.1">
@@ -870,16 +909,16 @@ Note
 <ol type="1">
 <li>The website with the course material was a helpful resource.</li>
 <li>They felt that they learned something and that the collaboration with their classmates was productive.</li>
-<li>The project helped clarify their interest in using R for biological research and reinforced some points of the course content that they found more interesting or useful.</li>
+<li>The project helped to clarify their interest in using R for biological research and reinforced some points of the course content that they found more interesting or useful.</li>
 </ol>
 </section>
 <section id="weak-points" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="weak-points"><span class="header-section-number">5.2</span> Weak points</h2>
 <ol type="1">
 <li>It would be better to use some of the work sessions to solve the exercises in public.</li>
-<li>The midterm test may overlap with the project deadlines.</li>
-<li>Maybe it would be better to do only one project instead of two.</li>
-<li>The “demo” session was a nice day to finish the course, but it was not very productive in the current format.</li>
+<li>The midterm exam may overlap with the project deadlines.</li>
+<li>Perhaps it would be better to do only one project instead of two.</li>
+<li>The “demo” session was a nice day to wrap up the course, but in its current form it was not very productive.</li>
 </ol>
 <p><a href="#top" style="color:steelblue;">Back to top</a></p>
 <button class="accordion-button d-block text-right" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
@@ -891,7 +930,7 @@ Note
 <div class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.4.0 (2024-04-24)
