@@ -27,7 +27,7 @@ This is a 6 ECTS elective course for students in the 4th year of Biochemistry De
 
 The R block consists of 7 lessons and we use the Aronson Puzzle method to work in groups of 3 in the classroom in two rounds. This way each student becomes an expert for two lessons. Between the two rounds, we take a break with a "normal" lecture to recap and work on lesson [R6](https://mredrejo.github.io/HPBBM2023/r6.html). Finally, they prepare a reproducible analysis of biological data with RMarkdown, including qPCR, MSA, sequence quality data, etc
 
-The questionnaires were completed by the students in 2017-2023 directly on Moodle on the last day of the respective course. This is a preliminary summary of the data analysis from the period 2021-2023. The GitHub [repo](https://github.com/mredrejo/survey_HPBBM) contains the original files of all analyses.
+The questionnaires were completed by the students in 2017-2023 directly on Moodle on the last day of the respective course. This is a preliminary summary of the data analysis from the period 2021-2023. The GitHub [repo](https://github.com/mredrejo/HPBBM2023/tree/main/docs/surveys_HPBBM) contains the original files of all analyses.
 
 All these data are made available under the Creative Common License ([CC BY-NC-ND 3.0 ES](https://creativecommons.org/licenses/by-nc-nd/4.0/)).
 
