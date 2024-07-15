@@ -15,8 +15,10 @@ format:
     number-sections: true
     code-overflow: wrap
     code-fold: true
+    code-link: true
     code-summary: "Show the code"
     link-external-icon: true
+    link-external-newwindow: true
     back-to-top-navigation: true
 ---
 
@@ -29,12 +31,12 @@ The R block consists of 7 lessons and we use the Aronson Puzzle method to work i
 
 The questionnaires were completed by the students in 2017-2023 directly on Moodle on the last day of the respective course. This is a preliminary summary of the data analysis from the period 2021-2023. The GitHub [repo](https://github.com/mredrejo/HPBBM2023/tree/main/docs/surveys_HPBBM) contains the original files of all analyses.
 
-All these data are made available under the Creative Common License ([CC BY-NC-ND 3.0 ES](https://creativecommons.org/licenses/by-nc-nd/4.0/)).
+All these data are made available under the Creative Common License ([CC BY-NC-ND](https://creativecommons.org/licenses/by-nc-nd/4.0/)).
 
 ::: callout-warning
 ## Preliminary
 
-This is only a preliminary analysis. Contact [modesto.redrejo\@uam.es](mailto:modesto.redrejo@uam.es) or [luis.peso\@uam.es](mailto:luis.peso@uam.es) for any feedback or queries.
+This is only a preliminary analysis. Contact us ([modesto.redrejo\@uam.es](mailto:modesto.redrejo@uam.es) or [luis.peso\@uam.es](mailto:luis.peso@uam.es)) for any feedback or queries.
 :::
 
 ```{r results='hide', message=FALSE, warning=FALSE}
@@ -73,6 +75,10 @@ capFig = function(x){
 # Course results
 
 First of all, we are going to analyze the final results of the course, comparing the final marks of the students before the PBL implementation (2021 and 2022) and after (2023).
+
+::: {.callout-note }
+These are the final marks of the *full course*, not only from the PBL-based R block.
+:::
 
 ```{r fig.cap=capFig("Distribution of course final marks in the last years. The 2023 course in which we implemented the PBL approach is colored in coral red. The vertical line mark the data mode.")}
 marks21 <- read_xls("data/2021_18245_281_Actas.xls",sheet=1)
@@ -178,7 +184,7 @@ for (i in 1:(length(surveys))-1){
 Below we show the students' responses, again from the 2021-2023 courses, grouped by similar blocks. 
 
 ::: {.callout-tip }
-The bar plots are colored in the 5 Likert levels, as indicated in the legend and the numbers represent the percentage of answers, combining the two extreme answers of each side, so that all responses are grouped into three levels representing negative, neutral or positive responses (on the left, middle and right sides of the chart).
+The bar plots are colored in the 5 Likert levels, as indicated in the legend; and the numbers represent the percentage of answers, combining the two extreme answers of each side, so that all responses are grouped into three levels representing negative, neutral or positive responses (on the left, middle and right sides of the chart).
 :::
 
 
