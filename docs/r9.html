@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Modesto">
 <meta name="dcterms.date" content="2023-08-17">
 
-<title>HPBBM2023 - R9: R for Molecular Biology</title>
+<title>R9: R for Molecular Biology – R for Biochemists @UAM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -74,13 +74,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/iconify-1.0.0-beta.2/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -89,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -105,82 +112,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./HPBBM2023.png" alt="" class="navbar-logo">
+    <img src="./r4biochemists.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">HPBBM2023</span>
+    <span class="navbar-title">R for Biochemists <span class="citation" data-cites="UAM">@UAM</span></span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-contents" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-contents" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Course Contents</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-course-contents">    
         <li>
-    <a class="dropdown-item" href="./r1.html" rel="" target="">
+    <a class="dropdown-item" href="./r1.html">
  <span class="dropdown-text">R1: Variables, Operators and data structures</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r2.html" rel="" target="">
+    <a class="dropdown-item" href="./r2.html">
  <span class="dropdown-text">R2: Flow Control</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r3.html" rel="" target="">
+    <a class="dropdown-item" href="./r3.html">
  <span class="dropdown-text">R3: Read and write data in R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r4.html" rel="" target="">
+    <a class="dropdown-item" href="./r4.html">
  <span class="dropdown-text">R4: Functions in R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r5.html" rel="" target="">
+    <a class="dropdown-item" href="./r5.html">
  <span class="dropdown-text">R5: Base plots in R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r6.html" rel="" target="">
+    <a class="dropdown-item" href="./r6.html">
  <span class="dropdown-text">R6: Advanced data management</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r7.html" rel="" target="">
+    <a class="dropdown-item" href="./r7.html">
  <span class="dropdown-text">R7: Project management for reproducible research in R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r8.html" rel="" target="">
+    <a class="dropdown-item" href="./r8.html">
  <span class="dropdown-text">R8: Plot your data in R - Episode II</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r9.html" rel="" target="">
+    <a class="dropdown-item" href="./r9.html">
  <span class="dropdown-text">R9: R for Molecular Biology</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools">
-    <a href="https://github.com/mredrejo/HPBBM2023" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
-    <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2023/tree/main/data" title="Download Data" class="quarto-navigation-tool px-1" aria-label="Download Data"><i class="bi bi-cloud-download"></i></a>
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/r4biochemists/r4biochemists.github.io" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/r4biochemists/r4biochemists.github.io/tree/main/data" title="Download Data" class="quarto-navigation-tool px-1" aria-label="Download Data"><i class="bi bi-cloud-download"></i></a>
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -210,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
@@ -232,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -251,14 +258,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 21, 2023</p>
+      <p class="date-modified">December 2, 2024</p>
     </div>
   </div>
     
   </div>
   
 
+
 </header>
+
 
 <section id="working-with-sequences" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Working with sequences</h1>
@@ -266,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1.1" class="anchored" data-anchor-id="regular-expressions-as-a-shortcut-to-explore-sequence"><span class="header-section-number">1.1</span> Regular expressions as a shortcut to explore sequence</h2>
 <p>Biological data, like protein or nucleic acid sequences can be stored and explored in different formats, each following its own structure. As you can imagine, that facilitates the use of <em>regular expressions</em> in any programming language to access that data. The use of regular expressions in R is similar to other languages, particularly, to the use you learnt in Python. Anyway, I suggest that you have a look to the <a href="#refs">References</a> below.</p>
 <p>Moreover, for advanced manipulation of string object, I’d advice the package <a href="https://stringr.tidyverse.org/">Strings</a>.</p>
-<p>In the code below, we are going to use some simple regular expressions to explore and analyze the data in a multifasta file containing the whole proteome of the bacteria <em>Bacillus thuringiensis HER1410</em>, using <code>grep()</code>, <code>substr()</code>, <code>sub()</code>, and <code>regexpr()</code>.</p>
+<p>In the code below, we are going to use some simple regular expressions to explore and analyze the data in a multifasta file containing the whole proteome of the bacteria <em>Bacillus thuringiensis HER1410</em> (<a href="data/HER1410.fasta>">HER1410.fasta</a>) in our data folder, using <code>grep()</code>, <code>substr()</code>, <code>sub()</code>, and <code>regexpr()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read the text file with readLines()</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>proteome <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">"data/HER1410.fasta"</span>)</span>
@@ -320,8 +329,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="quick-exercise-using-sub-and-substr." class="level3">
 <h3 class="anchored" data-anchor-id="quick-exercise-using-sub-and-substr."><span style="color:darkseagreen">Quick exercise: Using <code>sub()</code> and <code>substr()</code>.</span></h3>
 <strong>How would you extract the NCBI protein ID of the enzymes?</strong>
-<div id="radio_GNHAZEPCQA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GNHAZEPCQA" value=""> <span>sub(names_ase, 1,11)</span></label><label><input type="radio" autocomplete="off" name="radio_GNHAZEPCQA" value=""> <span>sub(names_ase, 2,11))</span></label><label><input type="radio" autocomplete="off" name="radio_GNHAZEPCQA" value=""> <span>substr(names_ase, 1,11)</span></label><label><input type="radio" autocomplete="off" name="radio_GNHAZEPCQA" value="answer"> <span>substr(names_ase, 2,11)</span></label>
+<div id="radio_OEDOJXOWYZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OEDOJXOWYZ" value=""> <span>sub(names_ase, 1,11)</span></label><label><input type="radio" autocomplete="off" name="radio_OEDOJXOWYZ" value=""> <span>sub(names_ase, 2,11))</span></label><label><input type="radio" autocomplete="off" name="radio_OEDOJXOWYZ" value=""> <span>substr(names_ase, 1,11)</span></label><label><input type="radio" autocomplete="off" name="radio_OEDOJXOWYZ" value="answer"> <span>substr(names_ase, 2,11)</span></label>
 </div>
 <div class="cell" data-output.lines="[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
 <div class="cell-output cell-output-stdout">
@@ -349,8 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <strong>How would you remove the `&gt;’ from the fasta headers?</strong>
-<div id="radio_GQDAOHANVI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_GQDAOHANVI" value=""> <span>sub(names_ase, 2,11)</span></label><label><input type="radio" autocomplete="off" name="radio_GQDAOHANVI" value="answer"> <span>sub(“&gt;”,““,names_ase)</span></label><label><input type="radio" autocomplete="off" name="radio_GQDAOHANVI" value=""> <span>substr(names_ase, 2,150)</span></label>
+<div id="radio_SNDPQZBCHI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_SNDPQZBCHI" value=""> <span>sub(names_ase, 2,11)</span></label><label><input type="radio" autocomplete="off" name="radio_SNDPQZBCHI" value="answer"> <span>sub(“&gt;”,““,names_ase)</span></label><label><input type="radio" autocomplete="off" name="radio_SNDPQZBCHI" value=""> <span>substr(names_ase, 2,150)</span></label>
 </div>
 <div class="cell" data-output.lines="[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]">
 <div class="cell-output cell-output-stdout">
@@ -560,7 +569,11 @@ attr(,"class")
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(stats1 <span class="ot">&lt;-</span> <span class="fu">AAstat</span>(<span class="fu">toupper</span>(seq), <span class="at">plot =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$Compo
@@ -602,14 +615,22 @@ $Pi
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(stats1<span class="sc">$</span>Compo, <span class="at">bty=</span><span class="st">"7"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cool color palette</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>coul <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">brewer.pal</span>(<span class="dv">9</span>, <span class="st">"Set1"</span>))(<span class="dv">20</span>) <span class="co">#palette is expanded from 9 to 20 colors</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(stats1<span class="sc">$</span>Compo, <span class="at">col=</span>coul, <span class="at">bty=</span><span class="st">"7"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#dotplot</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"recombinase"</span>,<span class="fu">getAnnot</span>(prots))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -618,16 +639,28 @@ $Pi
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotPlot</span>(prots[[<span class="dv">5</span>]],prots[[<span class="dv">2483</span>]], <span class="at">wsize=</span><span class="dv">3</span>, <span class="at">nmatch=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotPlot</span>(prots[[<span class="dv">2177</span>]],prots[[<span class="dv">2432</span>]], <span class="at">wsize=</span><span class="dv">3</span>, <span class="at">nmatch=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dotPlot</span>(prots[[<span class="dv">2177</span>]],prots[[<span class="dv">2432</span>]], <span class="at">col=</span><span class="fu">c</span>(<span class="st">"floralwhite"</span>,<span class="st">"dodgerblue"</span>), </span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">wsize=</span><span class="dv">6</span>, <span class="at">nmatch=</span><span class="dv">3</span>, <span class="at">xlab=</span><span class="fu">getName</span>(prots[[<span class="dv">2177</span>]]),<span class="at">ylab=</span><span class="fu">getName</span>(prots[[<span class="dv">2432</span>]]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#extract the recombinases to a new file</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>recs <span class="ot">&lt;-</span> prots[<span class="fu">grep</span>(<span class="st">"recombinase"</span>,<span class="fu">getAnnot</span>(prots))]</span>
@@ -636,7 +669,7 @@ $Pi
 </div>
 <p>As you noticed in the code above, the function <code>read.fasta()</code> can read any (multi)fasta file containing a protein or nucleic acid sequence and create a list of lists. Thus, if you want to extract a sequence as a single element, you need to extract if from the list with <code>unlist()</code> or convert it to a vector with <code>as.vector()</code>.</p>
 <p>Once you read the fasta, you can extract the headline name with <code>getName()</code> or the sequence with <code>getSequence()</code>. Additionally, you can obtain and plot basic stats or compare sequences using <code>dotPlot()</code>. Moreover, if you extract a subset of sequences, you can use <code>write.fasta()</code> to save those sequences in a new fasta file.</p>
-<p>Finally, as in the example below, you can also play with a nucleotide sequence and obtain some useful data, like the <code>GC()</code> content, the encoded proteins or the reverse complementary sequence with <code>rev()</code> and <code>comp()</code>, respectively.</p>
+<p>Finally, as in the example below with HER1410 genome sequence (<a href="data/HER1410nt.fasta>">HER1410nt.fasta</a>), you can also play with a nucleotide sequence and obtain some useful data, like the <code>GC()</code> content, the encoded proteins or the reverse complementary sequence with <code>rev()</code> and <code>comp()</code>, respectively.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#now the nt sequence</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>plasmid_nt <span class="ot">&lt;-</span> <span class="fu">read.fasta</span>(<span class="st">"data/HER1410nt.fasta"</span>)</span>
@@ -944,7 +977,7 @@ I'm trying to get the infos about the elements of the list...
 </div>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>polseq <span class="ot">&lt;-</span> <span class="fu">getSequence</span>(pol<span class="sc">$</span>req[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'pol' not found</code></pre>
+<pre><code>Error: object 'pol' not found</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">closebank</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -963,43 +996,43 @@ I'm trying to get the infos about the elements of the list...
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rentrez)</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>(pols <span class="ot">&lt;-</span> <span class="fu">entrez_search</span>(<span class="at">db =</span> <span class="st">"pubmed"</span>, <span class="at">term =</span> <span class="st">"DNA polymerase"</span>) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Entrez search result with 364294 hits (object contains 20 IDs and no web_history object)
- Search term (as translated):  "dna directed dna polymerase"[Supplementary Concep ... </code></pre>
+<pre><code>Entrez search result with 370959 hits (object contains 20 IDs and no web_history object)
+ Search term (as translated):  "dna directed dna polymerase"[MeSH Terms] OR ("dna ... </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 5
- $ ids             : chr [1:20] "37599362" "37599280" "37597576" "37597496" ...
- $ count           : int 364294
+ $ ids             : chr [1:20] "39621259" "39620979" "39620947" "39620398" ...
+ $ count           : int 370959
  $ retmax          : int 20
- $ QueryTranslation: chr "\"dna directed dna polymerase\"[Supplementary Concept] OR \"dna directed dna polymerase\"[All Fields] OR \"dna "| __truncated__
+ $ QueryTranslation: chr "\"dna directed dna polymerase\"[MeSH Terms] OR (\"dna directed\"[All Fields] AND \"dna\"[All Fields] AND \"poly"| __truncated__
  $ file            :Classes 'XMLInternalDocument', 'XMLAbstractDocument' &lt;externalptr&gt; 
  - attr(*, "class")= chr [1:2] "esearch" "list"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>(Gon <span class="ot">&lt;-</span> <span class="fu">entrez_search</span>(<span class="at">db =</span> <span class="st">"pubmed"</span>, <span class="at">term =</span> <span class="st">"Gonzalez"</span>, <span class="at">retmax=</span><span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Entrez search result with 64603 hits (object contains 100 IDs and no web_history object)
+<pre><code>Entrez search result with 69977 hits (object contains 100 IDs and no web_history object)
  Search term (as translated):  "Gonzalez"[All Fields] </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>Gon<span class="sc">$</span>ids <span class="co">#now kept 100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1] "37598725" "37598377" "37597262" "37597224" "37596773" "37596096"
-  [7] "37596012" "37595646" "37595238" "37595214" "37594961" "37594619"
- [13] "37594263" "37594034" "37592104" "37591719" "37590528" "37590234"
- [19] "37590151" "37589840" "37589443" "37589394" "37588310" "37587646"
- [25] "37587597" "37587184" "37586482" "37586219" "37585807" "37585626"
- [31] "37584519" "37584365" "37582385" "37582144" "37582138" "37581863"
- [37] "37581623" "37581460" "37580172" "37580164" "37580094" "37580092"
- [43] "37580015" "37579690" "37578844" "37578787" "37578489" "37578272"
- [49] "37578226" "37578201" "37577900" "37577596" "37577508" "37577250"
- [55] "37576200" "37575243" "37574085" "37573986" "37573941" "37573465"
- [61] "37573432" "37573351" "37573244" "37572848" "37572784" "37572721"
- [67] "37572657" "37572601" "37572582" "37572355" "37571279" "37571227"
- [73] "37570920" "37569535" "37569459" "37569250" "37569120" "37568825"
- [79] "37568698" "37568678" "37568674" "37568638" "37568562" "37568050"
- [85] "37567873" "37567824" "37567627" "37567298" "33760521" "30020634"
- [91] "29083833" "37566856" "37566854" "37566840" "37566833" "37566295"
- [97] "37566214" "37564724" "37564251" "37562984"</code></pre>
+<pre><code>  [1] "39621129" "39619484" "39618681" "39618641" "39617972" "39617918"
+  [7] "39617385" "39616970" "39616707" "39616660" "39616625" "39616040"
+ [13] "39615628" "39615375" "39614614" "39613751" "39613322" "39613189"
+ [19] "39612977" "39612354" "39611842" "39610682" "39610033" "39610022"
+ [25] "39609566" "39609135" "39608730" "39608561" "39608078" "39608055"
+ [31] "39607475" "39606794" "39606745" "39605874" "39605663" "39605657"
+ [37] "39605494" "39605200" "39603856" "39603359" "39603311" "39603275"
+ [43] "39603015" "39602990" "39601936" "39601306" "39601224" "39601182"
+ [49] "39600733" "39600286" "39600184" "39599646" "39598551" "39598529"
+ [55] "39598444" "39598243" "39597369" "39597045" "39596772" "39596764"
+ [61] "39596530" "39595817" "39595697" "39595414" "39594805" "39593747"
+ [67] "39593735" "39593573" "39592624" "39592295" "39592089" "39591634"
+ [73] "39591353" "39591278" "39591008" "39590677" "39590660" "39590502"
+ [79] "39590142" "39589919" "39589741" "39589489" "39588641" "39588218"
+ [85] "39587064" "39586935" "39585599" "39585317" "39584832" "39584673"
+ [91] "39584209" "39583488" "39583298" "39583229" "39582728" "39582125"
+ [97] "39582032" "39581951" "39581918" "39581725"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we can also fetch data</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>her1410 <span class="ot">&lt;-</span> <span class="fu">entrez_search</span>(<span class="at">db =</span> <span class="st">"nuccore"</span>, <span class="at">term =</span> <span class="st">"HER1410"</span>) </span>
@@ -1051,7 +1084,11 @@ I'm trying to get the infos about the elements of the list...
 <span id="cb94-19"><a href="#cb94-19" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>stops) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">toupper</span>(stop_codon),<span class="at">y=</span>freqs,<span class="at">col=</span>sequences,<span class="at">fill=</span>sequences),<span class="at">stat=</span><span class="st">"identity"</span>,<span class="at">position=</span><span class="st">"dodge"</span>,<span class="at">alpha=</span><span class="fl">0.8</span>) </span>
 <span id="cb94-20"><a href="#cb94-20" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span> <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span> <span class="fu">theme_linedraw</span>() <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Codon frequency"</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">"Stop codon"</span>) <span class="sc">+</span>  <span class="fu">guides</span>(<span class="at">color=</span><span class="st">"none"</span>, <span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"HER1410 sequences"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1075,7 +1112,11 @@ I'm trying to get the infos about the elements of the list...
 <span id="cb95-11"><a href="#cb95-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(counts, <span class="fu">aes</span>(<span class="at">x=</span>pos, <span class="at">y=</span>values, <span class="at">fill=</span>nucleotide)) <span class="sc">+</span> </span>
 <span id="cb95-12"><a href="#cb95-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This is not a very interesting plot. Now, in order to plot the PSSM as a sequence logo, we are going to use the package <code>ggseqlogo</code>. Also, to arrange plot, we will use the package <code>gridExtra</code>, which is very handy and commonly used to generate complex figures.</p>
@@ -1094,14 +1135,22 @@ of ggplot2 3.3.4.
   Please report the issue at &lt;https://github.com/omarwagih/ggseqlogo/issues&gt;.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("gridExtra")</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggseqlogo</span>(Counts, <span class="at">method=</span><span class="st">"prob"</span>)</span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggseqlogo</span>(Counts, <span class="at">method=</span><span class="st">"bits"</span>)</span>
 <span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(p1, p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Let’s plot some protein logo from the example sequences in the package. Remember that we are working with an add-ons to <em>ggplot</em>. That means that all <code>ggplot</code> elements can be used.</p>
@@ -1143,11 +1192,19 @@ of ggplot2 3.3.4.
 </div>
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqlogo</span>(seqs_aa, <span class="at">ncol=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggseqlogo</span>(seqs_aa, <span class="at">ncol=</span><span class="dv">2</span>) <span class="sc">+</span>   <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r9_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r9_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1171,7 +1228,7 @@ of ggplot2 3.3.4.
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/paste-8062F001.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Illustrative description elaborating the different file types at various stages in a typical analysis, with the package names (in pink boxes) that one will use for each stage. From: <a href="https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.html" class="uri">https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.html</a></figcaption>
+<figcaption>Illustrative description elaborating the different file types at various stages in a typical analysis, with the package names (in pink boxes) that one will use for each stage. From: <a href="https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.html" class="uri">https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.html</a></figcaption>
 </figure>
 </div>
 <p>Some of the most common Bioconductor packages and functions are:</p>
@@ -1210,13 +1267,13 @@ of ggplot2 3.3.4.
 <div class="cell">
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.3.0 (2023-04-21)
-Platform: x86_64-apple-darwin20 (64-bit)
-Running under: macOS Ventura 13.4.1
+<pre><code>R version 4.4.1 (2024-06-14)
+Platform: x86_64-apple-darwin20
+Running under: macOS Sonoma 14.6.1
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
-LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -1228,28 +1285,28 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggseqlogo_0.1      ggplot2_3.4.2      rentrez_1.2.3      RColorBrewer_1.1-3
-[5] seqinr_4.2-30      formatR_1.14       knitr_1.43         webexercises_1.1.0
+[1] ggseqlogo_0.2      ggplot2_3.5.1      rentrez_1.2.3      RColorBrewer_1.1-3
+[5] seqinr_4.2-36      webexercises_1.1.0 formatR_1.14       knitr_1.48        
 
 loaded via a namespace (and not attached):
- [1] ade4_1.7-22       gtable_0.3.3      jsonlite_1.8.4    dplyr_1.1.2      
- [5] compiler_4.3.0    tidyselect_1.2.0  Rcpp_1.0.10       gridExtra_2.3    
- [9] scales_1.2.1      yaml_2.3.7        fastmap_1.1.1     R6_2.5.1         
-[13] labeling_0.4.2    generics_0.1.3    curl_5.0.0        htmlwidgets_1.6.2
-[17] MASS_7.3-58.4     XML_3.99-0.14     tibble_3.2.1      munsell_0.5.0    
-[21] pillar_1.9.0      rlang_1.1.1       utf8_1.2.3        xfun_0.39        
-[25] cli_3.6.1         withr_2.5.0       magrittr_2.0.3    digest_0.6.31    
-[29] grid_4.3.0        rstudioapi_0.14   lifecycle_1.0.3   vctrs_0.6.2      
-[33] evaluate_0.21     glue_1.6.2        farver_2.1.1      fansi_1.0.4      
-[37] colorspace_2.1-0  rmarkdown_2.21    httr_1.4.6        tools_4.3.0      
-[41] pkgconfig_2.0.3   htmltools_0.5.5  </code></pre>
+ [1] ade4_1.7-22       gtable_0.3.6      jsonlite_1.8.9    dplyr_1.1.4      
+ [5] compiler_4.4.1    tidyselect_1.2.1  Rcpp_1.0.13       gridExtra_2.3    
+ [9] scales_1.3.0      yaml_2.3.10       fastmap_1.2.0     R6_2.5.1         
+[13] labeling_0.4.3    generics_0.1.3    curl_5.2.3        htmlwidgets_1.6.4
+[17] MASS_7.3-61       XML_3.99-0.17     tibble_3.2.1      munsell_0.5.1    
+[21] pillar_1.9.0      rlang_1.1.4       utf8_1.2.4        xfun_0.48        
+[25] cli_3.6.3         withr_3.0.2       magrittr_2.0.3    digest_0.6.37    
+[29] grid_4.4.1        rstudioapi_0.17.1 lifecycle_1.0.4   vctrs_0.6.5      
+[33] evaluate_1.0.1    glue_1.8.0        farver_2.1.2      fansi_1.0.6      
+[37] colorspace_2.1-1  rmarkdown_2.28    httr_1.4.7        tools_4.4.1      
+[41] pkgconfig_2.0.3   htmltools_0.5.8.1</code></pre>
 </div>
 </div>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><section id="refs" class="level1" data-number="3">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><section id="refs" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> References</h1>
 <ol type="1">
 <li><p><em>R in action.</em> Robert I. Kabacoff. March 2022 ISBN 9781617296055</p></li>
@@ -1510,18 +1567,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1553,11 +1599,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1567,8 +1659,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1580,7 +1681,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1624,6 +1848,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1649,6 +1874,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1706,28 +1957,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Modesto Redrejo Rodríguez &amp; Luis del Peso, 2023</div>   
+    <div class="nav-footer-left">
+<p>Modesto Redrejo Rodríguez &amp; Luis del Peso, 2024</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -1739,16 +1976,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </i> 
     </a>
   </li>  
-    <li class="nav-item compact">
+    <li class="nav-item">
     <a class="nav-link" href="https://twitter.com/mredrejo">
-      <i class="bi bi-twitter" role="img">
-</i> 
-    </a>
+<p><iconify-icon inline="" icon="fa6-brands:x-twitter"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/mredrejo.bsky.social">
+<p><iconify-icon inline="" icon="simple-icons:bluesky"></iconify-icon></p>
+</a>
   </li>  
 </ul>
     </div>
   </div>
 </footer>
+
 
 
 

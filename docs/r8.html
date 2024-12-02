@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Modesto">
 <meta name="dcterms.date" content="2023-08-17">
 
-<title>HPBBM2023 - R8: Plot your data in R - Episode II</title>
+<title>R8: Plot your data in R - Episode II – R for Biochemists @UAM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -74,13 +74,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/iconify-1.0.0-beta.2/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -89,14 +95,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.10.3/plotly.js"></script>
+<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
 <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
@@ -113,82 +121,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./HPBBM2023.png" alt="" class="navbar-logo">
+    <img src="./r4biochemists.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">HPBBM2023</span>
+    <span class="navbar-title">R for Biochemists <span class="citation" data-cites="UAM">@UAM</span></span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-contents" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-contents" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Course Contents</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-course-contents">    
         <li>
-    <a class="dropdown-item" href="./r1.html" rel="" target="">
+    <a class="dropdown-item" href="./r1.html">
  <span class="dropdown-text">R1: Variables, Operators and data structures</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r2.html" rel="" target="">
+    <a class="dropdown-item" href="./r2.html">
  <span class="dropdown-text">R2: Flow Control</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r3.html" rel="" target="">
+    <a class="dropdown-item" href="./r3.html">
  <span class="dropdown-text">R3: Read and write data in R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r4.html" rel="" target="">
+    <a class="dropdown-item" href="./r4.html">
  <span class="dropdown-text">R4: Functions in R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r5.html" rel="" target="">
+    <a class="dropdown-item" href="./r5.html">
  <span class="dropdown-text">R5: Base plots in R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r6.html" rel="" target="">
+    <a class="dropdown-item" href="./r6.html">
  <span class="dropdown-text">R6: Advanced data management</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r7.html" rel="" target="">
+    <a class="dropdown-item" href="./r7.html">
  <span class="dropdown-text">R7: Project management for reproducible research in R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r8.html" rel="" target="">
+    <a class="dropdown-item" href="./r8.html">
  <span class="dropdown-text">R8: Plot your data in R - Episode II</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./r9.html" rel="" target="">
+    <a class="dropdown-item" href="./r9.html">
  <span class="dropdown-text">R9: R for Molecular Biology</span></a>
   </li>  
     </ul>
   </li>
 </ul>
-            <div class="quarto-navbar-tools">
-    <a href="https://github.com/mredrejo/HPBBM2023" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
-    <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/mredrejo/HPBBM2023/tree/main/data" title="Download Data" class="quarto-navigation-tool px-1" aria-label="Download Data"><i class="bi bi-cloud-download"></i></a>
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/r4biochemists/r4biochemists.github.io" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/r4biochemists/r4biochemists.github.io/tree/main/data" title="Download Data" class="quarto-navigation-tool px-1" aria-label="Download Data"><i class="bi bi-cloud-download"></i></a>
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
@@ -220,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul>
 </nav>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
@@ -242,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -261,14 +269,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 14, 2023</p>
+      <p class="date-modified">December 2, 2024</p>
     </div>
   </div>
     
   </div>
   
 
+
 </header>
+
 
 <section id="ggplotting" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> GGplotting</h1>
@@ -277,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/paste-3D34E648.png" class="img-fluid figure-img" width="558"></p>
-<figcaption class="figure-caption">From: <a href="https://ourcodingclub.github.io/tutorials/dataviz-beautification/" class="uri">https://ourcodingclub.github.io/tutorials/dataviz-beautification/</a></figcaption>
+<figcaption>From: <a href="https://ourcodingclub.github.io/tutorials/dataviz-beautification/" class="uri">https://ourcodingclub.github.io/tutorials/dataviz-beautification/</a></figcaption>
 </figure>
 </div>
 <p>I must say that <strong><em>ggplot2</em></strong> is generally less intuitive for beginners. However, once you get used to it, even if you have to look for help or examples to obtain your plots, you will find that <em>ggplot</em> is amazingly powerful and allows you to create perfect plot, with a high level of detail. This is because it uses a “graphing grammar” (see <a href="https://www.tandfonline.com/doi/abs/10.1080/10618600.2000.10474897">Wilkinson et al.2000</a>), the <em>gg</em> of <em>ggplot2</em>. This is similar to the way that learning a language grammar can help you construct hundreds of different sentences from a small number of verbs, nouns, and adjectives, rather than memorizing each sentence. Similarly, by learning a small amount of the basic components of <em>ggplot2</em> and the <u>elements of its grammar</u>, you will be able to create hundreds of different plots to represent the data exactly as the way you think it’s the best way or even better. As with any language, the grammar of graphics can be <u>flexible</u> and we may omit some elements o add more elements of the same type, just like we can add diverse kinds of complements (place, time…) to a sentence.</p>
@@ -292,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s see all those element through some examples.</p>
 <section id="example-1-advanced-plotting-with-ggplot-in-one-line" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="example-1-advanced-plotting-with-ggplot-in-one-line"><span class="header-section-number">1.1</span> Example 1: Advanced plotting with ggplot in one line</h2>
-<p>Let’s start strong. We are going to generate a complex plot in one code line.</p>
+<p>Let’s start strong. We are going to generate a complex plot in one code line using the EU Covid-19 vaccines table (publicly available at <a href="https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea" class="uri">https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea</a> and we have a file <a href="../data/vaccines_EU_22oct2022.csv"><em>vaccines_EU_22oct2022.csv</em></a> in our data folder.)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load the data</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
@@ -307,7 +317,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#step 1: create the plot object</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> vaccines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>There are some alternative ways to create the plot than are useful for more complex plots. You can also create an object in the RStudio environment.</p>
@@ -326,14 +340,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(vaccines, <span class="fu">aes</span>(<span class="at">x =</span> YearWeekISO, <span class="at">y =</span> <span class="fu">log10</span>(FirstDose), <span class="at">col=</span>TargetGroup)) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>What happened? Where are my points? We added the data and it allows to plot the axis, but we also need to add the type of plot, that is, the <em>geom</em>etry layer. We usually build the final plot adding (just with <code>+</code>) more layers to the previous plot object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_point</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Finally, we would like to group our data:</p>
@@ -341,7 +363,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(vaccines, <span class="fu">aes</span>(<span class="at">x =</span> YearWeekISO, <span class="at">y =</span> <span class="fu">log10</span>(FirstDose), <span class="at">col=</span>TargetGroup), <span class="at">stat=</span>mean) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span> ReportingCountry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>That is, quite a complex plot in just one code line.</p>
@@ -398,14 +424,22 @@ Levels: Colon Lung</code></pre>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(genes, <span class="fu">aes</span>(<span class="at">x=</span>tumor, <span class="at">y=</span>GeneA,<span class="at">color=</span>tumor)) <span class="sc">+</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#geneB with custom colors</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(genes, <span class="fu">aes</span>(<span class="at">x=</span>tumor, <span class="at">y=</span>GeneB,<span class="at">fill=</span>tumor)) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"#999999"</span>, <span class="st">"#E69F00"</span>)) <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#together</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#we need to adapt dataset with stack()</span></span>
@@ -417,7 +451,11 @@ Levels: Colon Lung</code></pre>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>p <span class="co">#see the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="quick-exercise" class="level3">
@@ -431,7 +469,11 @@ Levels: Colon Lung</code></pre>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(GeneA <span class="sc">~</span> tumor, <span class="at">col=</span><span class="fu">c</span>(<span class="st">"#999999"</span>, <span class="st">"#E69F00"</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">5</span>))</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(GeneB <span class="sc">~</span> tumor, <span class="at">col=</span><span class="fu">c</span>(<span class="st">"#999999"</span>, <span class="st">"#E69F00"</span>),<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now let’s try the same with <em>ggplot</em>:</p>
@@ -441,7 +483,11 @@ Levels: Colon Lung</code></pre>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>What do you think?</p>
@@ -452,31 +498,59 @@ Levels: Colon Lung</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(q <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">facet_grid</span>(.<span class="sc">~</span> Gene) <span class="sc">+</span> <span class="fu">theme_light</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(q2 <span class="ot">&lt;-</span> p<span class="sc">+</span><span class="fu">facet_grid</span>(.<span class="sc">~</span> Gene) <span class="sc">+</span> <span class="fu">theme_dark</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>(q3 <span class="ot">&lt;-</span> p<span class="sc">+</span><span class="fu">facet_grid</span>(.<span class="sc">~</span> Gene) <span class="sc">+</span> <span class="fu">theme_linedraw</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>q<span class="sc">+</span> <span class="fu">stat_boxplot</span>(<span class="at">geom =</span><span class="st">'errorbar'</span>, <span class="at">width=</span><span class="fl">0.5</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>q <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>q <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-10-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-10-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>q <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-10-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-10-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now, let’s try some more cool example plots with these same data. Note the effect of the option <em>position</em> in the dotplots and how we can make different plots with the data, like density curves and violin plots.</p>
@@ -492,11 +566,19 @@ Levels: Colon Lung</code></pre>
 `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>r <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">pch =</span> <span class="dv">21</span>, <span class="at">position =</span> <span class="fu">position_jitterdodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#more examples</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(genes2, <span class="fu">aes</span>(<span class="at">x =</span> Expression))</span>
@@ -504,7 +586,11 @@ Levels: Colon Lung</code></pre>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#868686FF"</span>, <span class="st">"#EFC000FF"</span>)) <span class="sc">+</span></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">facet_grid</span>(.<span class="sc">~</span> Tumor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-11-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(genes2, <span class="fu">aes</span>(<span class="at">x =</span> Gene, <span class="at">y=</span>Expression, <span class="at">fill=</span>Tumor)) <span class="sc">+</span> </span>
@@ -512,7 +598,11 @@ Levels: Colon Lung</code></pre>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha=</span><span class="fl">0.4</span>, <span class="at">position=</span><span class="st">"dodge"</span>)</span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-11-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -526,23 +616,39 @@ Levels: Colon Lung</code></pre>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(coli_genomes,<span class="fu">aes</span>(<span class="at">x=</span>Strain, <span class="at">y=</span>contigs1kb, <span class="at">fill=</span>Source)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Dark2"</span>) <span class="sc">+</span> <span class="fu">theme_linedraw</span>() </span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>p2b <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Pastel2"</span>) <span class="sc">+</span> <span class="fu">theme_linedraw</span>() </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>p2b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> p2 <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>,</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-12-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-12-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In the examples above, we generated a plot and then make variations with some custom palettes (<em>p2</em>). The palettes are available in <em>ggplot</em>, but in order to explore and edit them, you need to install the package. Also, in the plot <em>p3</em>, we modified the font and orientation of the axis labels using a new <code>theme()</code> layer, that contains the text personalizations.</p>
@@ -552,16 +658,28 @@ Levels: Colon Lung</code></pre>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.all</span>(<span class="at">colorblindFriendly =</span> <span class="cn">TRUE</span>) <span class="co">#only colorblind-friendly!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#display only the a number of colors from specific palette</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display.brewer.pal</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">name =</span> <span class="st">'Dark2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-13-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="saving-your-plot" class="level3">
@@ -596,12 +714,20 @@ Levels: Colon Lung</code></pre>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Strain, <span class="at">y =</span> Assembly_length<span class="sc">/</span><span class="dv">15000</span>,  <span class="at">fill =</span> Source, <span class="at">alpha=</span><span class="fl">0.8</span>),<span class="at">col=</span><span class="st">"black"</span>,<span class="at">shape=</span><span class="dv">21</span>, <span class="at">size=</span><span class="dv">3</span>)</span>
 <span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>plots2b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plots2c <span class="ot">&lt;-</span> plots2b  <span class="sc">+</span>   <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Number of Contigs"</span>,<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">400</span>), <span class="at">expand=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span><span class="dv">15000</span> <span class="sc">*</span> ., <span class="at">name  =</span> <span class="st">"Assembly length"</span>)) </span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>plots2c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add colors and more customization</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plots2custom <span class="ot">&lt;-</span> plots2b <span class="sc">+</span>   </span>
@@ -610,7 +736,11 @@ Levels: Colon Lung</code></pre>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">alpha =</span> <span class="st">"none"</span>, <span class="at">color =</span> <span class="st">"none"</span>) </span>
 <span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>plots2custom</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="r8_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="r8_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We did the plot in different stages, to check each of the variables and the scale of the secondary axis before apply the customization. As the two variables have different range of value, we need to scale them. In this example, we scale-down the data (<code>/ 15000</code>) and then scale-up the axis to show the real data (<code>* 15000</code>).</p>
@@ -677,13 +807,13 @@ You may ask questions at stackoverflow, use the r and heatmaply tags:
 <span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmaply</span>(<span class="fu">as.data.frame.matrix</span>(matrix))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="plotly html-widget html-fill-item" id="htmlwidget-0d3cf7e889d9829f54a0" style="width:100%;height:975px;"></div>
-<script type="application/json" data-for="htmlwidget-0d3cf7e889d9829f54a0">{"x":{"data":[{"x":[2.125,1,null,1,1,null,2.125,3.25,null,3.25,3.25,null,3.25,2.5,null,2.5,2.5,null,2.5,2,null,2,2,null,2.5,3,null,3,3,null,3.25,4,null,4,4],"y":[5,5,null,5,0,null,5,5,null,5,2.2360679774997898,null,2.2360679774997898,2.2360679774997898,null,2.2360679774997898,1,null,1,1,null,1,0,null,1,1,null,1,0,null,2.2360679774997898,2.2360679774997898,null,2.2360679774997898,0],"text":["y: 5.000000","y: 5.000000",null,"y: 5.000000","y: 5.000000",null,"y: 5.000000","y: 5.000000",null,"y: 5.000000","y: 5.000000",null,"y: 2.236068","y: 2.236068",null,"y: 2.236068","y: 2.236068",null,"y: 1.000000","y: 1.000000",null,"y: 1.000000","y: 1.000000",null,"y: 1.000000","y: 1.000000",null,"y: 1.000000","y: 1.000000",null,"y: 2.236068","y: 2.236068",null,"y: 2.236068","y: 2.236068"],"type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.125,1,3.25,2.5,2,3,4],"y":[5,0,2.2360679774997898,1,0,0,0],"text":["y: 5.000000","y: 0.000000","y: 2.236068","y: 1.000000","y: 0.000000","y: 0.000000","y: 0.000000"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"transparent","opacity":1,"size":null,"symbol":null,"line":{"width":1.8897637795275593,"color":"transparent"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"type":"scatter","mode":"markers","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x2","yaxis":"y","frame":null},{"x":[1,2,3,4],"y":[1,2,3],"z":[[1,0.80000000000000004,0.80000000000000004,0.40000000000000002],[0.80000000000000004,0,0,0],[0.20000000000000001,0,0.20000000000000001,0.20000000000000001]],"text":[["row: Human<br>column: A<br>value: 5","row: Human<br>column: D<br>value: 4","row: Human<br>column: C<br>value: 4","row: Human<br>column: B1<br>value: 2"],["row: Porcine<br>column: A<br>value: 4","row: Porcine<br>column: D<br>value: 0","row: Porcine<br>column: C<br>value: 0","row: Porcine<br>column: B1<br>value: 0"],["row: Avian<br>column: A<br>value: 1","row: Avian<br>column: D<br>value: 0","row: Avian<br>column: C<br>value: 1","row: Avian<br>column: B1<br>value: 1"]],"colorscale":[[0,"#440154"],[0.20000000000000001,"#414487"],[0.40000000000000002,"#2A788E"],[0.80000000000000004,"#7AD151"],[1,"#FDE725"]],"type":"heatmap","showscale":false,"autocolorscale":false,"showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1],"y":[1],"name":"99_5db3ac66bc0d6f831450ceec79847082","type":"scatter","mode":"markers","opacity":0,"hoverinfo":"skip","showlegend":false,"marker":{"color":[0,1],"colorscale":[[0,"#440154"],[0.0033444816053511705,"#440256"],[0.006688963210702341,"#450357"],[0.01003344481605351,"#450558"],[0.013377926421404682,"#450659"],[0.016722408026755852,"#46075B"],[0.02006688963210702,"#46085C"],[0.023411371237458192,"#460A5D"],[0.026755852842809364,"#460B5E"],[0.030100334448160532,"#470C5F"],[0.033444816053511704,"#470E61"],[0.036789297658862873,"#470F62"],[0.040133779264214041,"#471063"],[0.043478260869565216,"#471164"],[0.046822742474916385,"#471365"],[0.05016722408026756,"#481467"],[0.053511705685618728,"#481568"],[0.056856187290969896,"#481768"],[0.060200668896321065,"#481769"],[0.06354515050167224,"#48186A"],[0.066889632107023408,"#481A6C"],[0.070234113712374577,"#481B6D"],[0.073578595317725745,"#481C6E"],[0.076923076923076913,"#481D6F"],[0.080267558528428082,"#481E6F"],[0.083612040133779264,"#481F70"],[0.086956521739130432,"#482071"],[0.090301003344481601,"#482173"],[0.093645484949832769,"#482374"],[0.096989966555183937,"#482475"],[0.10033444816053512,"#482576"],[0.10367892976588629,"#482576"],[0.10702341137123746,"#482777"],[0.11036789297658862,"#482878"],[0.11371237458193979,"#482979"],[0.11705685618729096,"#472A7A"],[0.12040133779264213,"#472B7A"],[0.1237458193979933,"#472D7B"],[0.12709030100334448,"#472D7B"],[0.13043478260869565,"#472E7C"],[0.13377926421404682,"#472F7D"],[0.13712374581939799,"#46307E"],[0.14046822742474915,"#46327E"],[0.14381270903010032,"#46337F"],[0.14715719063545149,"#463480"],[0.15050167224080266,"#463480"],[0.15384615384615383,"#453581"],[0.157190635451505,"#453781"],[0.16053511705685616,"#453882"],[0.16387959866220736,"#443983"],[0.16722408026755853,"#443A83"],[0.1705685618729097,"#443A83"],[0.17391304347826086,"#443C84"],[0.17725752508361203,"#433D84"],[0.1806020066889632,"#433E85"],[0.18394648829431437,"#423F85"],[0.18729096989966554,"#424086"],[0.19063545150501671,"#424186"],[0.19397993311036787,"#424186"],[0.19732441471571907,"#414387"],[0.20066889632107024,"#414487"],[0.20401337792642141,"#404588"],[0.20735785953177258,"#404688"],[0.21070234113712374,"#3F4788"],[0.21404682274247491,"#3F4889"],[0.21739130434782608,"#3F4889"],[0.22073578595317725,"#3E4989"],[0.22408026755852842,"#3E4A89"],[0.22742474916387959,"#3E4C8A"],[0.23076923076923075,"#3D4D8A"],[0.23411371237458192,"#3D4E8A"],[0.23745819397993309,"#3C4F8A"],[0.24080267558528426,"#3C4F8A"],[0.24414715719063543,"#3C508B"],[0.2474916387959866,"#3B518B"],[0.25083612040133779,"#3B528B"],[0.25418060200668896,"#3A538B"],[0.25752508361204013,"#3A548C"],[0.2608695652173913,"#39558C"],[0.26421404682274247,"#39558C"],[0.26755852842809363,"#39568C"],[0.2709030100334448,"#38588C"],[0.27424749163879597,"#38598C"],[0.27759197324414714,"#375A8C"],[0.28093645484949831,"#375B8D"],[0.28428093645484948,"#375B8D"],[0.28762541806020064,"#365C8D"],[0.29096989966555181,"#365D8D"],[0.29431438127090298,"#355E8D"],[0.29765886287625415,"#355F8D"],[0.30100334448160532,"#34608D"],[0.30434782608695649,"#34618D"],[0.30769230769230765,"#34618D"],[0.31103678929765882,"#33628D"],[0.31438127090300999,"#33638D"],[0.31772575250836116,"#32648E"],[0.32107023411371233,"#32658E"],[0.32441471571906355,"#31668E"],[0.32775919732441472,"#31678E"],[0.33110367892976589,"#31678E"],[0.33444816053511706,"#31688E"],[0.33779264214046822,"#30698E"],[0.34113712374581939,"#306A8E"],[0.34448160535117056,"#2F6B8E"],[0.34782608695652173,"#2F6C8E"],[0.3511705685618729,"#2E6D8E"],[0.35451505016722407,"#2E6D8E"],[0.35785953177257523,"#2E6E8E"],[0.3612040133779264,"#2E6F8E"],[0.36454849498327757,"#2D708E"],[0.36789297658862874,"#2D718E"],[0.37123745819397991,"#2C718E"],[0.37458193979933108,"#2C728E"],[0.37792642140468224,"#2C728E"],[0.38127090301003341,"#2C738E"],[0.38461538461538458,"#2B748E"],[0.38795986622073575,"#2B758E"],[0.39130434782608692,"#2A768E"],[0.39464882943143814,"#2A778E"],[0.39799331103678931,"#2A778E"],[0.40133779264214048,"#2A788E"],[0.40468227424749159,"#29798E"],[0.40802675585284282,"#297A8E"],[0.41137123745819393,"#297B8E"],[0.41471571906354515,"#287C8E"],[0.41806020066889626,"#287D8E"],[0.42140468227424749,"#287D8E"],[0.4247491638795986,"#277E8E"],[0.42809364548494983,"#277F8E"],[0.43143812709030105,"#27808E"],[0.43478260869565216,"#26818E"],[0.43812709030100339,"#26828E"],[0.4414715719063545,"#26828E"],[0.44481605351170572,"#26828E"],[0.44816053511705684,"#25838E"],[0.45150501672240806,"#25848E"],[0.45484949832775917,"#25858E"],[0.4581939799331104,"#24868E"],[0.46153846153846151,"#24878E"],[0.46488294314381273,"#23888E"],[0.46822742474916385,"#23888E"],[0.47157190635451507,"#23898E"],[0.47491638795986618,"#238A8D"],[0.47826086956521741,"#228B8D"],[0.48160535117056852,"#228C8D"],[0.48494983277591974,"#228D8D"],[0.48829431438127086,"#218E8D"],[0.49163879598662208,"#218E8D"],[0.49498327759197319,"#218F8D"],[0.49832775919732442,"#21908D"],[0.50167224080267558,"#21918C"],[0.50501672240802675,"#20928C"],[0.50836120401337792,"#20928C"],[0.51170568561872909,"#20928C"],[0.51505016722408026,"#20938C"],[0.51839464882943143,"#1F948C"],[0.52173913043478259,"#1F958B"],[0.52508361204013376,"#1F968B"],[0.52842809364548493,"#1F978B"],[0.5317725752508361,"#1F988B"],[0.53511705685618727,"#1F988B"],[0.53846153846153844,"#1F998A"],[0.5418060200668896,"#1F9A8A"],[0.54515050167224077,"#1E9B8A"],[0.54849498327759194,"#1E9C89"],[0.55183946488294311,"#1E9D89"],[0.55518394648829428,"#1F9E89"],[0.55852842809364545,"#1F9E89"],[0.56187290969899661,"#1F9F88"],[0.56521739130434778,"#1FA088"],[0.56856187290969895,"#1FA188"],[0.57190635451505023,"#1FA187"],[0.57525083612040129,"#1FA287"],[0.57859531772575257,"#20A386"],[0.58193979933110362,"#20A386"],[0.5852842809364549,"#20A486"],[0.58862876254180596,"#21A585"],[0.59197324414715724,"#21A685"],[0.5953177257525083,"#22A785"],[0.59866220735785958,"#22A884"],[0.60200668896321063,"#23A983"],[0.60535117056856191,"#23A983"],[0.60869565217391297,"#24AA83"],[0.61204013377926425,"#25AB82"],[0.61538461538461531,"#25AC82"],[0.61872909698996659,"#26AD81"],[0.62207357859531764,"#27AD81"],[0.62541806020066892,"#27AD81"],[0.62876254180601998,"#28AE80"],[0.63210702341137126,"#29AF7F"],[0.63545150501672232,"#2AB07F"],[0.6387959866220736,"#2CB17E"],[0.64214046822742465,"#2DB27D"],[0.64548494983277593,"#2EB37C"],[0.6488294314381271,"#2EB37C"],[0.65217391304347827,"#30B47C"],[0.65551839464882944,"#31B57B"],[0.65886287625418061,"#32B67A"],[0.66220735785953178,"#34B679"],[0.66555183946488294,"#35B779"],[0.66889632107023411,"#36B878"],[0.67224080267558528,"#37B878"],[0.67558528428093645,"#39B977"],[0.67892976588628762,"#3ABA76"],[0.68227424749163879,"#3BBB75"],[0.68561872909698995,"#3DBC74"],[0.68896321070234112,"#3EBC73"],[0.69230769230769229,"#40BD72"],[0.69565217391304346,"#41BD72"],[0.69899665551839463,"#42BE71"],[0.7023411371237458,"#44BF70"],[0.70568561872909696,"#46C06F"],[0.70903010033444813,"#48C16E"],[0.7123745819397993,"#49C16D"],[0.71571906354515047,"#4BC26C"],[0.71906354515050164,"#4DC26C"],[0.72240802675585281,"#4EC36B"],[0.72575250836120397,"#50C46A"],[0.72909698996655514,"#52C569"],[0.73244147157190631,"#54C568"],[0.73578595317725748,"#55C667"],[0.73913043478260865,"#57C666"],[0.74247491638795982,"#59C765"],[0.74581939799331098,"#5AC864"],[0.74916387959866215,"#5CC863"],[0.75250836120401332,"#5EC962"],[0.75585284280936449,"#5FCA61"],[0.75919732441471566,"#62CB5F"],[0.76254180602006683,"#64CB5F"],[0.76588628762541799,"#66CB5D"],[0.76923076923076916,"#67CC5C"],[0.77257525083612033,"#69CD5B"],[0.7759197324414715,"#6CCD5A"],[0.77926421404682267,"#6DCE59"],[0.78260869565217384,"#6FCF57"],[0.785953177257525,"#71CF57"],[0.78929765886287628,"#74D055"],[0.79264214046822734,"#75D054"],[0.79598662207357862,"#77D153"],[0.79933110367892968,"#79D151"],[0.80267558528428096,"#7BD250"],[0.80602006688963213,"#7ED34F"],[0.80936454849498318,"#80D34E"],[0.81270903010033435,"#82D34D"],[0.81605351170568563,"#84D44B"],[0.8193979933110368,"#86D549"],[0.82274247491638786,"#88D548"],[0.82608695652173902,"#8AD647"],[0.8294314381270903,"#8DD645"],[0.83277591973244147,"#8FD644"],[0.83612040133779253,"#91D743"],[0.8394648829431437,"#93D741"],[0.84280936454849498,"#95D840"],[0.84615384615384615,"#97D83E"],[0.8494983277591972,"#9AD93D"],[0.85284280936454837,"#9CD93C"],[0.85618729096989965,"#9ED93A"],[0.85953177257525082,"#A0DA39"],[0.8628762541806021,"#A2DA37"],[0.86622073578595304,"#A5DB36"],[0.86956521739130432,"#A7DB35"],[0.87290969899665549,"#A9DC33"],[0.87625418060200677,"#ABDC31"],[0.87959866220735772,"#AEDC30"],[0.882943143812709,"#B0DD2F"],[0.88628762541806017,"#B2DD2D"],[0.88963210702341144,"#B5DE2B"],[0.89297658862876239,"#B7DE2A"],[0.89632107023411367,"#B9DE28"],[0.89966555183946484,"#BBDE27"],[0.90301003344481612,"#BEDF26"],[0.90635451505016706,"#C0DF25"],[0.90969899665551834,"#C2DF23"],[0.91304347826086951,"#C4E021"],[0.91638795986622079,"#C7E020"],[0.91973244147157174,"#C9E11F"],[0.92307692307692302,"#CBE11E"],[0.92642140468227419,"#CEE11D"],[0.92976588628762546,"#D0E11C"],[0.93311036789297663,"#D2E21B"],[0.93645484949832769,"#D4E21A"],[0.93979933110367886,"#D7E219"],[0.94314381270903014,"#D9E319"],[0.94648829431438131,"#DBE319"],[0.94983277591973236,"#DDE318"],[0.95317725752508353,"#DFE318"],[0.95652173913043481,"#E2E418"],[0.95986622073578598,"#E4E419"],[0.96321070234113704,"#E6E419"],[0.96655518394648821,"#E8E419"],[0.96989966555183948,"#EBE51A"],[0.97324414715719065,"#EDE51B"],[0.97658862876254171,"#EFE51C"],[0.97993311036789288,"#F1E51D"],[0.98327759197324416,"#F3E61E"],[0.98662207357859533,"#F5E61F"],[0.98996655518394638,"#F7E620"],[0.99331103678929755,"#F9E622"],[0.99665551839464883,"#FBE723"],[1,"#FDE725"]],"colorbar":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"thickness":23.039999999999996,"title":null,"titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickmode":"array","ticktext":["0","1","2","3","4","5"],"tickvals":[0,0.20000000000000001,0.40000000000000002,0.59999999999999998,0.80000000000000004,1],"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"ticklen":2,"len":0.5}},"xaxis":"x","yaxis":"y2","frame":null},{"x":[6.4807406984078604,6.4807406984078604,null,6.4807406984078604,0,null,6.4807406984078604,6.4807406984078604,null,6.4807406984078604,3.3166247903553998,null,3.3166247903553998,3.3166247903553998,null,3.3166247903553998,0,null,3.3166247903553998,3.3166247903553998,null,3.3166247903553998,0],"y":[1.75,1,null,1,1,null,1.75,2.5,null,2.5,2.5,null,2.5,2,null,2,2,null,2.5,3,null,3,3],"text":["y: 6.480741","y: 6.480741",null,"y: 6.480741","y: 6.480741",null,"y: 6.480741","y: 6.480741",null,"y: 6.480741","y: 6.480741",null,"y: 3.316625","y: 3.316625",null,"y: 3.316625","y: 3.316625",null,"y: 3.316625","y: 3.316625",null,"y: 3.316625","y: 3.316625"],"type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[6.4807406984078604,0,3.3166247903553998,0,0],"y":[1.75,1,2.5,2,3],"text":["y: 6.480741","y: 0.000000","y: 3.316625","y: 0.000000","y: 0.000000"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"transparent","opacity":1,"size":null,"symbol":null,"line":{"width":1.8897637795275593,"color":"transparent"}},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"xaxis":{"domain":[0,0.80000000000000004],"automargin":true,"type":"linear","autorange":false,"range":[0.5,4.5],"tickmode":"array","ticktext":["A","D","C","B1"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["A","D","C","B1"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.283520132835205},"tickangle":-45,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"xaxis2":{"domain":[0.80000000000000004,1],"automargin":true,"showticklabels":false,"showgrid":false,"zeroline":false,"anchor":"y2","type":"linear","autorange":false,"range":[0,6.4807406984078604],"tickmode":"array","ticktext":["0","2","4","6"],"tickvals":[0,2,4,6],"categoryorder":"array","categoryarray":["0","2","4","6"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"gridcolor":null,"gridwidth":0,"title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"yaxis2":{"domain":[0,0.80000000000000004],"automargin":true,"type":"linear","autorange":false,"range":[0.5,3.5],"tickmode":"array","ticktext":["Human","Porcine","Avian"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["Human","Porcine","Avian"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.283520132835205},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"yaxis":{"domain":[0.80000000000000004,1],"automargin":true,"showticklabels":false,"showgrid":false,"zeroline":false,"anchor":"x","type":"linear","autorange":false,"range":[0,5],"tickmode":"array","ticktext":["0","1","2","3","4","5"],"tickvals":[0,1,2,3,4,5],"categoryorder":"array","categoryarray":["0","1","2","3","4","5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"gridcolor":null,"gridwidth":0,"title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"annotations":[],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.80000000000000004,"y0":0.80000000000000004,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.80000000000000004,"y0":0,"y1":0.80000000000000004},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.80000000000000004,"x1":1,"y0":0,"y1":0.80000000000000004}],"images":[],"margin":{"t":0,"r":null,"b":15.940224159402245,"l":55.790784557907863},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"y":1,"yanchor":"top"},"hovermode":"closest","barmode":"relative","paper_bgcolor":"rgba(255,255,255,1)","title":""},"attrs":{"ede5dbf8452":{"xend":{},"yend":{},"colour":{},"linetype":{},"size":{},"x":{},"y":{},"type":"scatter"},"ede48885393":{"colour":{},"shape":{},"size":{},"x":{},"y":{}},"ede6e26fd18":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]},"ede581421a8":{"x":{},"y":{},"fill":{},"text":{},"type":"heatmap"},"ede690f19a6":{"xend":{},"yend":{},"colour":{},"linetype":{},"size":{},"x":{},"y":{},"type":"scatter"},"ede5e5d172c":{"colour":{},"shape":{},"size":{},"x":{},"y":{}}},"source":"A","config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displaylogo":false,"modeBarButtonsToRemove":["sendDataToCloud","select2d","lasso2d","autoScale2d","hoverClosestCartesian","hoverCompareCartesian","sendDataToCloud"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-0d3cf7e889d9829f54a0">{"x":{"data":[{"x":[2.125,1,null,1,1,null,2.125,3.25,null,3.25,3.25,null,3.25,2.5,null,2.5,2.5,null,2.5,2,null,2,2,null,2.5,3,null,3,3,null,3.25,4,null,4,4],"y":[5,5,null,5,0,null,5,5,null,5,2.2360679774997898,null,2.2360679774997898,2.2360679774997898,null,2.2360679774997898,1,null,1,1,null,1,0,null,1,1,null,1,0,null,2.2360679774997898,2.2360679774997898,null,2.2360679774997898,0],"text":["y: 5.000000","y: 5.000000",null,"y: 5.000000","y: 5.000000",null,"y: 5.000000","y: 5.000000",null,"y: 5.000000","y: 5.000000",null,"y: 2.236068","y: 2.236068",null,"y: 2.236068","y: 2.236068",null,"y: 1.000000","y: 1.000000",null,"y: 1.000000","y: 1.000000",null,"y: 1.000000","y: 1.000000",null,"y: 1.000000","y: 1.000000",null,"y: 2.236068","y: 2.236068",null,"y: 2.236068","y: 2.236068"],"type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.125,1,3.25,2.5,2,3,4],"y":[5,0,2.2360679774997898,1,0,0,0],"text":["y: 5.000000","y: 0.000000","y: 2.236068","y: 1.000000","y: 0.000000","y: 0.000000","y: 0.000000"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"transparent","opacity":1,"size":null,"symbol":null,"line":{"width":1.8897637795275593,"color":"transparent"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"type":"scatter","mode":"markers","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x2","yaxis":"y","frame":null},{"x":[1,2,3,4],"y":[1,2,3],"z":[[1,0.80000000000000004,0.80000000000000004,0.40000000000000002],[0.80000000000000004,0,0,0],[0.20000000000000001,0,0.20000000000000001,0.20000000000000001]],"text":[["row: Human<br>column: A<br>value: 5","row: Human<br>column: D<br>value: 4","row: Human<br>column: C<br>value: 4","row: Human<br>column: B1<br>value: 2"],["row: Porcine<br>column: A<br>value: 4","row: Porcine<br>column: D<br>value: 0","row: Porcine<br>column: C<br>value: 0","row: Porcine<br>column: B1<br>value: 0"],["row: Avian<br>column: A<br>value: 1","row: Avian<br>column: D<br>value: 0","row: Avian<br>column: C<br>value: 1","row: Avian<br>column: B1<br>value: 1"]],"colorscale":[[0,"#440154"],[0.20000000000000001,"#414487"],[0.40000000000000002,"#2A788E"],[0.80000000000000004,"#7AD151"],[1,"#FDE725"]],"type":"heatmap","showscale":false,"autocolorscale":false,"showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1],"y":[1],"name":"749ba6440d8181cefab3a95a653b42a5","type":"scatter","mode":"markers","opacity":0,"hoverinfo":"skip","showlegend":false,"marker":{"color":[0,1],"colorscale":[[0,"#440154"],[0.0033444816053511705,"#440256"],[0.006688963210702341,"#450357"],[0.01003344481605351,"#450558"],[0.013377926421404682,"#450659"],[0.016722408026755852,"#46075B"],[0.02006688963210702,"#46085C"],[0.023411371237458192,"#460A5D"],[0.026755852842809364,"#460B5E"],[0.030100334448160532,"#470C5F"],[0.033444816053511704,"#470E61"],[0.036789297658862873,"#470F62"],[0.040133779264214041,"#471063"],[0.043478260869565216,"#471164"],[0.046822742474916385,"#471365"],[0.05016722408026756,"#481467"],[0.053511705685618728,"#481568"],[0.056856187290969896,"#481768"],[0.060200668896321065,"#481769"],[0.06354515050167224,"#48186A"],[0.066889632107023408,"#481A6C"],[0.070234113712374577,"#481B6D"],[0.073578595317725745,"#481C6E"],[0.076923076923076913,"#481D6F"],[0.080267558528428082,"#481E6F"],[0.083612040133779264,"#481F70"],[0.086956521739130432,"#482071"],[0.090301003344481601,"#482173"],[0.093645484949832769,"#482374"],[0.096989966555183937,"#482475"],[0.10033444816053512,"#482576"],[0.10367892976588629,"#482576"],[0.10702341137123746,"#482777"],[0.11036789297658862,"#482878"],[0.11371237458193979,"#482979"],[0.11705685618729096,"#472A7A"],[0.12040133779264213,"#472B7A"],[0.1237458193979933,"#472D7B"],[0.12709030100334448,"#472D7B"],[0.13043478260869565,"#472E7C"],[0.13377926421404682,"#472F7D"],[0.13712374581939799,"#46307E"],[0.14046822742474915,"#46327E"],[0.14381270903010032,"#46337F"],[0.14715719063545149,"#463480"],[0.15050167224080266,"#463480"],[0.15384615384615383,"#453581"],[0.157190635451505,"#453781"],[0.16053511705685616,"#453882"],[0.16387959866220736,"#443983"],[0.16722408026755853,"#443A83"],[0.1705685618729097,"#443A83"],[0.17391304347826086,"#443C84"],[0.17725752508361203,"#433D84"],[0.1806020066889632,"#433E85"],[0.18394648829431437,"#423F85"],[0.18729096989966554,"#424086"],[0.19063545150501671,"#424186"],[0.19397993311036787,"#424186"],[0.19732441471571907,"#414387"],[0.20066889632107024,"#414487"],[0.20401337792642141,"#404588"],[0.20735785953177258,"#404688"],[0.21070234113712374,"#3F4788"],[0.21404682274247491,"#3F4889"],[0.21739130434782608,"#3F4889"],[0.22073578595317725,"#3E4989"],[0.22408026755852842,"#3E4A89"],[0.22742474916387959,"#3E4C8A"],[0.23076923076923075,"#3D4D8A"],[0.23411371237458192,"#3D4E8A"],[0.23745819397993309,"#3C4F8A"],[0.24080267558528426,"#3C4F8A"],[0.24414715719063543,"#3C508B"],[0.2474916387959866,"#3B518B"],[0.25083612040133779,"#3B528B"],[0.25418060200668896,"#3A538B"],[0.25752508361204013,"#3A548C"],[0.2608695652173913,"#39558C"],[0.26421404682274247,"#39558C"],[0.26755852842809363,"#39568C"],[0.2709030100334448,"#38588C"],[0.27424749163879597,"#38598C"],[0.27759197324414714,"#375A8C"],[0.28093645484949831,"#375B8D"],[0.28428093645484948,"#375B8D"],[0.28762541806020064,"#365C8D"],[0.29096989966555181,"#365D8D"],[0.29431438127090298,"#355E8D"],[0.29765886287625415,"#355F8D"],[0.30100334448160532,"#34608D"],[0.30434782608695649,"#34618D"],[0.30769230769230765,"#34618D"],[0.31103678929765882,"#33628D"],[0.31438127090300999,"#33638D"],[0.31772575250836116,"#32648E"],[0.32107023411371233,"#32658E"],[0.32441471571906355,"#31668E"],[0.32775919732441472,"#31678E"],[0.33110367892976589,"#31678E"],[0.33444816053511706,"#31688E"],[0.33779264214046822,"#30698E"],[0.34113712374581939,"#306A8E"],[0.34448160535117056,"#2F6B8E"],[0.34782608695652173,"#2F6C8E"],[0.3511705685618729,"#2E6D8E"],[0.35451505016722407,"#2E6D8E"],[0.35785953177257523,"#2E6E8E"],[0.3612040133779264,"#2E6F8E"],[0.36454849498327757,"#2D708E"],[0.36789297658862874,"#2D718E"],[0.37123745819397991,"#2C718E"],[0.37458193979933108,"#2C728E"],[0.37792642140468224,"#2C728E"],[0.38127090301003341,"#2C738E"],[0.38461538461538458,"#2B748E"],[0.38795986622073575,"#2B758E"],[0.39130434782608692,"#2A768E"],[0.39464882943143814,"#2A778E"],[0.39799331103678931,"#2A778E"],[0.40133779264214048,"#2A788E"],[0.40468227424749159,"#29798E"],[0.40802675585284282,"#297A8E"],[0.41137123745819393,"#297B8E"],[0.41471571906354515,"#287C8E"],[0.41806020066889626,"#287D8E"],[0.42140468227424749,"#287D8E"],[0.4247491638795986,"#277E8E"],[0.42809364548494983,"#277F8E"],[0.43143812709030105,"#27808E"],[0.43478260869565216,"#26818E"],[0.43812709030100339,"#26828E"],[0.4414715719063545,"#26828E"],[0.44481605351170572,"#26828E"],[0.44816053511705684,"#25838E"],[0.45150501672240806,"#25848E"],[0.45484949832775917,"#25858E"],[0.4581939799331104,"#24868E"],[0.46153846153846151,"#24878E"],[0.46488294314381273,"#23888E"],[0.46822742474916385,"#23888E"],[0.47157190635451507,"#23898E"],[0.47491638795986618,"#238A8D"],[0.47826086956521741,"#228B8D"],[0.48160535117056852,"#228C8D"],[0.48494983277591974,"#228D8D"],[0.48829431438127086,"#218E8D"],[0.49163879598662208,"#218E8D"],[0.49498327759197319,"#218F8D"],[0.49832775919732442,"#21908D"],[0.50167224080267558,"#21918C"],[0.50501672240802675,"#20928C"],[0.50836120401337792,"#20928C"],[0.51170568561872909,"#20928C"],[0.51505016722408026,"#20938C"],[0.51839464882943143,"#1F948C"],[0.52173913043478259,"#1F958B"],[0.52508361204013376,"#1F968B"],[0.52842809364548493,"#1F978B"],[0.5317725752508361,"#1F988B"],[0.53511705685618727,"#1F988B"],[0.53846153846153844,"#1F998A"],[0.5418060200668896,"#1F9A8A"],[0.54515050167224077,"#1E9B8A"],[0.54849498327759194,"#1E9C89"],[0.55183946488294311,"#1E9D89"],[0.55518394648829428,"#1F9E89"],[0.55852842809364545,"#1F9E89"],[0.56187290969899661,"#1F9F88"],[0.56521739130434778,"#1FA088"],[0.56856187290969895,"#1FA188"],[0.57190635451505023,"#1FA187"],[0.57525083612040129,"#1FA287"],[0.57859531772575257,"#20A386"],[0.58193979933110362,"#20A386"],[0.5852842809364549,"#20A486"],[0.58862876254180596,"#21A585"],[0.59197324414715724,"#21A685"],[0.5953177257525083,"#22A785"],[0.59866220735785958,"#22A884"],[0.60200668896321063,"#23A983"],[0.60535117056856191,"#23A983"],[0.60869565217391297,"#24AA83"],[0.61204013377926425,"#25AB82"],[0.61538461538461531,"#25AC82"],[0.61872909698996659,"#26AD81"],[0.62207357859531764,"#27AD81"],[0.62541806020066892,"#27AD81"],[0.62876254180601998,"#28AE80"],[0.63210702341137126,"#29AF7F"],[0.63545150501672232,"#2AB07F"],[0.6387959866220736,"#2CB17E"],[0.64214046822742465,"#2DB27D"],[0.64548494983277593,"#2EB37C"],[0.6488294314381271,"#2EB37C"],[0.65217391304347827,"#30B47C"],[0.65551839464882944,"#31B57B"],[0.65886287625418061,"#32B67A"],[0.66220735785953178,"#34B679"],[0.66555183946488294,"#35B779"],[0.66889632107023411,"#36B878"],[0.67224080267558528,"#37B878"],[0.67558528428093645,"#39B977"],[0.67892976588628762,"#3ABA76"],[0.68227424749163879,"#3BBB75"],[0.68561872909698995,"#3DBC74"],[0.68896321070234112,"#3EBC73"],[0.69230769230769229,"#40BD72"],[0.69565217391304346,"#41BD72"],[0.69899665551839463,"#42BE71"],[0.7023411371237458,"#44BF70"],[0.70568561872909696,"#46C06F"],[0.70903010033444813,"#48C16E"],[0.7123745819397993,"#49C16D"],[0.71571906354515047,"#4BC26C"],[0.71906354515050164,"#4DC26C"],[0.72240802675585281,"#4EC36B"],[0.72575250836120397,"#50C46A"],[0.72909698996655514,"#52C569"],[0.73244147157190631,"#54C568"],[0.73578595317725748,"#55C667"],[0.73913043478260865,"#57C666"],[0.74247491638795982,"#59C765"],[0.74581939799331098,"#5AC864"],[0.74916387959866215,"#5CC863"],[0.75250836120401332,"#5EC962"],[0.75585284280936449,"#5FCA61"],[0.75919732441471566,"#62CB5F"],[0.76254180602006683,"#64CB5F"],[0.76588628762541799,"#66CB5D"],[0.76923076923076916,"#67CC5C"],[0.77257525083612033,"#69CD5B"],[0.7759197324414715,"#6CCD5A"],[0.77926421404682267,"#6DCE59"],[0.78260869565217384,"#6FCF57"],[0.785953177257525,"#71CF57"],[0.78929765886287628,"#74D055"],[0.79264214046822734,"#75D054"],[0.79598662207357862,"#77D153"],[0.79933110367892968,"#79D151"],[0.80267558528428096,"#7BD250"],[0.80602006688963213,"#7ED34F"],[0.80936454849498318,"#80D34E"],[0.81270903010033435,"#82D34D"],[0.81605351170568563,"#84D44B"],[0.8193979933110368,"#86D549"],[0.82274247491638786,"#88D548"],[0.82608695652173902,"#8AD647"],[0.8294314381270903,"#8DD645"],[0.83277591973244147,"#8FD644"],[0.83612040133779253,"#91D743"],[0.8394648829431437,"#93D741"],[0.84280936454849498,"#95D840"],[0.84615384615384615,"#97D83E"],[0.8494983277591972,"#9AD93D"],[0.85284280936454837,"#9CD93C"],[0.85618729096989965,"#9ED93A"],[0.85953177257525082,"#A0DA39"],[0.8628762541806021,"#A2DA37"],[0.86622073578595304,"#A5DB36"],[0.86956521739130432,"#A7DB35"],[0.87290969899665549,"#A9DC33"],[0.87625418060200677,"#ABDC31"],[0.87959866220735772,"#AEDC30"],[0.882943143812709,"#B0DD2F"],[0.88628762541806017,"#B2DD2D"],[0.88963210702341144,"#B5DE2B"],[0.89297658862876239,"#B7DE2A"],[0.89632107023411367,"#B9DE28"],[0.89966555183946484,"#BBDE27"],[0.90301003344481612,"#BEDF26"],[0.90635451505016706,"#C0DF25"],[0.90969899665551834,"#C2DF23"],[0.91304347826086951,"#C4E021"],[0.91638795986622079,"#C7E020"],[0.91973244147157174,"#C9E11F"],[0.92307692307692302,"#CBE11E"],[0.92642140468227419,"#CEE11D"],[0.92976588628762546,"#D0E11C"],[0.93311036789297663,"#D2E21B"],[0.93645484949832769,"#D4E21A"],[0.93979933110367886,"#D7E219"],[0.94314381270903014,"#D9E319"],[0.94648829431438131,"#DBE319"],[0.94983277591973236,"#DDE318"],[0.95317725752508353,"#DFE318"],[0.95652173913043481,"#E2E418"],[0.95986622073578598,"#E4E419"],[0.96321070234113704,"#E6E419"],[0.96655518394648821,"#E8E419"],[0.96989966555183948,"#EBE51A"],[0.97324414715719065,"#EDE51B"],[0.97658862876254171,"#EFE51C"],[0.97993311036789288,"#F1E51D"],[0.98327759197324416,"#F3E61E"],[0.98662207357859533,"#F5E61F"],[0.98996655518394638,"#F7E620"],[0.99331103678929755,"#F9E622"],[0.99665551839464883,"#FBE723"],[1,"#FDE725"]],"colorbar":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"thickness":23.039999999999996,"title":null,"titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickmode":"array","ticktext":["0","1","2","3","4","5"],"tickvals":[0.0016666666666666668,0.20100000000000001,0.40033333333333332,0.59966666666666668,0.79900000000000004,0.99833333333333329],"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"ticklen":2,"len":0.5}},"xaxis":"x","yaxis":"y2","frame":null},{"x":[6.4807406984078604,6.4807406984078604,null,6.4807406984078604,0,null,6.4807406984078604,6.4807406984078604,null,6.4807406984078604,3.3166247903553998,null,3.3166247903553998,3.3166247903553998,null,3.3166247903553998,0,null,3.3166247903553998,3.3166247903553998,null,3.3166247903553998,0],"y":[1.75,1,null,1,1,null,1.75,2.5,null,2.5,2.5,null,2.5,2,null,2,2,null,2.5,3,null,3,3],"text":["y: 6.480741","y: 6.480741",null,"y: 6.480741","y: 6.480741",null,"y: 6.480741","y: 6.480741",null,"y: 6.480741","y: 6.480741",null,"y: 3.316625","y: 3.316625",null,"y: 3.316625","y: 3.316625",null,"y: 3.316625","y: 3.316625",null,"y: 3.316625","y: 3.316625"],"type":"scatter","mode":"lines","line":{"width":2.2677165354330708,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[6.4807406984078604,0,3.3166247903553998,0,0],"y":[1.75,1,2.5,2,3],"text":["y: 6.480741","y: 0.000000","y: 3.316625","y: 0.000000","y: 0.000000"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"transparent","opacity":1,"size":null,"symbol":null,"line":{"width":1.8897637795275593,"color":"transparent"}},"hoveron":"points","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"xaxis":{"domain":[0,0.80000000000000004],"automargin":true,"type":"linear","autorange":false,"range":[0.5,4.5],"tickmode":"array","ticktext":["A","D","C","B1"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["A","D","C","B1"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.283520132835205},"tickangle":-45,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"xaxis2":{"domain":[0.80000000000000004,1],"automargin":true,"showticklabels":false,"showgrid":false,"zeroline":false,"anchor":"y2","type":"linear","autorange":false,"range":[0,6.4807406984078604],"tickmode":"array","ticktext":["0","2","4","6"],"tickvals":[0,2,4,6],"categoryorder":"array","categoryarray":["0","2","4","6"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"gridcolor":null,"gridwidth":0,"title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"yaxis2":{"domain":[0,0.80000000000000004],"automargin":true,"type":"linear","autorange":false,"range":[0.5,3.5],"tickmode":"array","ticktext":["Human","Porcine","Avian"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["Human","Porcine","Avian"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.283520132835205},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"yaxis":{"domain":[0.80000000000000004,1],"automargin":true,"showticklabels":false,"showgrid":false,"zeroline":false,"anchor":"x","type":"linear","autorange":false,"range":[0,5],"tickmode":"array","ticktext":["0","1","2","3","4","5"],"tickvals":[0,1,2,3,4,5],"categoryorder":"array","categoryarray":["0","1","2","3","4","5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"gridcolor":null,"gridwidth":0,"title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"annotations":[],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.80000000000000004,"y0":0.80000000000000004,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.80000000000000004,"y0":0,"y1":0.80000000000000004},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.80000000000000004,"x1":1,"y0":0,"y1":0.80000000000000004}],"images":[],"margin":{"t":0,"r":null,"b":15.940224159402245,"l":55.790784557907863},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"y":1,"yanchor":"top"},"hovermode":"closest","barmode":"relative","paper_bgcolor":"rgba(255,255,255,1)","title":""},"attrs":{"131b77e17b3e2":{"x":{},"y":{},"xend":{},"yend":{},"colour":{},"linetype":{},"size":{},"type":"scatter"},"131b74622fb1a":{"x":{},"y":{},"colour":{},"shape":{},"size":{}},"131b722938bef":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]},"131b74db3efc1":{"x":{},"y":{},"fill":{},"text":{},"type":"heatmap"},"131b7fdad221":{"x":{},"y":{},"xend":{},"yend":{},"colour":{},"linetype":{},"size":{},"type":"scatter"},"131b767197ca8":{"x":{},"y":{},"colour":{},"shape":{},"size":{}}},"source":"A","config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displaylogo":false,"modeBarButtonsToRemove":["sendDataToCloud","select2d","lasso2d","autoScale2d","hoverClosestCartesian","hoverCompareCartesian","sendDataToCloud"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(plots2custom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="plotly html-widget html-fill-item" id="htmlwidget-a3c48a07a836def65151" style="width:100%;height:975px;"></div>
-<script type="application/json" data-for="htmlwidget-a3c48a07a836def65151">{"x":{"data":[{"orientation":"v","width":[0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0,0,0],"x":[13,14,15],"y":[134,102,108],"text":["Strain: LREC253<br />Contigs: 134<br />Source: Avian<br />Source: Avian","Strain: LREC254<br />Contigs: 102<br />Source: Avian<br />Source: Avian","Strain: LREC255<br />Contigs: 108<br />Source: Avian<br />Source: Avian"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.8897637795275593,"color":"rgba(228,26,28,1)"}},"name":"Avian","legendgroup":"Avian","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[1,2,3,4,9,10,11,12,16,17,18,19,20,21,22],"y":[223,159,114,212,376,205,206,140,108,224,204,171,120,114,94],"text":["Strain: LREC237<br />Contigs: 223<br />Source: Human<br />Source: Human","Strain: LREC239<br />Contigs: 159<br />Source: Human<br />Source: Human","Strain: LREC240<br />Contigs: 114<br />Source: Human<br />Source: Human","Strain: LREC241<br />Contigs: 212<br />Source: Human<br />Source: Human","Strain: LREC249<br />Contigs: 376<br />Source: Human<br />Source: Human","Strain: LREC250<br />Contigs: 205<br />Source: Human<br />Source: Human","Strain: LREC251<br />Contigs: 206<br />Source: Human<br />Source: Human","Strain: LREC252<br />Contigs: 140<br />Source: Human<br />Source: Human","Strain: LREC256<br />Contigs: 108<br />Source: Human<br />Source: Human","Strain: LREC257<br />Contigs: 224<br />Source: Human<br />Source: Human","Strain: LREC258<br />Contigs: 204<br />Source: Human<br />Source: Human","Strain: LREC259<br />Contigs: 171<br />Source: Human<br />Source: Human","Strain: LREC260<br />Contigs: 120<br />Source: Human<br />Source: Human","Strain: LREC261<br />Contigs: 114<br />Source: Human<br />Source: Human","Strain: LREC262<br />Contigs:  94<br />Source: Human<br />Source: Human"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.8897637795275593,"color":"rgba(55,126,184,1)"}},"name":"Human","legendgroup":"Human","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947],"base":[0,0,0,0],"x":[5,6,7,8],"y":[320,158,277,203],"text":["Strain: LREC242<br />Contigs: 320<br />Source: Porcine<br />Source: Porcine","Strain: LREC243<br />Contigs: 158<br />Source: Porcine<br />Source: Porcine","Strain: LREC244<br />Contigs: 277<br />Source: Porcine<br />Source: Porcine","Strain: LREC245<br />Contigs: 203<br />Source: Porcine<br />Source: Porcine"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","line":{"width":1.8897637795275593,"color":"rgba(77,175,74,1)"}},"name":"Porcine","legendgroup":"Porcine","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[13,14,15],"y":[310.98453333333333,332.83766666666668,346.44653333333332],"text":["Strain: LREC253<br />Assembly_length/15000: 310.9845<br />Source: Avian<br />alpha: 0.8","Strain: LREC254<br />Assembly_length/15000: 332.8377<br />Source: Avian<br />alpha: 0.8","Strain: LREC255<br />Assembly_length/15000: 346.4465<br />Source: Avian<br />alpha: 0.8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","opacity":0.55000000000000004,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Avian","legendgroup":"Avian","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,9,10,11,12,16,17,18,19,20,21,22],"y":[356.10879999999997,361.04086666666666,325.02286666666669,344.49340000000001,359.27166666666665,356.03186666666664,351.78546666666665,300.48853333333335,350.13766666666669,339.00713333333334,327.71113333333335,346.71339999999998,325.41366666666664,321.4228,322.62293333333332],"text":["Strain: LREC237<br />Assembly_length/15000: 356.1088<br />Source: Human<br />alpha: 0.8","Strain: LREC239<br />Assembly_length/15000: 361.0409<br />Source: Human<br />alpha: 0.8","Strain: LREC240<br />Assembly_length/15000: 325.0229<br />Source: Human<br />alpha: 0.8","Strain: LREC241<br />Assembly_length/15000: 344.4934<br />Source: Human<br />alpha: 0.8","Strain: LREC249<br />Assembly_length/15000: 359.2717<br />Source: Human<br />alpha: 0.8","Strain: LREC250<br />Assembly_length/15000: 356.0319<br />Source: Human<br />alpha: 0.8","Strain: LREC251<br />Assembly_length/15000: 351.7855<br />Source: Human<br />alpha: 0.8","Strain: LREC252<br />Assembly_length/15000: 300.4885<br />Source: Human<br />alpha: 0.8","Strain: LREC256<br />Assembly_length/15000: 350.1377<br />Source: Human<br />alpha: 0.8","Strain: LREC257<br />Assembly_length/15000: 339.0071<br />Source: Human<br />alpha: 0.8","Strain: LREC258<br />Assembly_length/15000: 327.7111<br />Source: Human<br />alpha: 0.8","Strain: LREC259<br />Assembly_length/15000: 346.7134<br />Source: Human<br />alpha: 0.8","Strain: LREC260<br />Assembly_length/15000: 325.4137<br />Source: Human<br />alpha: 0.8","Strain: LREC261<br />Assembly_length/15000: 321.4228<br />Source: Human<br />alpha: 0.8","Strain: LREC262<br />Assembly_length/15000: 322.6229<br />Source: Human<br />alpha: 0.8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","opacity":0.55000000000000004,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Human","legendgroup":"Human","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,6,7,8],"y":[323.87586666666664,309.22226666666666,360.41966666666667,319.77286666666669],"text":["Strain: LREC242<br />Assembly_length/15000: 323.8759<br />Source: Porcine<br />alpha: 0.8","Strain: LREC243<br />Assembly_length/15000: 309.2223<br />Source: Porcine<br />alpha: 0.8","Strain: LREC244<br />Assembly_length/15000: 360.4197<br />Source: Porcine<br />alpha: 0.8","Strain: LREC245<br />Assembly_length/15000: 319.7729<br />Source: Porcine<br />alpha: 0.8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","opacity":0.55000000000000004,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Porcine","legendgroup":"Porcine","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":20.87062404870624,"r":7.3059360730593621,"b":45.488132320331978,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,22.600000000000001],"tickmode":"array","ticktext":["LREC237","LREC239","LREC240","LREC241","LREC242","LREC243","LREC244","LREC245","LREC249","LREC250","LREC251","LREC252","LREC253","LREC254","LREC255","LREC256","LREC257","LREC258","LREC259","LREC260","LREC261","LREC262"],"tickvals":[1,2,3,4,5,6.0000000000000009,7,8,9,10,11,12,12.999999999999998,14.000000000000002,15.000000000000002,16,17,18,19,20,21,22],"categoryorder":"array","categoryarray":["LREC237","LREC239","LREC240","LREC241","LREC242","LREC243","LREC244","LREC245","LREC249","LREC250","LREC251","LREC252","LREC253","LREC254","LREC255","LREC256","LREC257","LREC258","LREC259","LREC260","LREC261","LREC262"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Strain","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-18.800000000000001,394.80000000000001],"tickmode":"array","ticktext":["0","100","200","300"],"tickvals":[0,100,200,300],"categoryorder":"array","categoryarray":["0","100","200","300"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Contigs","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Source","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"ede7ac01e38":{"x":{},"y":{},"colour":{},"fill":{},"type":"bar"},"ede5b002d7d":{"x":{},"y":{},"fill":{},"alpha":{}}},"cur_data":"ede7ac01e38","visdat":{"ede7ac01e38":["function (y) ","x"],"ede5b002d7d":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-a3c48a07a836def65151">{"x":{"data":[{"orientation":"v","width":[0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0,0,0],"x":[13,14,15],"y":[134,102,108],"text":["Strain: LREC253<br />Contigs: 134<br />Source: Avian<br />Source: Avian","Strain: LREC254<br />Contigs: 102<br />Source: Avian<br />Source: Avian","Strain: LREC255<br />Contigs: 108<br />Source: Avian<br />Source: Avian"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","line":{"width":1.8897637795275593,"color":"rgba(228,26,28,1)"}},"name":"Avian","legendgroup":"Avian","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[1,2,3,4,9,10,11,12,16,17,18,19,20,21,22],"y":[223,159,114,212,376,205,206,140,108,224,204,171,120,114,94],"text":["Strain: LREC237<br />Contigs: 223<br />Source: Human<br />Source: Human","Strain: LREC239<br />Contigs: 159<br />Source: Human<br />Source: Human","Strain: LREC240<br />Contigs: 114<br />Source: Human<br />Source: Human","Strain: LREC241<br />Contigs: 212<br />Source: Human<br />Source: Human","Strain: LREC249<br />Contigs: 376<br />Source: Human<br />Source: Human","Strain: LREC250<br />Contigs: 205<br />Source: Human<br />Source: Human","Strain: LREC251<br />Contigs: 206<br />Source: Human<br />Source: Human","Strain: LREC252<br />Contigs: 140<br />Source: Human<br />Source: Human","Strain: LREC256<br />Contigs: 108<br />Source: Human<br />Source: Human","Strain: LREC257<br />Contigs: 224<br />Source: Human<br />Source: Human","Strain: LREC258<br />Contigs: 204<br />Source: Human<br />Source: Human","Strain: LREC259<br />Contigs: 171<br />Source: Human<br />Source: Human","Strain: LREC260<br />Contigs: 120<br />Source: Human<br />Source: Human","Strain: LREC261<br />Contigs: 114<br />Source: Human<br />Source: Human","Strain: LREC262<br />Contigs:  94<br />Source: Human<br />Source: Human"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","line":{"width":1.8897637795275593,"color":"rgba(55,126,184,1)"}},"name":"Human","legendgroup":"Human","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947],"base":[0,0,0,0],"x":[5,6,7,8],"y":[320,158,277,203],"text":["Strain: LREC242<br />Contigs: 320<br />Source: Porcine<br />Source: Porcine","Strain: LREC243<br />Contigs: 158<br />Source: Porcine<br />Source: Porcine","Strain: LREC244<br />Contigs: 277<br />Source: Porcine<br />Source: Porcine","Strain: LREC245<br />Contigs: 203<br />Source: Porcine<br />Source: Porcine"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","line":{"width":1.8897637795275593,"color":"rgba(77,175,74,1)"}},"name":"Porcine","legendgroup":"Porcine","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[13,14,15],"y":[310.98453333333333,332.83766666666668,346.44653333333332],"text":["Strain: LREC253<br />Assembly_length/15000: 310.9845<br />Source: Avian<br />alpha: 0.8","Strain: LREC254<br />Assembly_length/15000: 332.8377<br />Source: Avian<br />alpha: 0.8","Strain: LREC255<br />Assembly_length/15000: 346.4465<br />Source: Avian<br />alpha: 0.8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","opacity":0.55000000000000004,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Avian","legendgroup":"Avian","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1,2,3,4,9,10,11,12,16,17,18,19,20,21,22],"y":[356.10879999999997,361.04086666666666,325.02286666666669,344.49340000000001,359.27166666666665,356.03186666666664,351.78546666666665,300.48853333333335,350.13766666666669,339.00713333333334,327.71113333333335,346.71339999999998,325.41366666666664,321.4228,322.62293333333332],"text":["Strain: LREC237<br />Assembly_length/15000: 356.1088<br />Source: Human<br />alpha: 0.8","Strain: LREC239<br />Assembly_length/15000: 361.0409<br />Source: Human<br />alpha: 0.8","Strain: LREC240<br />Assembly_length/15000: 325.0229<br />Source: Human<br />alpha: 0.8","Strain: LREC241<br />Assembly_length/15000: 344.4934<br />Source: Human<br />alpha: 0.8","Strain: LREC249<br />Assembly_length/15000: 359.2717<br />Source: Human<br />alpha: 0.8","Strain: LREC250<br />Assembly_length/15000: 356.0319<br />Source: Human<br />alpha: 0.8","Strain: LREC251<br />Assembly_length/15000: 351.7855<br />Source: Human<br />alpha: 0.8","Strain: LREC252<br />Assembly_length/15000: 300.4885<br />Source: Human<br />alpha: 0.8","Strain: LREC256<br />Assembly_length/15000: 350.1377<br />Source: Human<br />alpha: 0.8","Strain: LREC257<br />Assembly_length/15000: 339.0071<br />Source: Human<br />alpha: 0.8","Strain: LREC258<br />Assembly_length/15000: 327.7111<br />Source: Human<br />alpha: 0.8","Strain: LREC259<br />Assembly_length/15000: 346.7134<br />Source: Human<br />alpha: 0.8","Strain: LREC260<br />Assembly_length/15000: 325.4137<br />Source: Human<br />alpha: 0.8","Strain: LREC261<br />Assembly_length/15000: 321.4228<br />Source: Human<br />alpha: 0.8","Strain: LREC262<br />Assembly_length/15000: 322.6229<br />Source: Human<br />alpha: 0.8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","opacity":0.55000000000000004,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Human","legendgroup":"Human","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,6,7,8],"y":[323.87586666666664,309.22226666666666,360.41966666666667,319.77286666666669],"text":["Strain: LREC242<br />Assembly_length/15000: 323.8759<br />Source: Porcine<br />alpha: 0.8","Strain: LREC243<br />Assembly_length/15000: 309.2223<br />Source: Porcine<br />alpha: 0.8","Strain: LREC244<br />Assembly_length/15000: 360.4197<br />Source: Porcine<br />alpha: 0.8","Strain: LREC245<br />Assembly_length/15000: 319.7729<br />Source: Porcine<br />alpha: 0.8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","opacity":0.55000000000000004,"size":11.338582677165356,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Porcine","legendgroup":"Porcine","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":20.87062404870624,"r":7.3059360730593621,"b":45.488132320331978,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,22.600000000000001],"tickmode":"array","ticktext":["LREC237","LREC239","LREC240","LREC241","LREC242","LREC243","LREC244","LREC245","LREC249","LREC250","LREC251","LREC252","LREC253","LREC254","LREC255","LREC256","LREC257","LREC258","LREC259","LREC260","LREC261","LREC262"],"tickvals":[1,2,3,4,5,6.0000000000000009,7,8,9,10,11,12,12.999999999999998,14.000000000000002,15.000000000000002,16,17,18,19,20,21,22],"categoryorder":"array","categoryarray":["LREC237","LREC239","LREC240","LREC241","LREC242","LREC243","LREC244","LREC245","LREC249","LREC250","LREC251","LREC252","LREC253","LREC254","LREC255","LREC256","LREC257","LREC258","LREC259","LREC260","LREC261","LREC262"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Strain","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-18.800000000000001,394.80000000000001],"tickmode":"array","ticktext":["0","100","200","300"],"tickvals":[0,100,200,300],"categoryorder":"array","categoryarray":["0","100","200","300"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Contigs","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Source","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"131b73c9aec8b":{"x":{},"y":{},"colour":{},"fill":{},"type":"bar"},"131b75f1fb8c2":{"x":{},"y":{},"fill":{},"alpha":{}}},"cur_data":"131b73c9aec8b","visdat":{"131b73c9aec8b":["function (y) ","x"],"131b75f1fb8c2":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -740,13 +870,13 @@ You may ask questions at stackoverflow, use the r and heatmaply tags:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.3.0 (2023-04-21)
-Platform: x86_64-apple-darwin20 (64-bit)
-Running under: macOS Ventura 13.5.2
+<pre><code>R version 4.4.1 (2024-06-14)
+Platform: x86_64-apple-darwin20
+Running under: macOS Sonoma 14.6.1
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRblas.0.dylib 
-LAPACK: /Library/Frameworks/R.framework/Versions/4.3-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.4-x86_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -758,34 +888,33 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] heatmaply_1.5.0    viridis_0.6.4      viridisLite_0.4.2  plotly_4.10.3     
- [5] RColorBrewer_1.1-3 ggplot2_3.4.4      data.table_1.14.10 formatR_1.14      
- [9] knitr_1.45         webexercises_1.1.0
+ [1] heatmaply_1.5.0    viridis_0.6.5      viridisLite_0.4.2  plotly_4.10.4     
+ [5] RColorBrewer_1.1-3 ggplot2_3.5.1      data.table_1.16.2  webexercises_1.1.0
+ [9] formatR_1.14       knitr_1.48        
 
 loaded via a namespace (and not attached):
- [1] utf8_1.2.4        generics_0.1.3    tidyr_1.3.0       stringi_1.8.3    
- [5] digest_0.6.33     magrittr_2.0.3    evaluate_0.23     grid_4.3.0       
- [9] iterators_1.0.14  fastmap_1.1.1     plyr_1.8.9        foreach_1.5.2    
-[13] jsonlite_1.8.8    seriation_1.5.3   gridExtra_2.3     httr_1.4.7       
+ [1] utf8_1.2.4        generics_0.1.3    tidyr_1.3.1       stringi_1.8.4    
+ [5] digest_0.6.37     magrittr_2.0.3    evaluate_1.0.1    grid_4.4.1       
+ [9] iterators_1.0.14  fastmap_1.2.0     plyr_1.8.9        foreach_1.5.2    
+[13] jsonlite_1.8.9    seriation_1.5.6   gridExtra_2.3     httr_1.4.7       
 [17] purrr_1.0.2       fansi_1.0.6       crosstalk_1.2.1   scales_1.3.0     
-[21] codetools_0.2-19  lazyeval_0.2.2    textshaping_0.3.7 registry_0.5-1   
-[25] cli_3.6.2         rlang_1.1.2       ellipsis_0.3.2    munsell_0.5.0    
-[29] withr_2.5.2       yaml_2.3.8        tools_4.3.0       reshape2_1.4.4   
-[33] dplyr_1.1.4       colorspace_2.1-0  webshot_0.5.5     assertthat_0.2.1 
-[37] ca_0.71.1         TSP_1.2-4         vctrs_0.6.5       R6_2.5.1         
-[41] lifecycle_1.0.4   stringr_1.5.1     htmlwidgets_1.6.4 ragg_1.2.7       
-[45] pkgconfig_2.0.3   dendextend_1.17.1 pillar_1.9.0      gtable_0.3.4     
-[49] Rcpp_1.0.11       glue_1.6.2        systemfonts_1.0.5 xfun_0.41        
-[53] tibble_3.2.1      tidyselect_1.2.0  rstudioapi_0.15.0 farver_2.1.1     
-[57] htmltools_0.5.7   rmarkdown_2.25    svglite_2.1.3     labeling_0.4.3   
-[61] compiler_4.3.0   </code></pre>
+[21] codetools_0.2-20  lazyeval_0.2.2    textshaping_0.4.0 registry_0.5-1   
+[25] cli_3.6.3         rlang_1.1.4       munsell_0.5.1     withr_3.0.2      
+[29] yaml_2.3.10       tools_4.4.1       reshape2_1.4.4    dplyr_1.1.4      
+[33] colorspace_2.1-1  webshot_0.5.5     assertthat_0.2.1  ca_0.71.1        
+[37] TSP_1.2-4         vctrs_0.6.5       R6_2.5.1          lifecycle_1.0.4  
+[41] stringr_1.5.1     htmlwidgets_1.6.4 ragg_1.3.3        pkgconfig_2.0.3  
+[45] dendextend_1.18.1 pillar_1.9.0      gtable_0.3.6      Rcpp_1.0.13      
+[49] glue_1.8.0        systemfonts_1.1.0 xfun_0.48         tibble_3.2.1     
+[53] tidyselect_1.2.1  rstudioapi_0.17.1 farver_2.1.2      htmltools_0.5.8.1
+[57] rmarkdown_2.28    svglite_2.1.3     labeling_0.4.3    compiler_4.4.1   </code></pre>
 </div>
 </div>
 
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script>
 
 /* update total correct if #webex-total_correct exists */
@@ -1027,18 +1156,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1070,11 +1188,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1084,8 +1248,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1097,7 +1270,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1141,6 +1437,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1166,6 +1463,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1223,28 +1546,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Modesto Redrejo Rodríguez &amp; Luis del Peso, 2023</div>   
+    <div class="nav-footer-left">
+<p>Modesto Redrejo Rodríguez &amp; Luis del Peso, 2024</p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -1256,16 +1565,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </i> 
     </a>
   </li>  
-    <li class="nav-item compact">
+    <li class="nav-item">
     <a class="nav-link" href="https://twitter.com/mredrejo">
-      <i class="bi bi-twitter" role="img">
-</i> 
-    </a>
+<p><iconify-icon inline="" icon="fa6-brands:x-twitter"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/mredrejo.bsky.social">
+<p><iconify-icon inline="" icon="simple-icons:bluesky"></iconify-icon></p>
+</a>
   </li>  
 </ul>
     </div>
   </div>
 </footer>
+
 
 
 
